@@ -6,8 +6,9 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous" ></script>
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>ETT Publica</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -79,9 +80,14 @@
                 </div>
         </div>
 
-        <main class="py-4">
+        <div class="container-fluid w-100">
+        <div class="row w-100 justify-content-center align-items-center">
             @yield('content')
-        </main>
+            </div>
+        </div>
     </div>
+
+    
+
 </body>
 </html>

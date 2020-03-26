@@ -14,11 +14,11 @@ class AddRolidToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('rol_id')->unsigned()->unique();
+            $table->unsignedBigInteger('rol_id')->unsigned();
             $table->foreign('rol_id')
             ->references('id')
             ->on('users')
-            ->onDelete('cascade')->index();
+            ->onDelete('cascade');
 
         });
 

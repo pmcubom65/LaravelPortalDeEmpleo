@@ -1,25 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<!--<div class="carousel" id="mislider">
-    <div class="carousel-inner">
-        <div class="item active">
-            <img src="img/dia.jpg" />
 
-        </div>
-        <div class="item">
-            <img src="img/noche.jpg" />
-
-        </div>
-        <div class="item">
-            <img src="img/puente.jpg" />
-
-        </div>
-
-
-    </div>
-
-</div>-->
 
 
 
@@ -28,10 +10,36 @@
         <div class="flex-center position-ref full-height">
   
 
-            <div class="container">
-                <div class="row">
-                <div class="col">
-                <div class="card" style="width: 18rem;">
+            <div class="container justify-content-center align-items-center">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="img-responsive center-block w-100 h-75" src="img/dia.jpg" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="img-responsive center-block w-100 h-75" src="img/noche.jpg" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="img-responsive center-block w-100 h-75" src="img/puente.jpg" alt="Third slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+                <div class="row  clearfix">
+                <div class="col  float-left">
+                <div class="card float-right" style="width: 18rem;">
                  <img src="https://i.picsum.photos/id/1035/300/300.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                 <h5 class="card-title">Soy un trabajador</h5>
@@ -49,8 +57,8 @@
             </div>
                 </div>
                
-                 <div class="col">
-                 <div class="card" style="width: 18rem;">
+                 <div class="col  float-right">
+                 <div class="card float-left" style="width: 18rem;">
             <img src="https://i.picsum.photos/id/1078/300/300.jpg" class="card-img-top" alt="...">
             <div class="card-body">
             <h5 class="card-title">Soy una empresa</h5>
