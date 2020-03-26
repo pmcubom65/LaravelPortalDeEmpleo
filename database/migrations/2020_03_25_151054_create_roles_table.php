@@ -13,12 +13,40 @@ class CreateRolesTable extends Migration
      */
     public function up()
     {
+        
         Schema::create('roles', function (Blueprint $table) {
-            $table->id();
+            $table->id()->start_from(0);
             $table->timestamps();
             $table->string('nombre');
         });
+       
+
+
+     //   DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+            // Insert some stuff
+    DB::table('roles')->insert(
+        array(
+            [
+            'nombre' => 'trabajador'],
+            [
+            'nombre' => 'empresa'],
+            [
+            'nombre' => 'admin'],
+        )
+    );
+  
+
+
+
+
     }
+
+
+
+
+
+
+
 
     /**
      * Reverse the migrations.
@@ -27,6 +55,8 @@ class CreateRolesTable extends Migration
      */
     public function down()
     {
+        
         Schema::dropIfExists('roles');
+        
     }
 }

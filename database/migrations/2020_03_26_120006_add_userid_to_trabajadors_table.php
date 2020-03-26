@@ -14,7 +14,7 @@ class AddUseridToTrabajadorsTable extends Migration
     public function up()
     {
         Schema::table('trabajadors', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id');
         });
     }
 
