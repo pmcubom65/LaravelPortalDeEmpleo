@@ -20,12 +20,24 @@
   <div class="carousel-inner">
     <div class="carousel-item active">
       <img class="img-responsive center-block w-100 h-75" src="img/dia.jpg" alt="First slide">
+      <div class="carousel-caption d-top d-md-block">
+    <h1 class="display-2 text-center font-weight-bold">Tu trabajo está ahí fuera</h1>
+    
+  </div>
     </div>
     <div class="carousel-item">
       <img class="img-responsive center-block w-100 h-75" src="img/noche.jpg" alt="Second slide">
+      <div class="carousel-caption d-none d-md-block">
+    <h1 class="display-2 text-center font-weight-bold">Para cumplir tus sueños</h5>
+    <p></p>
+  </div>
     </div>
     <div class="carousel-item">
       <img class="img-responsive center-block w-100 h-75" src="img/puente.jpg" alt="Third slide">
+      <div class="carousel-caption d-none d-md-block">
+    <h1 class="display-2 text-center font-weight-bold">Unimos empresas y trabajadores</h5>
+    <p></p>
+  </div>
     </div>
   </div>
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -41,6 +53,7 @@
                 <div class="col  float-left">
                 <div class="card float-right" style="width: 18rem;">
                  <img src="https://i.picsum.photos/id/1035/300/300.jpg" class="card-img-top" alt="...">
+                 
                 <div class="card-body">
                 <h5 class="card-title">Soy un trabajador</h5>
                 <p class="card-text">Inscribase en las ofertas de empleo. Actualize su perfil y curriculum. Consulte en el estado de sus candidaturas</p>

@@ -6,7 +6,7 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous" ></script>
+   
 
     <title>ETT Publica</title>
 
@@ -76,7 +76,8 @@
         <div class="jumbotron jumbotron-fluid bg-primary text-white"  >
 
                 <div class="container">
-                <h1 class="display-2 text-center">ETT Pública</h1>
+                <h2 class="display-2 text-center">ETT Pública</h1>
+                
                 </div>
         </div>
 

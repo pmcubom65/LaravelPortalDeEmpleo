@@ -79,7 +79,7 @@ body {
   line-height: 1.6;
   color: #212529;
   text-align: left;
-  background-color: #f8fafc;
+  background-color: #e3f2fd;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -10686,6 +10686,10 @@ button.bg-dark:focus {
 a.text-primary:hover,
 a.text-primary:focus {
   color: #1d68a7 !important;
+}
+
+h1.display-2 {
+  font-family: 'Cantarell';
 }
 
 .text-secondary {
