@@ -13,6 +13,12 @@
   
                 </div>
 
+                <div class="form-group">
+                    <label for="area">Mensaje</label>
+                    <textarea nombre="area" class="form-control"></textarea>
+
+                </div>
+                <a href="#" class="btn btn-primary">Enviar</a>
 
 
 

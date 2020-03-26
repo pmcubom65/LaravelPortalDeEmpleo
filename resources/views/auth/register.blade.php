@@ -63,7 +63,8 @@
 
                         <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
-                                <select name="tipo" id="tipo">
+                                <label for="tipo">Perfil</label>
+                                <select name="tipo" id="tipo" class="form-control">
                                 <option value="1">Trabajador</option>
                                 <option value="2">Empresa</option>
                                 <option value="3">Admin</option>
