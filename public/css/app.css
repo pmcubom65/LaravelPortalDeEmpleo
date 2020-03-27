@@ -185,6 +185,28 @@ a {
   background-color: transparent;
 }
 
+.dropdown-toggle {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.dropdown-menu .dropdown-item{background:indigo; color:white; }
+.dropdown-menu .dropdown-item:hover{background:black; color:white; }
+
+
+.caret {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  margin-left: 2px;
+  vertical-align: middle;
+  border-top: 4px solid white;
+  border-right: 4px solid transparent;
+  border-bottom: 0 dotted;
+  border-left: 4px solid transparent;
+  content: "";
+}
+
 a:hover {
   color: #1d68a7;
   text-decoration: underline;
