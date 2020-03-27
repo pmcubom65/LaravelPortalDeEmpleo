@@ -52,9 +52,9 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav" style="Text-color: white;">
+        <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">Información</a>
+                <a class="nav-link " href="#">Información</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Buscar Trabajo</a>

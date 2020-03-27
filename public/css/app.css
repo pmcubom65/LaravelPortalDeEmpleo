@@ -40,6 +40,9 @@
 
 nav.navbar {
   background-color:indigo;
+  padding-top: 0;
+  padding-bottom: 0;
+
   
 }
 
@@ -5505,6 +5508,13 @@ a.badge-dark.focus {
 .nav-item a {
   color: white;
 }
+
+.nav-item:hover {
+  background-color: rgb(210, 168, 240);
+  
+}
+
+
 
 .jumbotron {
   
