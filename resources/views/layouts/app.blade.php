@@ -26,17 +26,16 @@
         <nav class="navbar navbar-expand-md navbar-light shadow-sm ">
             <div class="container">
                 <a class="navbar-brand text-white" href="{{ url('/') }}">
-                    {{ __('Home') }}
+                    ETT Publica
                 </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+              
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
                     </ul>
+                    
 
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto ">
@@ -72,17 +71,19 @@
                     </ul>
                 </div>
             </div>
+           
+           
         </nav>
-        <div class="jumbotron jumbotron-fluid bg-primary text-white"  >
+    <!--    <div class="jumbotron jumbotron-fluid bg-primary text-white"  >
 
                 <div class="container">
                 <h2 class="display-2 text-center">ETT Pública</h1>
                 
                 </div>
-        </div>
+        </div>-->
 
-        <div class="container-fluid w-100">
-        <div class="row w-100 justify-content-center align-items-center">
+        <div class="container-fluid w-100 px-0">
+        <div class="row w-100 justify-content-center align-items-center mx-0">
             @yield('content')
             </div>
         </div>
