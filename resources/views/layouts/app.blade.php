@@ -44,7 +44,9 @@
 
 
         <nav class="navbar navbar-expand-md bg-dark sticky-top" >
-  
+            <button class="navbar-toggler" data-toggle="collapse" data-target="collapse_target">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         <ul class="navbar-nav" style="Text-color: white;">
             <li class="nav-item">
                 <a class="nav-link" href="#">link1</a>
