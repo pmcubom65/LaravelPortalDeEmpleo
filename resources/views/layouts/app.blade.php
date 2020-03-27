@@ -16,7 +16,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
+    
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -35,6 +35,9 @@
                                     <h2 class="display-4 text-left">Conectamos trabajadores y empresas</h2>
                                     <p>Hacemos el trabajo</p>
                                 </div>
+                                <div class="col-sm-1 d-lg-none">
+                                <p text-center>Hacemos trabajo</p>
+                                </div>
 
 
                             </div>
@@ -44,9 +47,11 @@
 
 
         <nav class="navbar navbar-expand-md bg-dark sticky-top" >
-            <button class="navbar-toggler" data-toggle="collapse" data-target="collapse_target">
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav" style="Text-color: white;">
             <li class="nav-item">
                 <a class="nav-link" href="#">link1</a>
@@ -61,7 +66,7 @@
                 <a class="nav-link" href="#">link1</a>
             </li>
         </ul>
-        
+        </div>
         </nav>
 
         <div class="container-fluid w-100 px-0">
