@@ -58,6 +58,24 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
 
+#plx {
+    background-image: url("https://i.picsum.photos/id/190/2048/1365.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.wtitle {
+  padding: 150px 20px;
+}
+
+.wtitle h2 {
+  font-size: 36px;
+  font-weight: bold;
+}
+
+
 body {
   margin: 0;
   font-family: "Nunito", sans-serif;

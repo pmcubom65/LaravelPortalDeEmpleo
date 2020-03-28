@@ -118,6 +118,20 @@
 
 
 
+        <section id="plx">
+                <div class="container">
+                    <div class="wtitle text-center text-light">
+                        <h2>Proporcionamos las mejores herramientas para empresarios y trabajadores.
+                            Contamos con la ayuda de los mejores profesionales 
+                    </h2>
+                    </div>
+                </div>
+
+
+        </section>
+
+
+
 
 
 
