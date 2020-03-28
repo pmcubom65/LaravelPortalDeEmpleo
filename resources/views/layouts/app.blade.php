@@ -3,13 +3,15 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="img/icon.png" alt="icono">
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-   
+    
 
     <title>ETT Publica</title>
-
+    <meta name="description" content="página que sirve como portal de empleo">
+    <meta name="keywords" content="empleo, trabajo, salario">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -28,14 +30,15 @@
 
                         <div class="container">
                             <div class="row">
-                                <div class="col-lg-3">
-                                    <a class="navbar-brand" href="{{ url('/') }}"><img src="img/logo.png" class="w-50 h-50"/></a>
+                                <div class="col-lg-xs-3">
+                                    <a class="navbar-brand d-none d-lg-block" href="{{ url('/') }}"><img src="img/logo.png" class="w-50 h-50"/></a>
+                                    <a class="navbar-brand d-lg-none" href="{{ url('/') }}"><img src="img/icon.png" class="w-50 h-50"/></a>
                                 </div>
                                 <div class="col-lg-9  d-none d-lg-block">
                                     <h2 class="display-4 text-left">Conectamos trabajadores y empresas</h2>
                                     <p>Hacemos el trabajo</p>
                                 </div>
-                                <div class="col-sm-1 d-lg-none">
+                                <div class="d-lg-none my-1">
                                 <p text-center>Hacemos trabajo</p>
                                 </div>
 
@@ -54,7 +57,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link " href="#">Información</a>
+                <a class="nav-link " href="#informacion">Información</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Buscar Trabajo</a>
@@ -113,6 +116,11 @@
         </nav>
 
         <div class="container-fluid w-100 px-0">
+        <div class="d-lg-none my-1">
+                                <img class="w-110 h-110" src="https://i.picsum.photos/id/1078/300/300.jpg" />
+        </div>
+
+
         <div class="row w-100 justify-content-center align-items-center mx-0">
             @yield('content')
             </div>

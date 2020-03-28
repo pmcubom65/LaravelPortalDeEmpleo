@@ -52,7 +52,25 @@
   </a>
   </div>
 </div>
-                <div class="row  ">
+          <section id="intro" class="intro-section">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <h1>Scrolling Nav</h1>
+                            <p>Lorem ipsum</p>
+                        </div>
+                    </div>
+
+                </div>
+          </section>
+
+
+
+          <section id="informacion" class="informacion-section">
+              <div class="container">
+                    <div class="row">
+                    <div class="col-lg-12">
+                    <div class="row">
                 <div class="col  float-left">
                 <div class="card float-right" style="width: 18rem;">
                  <img src="https://i.picsum.photos/id/1035/300/300.jpg" class="card-img-top" alt="...">
@@ -87,6 +105,17 @@
             </div>
                   </div>
               </div>
+                    </div>
+                    </div>
+              </div>
+
+
+          </section>
+
+
+
+
+
 
 
             
@@ -94,7 +123,7 @@
 
         </div>
 
-
+    </div>
 
 
 
