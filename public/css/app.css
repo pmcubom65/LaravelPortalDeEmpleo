@@ -4803,7 +4803,7 @@ a.badge-dark:focus, a.badge-dark.focus {
 
 .jumbotron {
   background-size: cover;
-  background-color: black;
+  background-color: indigo;
   background-position: center;
   border-radius: 0.3rem;
 }

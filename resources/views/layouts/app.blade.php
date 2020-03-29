@@ -19,7 +19,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet" >
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -34,13 +34,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-xs-3">
-                        <a class="navbar-brand d-none d-lg-block" href="{{ url('/') }}"><img src="img/logo.png"
-                                class="w-50 h-50" /></a>
+                        <a class="navbar-brand d-none d-lg-block py-0 ml-5 mr-0" href="{{ url('/') }}"><img
+                                src="img/logo.png" class="w-50 h-50" /></a>
                         <a class="navbar-brand d-lg-none" href="{{ url('/') }}"><img src="img/icon.png"
                                 class="w-50 h-50" /></a>
                     </div>
-                    <div class="col-lg-9  d-none d-lg-block">
-                        <h2 class="display-4 text-left">Conectamos trabajadores y empresas</h2>
+                    <div class="col-lg-9 pl-0 d-none d-lg-block">
+                        <h2 class="display-4 ml-0 text-left">Conectamos trabajadores y empresas</h2>
                         <p>Hacemos el trabajo</p>
                     </div>
                     <div class="d-lg-none my-1">
@@ -54,7 +54,7 @@
         </div>
 
 
-        <nav class="navbar navbar-expand-md sticky-top">
+        <nav class="navbar navbar-expand-md fixed-top">
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -62,7 +62,7 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
-                <li class="nav-item">
+                    <li class="nav-item">
                         <a class="nav-link " href="/#inicio" active>Inicio</a>
                     </li>
                     <li class="nav-item">
@@ -126,7 +126,7 @@
         </nav>
 
         <div class="container-fluid w-100 px-0">
-          
+
 
 
             <div class="row w-100 justify-content-center align-items-center mx-0">
