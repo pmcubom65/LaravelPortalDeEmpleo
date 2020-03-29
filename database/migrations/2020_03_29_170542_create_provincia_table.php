@@ -73,7 +73,7 @@ class CreateProvinciaTable extends Migration
                   'Santa Cruz De Tenerife'],[ 'region_name'=>
                  'Alicante'],[ 'region_name'=>
                  'Castellón'],[ 'region_name'=>
-                 'Valencia' ]
+                 'Valencia' ] 
             ));
     }
 
