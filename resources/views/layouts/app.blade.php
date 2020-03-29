@@ -19,6 +19,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet" >
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -62,7 +63,7 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav">
                 <li class="nav-item">
-                        <a class="nav-link " href="#inicio" active>Inicio</a>
+                        <a class="nav-link " href="/#inicio" active>Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="#informacion">Información</a>
