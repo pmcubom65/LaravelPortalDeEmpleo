@@ -292,6 +292,16 @@ th {
 label {
   display: inline-block;
   margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.card-body label {
+  font-weight: normal;
+}
+
+#mioutid {
+  margin-left: 13rem;
+  font-weight: bold;
 }
 
 button {

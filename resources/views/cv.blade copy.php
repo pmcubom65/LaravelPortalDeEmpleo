@@ -13,7 +13,7 @@
 
     </div>
     <div class="card">
-
+     
 
         <div class="card-body">
 
@@ -71,13 +71,13 @@
                             <div class="form-group col-sm-12">
                                 <label for="Provincia">Provincia</label>
                                 <select class="form-control" id="Provincia" name="Provincia">
-
-                                    @foreach ($provincias as $provincia) {
+                                
+                                @foreach ($provincias as $provincia) {
                                     <option value="{{ $provincia->id }}">{{ $provincia->region_name }}</option>
 
-                                    }
-                                    @endforeach
-
+                                }
+                                @endforeach
+                                
                                 </select>
 
                             </div>
@@ -149,7 +149,7 @@
 <!--modal-->
 <div class="modal fade" id="sitiomodal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form action="/cv" method="POST">
+        <form>
             <div class="modal-content">
                 <div class="modal-header">
 
@@ -205,12 +205,12 @@
                     <div class="form-group col-12">
                         <label for="exp">Categoria Profesional</label>
                         <select name="cat" id="cat" class="form-control">
-                            @foreach ($categorias as $categoria) {
+                        @foreach ($categorias as $categoria) {
                             <option value="{{ $categoria->id}}">{{$categoria->nombre}}</option>
-                            }
-                            @endforeach
-
-
+                        }
+                        @endforeach
+                        
+                        
                         </select>
 
                     </div>

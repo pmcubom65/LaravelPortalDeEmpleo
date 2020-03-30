@@ -19,61 +19,63 @@ class CreateProvinciaTable extends Migration
             $table->string('region_name');
 
         });
+
+      
         DB::table('provincia')->delete();
         DB::table('provincia')->insert(
             array(['region_name'=>
-                 'Albacete'],[ 'region_name'=>
-                 'Ciudad Real'],[ 'region_name'=>
-                 'Cuenca'],[ 'region_name'=>
-                 'Guadalajara'],[ 'region_name'=>
-                 'Toledo'],[ 'region_name'=>
-                 'Huesca'],[ 'region_name'=>
-                 'Teruel'],[ 'region_name'=>
-                  'Zaragoza'],[ 'region_name'=>
-                  'Ceuta'],[ 'region_name'=>
-                 'Madrid'],[ 'region_name'=>
-                 'Murcia'],[ 'region_name'=>
-                 'Melilla'],[ 'region_name'=>
-                 'Navarra'],[ 'region_name'=>
-                 'Almería'],[ 'region_name'=>
-                 'Cádiz'],[ 'region_name'=>
-                  'Córdoba'],[ 'region_name'=>
-                 'Granada'],[ 'region_name'=>
-                  'Huelva'],[ 'region_name'=>
-                 'Jaén'],[ 'region_name'=>
-                  'Málaga'],[ 'region_name'=>
-                 'Sevilla'],[ 'region_name'=>
-                   'Asturias'],[ 'region_name'=>
-                   'Cantabria'],[ 'region_name'=>
-                   'Ávila'],[ 'region_name'=>
-                   'Burgos'],[ 'region_name'=>
-                   'León'],[ 'region_name'=>
-                   'Palencia'],[ 'region_name'=>
-                   'Salamanca'],[ 'region_name'=>
-                   'Segovia'],[ 'region_name'=>
-                   'Soria'],[ 'region_name'=>
-                   'Valladolid'],[ 'region_name'=>
-                   'Zamora'],[ 'region_name'=>
-                 'Barcelona'],[ 'region_name'=>
-                 'Gerona'],[ 'region_name'=>
-                 'Lérida'],[ 'region_name'=>
-                 'Tarragona'],[ 'region_name'=>
-                 'Badajoz'],[ 'region_name'=>
-                 'Cáceres'],[ 'region_name'=>
-                 'La Coruña',  'region_name'=>
-                 'Lugo'],[ 'region_name'=>
-                 'Orense'],[ 'region_name'=>
-                 'Pontevedra'],[ 'region_name'=>
-                 'La Rioja' , 'region_name'=>
-                 'Islas Baleares'],[ 'region_name'=>
-                 'Álava'],[ 'region_name'=>
-                 'Guipúzcoa'],[ 'region_name'=>
-                 'Vizcaya'],[ 'region_name'=>
-                 'Las Palmas'],[ 'region_name'=>
-                  'Santa Cruz De Tenerife'],[ 'region_name'=>
-                 'Alicante'],[ 'region_name'=>
-                 'Castellón'],[ 'region_name'=>
-                 'Valencia' ] 
+                 'Albacete','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Ciudad Real','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Cuenca','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Guadalajara','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Toledo','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Huesca','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Teruel','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                  'Zaragoza','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                  'Ceuta','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Madrid','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Murcia','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Melilla','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Navarra','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Almería','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Cádiz','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                  'Córdoba','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Granada','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                  'Huelva','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Jaén','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                  'Málaga','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Sevilla','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                   'Asturias','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                   'Cantabria','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                   'Ávila','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                   'Burgos','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                   'León','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                   'Palencia','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                   'Salamanca','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                   'Segovia','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                   'Soria','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                   'Valladolid','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                   'Zamora','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Barcelona','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Gerona','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Lérida','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Tarragona','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Badajoz','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Cáceres','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'La Coruña', 'created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Lugo','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Orense','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Pontevedra','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'La Rioja' ,'created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Islas Baleares','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Álava','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Guipúzcoa','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Vizcaya','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Las Palmas','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                  'Santa Cruz De Tenerife','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Alicante','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Castellón','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
+                 'Valencia','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now') ] 
             ));
     }
 
