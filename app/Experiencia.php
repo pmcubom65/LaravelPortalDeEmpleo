@@ -14,4 +14,10 @@ class Experiencia extends Model
         return $this->hasOne('App\Categoria');
 
     }
+    public function user(){
+
+        return $this->hasOne('App\User');
+
+    }
+
 }

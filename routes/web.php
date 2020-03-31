@@ -22,6 +22,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::post('/home', 'HomeController@store')->name('home');
+
+
+
 Route::get('/cv', 'CvController@index')->name('cv');
 
 Route::get('/login2', function() {

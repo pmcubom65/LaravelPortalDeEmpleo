@@ -54,6 +54,27 @@ class HomeController extends Controller
         
     }
 
+    public function store(Request $request)
+    {
+        $miexperiencia=new Experiencia();
+        $miexperiencia->puesto=$request->input('tituloexp');
+        $miexperiencia->empresa=$request->input('empresaexp');
+        $miexperiencia->inicio=$request->input('inicioexp');
+        $miexperiencia->fin=$request->input('finexp');
+        $miexperiencia->categoria_id=$request->input('cat');
+        $miexperiencia->descripcion=$request->input('desexp');
+        $miexperiencia->user_id=$request->input('userid');
+
+        $miexperiencia->save();
+        $usuario=User::find($request->input('userid'));
+        $trabajador=Trabajador::where('user_id', $request->user()->user_id)->count();
+        $provincias=Provincia::all();
+        $categorias=Categoria::all();
+        
+        return view('/home', ['trabajador'=>$trabajador,'datos' =>$usuario, 'provincias' => $provincias, 'categorias'=>$categorias ]);
+        
+    }
+
 
 
 }

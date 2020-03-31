@@ -156,7 +156,7 @@
 <!--modal-->
 <div class="modal fade" id="sitiomodal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <form action="" method='POST'>
+        <form action="/home" method='POST'>
             @csrf
             <div class="modal-content">
                 <div class="modal-header">
@@ -226,6 +226,7 @@
                         
                         
                         </select>
+                        <input type="hidden"  class="form-control" id="userid" name="userid" value="{{ $datos->id }}" >
 
                     </div>
 
@@ -242,8 +243,8 @@
                 </div>
                 <div class="modal-footer">
 
-                    <a href="/home" class="btn btn-success m-auto" type="submit" data-dismiss="modal">Guardar
-                        Experiencia</a>
+                    <button class="btn btn-success m-auto" type="submit" >Guardar
+                        Experiencia</button>
 
 
                 </div>

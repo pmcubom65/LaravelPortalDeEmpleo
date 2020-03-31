@@ -21,7 +21,7 @@ class ExperienciaController extends Controller
         $miexperiencia->fin=$request->input('finexp');
         $miexperiencia->categoria_id=$request->input('cat');
         $miexperiencia->descripcion=$request->input('desexp');
-
+        $miexperiencia->user_id=$request->input('userid');
         $miexperiencia->save();
 
         return view('/ejemplo');

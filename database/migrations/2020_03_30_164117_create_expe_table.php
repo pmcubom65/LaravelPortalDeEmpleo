@@ -20,12 +20,18 @@ class CreateExpeTable extends Migration
             $table->string('empresa')->nullable();
             $table->date('inicio')->nullable();
             $table->date('fin')->nullable();
+            $table->unsignedBigInteger('user_id')->unsigned();
             $table->unsignedBigInteger('categoria_id')->unsigned()->default(1);
             $table->text('descripcion')->nullable();
 
             $table->foreign('categoria_id')
             ->references('id')
             ->on('categorias')
+            ->onDelete('cascade');
+
+            $table->foreign('user_id')
+            ->references('id')
+            ->on('users')
             ->onDelete('cascade');
         });
     }
