@@ -33,7 +33,7 @@ class HomeController extends Controller
      
         if (Auth::user()->rol_id===1){
 
-         //   $trabajador=Trabajador::where('user_id', $request->user()->user_id)->first();
+        
             $trabajador=Trabajador::where('user_id', Auth::id())->count();
             $trabajadorlog=Trabajador::where('user_id', Auth::id())->first();
 
@@ -44,7 +44,7 @@ class HomeController extends Controller
                 return view('home', ['trabajador'=>$trabajador,'curriculum'=>$trabajadorlog,'datos' => $request->user(), 'provincias' => $provincias, 'categorias'=>$categorias ]);
 
 
-        } elseif ($request->user()->rol_id===2) {
+        } elseif (Auth::user()->rol_id===2) {
         return view('home2');
         }else {
             return view('home2');
@@ -97,7 +97,8 @@ class HomeController extends Controller
         $mitrabajador->telefono=$request->input('telefonos');
         $mitrabajador->user_id=$request->input('userid');
         $mitrabajador->save();
-        $eltrabajador=Trabajador::where('user_id', Auth::id())->get();
+        $eltrabajador=Trabajador::where('user_id', Auth::id())->first();
+        
         
        return view('/home', ['trabajador'=>1,'curriculum'=>$eltrabajador, 'datos' =>$usuario, 'provincias' => $provincias, 'categorias'=>$categorias ]);
         
