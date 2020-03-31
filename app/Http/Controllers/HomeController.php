@@ -35,15 +35,13 @@ class HomeController extends Controller
 
          //   $trabajador=Trabajador::where('user_id', $request->user()->user_id)->first();
             $trabajador=Trabajador::where('user_id', Auth::id())->count();
+            $trabajadorlog=Trabajador::where('user_id', Auth::id())->first();
+
             $provincias=Provincia::all();
             $categorias=Categoria::all();
 
-      /*      if ($trabajador==null) {
-                return View('cv', ['datos' => $request->user(), 'provincias' => $provincias, 'categorias'=>$categorias ]);
-            } else {
-                return view('home', ['datos' => $trabajador]);
-            }*/
-                return view('home', ['trabajador'=>$trabajador,'datos' => $request->user(), 'provincias' => $provincias, 'categorias'=>$categorias ]);
+      
+                return view('home', ['trabajador'=>$trabajador,'curriculum'=>$trabajadorlog,'datos' => $request->user(), 'provincias' => $provincias, 'categorias'=>$categorias ]);
 
 
         } elseif ($request->user()->rol_id===2) {
@@ -99,7 +97,9 @@ class HomeController extends Controller
         $mitrabajador->telefono=$request->input('telefonos');
         $mitrabajador->user_id=$request->input('userid');
         $mitrabajador->save();
-        return view('/home', ['trabajador'=>1,'datos' =>$usuario, 'provincias' => $provincias, 'categorias'=>$categorias ]);
+        $eltrabajador=Trabajador::where('user_id', Auth::id())->get();
+        
+       return view('/home', ['trabajador'=>1,'curriculum'=>$eltrabajador, 'datos' =>$usuario, 'provincias' => $provincias, 'categorias'=>$categorias ]);
         
     }
 
