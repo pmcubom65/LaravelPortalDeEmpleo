@@ -42,18 +42,14 @@
                     <form>
                     @csrf
                         <div class="form-row">
-                            <div class="form-group col-sm-6">
-                                <label for="nombre">Nombre</label>
+                            <div class="form-group col-sm-12">
+                                <label for="nombre">Nombre Completo</label>
                                 <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre"
-                                    value="{{ $datos->name }}">
+                                    value="{{ $datos->name }}" disabled>
 
                             </div>
 
-                            <div class="fom-group col-sm-6">
-                                <label for="apellidos">Apellidos</label>
-                                <input type="text" class="form-control" id="apellidos" name="apellidos"
-                                    placeholder="apellidos">
-                            </div>
+                          
                         </div>
 
 
@@ -101,7 +97,7 @@
                             <div class="form-group col-sm-6">
                                 <label for="telefono">Telefono</label>
                                 <input type="text" class="form-control" id="telefono" name="telefono"
-                                    placeholder="telefono">
+                                    placeholder="telefono" oninput="telefonos.value=telefono.value">
 
                             </div>
 
@@ -227,7 +223,9 @@
                         
                         </select>
                         <input type="hidden"  class="form-control" id="userid" name="userid" value="{{ $datos->id }}" >
-
+                        
+                        <input type="hidden"  class="form-control" id="telefonos" name="telefonos"  >
+                 
                     </div>
 
                     <div class="form-group col-12">

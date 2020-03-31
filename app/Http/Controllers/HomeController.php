@@ -70,8 +70,8 @@ class HomeController extends Controller
         $trabajador=Trabajador::where('user_id', $request->user()->user_id)->count();
         $provincias=Provincia::all();
         $categorias=Categoria::all();
-        
-        return view('/home', ['trabajador'=>$trabajador,'datos' =>$usuario, 'provincias' => $provincias, 'categorias'=>$categorias ]);
+        echo $request->input('telefonos');
+      //  return view('/home', ['trabajador'=>$trabajador,'datos' =>$usuario, 'provincias' => $provincias, 'categorias'=>$categorias ]);
         
     }
 
