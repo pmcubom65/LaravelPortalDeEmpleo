@@ -55,6 +55,10 @@ class HomeController extends Controller
 
     public function store(Request $request)
     {
+        $provincias=Provincia::all();
+        $categorias=Categoria::all();
+
+        if (Trabajador::where('user_id', Auth::id())->count()==0) {
 
         $validatedData = $request->validate([
             'tituloexp' => 'required',
@@ -71,8 +75,6 @@ class HomeController extends Controller
             'provincias' => 'required',
             'telefonos' => 'required',
         ]);
-
-
         $miexperiencia=new Experiencia();
         $miexperiencia->puesto=$request->input('tituloexp');
         $miexperiencia->empresa=$request->input('empresaexp');
@@ -84,11 +86,7 @@ class HomeController extends Controller
 
         $miexperiencia->save();
         $usuario=User::find($request->input('userid'));
-        
-        
-        $provincias=Provincia::all();
-        $categorias=Categoria::all();
-
+  
         $mitrabajador=new Trabajador();
         $mitrabajador->direccion=$request->input('direcciones');
         $mitrabajador->dni=$request->input('dnis');
@@ -98,9 +96,61 @@ class HomeController extends Controller
         $mitrabajador->user_id=$request->input('userid');
         $mitrabajador->save();
         $eltrabajador=Trabajador::where('user_id', Auth::id())->first();
+
+        $lasexperiencias=Experiencia::where('user_id', Auth::id())->get();
         
         
-       return view('/home', ['trabajador'=>1,'curriculum'=>$eltrabajador, 'datos' =>$usuario, 'provincias' => $provincias, 'categorias'=>$categorias ]);
+       return view('/home', ['trabajador'=>1,
+                            'curriculum'=>$eltrabajador, 
+                            'datos' =>$usuario, 
+                            'provincias' => $provincias, 
+                            'categorias'=>$categorias 
+                            ]);
+
+        } else {
+            $validatedData = $request->validate([
+                'tituloexp' => 'required',
+                'empresaexp' => 'required',
+                'inicioexp' => 'required',
+                'finexp' => 'required',
+                'cat' => 'required',
+                'desexp' => 'required',
+                'userid' => 'required',
+ 
+            ]);
+
+            $copia=Trabajador::where('user_id', Auth::id())->first();
+            $miexperiencia=new Experiencia();
+            $miexperiencia->puesto=$request->input('tituloexp');
+            $miexperiencia->empresa=$request->input('empresaexp');
+            $miexperiencia->inicio=$request->input('inicioexp');
+            $miexperiencia->fin=$request->input('finexp');
+            $miexperiencia->categoria_id=$request->input('cat');
+            $miexperiencia->descripcion=$request->input('desexp');
+            $miexperiencia->user_id=Auth::id();
+    
+            $miexperiencia->save();
+            $usuario=User::find($request->input('userid'));
+
+            $eltrabajador=Trabajador::where('user_id', Auth::id())->first();
+
+            $lasexperiencias=Experiencia::where('user_id', Auth::id())->get();
+        
+        
+       return view('/home', ['trabajador'=>1,
+                            'curriculum'=>$eltrabajador, 
+                            'datos' =>$usuario, 
+                            'provincias' => $provincias, 
+                            'categorias'=>$categorias 
+                            ]);
+
+
+
+
+
+        }
+
+
         
     }
 

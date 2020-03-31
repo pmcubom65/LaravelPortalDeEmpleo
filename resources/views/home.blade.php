@@ -287,7 +287,8 @@
                         <div class="alert alert-danger">Campo erroneo</div>
                         @enderror
                         <input type="date" class="form-control" id="fecha" name="fecha"
-                            oninput="fechas.value=fecha.value" value="{{$curriculum->fecha}}">
+                        
+                            oninput="fechas.value=fecha.value" value="{{ $curriculum->getDate()}}">
                     </div>
                 </div>
 
