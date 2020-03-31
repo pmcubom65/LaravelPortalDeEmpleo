@@ -334,7 +334,18 @@
 </div>
 
 
+<div class="card">
 
+
+<div class="card-body">
+
+    @foreach ($experienciass as $experiencia) {
+        {{$experiencia->empresa}}
+    }
+    @endforeach
+    
+</div>
+</div>
 
 
 

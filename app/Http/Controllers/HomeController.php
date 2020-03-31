@@ -39,9 +39,14 @@ class HomeController extends Controller
 
             $provincias=Provincia::all();
             $categorias=Categoria::all();
-
+            $lasexperiencias=Experiencia::where('user_id', Auth::id())->get();
       
-                return view('home', ['trabajador'=>$trabajador,'curriculum'=>$trabajadorlog,'datos' => $request->user(), 'provincias' => $provincias, 'categorias'=>$categorias ]);
+                return view('home', ['trabajador'=>$trabajador,
+                'curriculum'=>$trabajadorlog,
+                'experienciass'=>$lasexperiencias,
+                'datos' => $request->user(), 
+                'provincias' => $provincias,
+                 'categorias'=>$categorias ]);
 
 
         } elseif (Auth::user()->rol_id===2) {
@@ -139,6 +144,7 @@ class HomeController extends Controller
         
        return view('/home', ['trabajador'=>1,
                             'curriculum'=>$eltrabajador, 
+                            'experienciass'=>$lasexperiencias,
                             'datos' =>$usuario, 
                             'provincias' => $provincias, 
                             'categorias'=>$categorias 
