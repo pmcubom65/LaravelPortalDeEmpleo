@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
 use App\User;
@@ -29,11 +30,11 @@ class HomeController extends Controller
      public function index(Request $request)
     {
 
-        if ($request->user()->rol_id===1){
-
+     
+        if (Auth::user()->rol_id===1){
 
          //   $trabajador=Trabajador::where('user_id', $request->user()->user_id)->first();
-            $trabajador=Trabajador::where('user_id', $request->user()->user_id)->count();
+            $trabajador=Trabajador::where('user_id', Auth::id())->count();
             $provincias=Provincia::all();
             $categorias=Categoria::all();
 
@@ -56,6 +57,24 @@ class HomeController extends Controller
 
     public function store(Request $request)
     {
+
+        $validatedData = $request->validate([
+            'tituloexp' => 'required',
+            'empresaexp' => 'required',
+            'inicioexp' => 'required',
+            'finexp' => 'required',
+            'cat' => 'required',
+            'desexp' => 'required',
+            'userid' => 'required',
+
+            'direcciones' => 'required',
+            'dnis' => 'required',
+            'fechas' => 'required',
+            'provincias' => 'required',
+            'telefonos' => 'required',
+        ]);
+
+
         $miexperiencia=new Experiencia();
         $miexperiencia->puesto=$request->input('tituloexp');
         $miexperiencia->empresa=$request->input('empresaexp');
