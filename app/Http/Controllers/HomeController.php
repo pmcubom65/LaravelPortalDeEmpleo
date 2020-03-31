@@ -67,11 +67,20 @@ class HomeController extends Controller
 
         $miexperiencia->save();
         $usuario=User::find($request->input('userid'));
-        $trabajador=Trabajador::where('user_id', $request->user()->user_id)->count();
+        
+        
         $provincias=Provincia::all();
         $categorias=Categoria::all();
-        echo $request->input('telefonos');
-      //  return view('/home', ['trabajador'=>$trabajador,'datos' =>$usuario, 'provincias' => $provincias, 'categorias'=>$categorias ]);
+
+        $mitrabajador=new Trabajador();
+        $mitrabajador->direccion=$request->input('direcciones');
+        $mitrabajador->dni=$request->input('dnis');
+        $mitrabajador->fecha=$request->input('fechas');
+        $mitrabajador->provincia_id=$request->input('provincias');
+        $mitrabajador->telefono=$request->input('telefonos');
+        $mitrabajador->user_id=$request->input('userid');
+        $mitrabajador->save();
+        return view('/home', ['trabajador'=>1,'datos' =>$usuario, 'provincias' => $provincias, 'categorias'=>$categorias ]);
         
     }
 

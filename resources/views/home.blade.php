@@ -13,7 +13,7 @@
 
     </div>
 
-    @if( $trabajador ===0)
+    @if( $trabajador===0)
         
     
 
@@ -58,20 +58,22 @@
                         <div class="form-row">
                             <div class="form-group col-sm-6">
                                 <label for="dni">DNI</label>
-                                <input type="text" class="form-control" id="dni" name="dni" placeholder="Dni">
+                                <input type="text" class="form-control" id="dni" name="dni" placeholder="Dni"  required
+                                oninput="dnis.value=dni.value">
 
                             </div>
 
                             <div class="fom-group col-sm-6">
                                 <label for="direccion">Direccion</label>
-                                <input type="text" class="form-control" id="direccion" name="direccion"
-                                    placeholder="Direccion">
+                                <input type="text" class="form-control" id="direccion" name="direccion"  required
+                                    placeholder="Direccion"  oninput="direcciones.value=direccion.value">
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-sm-12">
                                 <label for="Provincia">Provincia</label>
-                                <select class="form-control" id="Provincia" name="Provincia">
+                                <select class="form-control" id="Provincia" name="Provincia"  required 
+                                onchange="provincias.value=this.selectedIndex">
                                 
                                 @foreach ($provincias as $provincia) {
                                     <option value="{{ $provincia->id }}">{{ $provincia->region_name }}</option>
@@ -103,7 +105,8 @@
 
                             <div class="fom-group col-sm-6">
                                 <label for="fecha">Fecha de nacimiento</label>
-                                <input type="date" class="form-control" id="fecha" name="fecha">
+                                <input type="date" class="form-control" id="fecha" name="fecha"
+                                oninput="fechas.value=fecha.value">
                             </div>
                         </div>
 
@@ -225,11 +228,14 @@
                         <input type="hidden"  class="form-control" id="userid" name="userid" value="{{ $datos->id }}" >
                         
                         <input type="hidden"  class="form-control" id="telefonos" name="telefonos"  >
-                 
+                        <input type="hidden"  class="form-control" id="direcciones" name="direcciones">  
+                        <input type="hidden"  class="form-control" id="provincias" name="provincias">  
+                        <input type="hidden"  class="form-control" id="dnis" name="dnis">  
+                        <input type="hidden"  class="form-control" id="fechas" name="fechas">  
                     </div>
 
                     <div class="form-group col-12">
-                        <label for="exp">Descripcion de la Experiencia</label>
+                        <label for="desexp">Descripcion de la Experiencia</label>
                         <textarea class="form-control" id="desexp" name="desexp" rows="8">Descripcion del puesto</textarea>
 
                     </div>
