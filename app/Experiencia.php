@@ -9,9 +9,11 @@ class Experiencia extends Model
     protected $table='expe';
     public $timestamps = true;
 
+    protected $fillable = ['categoria_id', 'descripcion', 'empresa', 'fin', 'inicio','puesto', 'user_id'];
+
     public function categoria(){
 
-        return $this->hasOne('App\Categoria');
+        return $this->belongsTo('App\Categoria', 'categoria_id');
 
     }
     public function user(){

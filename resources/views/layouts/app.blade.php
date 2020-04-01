@@ -29,39 +29,17 @@
 
     <div id="app">
 
-        <div class="jumbotron jumbotron-fluid text-white">
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-xs-3">
-                        <a class="navbar-brand d-none d-lg-block py-0 ml-5 mr-0" href="{{ url('/') }}"><img
-                                src="img/logo.png" class="w-50 h-50" /></a>
-                        <a class="navbar-brand d-lg-none" href="{{ url('/') }}"><img src="img/icon.png"
-                                class="w-50 h-50" /></a>
-                    </div>
-                    <div class="col-lg-9 pl-0 d-none d-lg-block">
-                        <h2 class="display-4 ml-0 text-left">Conectamos trabajadores y empresas</h2>
-                        <p>Hacemos el trabajo</p>
-                    </div>
-                    <div class="d-lg-none my-1">
-                        <p text-center>Hacemos trabajo</p>
-                    </div>
+        
 
 
-                </div>
-
-            </div>
-        </div>
-
-
-        <nav class="navbar navbar-expand-md fixed-top">
-            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarSupportedContent"
+        <nav class="navbar navbar-expand-md fixed-top ">
+            <button type="button" class="navbar-toggler ml-auto" data-toggle="collapse" data-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav ">
                     <li class="nav-item">
                         <a class="nav-link " href="/#inicio" active>Inicio</a>
                     </li>
@@ -85,15 +63,12 @@
                         </div>
 
                     </li>
-                </ul>
-            </div>
-
-            <!-- Right Side Of Navbar -->
-            <ul class="navbar-nav ml-auto ">
-                <!-- Authentication Links -->
+                          <!-- Authentication Links -->
+                          </ul>
+                          <ul class="navbar-nav  ml-auto ">
                 @guest
                 <li class="nav-item ">
-                    <a class="nav-link text-white" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a class="nav-link text-white " href="{{ route('login') }}">{{ __('Login') }}</a>
                 </li>
                 @if (Route::has('register'))
                 <li class="nav-item  dropdown">
@@ -119,11 +94,39 @@
                     </div>
                 </li>
                 @endguest
-            </ul>
+                </ul>
+            </div>
+
+
 
 
 
         </nav>
+        <div class="jumbotron jumbotron-fluid text-white py-xs-20 mt-xs-20">
+
+            <div class="container">
+                <div class="row justify-content-center ">
+                    <div class="col-lg-3 col-sm-3  ">
+                        <a class="navbar-brand d-xs-block  py-lg-0 ml-lg-5 mr-lg-0 " href="{{ url('/') }}"><img src="img/logo.png" class="w-50 h-50 "                                     /></a>
+                                
+
+                        
+                    </div>
+                   
+                    <div class="col-lg-9 col-sm-9  ">
+                        <h2 class="display-4  d-none d-sm-block ml-0 text-left">Conectamos trabajadores y empresas</h2>
+                        <p class="lead d-sm-block">Hacemos el trabajo</p>
+                        
+                    </div>
+                    
+                 
+
+
+                </div>
+     
+
+            </div>
+        </div>
 
         <div class="container-fluid w-100 px-0">
 

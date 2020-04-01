@@ -90,6 +90,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   padding: 150px 20px;
 }
 
+
 .wtitle h2 {
   font-size: 36px;
   font-weight: bold;
@@ -135,7 +136,7 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 abbr[title], abbr[data-original-title] {
@@ -541,6 +542,13 @@ mark, .mark {
   max-width: 100%;
   height: auto;
 }
+
+@media (max-width: 767px) {
+  .navbar-fixed-top {
+  position: absolute !important;
+  top: 0px;
+  }
+  }
 
 .img-thumbnail {
   padding: 0.25rem;
@@ -4816,6 +4824,16 @@ a.badge-dark:focus, a.badge-dark.focus {
   background-color: indigo;
   background-position: center;
   border-radius: 0.3rem;
+
+}
+
+#jumbotronarea {
+  background-size: cover;
+  background-color: grey;
+  background-position: center;
+  border-radius: 0.3rem;
+  color: white;
+  margin-bottom: 3rem;
 }
 
 @media (min-width: 576px) {
@@ -7274,12 +7292,14 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   position: sticky !important;
 }
 
+
 .fixed-top {
   position: fixed;
   top: 0;
   right: 0;
   left: 0;
   z-index: 1030;
+  clear: both;
 }
 
 .fixed-bottom {
@@ -7289,6 +7309,8 @@ a.bg-dark:hover, a.bg-dark:focus, button.bg-dark:hover, button.bg-dark:focus {
   left: 0;
   z-index: 1030;
 }
+
+
 
 @supports ((position: -webkit-sticky) or (position: sticky)) {
   .sticky-top {
