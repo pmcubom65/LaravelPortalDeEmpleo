@@ -369,8 +369,8 @@
   <div class="card-body">
     <h5 class="card-title">{{$experiencia->empresa}}</h5>
     <p class="card-text">{{$experiencia->descripcion}}</p>
-    <p class="card-text">{{$experiencia->inicio}}</p>
-    <p class="card-text">{{$experiencia->fin}}</p>
+    <p class="card-text">Desde: {{$experiencia->inicio}}</p>
+    <p class="card-text">Hasta: {{$experiencia->fin}}</p>
     
     <a href="/home/Expe/{{$experiencia->id}}" class="btn btn-primary">Editar o Borrar</a>
   </div>
@@ -457,7 +457,7 @@ dsaasdasdf
                 </div>
                 <div class="modal-body">
 
-                    <div class="form-row">
+                    <div class="form-row col-12">
                         <div class="form-group col-6">
                             <label for="inicioexp">Fecha Incorporacion</label>
                             @error('inicioexp')

@@ -39,7 +39,7 @@ class HomeController extends Controller
 
             $provincias=Provincia::all();
             $categorias=Categoria::all();
-            $lasexperiencias=Experiencia::where('user_id', Auth::id())->get();
+            $lasexperiencias=Experiencia::where('user_id', Auth::id())->orderBy('fin')->get();
       
                 return view('home', ['trabajador'=>$trabajador,
                 'curriculum'=>$trabajadorlog,
