@@ -26,6 +26,11 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/home', 'HomeController@store')->name('home');
 
 Route::get('/home/Expe/{id}', 'ExpeController@show')->name('Expe');
+Route::delete('/home/Expe/{id}', 'ExpeController@delete')->name('Expe');
+
+Route::post('/home/Expe/{id}', 'ExpeController@store')->name('Expe');
+
+
 
 Route::get('/cv', 'CvController@index')->name('cv');
 

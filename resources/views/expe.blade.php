@@ -3,7 +3,7 @@
 @section('content')
 <div class="container espacio">
 
-
+@if ($contador>0)
     <div class="row">
         <div class="col-12 text-center">
             <h1><span class="glyphicon glyphicon-user" aria-hidden="true"></span><br>Experiencia {{ $miexpe->puesto }}</h1>
@@ -60,16 +60,17 @@
                     </div>
 
 
-                    <div class="form-group col-12">
+                    <div class="form-row col-12">
                         <label for="exp">Categoria Profesional</label>
                         @error('cat')
                         <div class="alert alert-danger">Campo erroneo</div>
                         @enderror
                         <select name="cat" id="cat" class="form-control">
+                        <option value="{{ $miexpe->categoria_id}}" selected>{{$miexpe->categoria->nombre}}</option>
                             @foreach ($categorias as $categoria) 
-                               
+                           
                             <option value="{{ $categoria->id}}">{{$categoria->nombre}}</option>
-
+                            
                             @endforeach
 
 
@@ -77,7 +78,7 @@
 
                     </div>
 
-                    <div class="form-group col-12">
+                    <div class="form-row col-12">
                         <label for="desexp">Descripcion de la Experiencia</label>
                         @error('desexp')
                         <div class="alert alert-danger">Campo erroneo</div>
@@ -86,13 +87,17 @@
                             rows="8">{{$miexpe->descripcion}}</textarea>
 
                     </div>
-                    <div class="form-group col-12">
                     <div class="row  justify-content-center">
+                    <div class="form-group col-3">
+                    
                     <button class="btn btn-success m-auto " type="submit">Editar</button>
-                  
+                    </form>
+                    <a href="/home" class="btn btn-primary m-auto " type="button">Volver</a>
+                    <button class="btn btn-danger m-auto " type="button" data-toggle="modal"
+                                data-target="#sitiomodal">Borrar</button>
                     </div>
-                    <div class="row  justify-content-center">
-                    <button class="btn btn-danger m-auto " type="submit">Borrar</button>
+                    
+                   
                   
                     </div>
                     </div>
@@ -102,8 +107,68 @@
 
                     
  
-        </form>
+        
 
 </div>
+
+<!-- modal -->
+<div class="modal fade" id="sitiomodal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form action="/home/Expe/{{$miexpe->id}}" method='POST'>
+            @method('DELETE')
+            @csrf
+            <div class="modal-content">
+                <div class="modal-header">
+
+
+
+                    <div class="form-row col-12">
+                    Alerta
+                     </div>
+                </div>
+                <div class="modal-body">
+
+                    
+
+                <input type="hidden" name="mihidden" id="mihidden" >
+                <p>¿Esta seguro que desea borrar esta experiencia?</p>
+
+
+                </div>
+                <div class="modal-footer">
+
+                    <button class="btn btn-danger m-auto" type="submit">Confirmar</button>
+
+
+                </div>
+
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+@else
+<div class="row">
+        <div class="col-12 text-center">
+            <h1><span class="glyphicon glyphicon-user" aria-hidden="true"></span><br>Esta experiencia ya no se encuentra registrada</h1>
+            <a href="/home" class="btn btn-primary m-auto " type="button">Volver</a>
+
+        </div>
+
+
+    </div>
+
+@endif
+
+
+
+
+
+
+
+
 
 @endsection
