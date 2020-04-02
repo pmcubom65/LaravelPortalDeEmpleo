@@ -107,7 +107,8 @@
             <div class="container">
                 <div class="row justify-content-center ">
                     <div class="col-lg-3 col-sm-3  ">
-                        <a class="navbar-brand d-xs-block  py-lg-0 ml-lg-5 mr-lg-0 " href="{{ url('/') }}"><img src="img/logo.png" class="w-50 h-50 "                                     /></a>
+                        <a class="navbar-brand d-xs-block  py-lg-0 ml-lg-5 mr-lg-0 " href="{{ url('/') }}">
+                        <img src="{{asset('img/logo.png')}}" class="w-50 h-50 " /></a>
                                 
 
                         

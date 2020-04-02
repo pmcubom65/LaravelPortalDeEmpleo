@@ -371,8 +371,8 @@
     <p class="card-text">{{$experiencia->descripcion}}</p>
     <p class="card-text">{{$experiencia->inicio}}</p>
     <p class="card-text">{{$experiencia->fin}}</p>
-    <a href="#" class="btn btn-primary">Editar</a>
-    <a href="#" class="btn btn-primary">Borrar</a>
+    
+    <a href="/home/Expe/{{$experiencia->id}}" class="btn btn-primary">Editar o Borrar</a>
   </div>
 </div>
 
