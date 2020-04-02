@@ -22,6 +22,66 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
+
+
+    public function put(Request $request) {
+        $validatedData = $request->validate([
+    
+
+            'direccion' => 'required',
+            'dni' => 'required',
+            'fecha' => 'required',
+            'Provincia' => 'required',
+            'telefono' => 'required',
+        ]);
+        $tienetrabajo=Trabajador::where('user_id', Auth::id())->count();
+
+        if ($tienetrabajo===0) {
+        
+
+        $mitrabajador=new Trabajador();
+        $mitrabajador->direccion=$request->get('direccion');
+        $mitrabajador->dni=$request->get('dni');
+        $mitrabajador->fecha=$request->get('fecha');
+        $mitrabajador->provincia_id=$request->get('Provincia');
+        $mitrabajador->telefono=$request->get('telefono');
+        $mitrabajador->user_id=Auth::id();
+        
+        $mitrabajador->save();
+
+        $trabajador=Trabajador::where('user_id', Auth::id())->count();  //1
+        $trabajadorlog=Trabajador::where('user_id', Auth::id())->first();    //ok
+
+        $provincias=Provincia::all();
+        $categorias=Categoria::all();
+        $lasexperiencias=Experiencia::where('user_id', Auth::id())->count();
+  
+            return view('home', ['trabajador'=>$trabajador,
+            'curriculum'=>$trabajadorlog,
+            'experienciass'=>$lasexperiencias,
+            'datos' => $request->user(), 
+            'provincias' => $provincias,
+             'categorias'=>$categorias ]); 
+             
+        } else {
+            $mitrabajador=Trabajador::where('user_id', Auth::id())->get();
+            $mitrabajador->direccion=$request->get('direccion');
+            $mitrabajador->dni=$request->get('dni');
+            $mitrabajador->fecha=$request->get('fecha');
+            $mitrabajador->provincia_id=$request->get('Provincia');
+            $mitrabajador->telefono=$request->get('telefono');
+            $mitrabajador->user_id=Auth::id();
+            
+            $mitrabajador->save();
+
+
+        }
+
+
+    }
+
+
+
     /**
      * Show the application dashboard.
      *

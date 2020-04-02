@@ -25,6 +25,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/home', 'HomeController@store')->name('home');
 
+Route::match(['put', 'patch'], '/home', 'HomeController@put');
+
+
+
 Route::get('/home/Expe/{id}', 'ExpeController@show')->name('Expe');
 Route::delete('/home/Expe/{id}', 'ExpeController@delete')->name('Expe');
 

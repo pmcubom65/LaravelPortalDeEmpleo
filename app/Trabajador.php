@@ -18,7 +18,7 @@ class Trabajador extends Model
 
 
     public function hasProvincia() {
-        return $this->hasOne('App\Provincia', 'foreign_key');
+        return $this->belongsTo('App\Provincia', 'provincia_id');
     }
 
 

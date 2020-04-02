@@ -34,6 +34,9 @@ class CreateExpeTable extends Migration
             ->on('users')
             ->onDelete('cascade');
         });
+
+
+        
     }
 
     /**
