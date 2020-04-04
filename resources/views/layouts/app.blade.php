@@ -54,7 +54,8 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dt2">
                         @foreach($empresas as $empresa)
-                            <a class="dropdown-item">{{$empresa->nombre}}</a>
+                            <a class="dropdown-item" tabindex="0"  role="button" data-toggle="popover" data-trigger="focus" 
+                            title="{{$empresa->nombre}}" data-content="">{{$empresa->nombre}}</a>
                         @endforeach
                         </div>
 
@@ -70,9 +71,11 @@
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dt">
                         @foreach($categorias as $categoria)
-                            <a class="dropdown-item">{{$categoria->nombre}}</a>
+                            <a class="dropdown-item " id="popoverData" title="{{$categoria->descripcion}}"  type="button" tabindex="0"  role="button" data-toggle="popover" data-trigger="focus" 
+                             data-content="{{$categoria->descripcion}}">{{$categoria->nombre}}</a>
+
                         @endforeach
-                        </div>
+                        <!-- Content for Popover #1 -->
 
                     </li>
                           <!-- Authentication Links -->
@@ -150,7 +153,21 @@
             </div>
         </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
 
+$(document).ready(function() {
+    $(".dropdown-menu").css('margin','50px');
+    $(function () {
+        $('[data-toggle="popover"]').popover(),
+        
+    })
+    $("#popoverData").popover({ trigger: "hover"
+        
+        }
+    });
+    );
+
+</script>
 
 
 </body>
