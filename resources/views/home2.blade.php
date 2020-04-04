@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col-12 text-center">
-            <h1><span class="glyphicon glyphicon-user" aria-hidden="true"></span><br>Bienvenido {{ $datos->name }}</h1>
+            <h1><span class="glyphicon glyphicon-user" aria-hidden="true"></span><br>Bienvenido Empresa: {{ $datos->name }}</h1>
 
         </div>
 
@@ -14,7 +14,7 @@
     </div>
 
 
-    <section id="inicioenpresa" class="inicio intro-section">
+    <section  class="inicio intro-section">
             <div class="container  espacio text-center text-light">
                 <div class="row">
                     <div class="col-md-4">

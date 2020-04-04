@@ -105,11 +105,16 @@
                                        
 
                                         <!-- Button trigger modal -->
+                                        @if (Auth::check())
+                                        <a href="/home" type="button" class="btn btn-primary">
+                                            Ayuda
+                                        </a>
+                                        @else
                                         <button type="button" class="btn btn-primary" data-toggle="modal"
                                             data-target="#exampleModalCenter2">
                                             Ayuda
                                         </button>
-
+                                        @endif
                                       
                                       
 
@@ -126,11 +131,17 @@
                                         <h5 class="card-title">Soy una empresa</h5>
                                         <p class="card-text">Añada nuevas ofertas de trabajo y actualice las ofertas.
                                             Revise las candidaturas. Contacte con los candidatos</p>
+
+                                            @if (Auth::check())
+                                        <a href="/home" class="btn btn-primary">
+                                            Ayuda
+                                        </a>
+                                        @else
                                         <button type="button" class="btn btn-primary" data-toggle="modal"
                                             data-target="#exampleModalCenter">
                                             Ayuda
                                         </button>
-
+                                       @endif
                                     </div>
                                 </div>
                             </div>
@@ -476,8 +487,8 @@
                 de empleo disponibles.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                
             </div>
         </div>
     </div>
@@ -505,7 +516,7 @@
                 revisar candidaturas y contactar con los candidatos.
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 
             </div>
         </div>
