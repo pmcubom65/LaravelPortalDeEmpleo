@@ -89,7 +89,7 @@ class HomeController extends Controller
      */
      public function index(Request $request)
     {
-
+        $categorias=Categoria::all();
      
         if (Auth::user()->rol_id===1){
 
@@ -98,7 +98,7 @@ class HomeController extends Controller
             $trabajadorlog=Trabajador::where('user_id', Auth::id())->first();
 
             $provincias=Provincia::all();
-            $categorias=Categoria::all();
+           
             $contarexperiencias=Experiencia::where('user_id', Auth::id())->count();
             if ($contarexperiencias==0) {
                 return view('home', ['trabajador'=>$trabajador,
@@ -121,9 +121,10 @@ class HomeController extends Controller
 
 
         } elseif (Auth::user()->rol_id===2) {
-        return view('home2');
+            return view('home2', ['datos' =>  Auth::user(), 'categorias'=>$categorias]);
         }else {
-            return view('home2');
+            return view('home', ['categorias'=>$categorias]);
+            
         }
 
         

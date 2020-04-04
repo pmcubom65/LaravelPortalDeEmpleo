@@ -59,7 +59,9 @@
                             <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dt">
-                            <a class="dropdown-item">Enlace</a>
+                        @foreach($categorias as $categoria)
+                            <a class="dropdown-item">{{$categoria->nombre}}</a>
+                        @endforeach
                         </div>
 
                     </li>

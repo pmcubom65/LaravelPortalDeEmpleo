@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Categoria;
 
 
 /*
@@ -15,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    
-    return view('welcome');
+    $categorias=Categoria::all();
+    return view('welcome', ['categorias'=>$categorias]);
 });
 
 Auth::routes();
