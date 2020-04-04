@@ -44,10 +44,20 @@
                         <a class="nav-link " href="/#inicio" active>Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link " href="#informacion">Información</a>
+                        <a class="nav-link " href="/#informacion">Ayuda</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Buscar Trabajo</a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toogle " aria-expanded="false" data-toggle="dropdown"
+                            data-target="dt2" href="#">
+                            Empresas Colaboradoras
+                            <span class="caret"></span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="dt2">
+                        @foreach($empresas as $empresa)
+                            <a class="dropdown-item">{{$empresa->nombre}}</a>
+                        @endforeach
+                        </div>
+
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Buscar Cursos de Formación</a>

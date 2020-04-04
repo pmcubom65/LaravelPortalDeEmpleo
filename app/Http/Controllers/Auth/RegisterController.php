@@ -9,6 +9,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use App\Categoria;
+
+use App\Empresa;
 
 class RegisterController extends Controller
 {
@@ -47,6 +50,13 @@ class RegisterController extends Controller
         
     }
 
+
+    public function showRegistrationForm()
+{
+    $lascategorias=Categoria::all();
+    $lasempresas=Empresa::all();
+    return view("auth.register", ['categorias'=>$lascategorias, 'empresas'=>$lasempresas]);
+}
 
 
     

@@ -65,17 +65,18 @@
                     </div>
                     <div class="col-md-4">
 
-                        <h3><span class="glyphicon glyphicon-search" aria-hidden="true"></span><br>Buscar Ofertas de Empleo</h3>
+                        <h3><span class="glyphicon glyphicon-search" aria-hidden="true"></span><br>Buscar Ofertas de
+                            Empleo</h3>
                         <p>Buscar Ofertas de Empleo</p>
-                        <a href="#public" class="btn btn-primary m-auto">Ver</a>
+                        <a href="#buscar" class="btn btn-primary m-auto">Ver</a>
 
 
                     </div>
                     <div class="col-md-4">
 
-                        <h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span><br>Mi Perfil</h3>
-                        <p>Ver y actualizar mi perfil</p>
-                        <a href="#" class="btn btn-primary m-auto">Ver</a>
+                        <h3><span class="glyphicon glyphicon-user" aria-hidden="true"></span><br>???????</h3>
+                        <p>???????????</p>
+                        <a href="#" class="btn btn-primary m-auto">??????????</a>
 
 
                     </div>
@@ -101,12 +102,16 @@
                                         <p class="card-text">Inscribase en las ofertas de empleo. Actualize su perfil y
                                             curriculum. Consulte en el estado de sus candidaturas</p>
 
-                                        @if (Route::has('register'))
+                                       
 
-                                        <a href="/login" class="btn btn-primary hvr-pulse" id="miboton">Acceder</a>
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#exampleModalCenter2">
+                                            Ayuda
+                                        </button>
 
-                                        @endif
-
+                                      
+                                      
 
 
                                     </div>
@@ -121,9 +126,10 @@
                                         <h5 class="card-title">Soy una empresa</h5>
                                         <p class="card-text">Añada nuevas ofertas de trabajo y actualice las ofertas.
                                             Revise las candidaturas. Contacte con los candidatos</p>
-                                        @if (Route::has('register'))
-                                        <a href="/login2" class="btn btn-primary">Acceder</a>
-                                        @endif
+                                        <button type="button" class="btn btn-primary" data-toggle="modal"
+                                            data-target="#exampleModalCenter">
+                                            Ayuda
+                                        </button>
 
                                     </div>
                                 </div>
@@ -150,259 +156,11 @@
 
         </section>
 
-        <section class="espacio">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <h1><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span><br>Complete su
-                            curriculum</h1>
-
-                    </div>
-
-
-                </div>
-                <div class="row justify-content-center mb-5">
-                    <div class="col-sm-12 col-md-10 col-lg-8">
-                        <form>
-
-                            <div class="form-row">
-                                <div class="form-group col-sm-6">
-                                    <label for="nombre">Nombre</label>
-                                    <input type="text" class="form-control" id="nombre" name="nombre"
-                                        placeholder="nombre">
-
-                                </div>
-
-                                <div class="fom-group col-sm-6">
-                                    <label for="apellidos">Apellidos</label>
-                                    <input type="text" class="form-control" id="apellidos" name="apellidos"
-                                        placeholder="apellidos">
-                                </div>
-                            </div>
-
-
-
-
-                            <div class="form-row">
-                                <div class="form-group col-sm-6">
-                                    <label for="dni">DNI</label>
-                                    <input type="text" class="form-control" id="dni" name="dni" placeholder="Dni">
-
-                                </div>
-
-                                <div class="fom-group col-sm-6">
-                                    <label for="direccion">Direccion</label>
-                                    <input type="text" class="form-control" id="direccion" name="direccion"
-                                        placeholder="Direccion">
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-sm-12">
-                                    <label for="Provincia">Provincia</label>
-                                    <select class="form-control" id="Provincia" name="Provincia"></select>
-
-                                </div>
-
-
-                            </div>
-
-
-
-
-
-
-
-
-                            <div class="form-row">
-                                <div class="form-group col-sm-6">
-                                    <label for="telefono">Telefono</label>
-                                    <input type="text" class="form-control" id="telefono" name="telefono"
-                                        placeholder="telefono">
-
-                                </div>
-
-                                <div class="fom-group col-sm-6">
-                                    <label for="fecha">Fecha de nacimiento</label>
-                                    <input type="date" class="form-control" id="fecha" name="fecha">
-                                </div>
-                            </div>
-
-
-                            <div class="form-row my-3">
-
-
-                                <a href="" class="btn btn-primary m-auto" data-toggle="modal"
-                                    data-target="#sitiomodal">Añadir Experiencia</a>
-
-
-                            </div>
-
-                            <div class="form-row my-3">
-
-
-                                <a href="#" class="btn btn-success m-auto">Guardar Curriculum</a>
-
-
-                            </div>
-
-
-
-
-                        </form>
-
-
-                    </div>
-                </div>
-
-
-            </div>
-
-
-        </section>
-
-
-
-
-
-
-
-        <!--Esto es para la publicación de ofertas -->
-
-
-        <section class="espacio">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <h1><span class="glyphicon glyphicon-send" aria-hidden="true"></span><br>Publique una nueva
-                            oferta de trabajo</h1>
-
-                    </div>
-
-
-                </div>
-                <div class="row justify-content-center mb-5">
-                    <div class="col-sm-12 col-md-10 col-lg-8">
-                        <form>
-
-                            <div class="form-row">
-                                <div class="form-group col-sm-12">
-                                    <label for="nombre">Titulo de la Oferta Laboral</label>
-                                    <input type="text" class="form-control" id="titulo" name="titulo"
-                                        placeholder="Titulo de la Oferta Laboral">
-
-                                </div>
-
-
-                            </div>
-
-
-
-
-                            <div class="form-row">
-                                <div class="form-group col-sm-6">
-                                    <label for="Provincia">Provincia</label>
-                                    <select class="form-control" id="Provincia" name="Provincia"></select>
-
-                                </div>
-
-                                <div class="fom-group col-sm-6">
-                                    <label for="Experiencia">Experiencia Mínima</label>
-                                    <select class="form-control" id="Experiencia" name="Experiencia">
-                                        <option value="0">Sin Experiencia
-                                        <option>
-                                        <option value="1">1 año
-                                        <option>
-                                        <option value="2">2 años
-                                        <option>
-                                        <option value="3">3 años
-                                        <option>
-                                        <option value="4">mas de 3
-                                        <option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group col-sm-6">
-                                    <label for="Salario">Salario bruto anual Jornada Completa</label>
-                                    <input type="range" min="12000" max="50000" value="12000" class="form-control"
-                                        id="Salarioid" name="Salario"
-                                        oninput="mioutid.value=Salarioid.value.concat(' € brutos')">
-                                    <output name="miout" id="mioutid">12000 € brutos<output>
-                                </div>
-
-                                <div class="fom-group col-sm-6">
-                                    <label for="contrato">Tipo de Contrato</label>
-                                    <select class="form-control" id="contrato" name="contrato">
-                                        <option value="Jornada Completa">Jornada Completa
-                                        <option>
-                                        <option value="Jornada Parcial">Jornada Parcial
-                                        <option>
-
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="form-row">
-                                <div class="form-group col-sm-12">
-
-
-                                    <label for="exp">Descripcion de la Oferta</label>
-                                    <textarea class="form-control" id="oferta" name="oferta"
-                                        rows="8">Descripcion del puesto</textarea>
-
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-12">
-
-                                    <label for="exp">Categoria Profesional</label>
-                                    <select name="cat" id="cat" class="form-control"></select>
-                                </div>
-                            </div>
-
-
-
-                            <div class="form-row my-3">
-
-
-                                <a href="" class="btn btn-warning m-auto" data-toggle="modal"
-                                    data-target="#sitiocategoriamodal">Añadir una nueva categoria si ninguna
-                                    coincide</a>
-
-
-                            </div>
-
-                            <div class="form-row my-3">
-
-
-                                <a href="#" class="btn btn-success m-auto">Publicar Oferta</a>
-
-
-                            </div>
-
-
-
-
-                        </form>
-
-
-                    </div>
-                </div>
-
-
-            </div>
-
-
-        </section>
-
-
-
 
         <!--Esto es para la busqueda de ofertas de trabajo -->
 
 
-        <section class="espacio">
+        <section id="buscar" class="espacio buscar-section">
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">
@@ -423,7 +181,7 @@
                                 <div class="form-group col-sm-6">
                                     <label for="Provincia">Provincia</label>
                                     <select class="form-control" id="Provincia" name="Provincia">
-                                    <option value="0">Todas</option>
+                                        <option value="0">Todas</option>
                                     </select>
 
                                 </div>
@@ -431,7 +189,7 @@
                                 <div class="fom-group col-sm-6">
                                     <label for="Experiencia">Experiencia Mínima</label>
                                     <select class="form-control" id="Experiencia" name="Experiencia">
-                                    <option value="0">Todas</option>
+                                        <option value="0">Todas</option>
                                         <option value="0">Sin Experiencia
                                         <option>
                                         <option value="1">1 año
@@ -450,18 +208,17 @@
                                 <div class="form-group col-sm-6">
                                     <label for="Salario">Salario mínimo requerido al año</label>
                                     <input type="range" min="11999" max="50000" value="12000" class="form-control"
-                                        id="Salarioid" name="Salario"
-                                        oninput="mioutid.value= (Salarioid.value < 12000) ? 'Cualquier Salario' :                                         
+                                        id="Salarioid" name="Salario" oninput="mioutid.value= (Salarioid.value < 12000) ? 'Cualquier Salario' :                                         
                                             Salarioid.value.concat(' € brutos')">
 
-                                            
+
                                     <output name="miout" id="mioutid">Cualquier Salario<output>
                                 </div>
 
                                 <div class="fom-group col-sm-6">
                                     <label for="contrato">Tipo de Contrato</label>
                                     <select class="form-control" id="contrato" name="contrato">
-                                    <option value="0">Todas</option>
+                                        <option value="0">Todas</option>
                                         <option value="Jornada Completa">Jornada Completa
                                         <option>
                                         <option value="Jornada Parcial">Jornada Parcial
@@ -477,7 +234,7 @@
 
                                     <label for="exp">Categoria Profesional</label>
                                     <select name="cat" id="cat" class="form-control">
-                                    <option value="0">Todas</option>
+                                        <option value="0">Todas</option>
                                     </select>
                                 </div>
                             </div>
@@ -702,6 +459,58 @@
     </div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Ayuda para trabajadores</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Para acceder al portal, haga click en login en la barra de navegación necesitará su correo y clave.
+                Para registrarse vaya a registrarse en la barra de navegación. Podrá publicar inscribirse en las ofertas
+                de empleo disponibles.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Ayuda para Empresas</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Para acceder al portal, haga click en login en la barra de navegación.
+                Para registrarse vaya a registrarse en la barra de navegación. Podrá publicar ofertas de empleo y
+                revisar candidaturas y contactar con los candidatos.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 
 @endsection

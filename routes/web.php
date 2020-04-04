@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Categoria;
+use App\Empresa;
 
 
 /*
@@ -17,10 +18,13 @@ use App\Categoria;
 
 Route::get('/', function () {
     $categorias=Categoria::all();
-    return view('welcome', ['categorias'=>$categorias]);
+    $tempresas=Empresa::all();
+    return view('welcome', ['categorias'=>$categorias, 'empresas'=>$tempresas]);
 });
 
 Auth::routes();
+
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 

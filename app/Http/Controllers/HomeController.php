@@ -9,6 +9,7 @@ use App\Trabajador;
 use App\Provincia;
 use App\Categoria;
 use App\Experiencia;
+use App\Empresa;
 
 class HomeController extends Controller
 {
@@ -54,6 +55,7 @@ class HomeController extends Controller
 
         $provincias=Provincia::all();
         $categorias=Categoria::all();
+        $lasempresas=Empresa::all();
         $lasexperiencias=Experiencia::where('user_id', Auth::id())->count();
   
             return view('home', ['trabajador'=>$trabajador,
@@ -61,7 +63,8 @@ class HomeController extends Controller
             'experienciass'=>$lasexperiencias,
             'datos' => $request->user(), 
             'provincias' => $provincias,
-             'categorias'=>$categorias ]); 
+             'categorias'=>$categorias,
+             'empresas'=>$lasempresas ]); 
              
         } else {
             $mitrabajador=Trabajador::where('user_id', Auth::id())->first();
@@ -90,6 +93,7 @@ class HomeController extends Controller
      public function index(Request $request)
     {
         $categorias=Categoria::all();
+        $lasempresas=Empresa::all();
      
         if (Auth::user()->rol_id===1){
 
@@ -98,6 +102,7 @@ class HomeController extends Controller
             $trabajadorlog=Trabajador::where('user_id', Auth::id())->first();
 
             $provincias=Provincia::all();
+
            
             $contarexperiencias=Experiencia::where('user_id', Auth::id())->count();
             if ($contarexperiencias==0) {
@@ -106,7 +111,8 @@ class HomeController extends Controller
                 'experienciass'=>$contarexperiencias,
                 'datos' => $request->user(), 
                 'provincias' => $provincias,
-                 'categorias'=>$categorias ]); 
+                 'categorias'=>$categorias,
+                 'empresas'=>$lasempresas ]); 
             }else {
 
             $lasexperiencias=Experiencia::where('user_id', Auth::id())->orderBy('fin')->get();
@@ -116,12 +122,13 @@ class HomeController extends Controller
                 'experienciass'=>$lasexperiencias,
                 'datos' => $request->user(), 
                 'provincias' => $provincias,
-                 'categorias'=>$categorias ]);
+                 'categorias'=>$categorias, 
+                 'empresas'=>$lasempresas ]);
             }
 
 
         } elseif (Auth::user()->rol_id===2) {
-            return view('home2', ['datos' =>  Auth::user(), 'categorias'=>$categorias]);
+            return view('home2', ['datos' =>  Auth::user(), 'categorias'=>$categorias,  'empresas'=>$lasempresas]);
         }else {
             return view('home', ['categorias'=>$categorias]);
             
@@ -134,6 +141,7 @@ class HomeController extends Controller
     {
         $provincias=Provincia::all();
         $categorias=Categoria::all();
+        $lasempresas=Empresa::all();
 
         if (Trabajador::where('user_id', Auth::id())->count()==0) {
 
@@ -181,7 +189,8 @@ class HomeController extends Controller
                             'curriculum'=>$eltrabajador, 
                             'datos' =>$usuario, 
                             'provincias' => $provincias, 
-                            'categorias'=>$categorias 
+                            'categorias'=>$categorias,
+                            'empresas'=>$lasempresas 
                             ]);
 
         } else {
@@ -219,7 +228,8 @@ class HomeController extends Controller
                             'experienciass'=>$lasexperiencias,
                             'datos' =>$usuario, 
                             'provincias' => $provincias, 
-                            'categorias'=>$categorias 
+                            'categorias'=>$categorias,
+                            'empresas'=>$lasempresas
                             ]);
 
 
