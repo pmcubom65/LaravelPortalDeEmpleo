@@ -64,7 +64,7 @@ class HomeController extends Controller
              'categorias'=>$categorias ]); 
              
         } else {
-            $mitrabajador=Trabajador::where('user_id', Auth::id())->get();
+            $mitrabajador=Trabajador::where('user_id', Auth::id())->first();
             $mitrabajador->direccion=$request->get('direccion');
             $mitrabajador->dni=$request->get('dni');
             $mitrabajador->fecha=$request->get('fecha');
@@ -73,7 +73,7 @@ class HomeController extends Controller
             $mitrabajador->user_id=Auth::id();
             
             $mitrabajador->save();
-
+            return back(); 
 
         }
 
@@ -99,6 +99,16 @@ class HomeController extends Controller
 
             $provincias=Provincia::all();
             $categorias=Categoria::all();
+            $contarexperiencias=Experiencia::where('user_id', Auth::id())->count();
+            if ($contarexperiencias==0) {
+                return view('home', ['trabajador'=>$trabajador,
+                'curriculum'=>$trabajadorlog,
+                'experienciass'=>$contarexperiencias,
+                'datos' => $request->user(), 
+                'provincias' => $provincias,
+                 'categorias'=>$categorias ]); 
+            }else {
+
             $lasexperiencias=Experiencia::where('user_id', Auth::id())->orderBy('fin')->get();
       
                 return view('home', ['trabajador'=>$trabajador,
@@ -107,6 +117,7 @@ class HomeController extends Controller
                 'datos' => $request->user(), 
                 'provincias' => $provincias,
                  'categorias'=>$categorias ]);
+            }
 
 
         } elseif (Auth::user()->rol_id===2) {

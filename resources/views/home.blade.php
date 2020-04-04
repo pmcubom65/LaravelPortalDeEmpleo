@@ -108,136 +108,7 @@
                 <div class="tab-content" id="nav-pills-content">
 
                     <div class="tab-pane fade show active" id="nav-item-01" role="tabpanel">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-12 text-center">
-                                    <h1><span class="glyphicon glyphicon-list-alt"
-                                            aria-hidden="true"></span><br>Actualice su
-                                        curriculum</h1>
-
-                                </div>
-
-
-                            </div>
-                            <div class="row justify-content-center mb-5">
-                                <div class="col-sm-12 col-md-10 col-lg-8">
-                                    <form>
-                                        @csrf
-                                        <div class="form-row">
-                                            <div class="form-group col-sm-12">
-                                                <label for="nombre">Nombre Completo</label>
-                                                <input type="text" class="form-control" id="nombre" name="nombre"
-                                                    placeholder="nombre" value="{{ $datos->name }}" disabled>
-
-                                            </div>
-
-
-                                        </div>
-
-
-
-
-                                        <div class="form-row">
-                                            <div class="form-group col-sm-6">
-                                                <label for="dni">DNI</label>
-                                                @error('dnis')
-                                                <div class="alert alert-danger">Campo erroneo</div>
-                                                @enderror
-                                                <input type="text" class="form-control" id="dni" name="dni"
-                                                    placeholder="Dni" value="{{$curriculum->dni}}"
-                                                    oninput="dnis.value=dni.value">
-
-                                            </div>
-
-                                            <div class="fom-group col-sm-6">
-                                                <label for="direccion">Direccion</label>
-                                                @error('direcciones')
-                                                <div class="alert alert-danger">Campo erroneo</div>
-                                                @enderror
-                                                <input type="text" class="form-control" id="direccion" name="direccion"
-                                                    placeholder="Direccion" oninput="direcciones.value=direccion.value"
-                                                    value="{{$curriculum->direccion}}">
-                                            </div>
-                                        </div>
-                                        <div class="form-row">
-                                            <div class="form-group col-sm-12">
-                                                <label for="Provincia">Provincia</label>
-                                                @error('provincias')
-                                                <div class="alert alert-danger">Campo erroneo</div>
-                                                @enderror
-                                                <select class="form-control" id="Provincia" name="Provincia"
-                                                    onchange="provincias.value=this.selectedIndex">
-                                                    <option value="" selected disabled hidden>Choose here</option>
-                                                    @foreach ($provincias as $provincia) {
-                                                    @if ($provincia->id===$curriculum->provincia_id)
-                                                    <option value="{{ $provincia->id }}" selected="selected">
-                                                        {{ $provincia->region_name }}
-                                                    </option>
-                                                    @else
-                                                    <option value="{{ $provincia->id }}">{{ $provincia->region_name }}
-                                                    </option>
-                                                    @endif
-                                                    }
-                                                    @endforeach
-
-                                                </select>
-
-                                            </div>
-
-
-                                        </div>
-
-
-
-
-
-
-
-
-                                        <div class="form-row">
-                                            <div class="form-group col-sm-6">
-                                                <label for="telefono">Telefono</label>
-                                                @error('telefonos')
-                                                <div class="alert alert-danger">Campo erroneo</div>
-                                                @enderror
-                                                <input type="text" class="form-control" id="telefono" name="telefono"
-                                                    placeholder="telefono" oninput="telefonos.value=telefono.value"
-                                                    value="{{$curriculum->telefono}}">
-
-                                            </div>
-
-                                            <div class="fom-group col-sm-6">
-                                                <label for="fecha">Fecha de nacimiento</label>
-                                                @error('fechas')
-                                                <div class="alert alert-danger">Campo erroneo</div>
-                                                @enderror
-                                                <input type="date" class="form-control" id="fecha" name="fecha"
-                                                    oninput="fechas.value=fecha.value"
-                                                    value="{{ $curriculum->getDate()}}">
-                                            </div>
-                                        </div>
-
-
-
-                                        <div class="form-row my-3">
-
-
-                                            <a href="#" class="btn btn-success m-auto">Guardar Curriculum</a>
-
-
-                                        </div>
-
-
-
-
-                                    </form>
-
-
-                                </div>
-                            </div>
-
-
-                        </div>
+                    @include('currrelleno')
 
                     </div>
                     <div class="tab-pane fade" id="nav-item-02" role="tabpanel">
@@ -245,7 +116,7 @@
                         <div class="form-row my-3">
 
 
-                            <a href="" class="btn btn-success m-auto" data-toggle="modal"
+                            <a href="" class="btn btn-success m-auto btn-lg" data-toggle="modal"
                                 data-target="#sitiomodal">Añadir
                                 Experiencia</a>
 
@@ -301,14 +172,23 @@
     <!--modal-->
     <div class="modal fade" id="sitiomodal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog" role="document">
-            <form action="/home" method='POST'>
+            <form action="/home" method='POST' >
                 @csrf
                 <div class="modal-content">
                     <div class="modal-header">
 
 
 
-                        <div class="form-row col-12">
+                    <h3>Añada su experiencia laboral</h3>
+
+
+                        <button type="button" class="close mx-0 px-0" data-dismiss="modal">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+
+                    <div class="form-row col-12">
                             <div class="form-group col-6">
                                 <label for="tituloexp">Puesto</label>
                                 @error('tituloexp')
@@ -330,22 +210,6 @@
 
 
                         </div>
-
-
-
-
-
-
-
-
-
-
-                        <button type="button" class="close mx-0 px-0" data-dismiss="modal">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-
                         <div class="form-row col-12">
                             <div class="form-group col-6">
                                 <label for="inicioexp">Fecha Incorporacion</label>
@@ -413,7 +277,7 @@
                     </div>
                     <div class="modal-footer">
 
-                        <button class="btn btn-success m-auto" type="submit">Guardar
+                        <button class="btn btn-success m-auto" type="submit" >Guardar
                             Experiencia</button>
 
 

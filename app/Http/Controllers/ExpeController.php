@@ -14,7 +14,7 @@ class ExpeController extends Controller
         $miscategorias=Categoria::all();
         $c=Experiencia::where('id',$id)->count();
 
-        return view('expe', ['contador'=>$c, 'miexpe'=>$laexperiencia, 'categorias'=>$miscategorias]);
+        return view('expe', ['contador'=>$c, 'miexpe'=>$laexperiencia, 'categorias'=>$miscategorias, 'midisplay'=>'none']);
 
 
     }
@@ -41,6 +41,6 @@ class ExpeController extends Controller
         $laexperiencia->save();
         $c=Experiencia::where('id',$id)->count();
 
-        return view('expe', ['contador'=>$c, 'miexpe'=>$laexperiencia, 'categorias'=>$miscategorias]);
+        return view('expe', ['contador'=>$c, 'miexpe'=>$laexperiencia, 'categorias'=>$miscategorias, 'midisplay'=>'block']);
     }
 }

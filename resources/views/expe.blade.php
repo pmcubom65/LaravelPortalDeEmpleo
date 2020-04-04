@@ -12,6 +12,18 @@
 
 
     </div>
+
+    <div class="alert alert-warning alert-dismissible fade show" role="alert" style="display: {{$midisplay}}">
+  <strong>La Experiencia ha quedado editada</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+
+
+
+
     <form action="/home/Expe/{{$miexpe->id}}" method='POST'>
             @csrf
                 <div class="container">
@@ -88,12 +100,12 @@
 
                     </div>
                     <div class="row  justify-content-center">
-                    <div class="form-group col-3">
+                    <div class="form-group col-3  text-center my-5" >
                     
-                    <button class="btn btn-success m-auto " type="submit">Editar</button>
+                    <button class="btn btn-success m-auto btn-lg" type="submit">Editar</button>
                     </form>
-                    <a href="/home" class="btn btn-primary m-auto " type="button">Volver</a>
-                    <button class="btn btn-danger m-auto " type="button" data-toggle="modal"
+                    <a href="/home" class="btn btn-primary m-auto  btn-lg" type="button">Volver</a>
+                    <button class="btn btn-danger m-auto  btn-lg " type="button" data-toggle="modal"
                                 data-target="#sitiomodal">Borrar</button>
                     </div>
                     
@@ -111,6 +123,8 @@
 
 </div>
 
+
+
 <!-- modal -->
 <div class="modal fade" id="sitiomodal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -125,6 +139,9 @@
                     <div class="form-row col-12">
                     Alerta
                      </div>
+                     <button type="button" class="close mx-0 px-0" data-dismiss="modal">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </button>
                 </div>
                 <div class="modal-body">
 
@@ -138,7 +155,7 @@
                 <div class="modal-footer">
 
                     <button class="btn btn-danger m-auto" type="submit">Confirmar</button>
-
+                    <button class="btn btn-primary m-auto" class="close mx-0 px-0" data-dismiss="modal" type="button">Volver</button>
 
                 </div>
 

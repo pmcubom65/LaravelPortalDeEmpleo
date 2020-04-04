@@ -24,7 +24,17 @@ class CreateCategoriasTable extends Migration
 
         DB::table('categorias')->delete();
         DB::table('categorias')->insert(
-            array(['nombre'=>
+            array(['nombre'=>'Marketing','descripcion'=> 'Ventas de productos'],
+            ['nombre'=>'Engineering','descripcion'=> 'Tecnologia'],
+            ['nombre'=>'Training','descripcion'=> 'Formacion'],
+            ['nombre'=>'Services','descripcion'=> 'Servicios'],
+            ['nombre'=>'Legal','descripcion'=> 'Asesoramiento legal'],
+            ['nombre'=>'Accounting','descripcion'=> 'Contabilidad'],
+            ['nombre'=>'Sales','descripcion'=> 'Ventas'],
+            ['nombre'=>'Research and Development','descripcion'=> 'I+D'],
+            ['nombre'=>'Business Development','descripcion'=> 'Negocios'],
+            ['nombre'=>'Human Resources','descripcion'=> 'RRHH'],
+            ['nombre'=>'Support','descripcion'=> 'Soporte'], ['nombre'=>
                  'Programador en Java', 'descripcion'=>
                  'Programador en lenguaje de programación Java']));
     }

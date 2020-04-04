@@ -1,4 +1,4 @@
-<section class="espacio">
+<section>
     <div class="container">
         <div class="row">
             <div class="col-12 text-center">
@@ -54,13 +54,14 @@
                             @error('provincias')
                             <div class="alert alert-danger">Campo erroneo</div>
                             @enderror
-                            <select class="form-control" id="Provincia" name="Provincia"
-                            select="{{$curriculum->hasProvincia->id}}">
-
-                                @foreach ($provincias as $provincia) {
+                            <select class="form-control" id="Provincia" name="Provincia">
+                            <option value="{{$curriculum->hasProvincia->id}}" selected="selected" >{{$curriculum->hasProvincia->region_name}}</option>
+                           
+                                @foreach ($provincias as $provincia) 
+                                
                                 <option value="{{ $provincia->id }}">{{ $provincia->region_name }}</option>
 
-                                }
+                                
                                 @endforeach
 
                             </select>
@@ -111,8 +112,8 @@
                     <div class="form-row my-3">
 
 
-                        <button type="submit" class="btn btn-success m-auto btn-lg">Guardar Curriculum</button>
-                        <button type="button" id="miboton" onclick="test()">click</button>
+                        <button type="submit" class="btn btn-success m-auto btn-lg">Modificar Datos del Curriculum</button>
+                       
 
                     </div>
 
@@ -130,154 +131,5 @@
 
 
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    <!--modal-->
-    <div class="modal fade" id="sitiomodal" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <form action="/home" method='POST'>
-                @csrf
-                <div class="modal-content">
-                    <div class="modal-header">
-
-
-
-                        <div class="form-row col-12">
-                            <div class="form-group col-6">
-                                <label for="tituloexp">Puesto</label>
-                                @error('tituloexp')
-                                <div class="alert alert-danger">Campo erroneo</div>
-                                @enderror
-                                <input type="text" class="form-control" id="tituloexp" name="tituloexp"
-                                    placeholder="puesto ocupado">
-
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="empresaexp">Empresa</label>
-                                @error('empresaexp')
-                                <div class="alert alert-danger">Campo erroneo</div>
-                                @enderror
-                                <input type="text" class="form-control" id="empresaexp" name="empresaexp"
-                                    placeholder="Empresa">
-
-                            </div>
-
-
-                        </div>
-
-
-
-
-
-
-
-
-
-
-                        <button type="button" class="close mx-0 px-0" data-dismiss="modal">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-
-                        <div class="form-row col-12">
-                            <div class="form-group col-6">
-                                <label for="inicioexp">Fecha Incorporacion</label>
-                                @error('inicioexp')
-                                <div class="alert alert-danger">Campo erroneo</div>
-                                @enderror
-                                <input type="date" class="form-control" id="inicioexp" name="inicioexp">
-
-                            </div>
-                            <div class="form-group col-6">
-                                <label for="finexp">Fecha Salida</label>
-                                @error('finexp')
-                                <div class="alert alert-danger">Campo erroneo</div>
-                                @enderror
-                                <input type="date" class="form-control" id="finexp" name="finexp">
-
-                            </div>
-
-                        </div>
-
-
-                        <div class="form-group col-12">
-                            <label for="exp">Categoria Profesional</label>
-                            @error('cat')
-                            <div class="alert alert-danger">Campo erroneo</div>
-                            @enderror
-                            <select name="cat" id="cat" class="form-control">
-                                @foreach ($categorias as $categoria) {
-
-
-                                <option value="{{ $categoria->id}}">{{$categoria->nombre}}</option>
-
-
-
-
-                                }
-                                @endforeach
-
-
-                            </select>
-                            <input type="hidden" class="form-control" id="userid" name="userid"
-                                value="{{ $datos->id }}">
-
-                            <input type="hidden" class="form-control" id="telefonos" name="telefonos">
-                            <input type="hidden" class="form-control" id="direcciones" name="direcciones">
-                            <input type="hidden" class="form-control" id="provincias" name="provincias">
-                            <input type="hidden" class="form-control" id="dnis" name="dnis">
-                            <input type="hidden" class="form-control" id="fechas" name="fechas">
-                        </div>
-
-                        <div class="form-group col-12">
-                            <label for="desexp">Descripcion de la Experiencia</label>
-                            @error('desexp')
-                            <div class="alert alert-danger">Campo erroneo</div>
-                            @enderror
-                            <textarea class="form-control" id="desexp" name="desexp"
-                                rows="8">Descripcion del puesto</textarea>
-
-                        </div>
-
-
-
-
-
-                    </div>
-                    <div class="modal-footer">
-
-                        <button class="btn btn-success m-auto" type="submit">Guardar
-                            Experiencia</button>
-
-
-                    </div>
-
-
-                </div>
-            </form>
-        </div>
-       
-    </div>
-    
-
 
    

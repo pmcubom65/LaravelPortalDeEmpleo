@@ -11,7 +11,7 @@
         </div>
         <div class="row justify-content-center mb-5">
             <div class="col-sm-12 col-md-10 col-lg-8">
-                <form action="/home" method="POST">
+                <form action="/home" method="POST" >
                     @method('PUT')
                     @csrf
                     <div class="form-row">
@@ -56,7 +56,7 @@
                             @enderror
                             <select class="form-control" id="Provincia" name="Provincia"
                                 onchange="provincias.value=this.selectedIndex">
-
+                                <option value="" selected disabled hidden>Elija su provincia</option>
                                 @foreach ($provincias as $provincia) {
                                 <option value="{{ $provincia->id }}">{{ $provincia->region_name }}</option>
 
@@ -95,6 +95,10 @@
                             @enderror
                             <input type="date" class="form-control" id="fecha" name="fecha"
                                 oninput="fechas.value=fecha.value">
+
+
+
+                    
                         </div>
                     </div>
 
@@ -109,7 +113,14 @@
                     </div>
 
                     <div class="form-row my-3">
+                    <input type="hidden" class="form-control" id="userid" name="userid"
+                                value="{{ $datos->id }}">
 
+                            <input type="hidden" class="form-control" id="telefonos" name="telefonos">
+                            <input type="hidden" class="form-control" id="direcciones" name="direcciones">
+                            <input type="hidden" class="form-control" id="provincias" name="provincias">
+                            <input type="hidden" class="form-control" id="dnis" name="dnis">
+                            <input type="hidden" class="form-control" id="fechas" name="fechas">
 
                         <button type="submit" class="btn btn-success m-auto btn-lg">Guardar Curriculum</button>
 
@@ -128,5 +139,6 @@
 
     </div>
 
-
 </section>
+
+
