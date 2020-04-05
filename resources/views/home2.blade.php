@@ -21,7 +21,7 @@
 
                         <h3><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span><br>Datos de la Empresa</h3>
                         <p>Actualizar perfil</p>
-                        <a href="" class="btn btn-primary m-auto">Ver</a>
+                        <a href="\empresa\{{ $datos->id }}" class="btn btn-primary m-auto">Ver</a>
 
 
                     </div>
