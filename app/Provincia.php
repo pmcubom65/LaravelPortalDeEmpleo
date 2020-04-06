@@ -8,4 +8,8 @@ class Provincia extends Model
 {
     protected $table='provincia';
     public $timestamps = true;
+
+
+
+
 }

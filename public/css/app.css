@@ -68,7 +68,10 @@ nav.navbar {
  
 }
 
-
+.alert {
+  color: red;
+  font-weight: bold;
+}
 
 .misiconos:hover {
 
@@ -143,6 +146,7 @@ body {
 
   body {
   background: url('../img/sky.jpg');
+  color:white;
   
  }
 }

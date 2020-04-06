@@ -43,7 +43,11 @@ Route::post('/home/Expe/{id}', 'ExpeController@store')->name('Expe');
 
 Route::get('/empresa/{id}', 'EmpresaController@show');
 
-Route::post('/empresa/{id}', 'EmpresaController@store');
+Route::post('/empresa/{id}', 'EmpresaController@store')->name('empresa');
+
+Route::get('/empresa/{id}/oferta', 'OfertaController@index');
+
+
 
 Route::get('/cv', 'CvController@index')->name('cv');
 
