@@ -45,9 +45,9 @@ Route::get('/empresa/{id}', 'EmpresaController@show');
 
 Route::post('/empresa/{id}', 'EmpresaController@store')->name('empresa');
 
-Route::get('/empresa/{id}/oferta', 'OfertaController@index');
+Route::get('/empresa/{id}/oferta', 'OfertaController@index')->name('oferta');
 
-
+Route::post('/empresa/{id}/oferta', 'OfertaController@store')->name('oferta');
 
 Route::get('/cv', 'CvController@index')->name('cv');
 

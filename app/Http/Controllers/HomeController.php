@@ -137,7 +137,7 @@ class HomeController extends Controller
             
          
         }else {
-            return view('home', ['categorias'=>$categorias]);
+            return 'estoy como admin';
             
         }
 
