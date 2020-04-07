@@ -49,6 +49,8 @@ Route::get('/empresa/{id}/oferta', 'OfertaController@index')->name('oferta');
 
 Route::post('/empresa/{id}/oferta', 'OfertaController@store')->name('oferta');
 
+Route::match(['put','patch'],'/empresa/{id}/oferta', 'OfertaController@put')->name('oferta');
+
 Route::get('/cv', 'CvController@index')->name('cv');
 
 Route::get('/login2', function() {

@@ -23,8 +23,9 @@
 
             <div class="col-12 d-inline-block ">
 
-                <form>
-
+                <form id="publicar" method="POST" data-route="{{route('oferta', [$datos->id ])}}">
+                    @method('PUT')
+                    @csrf
                     <div class="form-row">
                         <div class="form-group col-sm-12">
                             <label for="nombre">Titulo de la Oferta Laboral</label>
@@ -74,7 +75,7 @@
                         <div class="form-group col-sm-6">
                             <label for="Salario">Salario bruto anual Jornada Completa</label>
                             <input type="range" min="12000" max="50000" value="12000" class="form-control"
-                                id="Salarioid" name="Salario"
+                                id="Salarioid" name="Salarioid"
                                 oninput="mioutid.value=Salarioid.value.concat(' € brutos')">
                             <output name="miout" id="mioutid">12000 € brutos<output>
                         </div>
@@ -109,7 +110,7 @@
                             <label for="exp">Categoria Profesional</label>
                             <select name="cat" id="cat" class="form-control">
                                 <option value="" selected disabled hidden>Elija categoria</option>
-                                
+
                                 @foreach ($categorias as $categoria)
 
                                 <option value="{{ $categoria->id}}">{{$categoria->nombre}}</option>
@@ -119,23 +120,30 @@
                             </select>
                         </div>
                     </div>
+                    <div  id="mismensajes">
 
 
 
-                    <div class="form-row my-3">
 
 
-                        <a href="" class="btn btn-warning m-auto" data-toggle="modal"
+                    </div>
+
+
+
+                    <div class="form-row my-3 fuera">
+
+
+                        <a href="" class="btn btn-warning btn-lg m-auto" data-toggle="modal" id="botoncatmodal"
                             data-target="#sitiocategoriamodal">Añadir una nueva categoria si ninguna
                             coincide</a>
 
 
                     </div>
 
-                    <div class="form-row my-3">
+                    <div class="form-row my-3 fuera">
 
 
-                        <a href="#" class="btn btn-success m-auto">Publicar Oferta</a>
+                        <button class="btn btn-success m-auto btn-lg" type="submit" id="botonsub">Publicar Oferta</button>
 
 
                     </div>
@@ -155,7 +163,7 @@
                 src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
 
             </script>
-            <script src="{{asset('js/empresa.js')}}" type="text/javascript"></script>
+            <script src="{{asset('js/oferta.js')}}" type="text/javascript"></script>
 
 
 
@@ -164,72 +172,6 @@
 
 </div>
 
-
-
-<!--modal categorias-->
-<div class="modal fade" id="sitiocategoriamodal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <form id="categoria-data" method="POST" data-route="{{route('oferta', [$datos->id ])}}">
-            @csrf
-            <div class="modal-content">
-                <div class="modal-header">
-
-
-
-                    <div class="form-row col-12">
-
-                        <div class="form-group col-12">
-                            <label for="catname">Nombre de la Categoria</label>
-                            <input type="text" class="form-control" id="catname" name="catname"
-                                placeholder="Nombre de la Categoria">
-
-                        </div>
-
-
-                    </div>
-
-
-                    <button type="button" class="close mx-0 px-0" data-dismiss="modal">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                    <div class="form-row">
-
-                        <div class="form-group col-12">
-                            <label for="desccat">Descripcion de la Categoria</label>
-                            <textarea class="form-control" id="desccat" name="desccat"
-                                rows="8">Descripcion de la Categoria</textarea>
-
-                        </div>
-
-                    </div>
-                    <div class="form-row text-center">
-
-                        <div class="form-group col-12 text-center">
-                            <div id="mismensajes" class="text-center"></div>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-
-
-                    <button class="btn btn-success m-auto" type="submit">Guardar
-                        Categoria</button>
-
-
-                </div>
-
-
-            </div>
-        </form>
-    </div>
-</div>
-<script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
-
-</script>
-<script src="{{asset('js/oferta.js')}}" type="text/javascript"></script>
+@include('crearcategoria')
 
 @endsection

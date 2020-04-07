@@ -71,6 +71,7 @@ nav.navbar {
 .alert {
   color: red;
   font-weight: bold;
+  font-size: 120%;
 }
 
 .misiconos:hover {
