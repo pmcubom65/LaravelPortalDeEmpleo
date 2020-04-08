@@ -1,10 +1,17 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Validator;
 use App\Oferta;
+use App\Provincia;
+use App\Empresa;
+use App\User;
+use App\Categoria;
+use App\Explaboral;
+use App\Contrato;
+
 
 class SearchController extends Controller
 {
@@ -35,9 +42,28 @@ class SearchController extends Controller
         unset( $miArray['salario']);
       
 
-        $resultados =  Oferta::where('salario','>',$request->get('Salarioid'))->where($miArray)->get();
+        $misresultados =  Oferta::where('salario','>',$request->get('Salarioid'))->where($miArray)->get();
 
 
-        return $resultados;
+     //   return $misresultados;
+
+     $lasprovincias=Provincia::all();
+     $lascategorias=Categoria::all();
+     $lasempresas=Empresa::all();
+     $laempresa=User::find(Auth::id());
+
+     return view ('resultadosbusquedaoferta', [
+        'provincias'=> $lasprovincias,
+      
+        'categorias'=>$lascategorias,
+        'empresas'=>$lasempresas,
+        'resultados'=>$misresultados,
+        'datos'=>$laempresa
+       
+        ]);
+
+
+
+
     }
 }
