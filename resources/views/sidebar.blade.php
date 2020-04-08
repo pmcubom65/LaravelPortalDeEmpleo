@@ -4,7 +4,7 @@
 
         <h3 class="text-center"><a href="/empresa/{{ $datos->id }}/oferta"><span
                     class="misiconos glyphicon glyphicon-bullhorn  text-light"></span></a>Publicar Nueva Oferta</h3>
-        <h3 class="text-center"><a href=""><span
+        <h3 class="text-center"><a href="/empresa/{{ $datos->id }}/published"><span
                     class="misiconos glyphicon glyphicon-paperclip  text-light"></span></a>Revisar ofertas publicadas
         </h3>
     </div>

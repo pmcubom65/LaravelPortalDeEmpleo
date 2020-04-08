@@ -102,7 +102,7 @@
                                         <p class="card-text">Inscribase en las ofertas de empleo. Actualize su perfil y
                                             curriculum. Consulte en el estado de sus candidaturas</p>
 
-                                       
+
 
                                         <!-- Button trigger modal -->
                                         @if (Auth::check())
@@ -115,8 +115,8 @@
                                             Ayuda
                                         </button>
                                         @endif
-                                      
-                                      
+
+
 
 
                                     </div>
@@ -132,7 +132,7 @@
                                         <p class="card-text">Añada nuevas ofertas de trabajo y actualice las ofertas.
                                             Revise las candidaturas. Contacte con los candidatos</p>
 
-                                            @if (Auth::check())
+                                        @if (Auth::check())
                                         <a href="/home" class="btn btn-primary">
                                             Ayuda
                                         </a>
@@ -141,7 +141,7 @@
                                             data-target="#exampleModalCenter">
                                             Ayuda
                                         </button>
-                                       @endif
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -185,32 +185,37 @@
                 </div>
                 <div class="row justify-content-center mb-5">
                     <div class="col-sm-12 col-md-10 col-lg-8">
-                        <form>
-
+                        <form method="POST" action="\search">
+                            @csrf
 
                             <div class="form-row">
                                 <div class="form-group col-sm-6">
                                     <label for="Provincia">Provincia</label>
                                     <select class="form-control" id="Provincia" name="Provincia">
-                                        <option value="0">Todas</option>
+
+                                        <option value="" selected disabled hidden>Elija su provincia</option>
+                                        @foreach ($provincias as $provincia) {
+                                        <option value="{{ $provincia->id }}">{{ $provincia->region_name }}</option>
+
+                                        }
+                                        @endforeach
+
+
+
                                     </select>
 
                                 </div>
 
                                 <div class="fom-group col-sm-6">
-                                    <label for="Experiencia">Experiencia Mínima</label>
+                                    <label for="Experiencia">Experiencia Máxima</label>
                                     <select class="form-control" id="Experiencia" name="Experiencia">
-                                        <option value="0">Todas</option>
-                                        <option value="0">Sin Experiencia
-                                        <option>
-                                        <option value="1">1 año
-                                        <option>
-                                        <option value="2">2 años
-                                        <option>
-                                        <option value="3">3 años
-                                        <option>
-                                        <option value="4">mas de 3
-                                        <option>
+                                        <option value="" selected disabled hidden>Elija tiempo de experiencia laboral
+                                        </option>
+                                        @foreach ($experiencias as $experiencia) {
+                                        <option value="{{ $experiencia->id }}">{{ $experiencia->nombre }}</option>
+
+                                        }
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -219,7 +224,7 @@
                                 <div class="form-group col-sm-6">
                                     <label for="Salario">Salario mínimo requerido al año</label>
                                     <input type="range" min="11999" max="50000" value="12000" class="form-control"
-                                        id="Salarioid" name="Salario" oninput="mioutid.value= (Salarioid.value < 12000) ? 'Cualquier Salario' :                                         
+                                        id="Salarioid" name="Salarioid" oninput="mioutid.value= (Salarioid.value < 12000) ? 'Cualquier Salario' :                                         
                                             Salarioid.value.concat(' € brutos')">
 
 
@@ -229,11 +234,12 @@
                                 <div class="fom-group col-sm-6">
                                     <label for="contrato">Tipo de Contrato</label>
                                     <select class="form-control" id="contrato" name="contrato">
-                                        <option value="0">Todas</option>
-                                        <option value="Jornada Completa">Jornada Completa
-                                        <option>
-                                        <option value="Jornada Parcial">Jornada Parcial
-                                        <option>
+                                        <option value="" selected disabled hidden>Elija tipo de contrato</option>
+                                        @foreach ($contratos as $contrato)
+
+                                        <option value="{{ $contrato->id}}">{{$contrato->nombre}}</option>
+
+                                        @endforeach
 
                                     </select>
                                 </div>
@@ -245,7 +251,14 @@
 
                                     <label for="exp">Categoria Profesional</label>
                                     <select name="cat" id="cat" class="form-control">
-                                        <option value="0">Todas</option>
+                                        <option value="" selected disabled hidden>Elija categoria</option>
+
+                                        @foreach ($categorias as $categoria)
+
+                                        <option value="{{ $categoria->id}}">{{$categoria->nombre}}</option>
+
+                                        @endforeach
+
                                     </select>
                                 </div>
                             </div>
@@ -254,7 +267,7 @@
                             <div class="form-row my-3">
 
 
-                                <a href="#" class="btn btn-success m-auto">Realizar Búsqueda</a>
+                                <button type="submit" class="btn btn-success m-auto">Realizar Búsqueda</button>
 
 
                             </div>
@@ -273,20 +286,6 @@
 
 
         </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     </div>
@@ -418,7 +417,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                
+
             </div>
         </div>
     </div>

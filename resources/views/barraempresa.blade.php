@@ -24,7 +24,7 @@
                     <h3><span class="glyphicon glyphicon-paperclip" aria-hidden="true"></span><br>Revisar Ofertas
                         Publicadas</h3>
                     <p>Revisar ofertas publicadas y candidaturas</p>
-                    <a href="#" class="btn btn-primary m-auto">Ver</a>
+                    <a href="/empresa/{{ $datos->id }}/published" class="btn btn-primary m-auto">Ver</a>
 
 
                 </div>

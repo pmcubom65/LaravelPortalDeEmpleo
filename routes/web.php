@@ -1,8 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Categoria;
-use App\Empresa;
+
 
 
 /*
@@ -16,14 +15,11 @@ use App\Empresa;
 |
 */
 
-Route::get('/', function () {
-    $categorias=Categoria::all();
-    $tempresas=Empresa::all();
-    return view('welcome', ['categorias'=>$categorias, 'empresas'=>$tempresas]);
-});
+Route::get('/', 'InicioController@index');
 
 Auth::routes();
 
+Route::post('/search', 'SearchController@index');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -50,6 +46,10 @@ Route::get('/empresa/{id}/oferta', 'OfertaController@index')->name('oferta');
 Route::post('/empresa/{id}/oferta', 'OfertaController@store')->name('oferta');
 
 Route::match(['put','patch'],'/empresa/{id}/oferta', 'OfertaController@put')->name('oferta');
+
+
+
+Route::get('/empresa/{id}/published', 'PublicadaController@index')->name('publicada');
 
 Route::get('/cv', 'CvController@index')->name('cv');
 

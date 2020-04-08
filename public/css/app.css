@@ -68,6 +68,13 @@ nav.navbar {
  
 }
 
+hr {
+  height: 1px;
+  color: white;
+  background-color:white;
+  border: none;
+}
+
 .alert {
   color: red;
   font-weight: bold;
