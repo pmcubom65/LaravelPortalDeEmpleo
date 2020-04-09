@@ -12,20 +12,22 @@ $(function() {
                 console.log(Response);
 
                 if(Response.catname) {
-                    $('#mismensajes').append('<p class="alert">'+Response.catname+'</p>');
+                    $('#mismensajes2').append('<p class="alert">'+Response.catname+'</p>');
                 } else  if(Response.desccat) {
-                    $('#mismensajes').append('<p class="alert">'+Response.desccat+'</p>');
+                    $('#mismensajes2').append('<p class="alert">'+Response.desccat+'</p>');
                 } else {
-                    $('#mismensajes').append('<p class="alert">'+Response.success['mssg']+'</p>');
+                    $('#mismensajes2').append('<p class="alert">'+Response.success['mssg']+'</p>');
                     $( "#catname" ).prop( "disabled", true );
                     $( "#desccat" ).prop( "disabled", true );
                     $("#botoncat").remove();
                     $('#cat').append('<option value="'+Response.success['elid']+'">'+Response.success['elname']+'</option>');
-                   
-
-                    
+ 
                 }
-            }
+            },
+            error: function(xhr, status, error) {
+                
+                $('#mismensajes2').append('<p class="alert">'+'Error de sql, esa categoría ya debe de existir'+'</p>');
+              } 
         });
 
 

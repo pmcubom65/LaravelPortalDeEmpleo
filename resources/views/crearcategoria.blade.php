@@ -42,7 +42,9 @@
                     <div class="form-row text-center">
 
                         <div class="form-group col-12 mx-auto">
-                            <div id="mismensajes"></div>
+                            <div id="mismensajes2">
+
+                            </div>
                         </div>
 
                     </div>

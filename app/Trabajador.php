@@ -28,4 +28,8 @@ class Trabajador extends Model
     
     return Carbon::parse($this->fecha)->format('Y-m-d');
 }
+
+
+
+
 }

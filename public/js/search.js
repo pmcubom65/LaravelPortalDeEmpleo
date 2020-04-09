@@ -12,10 +12,10 @@ $(function(){
             var id = $(e.target).attr('id');
            
             $('#' + id).css({
-                backgroundColor: "#B3B3FF",
-                border: "#0000FF"
+                backgroundColor: "black",
+                
             });
-
+            $('#ira').attr('href',"/search/"+id);
 
         }
     });

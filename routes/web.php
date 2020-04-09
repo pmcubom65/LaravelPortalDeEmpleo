@@ -19,7 +19,11 @@ Route::get('/', 'InicioController@index');
 
 Auth::routes();
 
-Route::post('/search', 'SearchController@index');
+Route::get('/search', 'SearchController@index');
+
+Route::get('/search/{id}', 'SearchController@oferta');
+
+Route::post('/search/{id}', 'SearchController@store');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

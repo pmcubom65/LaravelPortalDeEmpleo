@@ -28,7 +28,7 @@ class EmpresaController extends Controller
         'datos'=>$laempresa, 
         'categorias'=>$lascategorias,
         'empresas'=>$lasempresas,
-        'esta'=>$estaempresa,
+        'contador'=>$estaempresa,
         'datosemp'=>$datosaempresa
         ]);
 

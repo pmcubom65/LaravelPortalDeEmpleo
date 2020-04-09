@@ -75,6 +75,7 @@ class OfertaController extends Controller
         $laempresa=User::find($id);
         $lasexperienciaslaborales=Explaboral::all();
         $loscontratos=Contrato::all();
+        $estaempresa=Empresa::where('user_id', $id)->count();
 
 
    
@@ -84,8 +85,8 @@ class OfertaController extends Controller
         'categorias'=>$lascategorias,
         'empresas'=>$lasempresas,
         'experiencias'=>$lasexperienciaslaborales,
-        'contratos'=>$loscontratos
-       
+        'contratos'=>$loscontratos,
+       'contador'=>$estaempresa
         ]);
     }
 

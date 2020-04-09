@@ -39,7 +39,7 @@
     <p class="card-text">{{$oferta->provincia->region_name}}</p>
     <p class="card-text">{{$oferta->contrato->nombre}}</p>
     <p class="card-text">Salario {{$oferta->salario}}</p>
-    <a href="#" class="btn btn-primary">Ver Oferta</a>
+    <a href="/search/{{$oferta->id}}" class="btn btn-primary">Ver Oferta</a>
     <hr class="text-white">
     @endforeach
 

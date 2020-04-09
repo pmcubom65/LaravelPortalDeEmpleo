@@ -11,6 +11,7 @@ use App\User;
 use App\Categoria;
 use App\Explaboral;
 use App\Contrato;
+use App\Oferta_trabajador;
 
 
 class SearchController extends Controller
@@ -22,19 +23,23 @@ class SearchController extends Controller
 
             $miArray['provincia_id'] = $request->get('Provincia');
 
-        }else if ($request->has('Experiencia')){
+        }
+        if ($request->has('Experiencia')){
 
             $miArray['experiencia_id'] = $request->get('Experiencia');
 
-        }else if ($request->has('Salarioid')){
+        }
+        if ($request->has('Salarioid')){
 
             $miArray['salario'] = $request->get('Salarioid');
 
-        }else if ($request->has('cat')){
+        }
+        if ($request->has('cat')){
 
             $miArray['categoria_id'] = $request->get('cat');
 
-        }else if ($request->has('contrato')){
+        }
+         if ($request->has('contrato')){
 
             $miArray['contrato_id'] = $request->get('contrato');
 
@@ -42,7 +47,7 @@ class SearchController extends Controller
         unset( $miArray['salario']);
       
 
-        $misresultados =  Oferta::where('salario','>',$request->get('Salarioid'))->where($miArray)->get();
+        $misresultados =  Oferta::where('salario','>=',$request->get('Salarioid'))->where($miArray)->get();
 
 
      //   return $misresultados;
@@ -64,6 +69,58 @@ class SearchController extends Controller
 
 
 
+
+    }
+
+
+    public function store(Request $request, $id) {
+
+        if (Auth::check()) {
+            $usuario=User::find(Auth::id());
+            if ($usuario->rol_id===1) {
+                $trabajador=Trabajador::where('user_id', Auth::id())->first();
+                $inscripcion= new Oferta_trabajador();
+                $inscripcion->oferta_id=$id;
+                $inscripcion->trabajador_id=$trabajador->id;
+
+                $inscripcion->save();
+
+               $Response=['success'=>'Has sido inscrito en la oferta. Tu curriculum ha sido enviado a la empresa para su evaluación'];
+            }
+        }else {
+            $Response=['success'=>'Necesitas estar logueado como trabajador para inscribirte'];
+        }
+        return response()->json($Response,200);
+    }
+
+
+
+    public function oferta($id) {
+
+
+
+        $lasprovincias=Provincia::all();
+        $lascategorias=Categoria::all();
+        $lasempresas=Empresa::all();
+        $mioferta=Oferta::find($id);
+        $elusuario=User::find(Auth::id());
+      
+     
+
+   
+        return view ('veroferta', [
+        'provincias'=> $lasprovincias,
+        'datos'=> $elusuario,
+        'categorias'=>$lascategorias,
+        'empresas'=>$lasempresas,
+        'oferta'=>$mioferta
+      
+       
+        ]);
+
+
+
+        
 
     }
 }

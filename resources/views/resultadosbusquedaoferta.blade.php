@@ -23,16 +23,16 @@
             <div class="col-12 d-inline-block ">
             <div class="card text-center">
   <div class="card-header">
-   <p>Resultados</p>
+   <h4 class="font-weight-bold my-2 py-2">Haga click en la oferta deseada y elija en la barra de menú "Ver oferta seleccionada"</h4>
   </div>
 
   @foreach($resultados as $oferta)
-  <div class="card-body" id="{{$oferta->id}}">
-    <h5 class="card-title">{{$oferta->titulo}} - {{$oferta->categoria->nombre}}</h5><br>
+  <div class="card-body px-0 py-2" id="{{$oferta->id}}">
+    <h5 class="card-title">{{$oferta->titulo}} - {{$oferta->categoria->nombre}}</h5>
     <br>{{$oferta->provincia->region_name}}
     <br>{{$oferta->contrato->nombre}}
-    <br>Salario {{$oferta->salario}}
-    <a href="#" id="marcar" class="btn btn-primary">Ver Oferta</a>
+    <br>Salario {{$oferta->salario}} euros/año
+    
     <hr class="text-white">
     @endforeach
 

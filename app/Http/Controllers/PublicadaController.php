@@ -21,7 +21,7 @@ class PublicadaController extends Controller
         $empresaseleccionada=Empresa::where('user_id', '=', $id)->first()->id;
         $lasofertas=Oferta::where('empresa_id', '=', $empresaseleccionada)->get();
        
-
+        $estaempresa=Empresa::where('user_id', $id)->count();
 
    
         return view ('gestionaroferta', [
@@ -29,7 +29,8 @@ class PublicadaController extends Controller
         'datos'=>$laempresa, 
         'categorias'=>$lascategorias,
         'empresas'=>$lasempresas,
-        'ofertas'=>$lasofertas
+        'ofertas'=>$lasofertas,
+        'contador'=>$estaempresa
    
         ]);
 

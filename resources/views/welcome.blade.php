@@ -185,7 +185,7 @@
                 </div>
                 <div class="row justify-content-center mb-5">
                     <div class="col-sm-12 col-md-10 col-lg-8">
-                        <form method="POST" action="\search">
+                        <form method="GET" action="\search">
                             @csrf
 
                             <div class="form-row">

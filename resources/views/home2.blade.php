@@ -22,7 +22,7 @@
 
         <div class="card-body">
 
-            <h4>Los datos no están completos por el momento. Acceda a Ver Perfil</h4>
+            <h4>Los datos no están completos por el momento. Acceda a Actualizar Perfil</h4>
 
         </div>
     </div>

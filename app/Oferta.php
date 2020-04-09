@@ -34,4 +34,19 @@ class Oferta extends Model
 
     }
 
+
+    public function experiencia(){
+
+        return $this->belongsTo('App\Explaboral', 'experiencia_id', 'id');
+        
+
+    }
+
+
+    public function trabajadors(){
+        return $this->belongsToMany('App\Trabajador', 'oferta_trabajador');
+    }
+
+ 
+
 }

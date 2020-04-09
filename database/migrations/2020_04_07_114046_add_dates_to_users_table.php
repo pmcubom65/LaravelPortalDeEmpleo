@@ -16,13 +16,13 @@ class AddDatesToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             //
         });
-
+        DB::table('users')->delete();
         DB::table('users')->insert(
             array(['email'=>
                  'admin@admin.es','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now'),
                  'name'=>'admin@admin.es',
                  'password'=>bcrypt('admin1234'),
-                 'rol_id'=>3
+                 'rol_id'=>'3'
                  ]
                 ));
                 

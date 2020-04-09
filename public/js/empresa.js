@@ -29,7 +29,9 @@ $(function() {
             }else {
                 
                     $('#messages').html('<h3 class="alert text-center">'+Response.success+'</h3>');
-                
+
+                    setTimeout(function(){  }, 4000);
+                    location.reload();
             }
            
         }
