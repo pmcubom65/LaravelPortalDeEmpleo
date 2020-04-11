@@ -15,9 +15,9 @@
 
             <div class="col-12 d-inline-block ">
 
-                <form id="inscribirse" method="POST" data-route="/search/{{$oferta->id}}">
+                <form id="inscribirse" method="POST" data-route="{{ route('apuntarse', $oferta->id) }}">
                     
-                    @csrf
+                {{ csrf_field() }}  
                     <div class="form-row">
                         <div class="form-group col-sm-12">
                             <label for="nombre">Titulo de la Oferta Laboral</label>
@@ -95,6 +95,10 @@
                             </select>
                         </div>
                     </div>
+                    <input type="hidden" name="usu" id="usu" value="{{Auth::id()}}">
+                    <input type="hidden" name="_token" value="{{ Session::token() }}">
+                 
+                   
                     <div  id="mensajesinsc">
 
 

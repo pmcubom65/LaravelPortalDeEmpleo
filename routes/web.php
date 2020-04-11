@@ -20,10 +20,11 @@ Route::get('/', 'InicioController@index');
 Auth::routes();
 
 Route::get('/search', 'SearchController@index');
+Route::post('/search/{id}', 'SearchController@store')->name('apuntarse');
 
 Route::get('/search/{id}', 'SearchController@oferta');
 
-Route::post('/search/{id}', 'SearchController@store');
+
 
 
 Route::get('/home', 'HomeController@index')->name('home');

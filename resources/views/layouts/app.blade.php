@@ -13,6 +13,7 @@
     <title>ETT Publica</title>
     <meta name="description" content="página que sirve como portal de empleo">
     <meta name="keywords" content="empleo, trabajo, salario">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 

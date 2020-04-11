@@ -12,6 +12,7 @@ use App\Categoria;
 use App\Explaboral;
 use App\Contrato;
 use App\Oferta_trabajador;
+use App\Trabajador;
 
 
 class SearchController extends Controller
@@ -74,10 +75,9 @@ class SearchController extends Controller
 
 
     public function store(Request $request, $id) {
-
-        if (Auth::check()) {
-            $usuario=User::find(Auth::id())->first();
-            if ($usuario->rol_id===1) {
+        
+       
+                
                 $trabajador=Trabajador::where('user_id', Auth::id())->first();
                 $inscripcion= new Oferta_trabajador();
                 $inscripcion->oferta_id=$id;
@@ -85,11 +85,8 @@ class SearchController extends Controller
 
                 $inscripcion->save();
 
-               $Response=['success'=>'Has sido inscrito en la oferta. Tu curriculum ha sido enviado a la empresa para su evaluación'];
-            }
-        }else {
-            $Response=['success'=>'Necesitas estar logueado como trabajador para inscribirte'];
-        }
+               $Response=['success'=>'Has sido inscrito en la oferta'];
+     
         return response()->json($Response,200);
     }
 
