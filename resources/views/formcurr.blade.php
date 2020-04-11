@@ -106,7 +106,7 @@
                     <div class="form-row my-3">
 
 
-                        <a href="" class="btn btn-primary m-auto btn-lg" data-toggle="modal"
+                        <a href="" class="btn btn-primary m-auto btn-lg btn-xs-block" data-toggle="modal"
                             data-target="#sitiomodal">Añadir Experiencia</a>
 
 
@@ -122,7 +122,7 @@
                             <input type="hidden" class="form-control" id="dnis" name="dnis">
                             <input type="hidden" class="form-control" id="fechas" name="fechas">
 
-                        <button type="submit" class="btn btn-success m-auto btn-lg">Guardar Curriculum</button>
+                        <button type="submit" class="btn btn-success m-auto btn-lg btn-xs-block">Guardar Curriculum</button>
 
 
                     </div>

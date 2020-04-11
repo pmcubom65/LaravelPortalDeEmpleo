@@ -103,7 +103,7 @@
                     <div class="form-row my-3">
 
 
-                        <a href="" class="btn btn-primary m-auto btn-lg" data-toggle="modal"
+                        <a href="" class="btn btn-primary m-auto btn-lg btn-xs-block" data-toggle="modal"
                             data-target="#sitiomodal">Añadir Experiencia</a>
 
 
@@ -112,7 +112,7 @@
                     <div class="form-row my-3">
 
 
-                        <button type="submit" class="btn btn-success m-auto btn-lg">Modificar Datos del Curriculum</button>
+                        <button type="submit" class="btn btn-success m-auto btn-lg btn-xs-block">Modificar Datos del Curriculum</button>
                        
 
                     </div>

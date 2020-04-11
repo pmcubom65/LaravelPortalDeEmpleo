@@ -23,8 +23,9 @@
                                     <label for="Provincia">Provincia</label>
                                     <select class="form-control" id="Provincia" name="Provincia">
 
-                                        <option value="" selected disabled hidden>Elija su provincia</option>
+                                        <option value="" selected disabled>Elija su provincia</option>
                                         @foreach ($provincias as $provincia) 
+
                                         <option value="{{ $provincia->id }}">{{ $provincia->region_name }}</option>
 
                                         

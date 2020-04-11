@@ -71,6 +71,9 @@ nav.navbar {
     width: 100%;
     text-align: center;
   }
+  .card-header, .card-body, .card-text, .card-title {
+    text-align: center;
+  }
   
 }
 

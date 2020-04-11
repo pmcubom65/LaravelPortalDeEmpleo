@@ -76,7 +76,7 @@ class SearchController extends Controller
     public function store(Request $request, $id) {
 
         if (Auth::check()) {
-            $usuario=User::find(Auth::id());
+            $usuario=User::find(Auth::id())->first();
             if ($usuario->rol_id===1) {
                 $trabajador=Trabajador::where('user_id', Auth::id())->first();
                 $inscripcion= new Oferta_trabajador();

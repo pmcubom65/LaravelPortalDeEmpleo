@@ -116,7 +116,7 @@
                         <div class="form-row my-3">
 
 
-                            <a href="" class="btn btn-success m-auto btn-lg" data-toggle="modal"
+                            <a href="" class="btn btn-success m-auto btn-lg btn-xs-block" data-toggle="modal"
                                 data-target="#sitiomodal">Añadir
                                 Experiencia</a>
 
@@ -132,7 +132,7 @@
                                 <p class="card-text">Desde: {{$experiencia->inicio}}</p>
                                 <p class="card-text">Hasta: {{$experiencia->fin}}</p>
 
-                                <a href="/home/Expe/{{$experiencia->id}}" class="btn btn-primary">Editar o Borrar</a>
+                                <a href="/home/Expe/{{$experiencia->id}}" class="btn btn-primary btn-xs-block ">Editar o Borrar</a>
                             </div>
                         </div>
 
@@ -277,7 +277,7 @@
                     </div>
                     <div class="modal-footer">
 
-                        <button class="btn btn-success m-auto" type="submit" >Guardar
+                        <button class="btn btn-success m-auto btn-xs-block" type="submit" >Guardar
                             Experiencia</button>
 
 
