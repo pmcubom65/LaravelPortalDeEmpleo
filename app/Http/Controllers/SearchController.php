@@ -76,7 +76,7 @@ class SearchController extends Controller
 
     public function store(Request $request, $id) {
         
-       
+        if (Auth::user()->rol_id===1) {
                 
                 $trabajador=Trabajador::where('user_id', Auth::id())->first();
                 $inscripcion= new Oferta_trabajador();
@@ -86,7 +86,9 @@ class SearchController extends Controller
                 $inscripcion->save();
 
                $Response=['success'=>'Has sido inscrito en la oferta'];
-     
+        }else {
+            $Response=['success'=>'Necesitas estar logueado como trabajador para inscribirte'];
+        }
         return response()->json($Response,200);
     }
 

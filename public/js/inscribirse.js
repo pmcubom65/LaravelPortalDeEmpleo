@@ -21,7 +21,7 @@ $(function(){
             },
             error: function(xhr, status, error) {
                 
-                $('#mensajesinsc').append('<p class="alert text-center">'+error+'</p>');
+                $('#mensajesinsc').append('<p class="alert text-center">'+'Ya esas inscrito en la oferta'+'</p>');
                 $(':input[type="submit"]').prop('disabled', status);
               } 
 
