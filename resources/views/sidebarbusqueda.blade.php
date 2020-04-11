@@ -11,7 +11,7 @@
                     class="misiconos glyphicon glyphicon-paperclip  text-light"></span></a>Gestionar Candidaturas
         </h3>
         @else
-        <h3 class="text-center text-muted"><span
+        <h3 class="text-center "><span
 class="glyphicon glyphicon-paperclip text-muted" ></span>Gestionar Candidaturas
         </h3>
         @endif

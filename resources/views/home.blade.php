@@ -58,7 +58,7 @@
 
     <div class="card-body">
 
-        <h4>Su curriculum está dado de alta correctamente</h4>
+        <h4 class="text-center">Su curriculum está dado de alta correctamente</h4>
         @if ($errors->any())
         <div class="alert alert-danger">
             Alguno de los campos no está correctamente relleno
@@ -87,17 +87,17 @@
         <div class="row">
             <div class="col-12">
                 <ul class="nav nav-pills justify-content-center" id="pills-nav" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active btn-lg" id="nav-pills-01" data-toggle="pill" href="#nav-item-01">Datos
+                    <li class="nav-item btn-xs-block">
+                        <a class="nav-link active btn-lg " id="nav-pills-01" data-toggle="pill" href="#nav-item-01">Datos
                             Personales</a>
 
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item  btn-xs-block">
                         <a class="nav-link btn-lg" id="nav-pills-02" data-toggle="pill" href="#nav-item-02">Experiencias
                             Laborales</a>
 
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item  btn-xs-block">
                         <a class="nav-link btn-lg" id="nav-pills-03" data-toggle="pill"
                             href="#nav-item-03">Candidaturas</a>
 

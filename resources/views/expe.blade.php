@@ -99,14 +99,17 @@
                             rows="8">{{$miexpe->descripcion}}</textarea>
 
                     </div>
-                    <div class="row  justify-content-center">
-                    <div class="form-group col-3  text-center my-5" >
-                    
-                    <button class="btn btn-success m-auto btn-lg" type="submit">Editar</button>
+                    <div class="row  justify-content-center ">
+                    <div class="form-group col-lg-3 col-xs-12  text-center my-5 " >
+                    <hr >
+                    <button class="btn btn-success m-auto btn-lg   btn-block" type="submit">Editar</button>
+                    <hr >
                     </form>
-                    <a href="/home" class="btn btn-primary m-auto  btn-lg" type="button">Volver</a>
-                    <button class="btn btn-danger m-auto  btn-lg " type="button" data-toggle="modal"
+                    <a href="/home" class="btn btn-primary m-auto btn-block  btn-lg" type="button">Volver</a>
+                    <hr >
+                    <button class="btn btn-danger m-auto  btn-lg btn-block " type="button" data-toggle="modal"
                                 data-target="#sitiomodal">Borrar</button>
+                                <hr >
                     </div>
                     
                    

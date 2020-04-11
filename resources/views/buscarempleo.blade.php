@@ -24,10 +24,10 @@
                                     <select class="form-control" id="Provincia" name="Provincia">
 
                                         <option value="" selected disabled hidden>Elija su provincia</option>
-                                        @foreach ($provincias as $provincia) {
+                                        @foreach ($provincias as $provincia) 
                                         <option value="{{ $provincia->id }}">{{ $provincia->region_name }}</option>
 
-                                        }
+                                        
                                         @endforeach
 
 
@@ -41,10 +41,10 @@
                                     <select class="form-control" id="Experiencia" name="Experiencia">
                                         <option value="" selected disabled hidden>Elija tiempo de experiencia laboral
                                         </option>
-                                        @foreach ($experiencias as $experiencia) {
+                                        @foreach ($experiencias as $experiencia) 
                                         <option value="{{ $experiencia->id }}">{{ $experiencia->nombre }}</option>
 
-                                        }
+                                        
                                         @endforeach
                                     </select>
                                 </div>

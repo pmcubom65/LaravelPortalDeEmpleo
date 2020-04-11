@@ -65,8 +65,13 @@ nav.navbar {
 
 }
 @media (max-width: 767.98px) { 
-  h3 {color: indigo;}
-
+  h3 {color: indigo !important;}
+  .btn-xs-block {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  
 }
 
 
@@ -108,6 +113,10 @@ hr {
 /* Small devices (landscape phones, less than 768px)*/
 @media (max-width: 767.98px) { 
 
+  .col-md-4 a {
+    display: block;
+  }
+
   .inicio .glyphicon {
     font-size: 15px;
     padding: 10px;
@@ -126,6 +135,15 @@ hr {
   line-height: 0.1em;
   
 }
+.glyphicon:hover {
+
+  -webkit-animation: spin 1s linear infinite;
+  -moz-animation:  spin 1s linear infinite;
+    animation:  spin 1s linear infinite;
+}
+@-webkit-keyframes spin {100%{-webkit-transform: rotate(360deg);}}
+@-moz-keyframes spin {100%{-moz-transform: rotate(360deg);}}
+@keyframes spin {100%{-webkit-transform: rotate(360deg);transform:rotate(360deg);}}
 
 }
 
@@ -381,6 +399,7 @@ label {
 button {
   border-radius: 0;
 }
+
 
 button:focus {
   outline: 1px dotted;

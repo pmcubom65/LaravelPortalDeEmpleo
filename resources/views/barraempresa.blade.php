@@ -55,7 +55,7 @@
                         Publicadas</h3>
                     <p>Revisar ofertas publicadas y candidaturas</p>
                    
-                    <a href="/empresa/{{ $datos->id }}/published" class="btn btn-primary m-auto">Ver</a>
+                    <a href="/empresa/{{ $datos->id }}/published" class=" btn btn-primary m-auto">Ver</a>
                   
 
                 </div>

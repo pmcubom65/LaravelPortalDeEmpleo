@@ -55,13 +55,13 @@
                         <div class="dropdown-menu" aria-labelledby="dt2">
                         @foreach($empresas as $empresa)
                             <a class="dropdown-item" tabindex="0"  role="button" data-toggle="popover" data-trigger="focus" 
-                            title="{{$empresa->nombre}}" data-content="">{{$empresa->nombre}}</a>
+                            title="{{$empresa->nombre}}" data-content="">{{$empresa->usuario->name}}</a>
                         @endforeach
                         </div>
 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Buscar Cursos de Formación</a>
+                        <a class="nav-link" href="/#buscar">Buscar Trabajo</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toogle " aria-expanded="false" data-toggle="dropdown"
