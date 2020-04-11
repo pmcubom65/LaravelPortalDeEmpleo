@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Experiencia;
 use App\Categoria;
+use App\Empresa;
 
 class ExpeController extends Controller
 {
@@ -13,8 +14,10 @@ class ExpeController extends Controller
         $laexperiencia=Experiencia::find($id);
         $miscategorias=Categoria::all();
         $c=Experiencia::where('id',$id)->count();
+        $lasempresas=Empresa::all();
 
-        return view('expe', ['contador'=>$c, 'miexpe'=>$laexperiencia, 'categorias'=>$miscategorias, 'midisplay'=>'none']);
+        return view('expe', ['contador'=>$c, 'miexpe'=>$laexperiencia, 'categorias'=>$miscategorias, 'midisplay'=>'none',
+        'empresas'=>$lasempresas]);
 
 
     }
@@ -32,6 +35,7 @@ class ExpeController extends Controller
     public function store(Request $request, $id) {
         $laexperiencia=Experiencia::find($id);
         $miscategorias=Categoria::all();
+        $lasempresas=Empresa::all();
         $laexperiencia->categoria_id=$request->get('cat');
         $laexperiencia->descripcion=$request->get('desexp');
         $laexperiencia->empresa=$request->get('empresaexp');
@@ -41,6 +45,8 @@ class ExpeController extends Controller
         $laexperiencia->save();
         $c=Experiencia::where('id',$id)->count();
 
-        return view('expe', ['contador'=>$c, 'miexpe'=>$laexperiencia, 'categorias'=>$miscategorias, 'midisplay'=>'block']);
+        return view('expe', ['contador'=>$c, 'miexpe'=>$laexperiencia, 'categorias'=>$miscategorias, 'midisplay'=>'block',
+        'empresas'=>$lasempresas
+        ]);
     }
 }

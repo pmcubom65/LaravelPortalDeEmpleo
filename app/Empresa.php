@@ -13,4 +13,13 @@ class Empresa extends Model
         return $this->belongsTo('App\Provincia', 'provincia_id');
 
     }
+
+
+    public function usuario(){
+
+        return $this->belongsTo('App\User', 'user_id');
+
+    }
+
+
 }

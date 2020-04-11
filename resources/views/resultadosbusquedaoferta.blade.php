@@ -22,7 +22,7 @@
 
             <div class="col-12 d-inline-block ">
             <div class="card text-center">
-  <div class="card-header">
+  <div class="card-header d-none d-lg-block">
    <h4 class="font-weight-bold my-2 py-2">Haga click en la oferta deseada y elija en la barra de menú "Ver oferta seleccionada"</h4>
   </div>
 

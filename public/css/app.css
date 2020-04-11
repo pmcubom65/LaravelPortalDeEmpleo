@@ -62,12 +62,12 @@ nav.navbar {
   margin-bottom: 0;
   padding-bottom: 0;
   display:block;
- 
-  
-  
- 
-}
 
+}
+@media (max-width: 767.98px) { 
+  h3 {color: indigo;}
+
+}
 
 
 hr {
@@ -97,6 +97,7 @@ hr {
   color: white;
 }
 
+
 .inicio .glyphicon  {
   font-size: 60px;
   padding: 25px;
@@ -104,7 +105,29 @@ hr {
   border: 2px solid white;
   border-radius: 50%;
 }
+/* Small devices (landscape phones, less than 768px)*/
+@media (max-width: 767.98px) { 
 
+  .inicio .glyphicon {
+    font-size: 15px;
+    padding: 10px;
+  margin-bottom: 3px;
+  text-align: center;
+  color: white;
+  
+ }
+
+ .inicio p {display: none;}
+ .inicio h3 {color:white;}
+
+.inicio .col-md-4 {
+  margin-top: 10px;
+  border-bottom: 1px solid var(--light); 
+  line-height: 0.1em;
+  
+}
+
+}
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -349,6 +372,11 @@ label {
   margin-left: 13rem;
   font-weight: bold;
 }
+@media (max-width: 767.98px) { 
+ 
+  #mioutid {text-align: center;
+    margin-left: 5rem;}
+}
 
 button {
   border-radius: 0;
@@ -485,6 +513,12 @@ h2, .h2 {
 
 h3, .h3 {
   font-size: 1.575rem;
+}
+@media (max-width: 767.98px) { 
+  h3, .h3 {
+    font-size: 1rem;
+    text-align: center;
+  }
 }
 
 h4, .h4 {
