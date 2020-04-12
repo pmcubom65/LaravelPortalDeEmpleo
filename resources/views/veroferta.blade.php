@@ -14,6 +14,23 @@
         <div class="row-fluid col-10  d-inline-block mx-auto">
 
             <div class="col-12 d-inline-block ">
+            @if (Auth::user()->rol_id===2)
+                <div class="form-row my-3">
+                    <div class="col-12 text-center">
+
+                        <button class="btn btn-primary btn-block  m-auto btn-lg" type="button">Editar oferta</button>
+
+                    </div>
+                </div>
+
+                <div class="form-row my-3">
+                    <div class="col-12 text-center">
+
+                        <button class="btn btn-danger btn-block    m-auto btn-lg" type="button">Cerrar Proceso</button>
+
+                    </div>
+                </div>
+                @endif
 
                 <form id="inscribirse" method="POST" data-route="{{ route('apuntarse', $oferta->id) }}">
 
@@ -121,6 +138,7 @@
 
                 </form>
 
+
             </div>
 
 
@@ -137,6 +155,13 @@
 
         </div>
     </div>
+
+
+
+
+
+
+
 
 </div>
 

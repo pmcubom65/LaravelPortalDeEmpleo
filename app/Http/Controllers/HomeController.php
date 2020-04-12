@@ -97,12 +97,12 @@ class HomeController extends Controller
         $trabajador=Trabajador::where('user_id', Auth::id())->count();
         $trabajadorlog=Trabajador::where('user_id', Auth::id())->first();
         $provincias=Provincia::all();
-        $elid=Trabajador::where('user_id', Auth::id())->first()->id;
-    
-        $lascandidaturas=Trabajador::find($elid)->ofertasempleo()->orderBy('id')->get();
+
      
         if (Auth::user()->rol_id===1){
-
+            $elid=Trabajador::where('user_id', Auth::id())->first()->id;
+    
+            $lascandidaturas=Trabajador::find($elid)->ofertasempleo()->orderBy('id')->get();
 
             $contarexperiencias=Experiencia::where('user_id', Auth::id())->count();
             if ($contarexperiencias==0) {
