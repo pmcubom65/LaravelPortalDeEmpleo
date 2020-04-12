@@ -87,7 +87,7 @@ class SearchController extends Controller
 
                $Response=['success'=>'Has sido inscrito en la oferta'];
         }else {
-            $Response=['success'=>'Necesitas estar logueado como trabajador para inscribirte'];
+            $Response=['success'=>'Necesitas ser trabajador para inscribirte'];
         }
         return response()->json($Response,200);
     }

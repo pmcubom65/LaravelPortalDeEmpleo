@@ -141,7 +141,50 @@
                     </div>
                     <div class="tab-pane fade" id="nav-item-03" role="tabpanel">
 
-                        dsaasdasdf
+                  
+
+
+                    <p>
+                        @foreach ($trabbusc->ofertasempleo as $oferta)
+                        @foreach ($oferta->titulo as $titulo)
+  <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">{{$titulo}}</a>
+  @endforeach
+</p>
+
+<div class="row">
+@foreach ($oferta->descripcion as $descripcion)
+  <div class="col">
+    <div class="collapse multi-collapse" id="multiCollapseExample1">
+      <div class="card card-body">
+      
+      {{$descripcion}}
+      </div>
+    </div>
+  </div>
+  @endforeach
+
+</div>
+@endforeach
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                     </div>
 
                 </div>

@@ -11,13 +11,13 @@
 
 
 
-         <div class="row-fluid col-10  d-inline-block mx-auto">
+        <div class="row-fluid col-10  d-inline-block mx-auto">
 
             <div class="col-12 d-inline-block ">
 
                 <form id="inscribirse" method="POST" data-route="{{ route('apuntarse', $oferta->id) }}">
-                    
-                {{ csrf_field() }}  
+
+                    {{ csrf_field() }}
                     <div class="form-row">
                         <div class="form-group col-sm-12">
                             <label for="nombre">Titulo de la Oferta Laboral</label>
@@ -37,7 +37,8 @@
                             <label for="Provincia">Provincia</label>
                             <select class="form-control" id="Provincia" name="Provincia" disabled>
 
-                                <option value="{{$oferta->provincia_id}}" selected disabled hidden>{{$oferta->provincia->region_name}}</option>
+                                <option value="{{$oferta->provincia_id}}" selected disabled hidden>
+                                    {{$oferta->provincia->region_name}}</option>
 
 
 
@@ -49,8 +50,9 @@
                         <div class="fom-group col-sm-6">
                             <label for="Experiencia">Experiencia Mínima</label>
                             <select class="form-control" id="Experiencia" name="Experiencia" disabled>
-                                <option value="{{$oferta->experiencia_id}}" selected disabled hidden>{{$oferta->experiencia->nombre}}</option>
-                                
+                                <option value="{{$oferta->experiencia_id}}" selected disabled hidden>
+                                    {{$oferta->experiencia->nombre}}</option>
+
                             </select>
                         </div>
                     </div>
@@ -58,15 +60,16 @@
                     <div class="form-row">
                         <div class="form-group col-sm-6">
                             <label for="Salario">Salario bruto anual Jornada Completa</label>
-                            <input type="text" class="form-control"
-                                id="Salarioid" name="Salarioid"  disabled value="{{$oferta->salario}}">
-                           
+                            <input type="text" class="form-control" id="Salarioid" name="Salarioid" disabled
+                                value="{{$oferta->salario}}">
+
                         </div>
 
                         <div class="fom-group col-sm-6">
                             <label for="contrato">Tipo de Contrato</label>
                             <select class="form-control" id="contrato" name="contrato" disabled>
-                                <option value="{{$oferta->contrato_id}}" selected disabled hidden>{{$oferta->contrato->nombre}}</option>
+                                <option value="{{$oferta->contrato_id}}" selected disabled hidden>
+                                    {{$oferta->contrato->nombre}}</option>
 
 
                             </select>
@@ -78,7 +81,7 @@
 
 
                             <label for="exp">Descripcion de la Oferta</label>
-                            <textarea class="form-control" id="oferta"  disabled name="oferta"
+                            <textarea class="form-control" id="oferta" disabled name="oferta"
                                 rows="8">{{$oferta->descripcion}}</textarea>
 
                         </div>
@@ -88,7 +91,8 @@
 
                             <label for="exp">Categoria Profesional</label>
                             <select name="cat" id="cat" class="form-control" disabled>
-                                <option value="{{$oferta->categoria_id}}" selected disabled hidden>{{$oferta->categoria->nombre}}</option>
+                                <option value="{{$oferta->categoria_id}}" selected disabled hidden>
+                                    {{$oferta->categoria->nombre}}</option>
 
 
 
@@ -97,16 +101,11 @@
                     </div>
                     <input type="hidden" name="usu" id="usu" value="{{Auth::id()}}">
                     <input type="hidden" name="_token" value="{{ Session::token() }}">
-                 
-                   
-                    <div  id="mensajesinsc">
 
-
-
-
-
+                    <div class="form-row">
+                        <div class="col-12" id="mensajesinsc">
+                        </div>
                     </div>
-
 
 
                     <div class="form-row my-3 fuera">

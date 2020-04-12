@@ -22,6 +22,12 @@ class Trabajador extends Model
     }
 
 
+    public function ofertasempleo(){
+        return $this->belongsToMany('App\Oferta', 'Oferta_trabajador','trabajador_id', 'oferta_id');
+    }
+
+
+
     public function getDate()
 
 {
