@@ -90,20 +90,20 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-     public function index(Request $request)
+    public function index(Request $request)
     {
         $categorias=Categoria::all();
         $lasempresas=Empresa::all();
+        $trabajador=Trabajador::where('user_id', Auth::id())->count();
+        $trabajadorlog=Trabajador::where('user_id', Auth::id())->first();
+        $provincias=Provincia::all();
+        $elid=Trabajador::where('user_id', Auth::id())->first()->id;
+    
+        $lascandidaturas=Trabajador::find($elid)->ofertasempleo()->orderBy('id')->get();
      
         if (Auth::user()->rol_id===1){
 
-        
-            $trabajador=Trabajador::where('user_id', Auth::id())->count();
-            $trabajadorlog=Trabajador::where('user_id', Auth::id())->first();
 
-            $provincias=Provincia::all();
-
-           
             $contarexperiencias=Experiencia::where('user_id', Auth::id())->count();
             if ($contarexperiencias==0) {
                 return view('home', ['trabajador'=>$trabajador,
@@ -112,18 +112,23 @@ class HomeController extends Controller
                 'datos' => $request->user(), 
                 'provincias' => $provincias,
                  'categorias'=>$categorias,
-                 'empresas'=>$lasempresas ]); 
+                 'empresas'=>$lasempresas,
+                 'candidaturas'=>$lascandidaturas
+                 
+                 ]); 
             }else {
 
-            $lasexperiencias=Experiencia::where('user_id', Auth::id())->orderBy('fin')->get();
-      
+            $lasexperiencias=Experiencia::where('user_id', Auth::id())->orderBy('fin','desc')->get();
+            $actualizadoa=Experiencia::where('user_id', Auth::id())->orderBy('updated_at', 'desc')->get()->first()->updated_at;
                 return view('home', ['trabajador'=>$trabajador,
                 'curriculum'=>$trabajadorlog,
                 'experienciass'=>$lasexperiencias,
                 'datos' => $request->user(), 
                 'provincias' => $provincias,
                  'categorias'=>$categorias, 
-                 'empresas'=>$lasempresas ]);
+                 'empresas'=>$lasempresas,
+                 'candidaturas'=>$lascandidaturas,
+                 'fechaact'=>$actualizadoa]);
             }
 
 
@@ -143,6 +148,12 @@ class HomeController extends Controller
 
         
     }
+
+
+
+
+        
+    
 
     public function store(Request $request)
     {

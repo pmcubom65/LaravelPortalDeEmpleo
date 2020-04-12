@@ -25,7 +25,10 @@
                         @if (Auth::check() and Auth::user()->rol_id===2)
                         
                         <a href="/empresa/{{Auth::id()}}/published" class="btn btn-primary m-auto">Ver</a>
-                        
+                        @elseif (Auth::check() and Auth::user()->rol_id===1)
+                        <a href="/home" class="btn btn-primary m-auto">Ver</a>
+                        @else
+                        <button href="" class="btn btn-primary m-auto" disabled>Ver</button>
                         @endif
 
                     </div>
