@@ -9,7 +9,7 @@ class Oferta extends Model
     public $timestamps = true;
 
     protected $fillable = ['categoria_id', 'provincia_id', 'titulo', 'salario', 'descripcion',
-    'empresa_id', 'experiencia_id', 'contrato_id'];
+    'empresa_id', 'experiencia_id', 'contrato_id', 'proceso'];
 
 
 

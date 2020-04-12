@@ -49,9 +49,7 @@ class SearchController extends Controller
       
 
         $misresultados =  Oferta::where('salario','>=',$request->get('Salarioid'))->where($miArray)->get();
-
-
-     //   return $misresultados;
+  
 
      $lasprovincias=Provincia::all();
      $lascategorias=Categoria::all();
@@ -93,6 +91,29 @@ class SearchController extends Controller
     }
 
 
+    public function put($id) {
+        $laoferta=Oferta::find($id);
+        $laoferta->proceso=0;
+        $laoferta->save();
+
+        $lasprovincias=Provincia::all();
+        $lascategorias=Categoria::all();
+        $lasempresas=Empresa::all();
+        $mioferta=Oferta::find($id);
+        $elusuario=User::find(Auth::id());
+
+        return view ('veroferta', [
+            'provincias'=> $lasprovincias,
+            'datos'=> $elusuario,
+            'categorias'=>$lascategorias,
+            'empresas'=>$lasempresas,
+            'oferta'=>$mioferta
+          
+           
+            ]);
+    }
+
+
 
     public function oferta($id) {
 
@@ -122,4 +143,7 @@ class SearchController extends Controller
         
 
     }
+
+
+
 }

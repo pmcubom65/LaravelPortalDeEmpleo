@@ -24,7 +24,7 @@ Route::post('/search/{id}', 'SearchController@store')->name('apuntarse');
 
 Route::get('/search/{id}', 'SearchController@oferta');
 
-
+Route::match(['put', 'patch'], '/search/{id}', 'SearchController@put');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
