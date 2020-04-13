@@ -24,6 +24,11 @@ Route::post('/search/{id}', 'SearchController@store')->name('apuntarse');
 
 Route::get('/search/{id}', 'SearchController@oferta');
 
+
+Route::get('/search/{id}/edit', 'EditOfertaController@show');
+
+Route::post('/search/{id}/edit', 'EditOfertaController@store')->name('editar');
+
 Route::match(['put', 'patch'], '/search/{id}', 'SearchController@put');
 
 

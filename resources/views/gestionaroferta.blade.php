@@ -37,7 +37,7 @@
                             <h5 class="card-title">{{$oferta->titulo}} - {{$oferta->categoria->nombre}}</h5>
                             <p class="card-text">{{$oferta->provincia->region_name}}</p>
                             <p class="card-text">{{$oferta->contrato->nombre}}</p>
-                            <p class="card-text">Salario {{$oferta->salario}}</p>
+                            <p class="card-text">Salario {{$oferta->salario}} €/brutos</p>
                             <a href="/search/{{$oferta->id}}" class="btn btn-primary">Ver Oferta</a>
                             <a href="" class="btn btn-success">Mostrar Candidatos inscritos</a>
                             <hr class="text-white">

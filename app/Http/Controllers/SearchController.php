@@ -46,6 +46,7 @@ class SearchController extends Controller
 
         }
         unset( $miArray['salario']);
+        $miArray['proceso']=1;
       
 
         $misresultados =  Oferta::where('salario','>=',$request->get('Salarioid'))->where($miArray)->get();

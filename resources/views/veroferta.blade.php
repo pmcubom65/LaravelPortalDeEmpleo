@@ -50,7 +50,7 @@
                 <div class="form-row my-3">
                     <div class="col-12 text-center">
 
-                        <button class="editborr btn btn-primary btn-block  m-auto btn-lg" type="button">Editar oferta</button>
+                        <a href="/search/{{$oferta->id}}/edit" class="editborr btn btn-primary btn-block  m-auto btn-lg" type="button">Editar oferta</a>
 
                     </div>
                 </div>
@@ -159,10 +159,10 @@
 
 
                     <div class="form-row my-3 fuera">
-
+                    @if ($oferta->proceso == 1)
 
                         <button class="btn btn-success m-auto btn-lg" type="submit" id="botonsub">Inscribirse</button>
-
+                    @endif
 
                     </div>
 
