@@ -61,6 +61,12 @@ Route::match(['put','patch'],'/empresa/{id}/oferta', 'OfertaController@put')->na
 
 Route::get('/empresa/{id}/published', 'PublicadaController@index')->name('publicada');
 
+
+Route::get('/empresa/{id}/published/{ofertaid}', 'CandidatosController@index');
+
+
+
+
 Route::get('/cv', 'CvController@index')->name('cv');
 
 Route::get('/login2', function() {

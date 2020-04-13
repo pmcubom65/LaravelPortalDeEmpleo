@@ -39,7 +39,7 @@
                             <p class="card-text">{{$oferta->contrato->nombre}}</p>
                             <p class="card-text">Salario {{$oferta->salario}} €/brutos</p>
                             <a href="/search/{{$oferta->id}}" class="btn btn-primary">Ver Oferta</a>
-                            <a href="" class="btn btn-success">Mostrar Candidatos inscritos</a>
+                            <a href="/empresa/{{Auth::id()}}/published/{{$oferta->id}}" class="btn btn-success">Mostrar Candidatos inscritos</a>
                             <hr class="text-white">
                             @endif
                             @endforeach
@@ -52,7 +52,7 @@
                             <p class="card-text">{{$oferta->contrato->nombre}}</p>
                             <p class="card-text">Salario {{$oferta->salario}}</p>
                             <a href="/search/{{$oferta->id}}" class="btn btn-primary">Ver Oferta</a>
-                            <a href="" class="btn btn-success">Mostrar Candidatos inscritos</a>
+                            <a href="/empresa/{{Auth::id()}}/published/{{$oferta->id}}" class="btn btn-success">Mostrar Candidatos inscritos</a>
                             <hr class="text-white">
                             @endif
                             @endforeach

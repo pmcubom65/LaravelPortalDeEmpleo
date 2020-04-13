@@ -14,7 +14,7 @@ class AddUseridToTrabajadorsTable extends Migration
     public function up()
     {
         Schema::table('trabajadors', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->unique()->unsigned();
+            $table->unsignedBigInteger('user_id')->unsigned();
             $table->string('dni');
             $table->string('direccion');
             $table->string('telefono');
@@ -24,6 +24,8 @@ class AddUseridToTrabajadorsTable extends Migration
             ->references('id')
             ->on('users')
             ->onDelete('cascade');
+
+            
 
 
         });

@@ -10,10 +10,8 @@ class Trabajador extends Model
     
     protected $dates = ['fecha'];
     
-    public function hasUser(){
-
-        return $this->hasOne('App\User');
-
+    public function user() {
+        return $this->hasOne('App\User','id','user_id');
     }
 
 
@@ -28,13 +26,10 @@ class Trabajador extends Model
 
 
 
-    public function getDate()
-
-{
+    public function getDate() {
     
     return Carbon::parse($this->fecha)->format('Y-m-d');
 }
-
 
 
 

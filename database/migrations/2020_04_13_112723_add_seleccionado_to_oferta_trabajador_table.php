@@ -14,7 +14,7 @@ class AddSeleccionadoToOfertaTrabajadorTable extends Migration
     public function up()
     {
         Schema::table('oferta_trabajador', function (Blueprint $table) {
-            $table->boolean('seleccionado')->default(0);
+            $table->boolean('seleccionado')->nullable();
         });
     }
 
