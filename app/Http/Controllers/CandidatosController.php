@@ -18,26 +18,53 @@ class CandidatosController extends Controller
         $lasempresas=Empresa::all();
         $laempresa=User::find($id);
         $empresaseleccionada=Empresa::where('user_id', '=', $id)->first()->id;
-        $lasofertas=Oferta::where('empresa_id', '=', $empresaseleccionada)->get();
-       
+     
         $estaempresa=Empresa::where('user_id', $id)->count();
+
+        $ofertae=Oferta::find($ofertaid);
 
         $trabajadoresapuntados=Oferta::find($ofertaid)->trabajadors()->orderby('created_at')->get();
         
-        
-     return view ('mostrarloscandidatos', [
-        'provincias'=> $lasprovincias,
-        'datos'=>$laempresa, 
-        'categorias'=>$lascategorias,
-        'empresas'=>$lasempresas,
-        'ofertas'=>$lasofertas,
-        'contador'=>$estaempresa,
-        'trabajadores'=>$trabajadoresapuntados
-   
-        ]);
-
+        return view ('mostrarloscandidatos', [
+            'laoferta'=>$ofertae,
+            'provincias'=> $lasprovincias,
+            'datos'=>$laempresa, 
+            'categorias'=>$lascategorias,
+            'empresas'=>$lasempresas,
+           
+            'contador'=>$estaempresa,
+            'trabajadores'=>$trabajadoresapuntados
+       
+            ]);
       
    
 
+    }
+
+    public function store($id, $ofertaid, Request $request) {
+
+        $ofertae=Oferta::find($ofertaid);
+
+        $trabajadorid=$request->get('seleccionado');
+
+        $ofertae->trabajadors()->updateExistingPivot($trabajadorid, ['seleccionado'=>1]);
+
+        $Response=['success'=>'Trabajador marcado como seleccionado'];
+    
+        return response()->json($Response, 200);
+
+    }
+
+
+    public function put($id, $ofertaid, Request $request) {
+        $ofertae=Oferta::find($ofertaid);
+
+        $trabajadorid=$request->get('descartado');
+
+        $ofertae->trabajadors()->updateExistingPivot($trabajadorid, ['seleccionado'=>0]);
+
+        $Response=['success'=>'Trabajador marcado como descartado'];
+    
+        return response()->json($Response, 200);
     }
 }

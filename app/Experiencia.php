@@ -16,10 +16,8 @@ class Experiencia extends Model
         return $this->belongsTo('App\Categoria', 'categoria_id');
 
     }
-    public function user(){
-
-        return $this->hasOne('App\User');
-
+    public function user() {
+        return $this->hasOne('App\User','id','user_id');
     }
 
 }

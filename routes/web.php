@@ -64,7 +64,9 @@ Route::get('/empresa/{id}/published', 'PublicadaController@index')->name('public
 
 Route::get('/empresa/{id}/published/{ofertaid}', 'CandidatosController@index');
 
+Route::post('/empresa/{id}/published/{ofertaid}', 'CandidatosController@store')->name('candidatos');
 
+Route::put('/empresa/{id}/published/{ofertaid}', 'CandidatosController@put')->name('candidatos');;
 
 
 Route::get('/cv', 'CvController@index')->name('cv');

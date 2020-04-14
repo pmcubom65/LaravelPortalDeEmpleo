@@ -50,7 +50,7 @@ class Oferta extends Model
 
 
     public function trabajadors(){
-        return $this->belongsToMany('App\Trabajador', 'oferta_trabajador', 'oferta_id', 'trabajador_id')->withPivot('seleccionado');
+        return $this->belongsToMany('App\Trabajador', 'oferta_trabajador', 'oferta_id', 'trabajador_id')->withPivot('seleccionado','id');
     }
 
   

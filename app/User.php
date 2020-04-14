@@ -44,7 +44,10 @@ class User extends Authenticatable
 
     }
 
-    
+    public function explaborales()
+    {
+     return $this->hasMany('App\Experiencia', 'user_id', 'id');
+    }
 
 
 }
