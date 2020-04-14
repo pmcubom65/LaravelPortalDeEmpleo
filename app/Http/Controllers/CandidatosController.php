@@ -46,10 +46,12 @@ class CandidatosController extends Controller
         $ofertae=Oferta::find($ofertaid);
 
         $trabajadorid=$request->get('seleccionado');
+       
 
         $ofertae->trabajadors()->updateExistingPivot($trabajadorid, ['seleccionado'=>1]);
 
-        $Response=['success'=>'Trabajador marcado como seleccionado'];
+        $Response=['success'=> $trabajadorid];
+        
     
         return response()->json($Response, 200);
 
@@ -63,7 +65,7 @@ class CandidatosController extends Controller
 
         $ofertae->trabajadors()->updateExistingPivot($trabajadorid, ['seleccionado'=>0]);
 
-        $Response=['success'=>'Trabajador marcado como descartado'];
+        $Response=['success'=>$trabajadorid];
     
         return response()->json($Response, 200);
     }

@@ -1,4 +1,5 @@
-<h3 class="card-title">{{$trabajador->user->name}}</h3>
+<div id="t{{$trabajador->id}}">
+<h3 class="card-title text-light">{{$trabajador->user->name}}</h3>
 <p class="card-text"><span class="font-weight-bold">Direccion: </span>{{$trabajador->direccion}}</p>
 <p class="card-text"><span class="font-weight-bold">Provincia: </span>{{$trabajador->hasProvincia->region_name}}</p>
 <p class="card-text"><span class="font-weight-bold">Telefono: </span>{{$trabajador->telefono}}</p>
@@ -29,7 +30,7 @@
     <form id="postseleccionado" data-route="/empresa/{{$datos->id}}/published/{{$laoferta->id}}" method="POST" >
     @csrf
     <input type="hidden" name="seleccionado" id="seleccionado" value="{{$trabajador->id}}">
-    <button type="submit" class="btn btn-success btn-lg  btn-block ">Seleccionar</button>
+    <button type="submit" class="btn btn-success btn-lg  btn-block font-weight-bold" id="sele">Seleccionar</button>
     </form>
     </p>
     <p>
@@ -37,7 +38,8 @@
     @method('PUT')
     @csrf
     <input type="hidden" name="descartado" id="descartado" value="{{$trabajador->id}}">
-    <button type="submit" class="btn btn-danger btn-lg  btn-block ">Descartar</button>
+    <button type="submit" class="btn btn-danger btn-lg  btn-block font-weight-bold" id="deco">Descartar</button>
+
     </form>
 </p>
 
@@ -49,5 +51,9 @@
             </script>
             <script src="{{asset('js/candidatos.js')}}" type="text/javascript"></script>
 
-
 <hr class="text-white">
+
+</div>
+<div id="mismensajes">
+
+</div>

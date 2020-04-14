@@ -24,9 +24,9 @@
             <div class="card">
             <div class="card-header">
                 <ul class="nav nav-tabs  card-header-tabs">
-                    <li class="nav-item active"><a class="nav-link" data-toggle="tab" href="#inscritos"><h5 class="font-weight-bolder" >Inscritos</h5></a></li>
-                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#seleccionados"><h5 class="font-weight-bolder" >Seleccionados</h5></a></li>
-                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#descartados"><h5 class="font-weight-bolder" >Descartados</h5></a></li>
+                    <li class="nav-item active btn-xs-block"><a class="nav-link" data-toggle="tab" href="#inscritos"><h5 class="font-weight-bolder" >Inscritos</h5></a></li>
+                    <li class="nav-item btn-xs-block"><a class="nav-link" data-toggle="tab" href="#seleccionados"><h5 class="font-weight-bolder" >Seleccionados</h5></a></li>
+                    <li class="nav-item btn-xs-block"><a class="nav-link" data-toggle="tab" href="#descartados"><h5 class="font-weight-bolder" >Descartados</h5></a></li>
                 </ul>
             </div>
             <div class="card-body text-center">
@@ -41,9 +41,11 @@
                     <div id="seleccionados" class="tab-pane fade">
                     @foreach($trabajadores as $trabajador)
                     @if($trabajador->pivot->seleccionado==1)
+                    
                             @include('datoscandidatos')
                             @endif
                             @endforeach
+                        <button type="button"  class="btn btn-success btn-lg  btn-block font-weight-bold" >Contactar con {{$trabajador->user->name}}</button>
                     </div>
                     <div id="descartados" class="tab-pane fade">
                     @foreach($trabajadores as $trabajador)
