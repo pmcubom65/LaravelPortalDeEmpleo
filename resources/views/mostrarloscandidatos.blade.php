@@ -18,7 +18,7 @@
 
 
 
-        <div class="row-fluid col-10  d-inline-block mx-auto">
+<div class="row-fluid col-10  d-inline-block mx-auto" >
 
             <div class="col-12 d-inline-block ">
             <div class="card">
@@ -45,7 +45,7 @@
                             @include('datoscandidatos')
                             @endif
                             @endforeach
-                        <button type="button"  class="btn btn-success btn-lg  btn-block font-weight-bold" >Contactar con {{$trabajador->user->name}}</button>
+                        <a type="button" href="/empresa/{{Auth::id()}}/published/trabajador/{{$trabajador->id}}"  class="btn btn-success btn-lg  btn-block font-weight-bold" >Contactar con {{$trabajador->user->name}}</a>
                     </div>
                     <div id="descartados" class="tab-pane fade">
                     @foreach($trabajadores as $trabajador)

@@ -41,6 +41,30 @@ class CandidatosController extends Controller
 
     }
 
+
+    public function fetch_data($id, $ofertaid, $trabajadorid){
+
+	
+	
+        $ofertae=Oferta::find($ofertaid);
+
+        $trabajadoresapuntados=Oferta::find($ofertaid)->trabajadors()->orderby('created_at')->find($trabajadorid);
+   
+        
+        $laexpes= $trabajadoresapuntados->user->explaborales->sortByDesc('fin')->paginate( 3 );
+
+
+      return response()->json([
+            'experiencias' => $laexpes,
+            'pagination'=>(string) $laexpes->links()
+        ]);
+   
+           
+                
+         }
+        
+    
+
     public function store($id, $ofertaid, Request $request) {
 
         $ofertae=Oferta::find($ofertaid);

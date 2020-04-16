@@ -57,12 +57,18 @@ Route::post('/empresa/{id}/oferta', 'OfertaController@store')->name('oferta');
 
 Route::match(['put','patch'],'/empresa/{id}/oferta', 'OfertaController@put')->name('oferta');
 
+Route::get('/empresa/{id}/published/trabajador/{tid}', 'MapaController@show');
+
+Route::get('/empresa/{id}/published/{ofertaid}/{trabajadorid}', 'CandidatosController@fetch_data');
 
 
 Route::get('/empresa/{id}/published', 'PublicadaController@index')->name('publicada');
 
 
 Route::get('/empresa/{id}/published/{ofertaid}', 'CandidatosController@index');
+
+Route::get('/empresa/{id}/published/{ofertaid}/fetch_data', 'CandidatosController@fetch_data');
+
 
 Route::post('/empresa/{id}/published/{ofertaid}', 'CandidatosController@store')->name('candidatos');
 

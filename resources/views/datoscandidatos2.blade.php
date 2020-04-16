@@ -10,25 +10,14 @@
 
         <p>
             <a class="btn btn-primary btn-lg  btn-block font-weight-bold" data-toggle="collapse" href="#collapseExample"
-                role="button" aria-expanded="false" aria-controls="collapseExample"><span class="glyphicon glyphicon-arrow-down"></span>
-                    Mostrar Experiencias Laborales</a>
-                <input type="hidden" name="laoferta" id="laoferta" value="{{$laoferta->id}}">
-
+                role="button" aria-expanded="false" aria-controls="collapseExample">Mostrar Experiencias Laborales</a>
         </p>
 
         <div class="collapse" id="collapseExample">
-            @foreach($trabajador->user->explaborales->sortByDesc('fin')->paginate( 3 ) as $laexpe)
-            <div class="card card-body text-center" id="poneraqui">
-            <p><span class="font-weight-bold"  >Puesto:</span> {{$laexpe->puesto}}</p>
-                <p><span class="font-weight-bold" >Empresa:</span> {{$laexpe->empresa}}</p>
-                <p><span class="font-weight-bold"  >Descripción:</span> {{$laexpe->descripcion}}</p>
-                <p><span class="font-weight-bold" >Inicio: </span> {{$laexpe->inicio}}</p>
-                <p><span class="font-weight-bold" >Fin: </span>{{$laexpe->fin}}</p>
-            
-            <hr>
-            </div>
-            @endforeach
-            <div class="d-flex"><div class="mx-auto" id="mislinks">{{ $trabajador->user->explaborales->sortByDesc('fin')->paginate( 3 ) ->links() }}</div></div>
+           
+            @include('paginar')
+            <input type="hidden" name="laoferta" id="laoferta" value="{{$laoferta->id}}">
+            <div class="d-flex"><div class="mx-auto">{{ $trabajador->user->explaborales->sortByDesc('fin')->paginate( 3 ) ->links() }}</div></div>
         </div>
         <p>
     <form id="postseleccionado" data-route="/empresa/{{$datos->id}}/published/{{$laoferta->id}}" method="POST" >
