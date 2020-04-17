@@ -27,6 +27,7 @@ public function show(Request $request, $id, $oid, $tid) {
     $estaempresa=Empresa::where('user_id', $id)->count();
     $ofertae=Oferta::find($oid);
     $trabajador=Trabajador::find($tid);
+    $empresaseleccionada=Empresa::where('user_id', '=', $id)->first();
    
     return view ('elmapa',[
         'provincias'=> $lasprovincias,
@@ -35,7 +36,8 @@ public function show(Request $request, $id, $oid, $tid) {
         'empresas'=>$lasempresas,
         'eltrabajador'=>$trabajador,
         'contador'=>$estaempresa,
-        'laoferta'=>$ofertae
+        'laoferta'=>$ofertae,
+        'datosempresa'=>$empresaseleccionada
    
         ]);
 }

@@ -1,5 +1,5 @@
 <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZcGruDejF0sPT7TA6Z4ZpuRtAq3uEKQc&callback=initMap">
+    src="https://maps.googleapis.com/maps/api/js?key={{ env('APP_KEY_MAPS' ) }}&callback=initMap">
 
 
 </script>
@@ -56,18 +56,20 @@ function intilize() {
                 // The marker, positioned at Uluru
                 var marker = new google.maps.Marker({
                     position: uluru,
-                    map: map
+                    map: map,
+                    title: 'pepe'
                 });
+                
 
                 var infoWindow = new google.maps.InfoWindow({
-                    content: '<h1>Lynn MA</h1>'
+                    content: marker.title
                 });
-
+                
                 marker.addListener('click', function() {
                     infoWindow.open(map, marker);
                 });
             }
             </script>
 
-
+            <input type="hidden" value="{{$datosempresa->nombre}}" name="nombreempresa" id="nombreempresa">
             <div id="map"></div>
