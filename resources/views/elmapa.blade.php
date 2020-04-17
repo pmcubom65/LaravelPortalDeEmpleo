@@ -12,7 +12,7 @@
 
 
         <div class="col-10 text-center mx-auto">
-            <h1><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span><br>Contactar con el candidato</h1>
+            <h1><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span><br>Contactar con el candidato</h1>
 
         </div>
 
@@ -49,11 +49,17 @@
                     <div class="fom-group col-6 ">
                         <label for="longr">Longitud</label>
                         <input type="text" class="form-control" id="longr" name="longr"  >
+                        <input type="hidden" name="_token" id="_token" value="{{ Session::token() }}">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-12 text-center">
                         <button type="submit" id="contactar" name="contactar" class="btn btn-primary">Contactar</button>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-12 text-center">
+                        <div id="mensajes"></div>
                     </div>
                 </div>
                 </form>

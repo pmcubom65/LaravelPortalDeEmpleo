@@ -45,6 +45,7 @@
             Alguno de los campos no está correctamente relleno
         </div>
         @endif
+
     </div>
 </div>
 
@@ -64,10 +65,17 @@
             Alguno de los campos no está correctamente relleno
         </div>
         @endif
+        <div class="container my-0 ">
+            <button class="btn btn-default btn-lg btn-link float-right " data-toggle="modal"
+                                data-target="#sitiomodal" style="font-size:36px;">
+                <span class="glyphicon glyphicon-comment float-right"></span>
+            </button>
+            <span class="badge badge-notify float-right">3</span>
+        </div>
     </div>
 </div>
 
-<section class="espacio">
+<section class="espacio2">
 
 
 
@@ -95,7 +103,10 @@
                     </li>
                     <li class="nav-item  btn-xs-block">
                         <a class="nav-link btn-lg" id="nav-pills-02" data-toggle="pill" href="#nav-item-02">Experiencias
-                            Laborales</a>
+                            Laborales <span class="badge badge-light">
+                                {{$experienciass->count()}}
+
+                            </span></a>
 
                     </li>
                     <li class="nav-item  btn-xs-block">
@@ -150,18 +161,23 @@
                             @foreach ($candidaturas as $oferta)
 
                             <p>
-                                <a class="btn btn-primary btn-block font-weight-bold" data-toggle="collapse" href="#collapseExample{{$oferta->id}}" role="button"
-                                    aria-expanded="false" aria-controls="collapseExample">
-                                    {{$oferta->titulo}} - Categoria: {{$oferta->categoria->nombre}} - Salario:   {{$oferta->salario}} euros brutos
+                                <a class="btn btn-primary btn-block font-weight-bold" data-toggle="collapse"
+                                    href="#collapseExample{{$oferta->id}}" role="button" aria-expanded="false"
+                                    aria-controls="collapseExample">
+                                    {{$oferta->titulo}} - Categoria: {{$oferta->categoria->nombre}} - Salario:
+                                    {{$oferta->salario}} euros brutos
                                 </a>
-                               
+
                             </p>
                             <div class="collapse" id="collapseExample{{$oferta->id}}">
                                 <div class="card card-body text-center">
-                                <h5 class="font-weight-bold card-title">Empresa: {{$oferta->empresa->usuario->name}} - Inscrito en la oferta desde: {{$oferta->created_at}}</h5>
-                            <p><span class="font-weight-bold">Descripción de la oferta:</span>  {{$oferta->descripcion}}</p>
-                            <p><span class="font-weight-bold">Provincia:</span> {{$oferta->provincia->region_name}}</p>
-                            <p><span class="font-weight-bold">Contrato:</span> {{$oferta->contrato->nombre}}</p>
+                                    <h5 class="font-weight-bold card-title">Empresa: {{$oferta->empresa->usuario->name}}
+                                        - Inscrito en la oferta desde: {{$oferta->created_at}}</h5>
+                                    <p><span class="font-weight-bold">Descripción de la oferta:</span>
+                                        {{$oferta->descripcion}}</p>
+                                    <p><span class="font-weight-bold">Provincia:</span>
+                                        {{$oferta->provincia->region_name}}</p>
+                                    <p><span class="font-weight-bold">Contrato:</span> {{$oferta->contrato->nombre}}</p>
                                 </div>
                             </div>
                             <hr>

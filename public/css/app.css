@@ -88,6 +88,14 @@ hr {
   border: none;
 }
 
+/* CSS used here will be applied after bootstrap.css */
+.badge-notify{
+  background:red;
+  position:relative;
+  top: 13px;
+  left: 47px;
+}
+
 .alert {
   color: red;
   font-weight: bold;

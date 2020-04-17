@@ -46,7 +46,7 @@ public function show(Request $request, $id, $oid, $tid) {
 public function store(Request $request, $id, $oid, $tid) {
 
     $messages = [
-            'required'=> 'Los campos fecha y hora tienen que estar rellenados',
+            'required'=> 'Los campos fecha y hora tienen que estar rellenados. La fecha tiene que ser posterior a hoy',
            
     ];
 
