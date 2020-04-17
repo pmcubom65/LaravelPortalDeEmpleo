@@ -57,7 +57,9 @@ Route::post('/empresa/{id}/oferta', 'OfertaController@store')->name('oferta');
 
 Route::match(['put','patch'],'/empresa/{id}/oferta', 'OfertaController@put')->name('oferta');
 
-Route::get('/empresa/{id}/published/trabajador/{tid}', 'MapaController@show');
+Route::get('/empresa/{id}/published/{ofertaid}/trabajador/{tid}', 'MapaController@show');
+
+Route::post('/empresa/{id}/published/{ofertaid}/trabajador/{tid}', 'MapaController@store')->name('contacto');
 
 Route::get('/empresa/{id}/published/{ofertaid}/{trabajadorid}', 'CandidatosController@fetch_data');
 

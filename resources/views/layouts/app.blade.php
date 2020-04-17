@@ -122,7 +122,7 @@
 
 
         </nav>
-        <div class="jumbotron jumbotron-fluid text-white py-xs-20 mt-xs-20">
+        <div id="jumbotron" class="jumbotron jumbotron-fluid text-white py-xs-20 mt-xs-20">
 
             <div class="container">
                 <div class="row justify-content-center ">

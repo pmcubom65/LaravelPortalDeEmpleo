@@ -3,14 +3,85 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Validator;
+use App\Provincia;
+use App\Empresa;
+use App\User;
+use App\Categoria;
+use App\Oferta;
+use App\Trabajador;
+use App\Contacto;
+use Carbon\Carbon;
 
 
 class MapaController extends Controller
 {
     protected $request;
 
-public function show() {
+public function show(Request $request, $id, $oid, $tid) {
+
+    $lasprovincias=Provincia::all();
+    $lascategorias=Categoria::all();
+    $lasempresas=Empresa::all();
+    $laempresa=User::find($id);
+    $estaempresa=Empresa::where('user_id', $id)->count();
+    $ofertae=Oferta::find($oid);
+    $trabajador=Trabajador::find($tid);
    
-    return view ('elmapa');
+    return view ('elmapa',[
+        'provincias'=> $lasprovincias,
+        'datos'=>$laempresa, 
+        'categorias'=>$lascategorias,
+        'empresas'=>$lasempresas,
+        'eltrabajador'=>$trabajador,
+        'contador'=>$estaempresa,
+        'laoferta'=>$ofertae
+   
+        ]);
+}
+
+
+public function store(Request $request, $id, $oid, $tid) {
+
+    $messages = [
+            'required'=> 'Los campos fecha y hora tienen que estar rellenados',
+           
+    ];
+
+    $Validator=Validator::make(
+        $request->all(),
+        [
+            'dater'=> 'required|date|after:today',
+            'horar'=>'required',
+            'latr'=>'between:-90,90',
+            'longr'=>'between:-180,180'
+        ],
+        $messages
+
+    );
+
+    if ($Validator->fails()) {
+
+        $Response=$Validator->messages();
+    } else {
+        $contacto=new Contacto();
+
+        $ofertae=Oferta::find($oid);
+       
+
+        $pivotid= $ofertae->trabajadors()->find($tid)->pivot->id;
+
+        $contacto->oferta_trabajador_id=$pivotid;
+
+        $contacto->dia= Carbon::parse($request->get('dater'))->format('Y-m-d');
+       
+        $contacto->hora=Carbon::parse($request->get('horar'))->format('H:i');
+        
+        $contacto->save();
+        $Response=['success'=>'El candidato ha sido contactado'];
+    }
+
+    return response()->json($Response, 200);
+
 }
 }

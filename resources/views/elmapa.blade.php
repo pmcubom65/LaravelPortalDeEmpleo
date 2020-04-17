@@ -1,67 +1,79 @@
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZcGruDejF0sPT7TA6Z4ZpuRtAq3uEKQc&callback=initMap">
 
+
+@extends('layouts.app')
+
+
+
+<div class="container-fluid">
+    @include('sidebar')
+    <div class="row col-10 espacio2 float-right">
+
+
+
+
+        <div class="col-10 text-center mx-auto">
+            <h1><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span><br>Contactar con el candidato</h1>
+
+        </div>
+
+
+
+        <div class="row-fluid col-10  d-inline-block mx-auto">
+        <form id="contactoform" method="POST" data-route="{{route('contacto', [$datos->id, $laoferta->id ,$eltrabajador->id ])}}">
+                @csrf
+
+                <div class="form-row">
+                    <div class="form-group col-6 ">
+                        <label for="dater">Día de la entrevista</label>
+                   
+                        <input type="date" class="form-control" id="dater" name="dater"
+                         >
+
+                    </div>
+
+                    <div class="fom-group col-6 ">
+                        <label for="horar">Hora de la entrevista</label>
+                        <input type="time" class="form-control" id="horar" name="horar"  >
+                    </div>
+                </div>
+                <h3 class="text-center">Localización</h3>
+                <div class="form-row">
+                    <div class="form-group col-6 ">
+                        <label for="latr">Latitud</label>
+                   
+                        <input type="text" class="form-control" id="latr" name="latr"
+                         >
+
+                    </div>
+
+                    <div class="fom-group col-6 ">
+                        <label for="longr">Longitud</label>
+                        <input type="text" class="form-control" id="longr" name="longr"  >
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-12 text-center">
+                        <button type="submit" id="contactar" name="contactar" class="btn btn-primary">Contactar</button>
+                    </div>
+                </div>
+                </form>
+            <h2  class="text-center">Localización de la empresa</h2>
+            
+
+
+
+            <script type="application/javascript"
+                src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
 
 </script>
+            <script src="{{asset('js/contacto.js')}}" type="text/javascript"></script>
+            <div class="d-block" style="{top: 700px; }">
 
-<script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
-google.maps.event.addDomListener(window, 'load', intilize);
-
-function intilize() {
-    var autocomplete = new google.maps.places.Autocomplete();
-    
-
-    google.maps.event.addListener(autocomplete, 'place_changed', function() {
-     
-
-        var place = autocomplete.getPlace();
-        var location = "Address: " + place.formatted_address + "<br/>";
-        location += "Latitude: " + place.geometry.location.lat() + "<br/>";
-        location += "Longitude: " + place.geometry.location.lng();
-        document.getElementById('lblresult').innerHTML = location
-    });
-
-};
-</script>
+</div>
+        </div>
+    </div class="text-center">
+    @include('googlemaker')
+</div>
 
 
-
-<style>
-/* Set the size of the div element that contains the map */
-#map {
-    height: 400px;
-    /* The height is 400 pixels */
-    width: 100%;
-    /* The width is the width of the web page */
-}
-</style>
-
-
-<div id="map"></div>
-<iframe width="600" height="450" frameborder="0" style="border:0"
-src="https://www.google.com/maps/embed/v1/place?q=madrid&key=AIzaSyCZcGruDejF0sPT7TA6Z4ZpuRtAq3uEKQc" allowfullscreen></iframe>
-
-<script>
-// Initialize and add the map
-function initMap() {
-    
-
-    // The location of Uluru
-    var uluru = {
-        lat: 40.416775,
-        lng: -3.703790
-    };
-    // The map, centered at Uluru
-    var map = new google.maps.Map(
-        document.getElementById('map'), {
-            zoom: 4,
-            center: uluru
-        });
-    // The marker, positioned at Uluru
-    var marker = new google.maps.Marker({
-        position: uluru,
-        map: map
-    });
-}
-</script>
 

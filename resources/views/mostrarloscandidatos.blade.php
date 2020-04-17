@@ -45,7 +45,7 @@
                             @include('datoscandidatos')
                             @endif
                             @endforeach
-                        <a type="button" href="/empresa/{{Auth::id()}}/published/trabajador/{{$trabajador->id}}"  class="btn btn-success btn-lg  btn-block font-weight-bold" >Contactar con {{$trabajador->user->name}}</a>
+                        <a type="button" href="/empresa/{{Auth::id()}}/published/{{$laoferta->id}}/trabajador/{{$trabajador->id}}"  class="btn btn-success btn-lg  btn-block font-weight-bold" >Contactar con {{$trabajador->user->name}}</a>
                     </div>
                     <div id="descartados" class="tab-pane fade">
                     @foreach($trabajadores as $trabajador)
