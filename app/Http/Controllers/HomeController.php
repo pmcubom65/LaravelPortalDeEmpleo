@@ -101,10 +101,11 @@ class HomeController extends Controller
         $provincias=Provincia::all();
 
 
-        $trabajadorseleccionado=Oferta_trabajador::where('trabajador_id', $trabajadorlog->id)->where('seleccionado',1)->get();
+        
 
      
         if (Auth::user()->rol_id===1){
+            $trabajadorseleccionado=Oferta_trabajador::where('trabajador_id', $trabajadorlog->id)->where('seleccionado',1)->get();
             $elid=Trabajador::where('user_id', Auth::id())->first()->id;
     
             $lascandidaturas=Trabajador::find($elid)->ofertasempleo()->orderBy('id')->get();
