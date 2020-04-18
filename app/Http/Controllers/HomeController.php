@@ -10,6 +10,8 @@ use App\Provincia;
 use App\Categoria;
 use App\Experiencia;
 use App\Empresa;
+use App\Contacto;
+use App\Oferta_trabajador;
 
 class HomeController extends Controller
 {
@@ -98,6 +100,9 @@ class HomeController extends Controller
         $trabajadorlog=Trabajador::where('user_id', Auth::id())->first();
         $provincias=Provincia::all();
 
+
+        $trabajadorseleccionado=Oferta_trabajador::where('trabajador_id', $trabajadorlog->id)->where('seleccionado',1)->get();
+
      
         if (Auth::user()->rol_id===1){
             $elid=Trabajador::where('user_id', Auth::id())->first()->id;
@@ -115,21 +120,26 @@ class HomeController extends Controller
                  'empresas'=>$lasempresas,
                  'candidaturas'=>$lascandidaturas
                  
+                 
                  ]); 
             }else {
 
             $lasexperiencias=Experiencia::where('user_id', Auth::id())->orderBy('fin','desc')->get();
             $actualizadoa=Experiencia::where('user_id', Auth::id())->orderBy('updated_at', 'desc')->get()->first()->updated_at;
-                return view('home', ['trabajador'=>$trabajador,
-                'curriculum'=>$trabajadorlog,
-                'experienciass'=>$lasexperiencias,
-                'datos' => $request->user(), 
-                'provincias' => $provincias,
-                 'categorias'=>$categorias, 
-                 'empresas'=>$lasempresas,
-                 'candidaturas'=>$lascandidaturas,
-                 'fechaact'=>$actualizadoa]);
-            }
+            return view('home', ['trabajador'=>$trabajador,
+            'curriculum'=>$trabajadorlog,
+            'experienciass'=>$lasexperiencias,
+            'datos' => $request->user(), 
+            'provincias' => $provincias,
+             'categorias'=>$categorias, 
+             'empresas'=>$lasempresas,
+             'candidaturas'=>$lascandidaturas,
+             'fechaact'=>$actualizadoa,
+             
+             'trabajadorseleccionado'=>$trabajadorseleccionado
+             ]);
+           }
+            
 
 
         } elseif (Auth::user()->rol_id===2) {

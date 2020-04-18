@@ -65,13 +65,16 @@
             Alguno de los campos no está correctamente relleno
         </div>
         @endif
+
+        @if ($trabajadorseleccionado->count() > 0)
         <div class="container my-0 ">
-            <button class="btn btn-default btn-lg btn-link float-right " data-toggle="modal"
-                                data-target="#sitiomodal" style="font-size:36px;">
+            <button class="btn btn-default btn-lg btn-link float-right " data-toggle="modal" data-target="#sitiomodal4"
+                style="font-size:36px;">
                 <span class="glyphicon glyphicon-comment float-right"></span>
             </button>
-            <span class="badge badge-notify float-right">3</span>
+            <span class="badge badge-notify float-right">{{$trabajadorseleccionado->count()}}</span>
         </div>
+        @endif
     </div>
 </div>
 
@@ -232,6 +235,47 @@
 
 
 @endif
+
+<!--modal-->
+<div class="modal fade" id="sitiomodal4" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h3  class="text-center">Entrevistas de trabajo en su agenda</h3>
+            </div>
+            @foreach ($trabajadorseleccionado as $t)
+            
+            <h4  class="text-center">Día de la entrevista {{ $t->contacto->getDate() }}<h4>
+            <h4  class="text-center">Hora de la entrevista {{ $t->contacto->hora }}<h4>
+            @foreach ($t->ofertas as $o)
+            <h4  class="text-center">Empresa {{$o->empresa->usuario->name}}<h4>
+            <h4  class="text-center">Oferta {{$o->titulo}} - {{$o->salario}}€/brutos<h4>
+            
+            <h4  class="text-center">Telefono {{$o->empresa->telefono}}<h4>
+                <div class="text-center">
+                <button class="btn btn-primary">Detalles</button>
+</div>
+                <hr>
+            @endforeach
+            @endforeach
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--modal-->
 <div class="modal fade" id="sitiomodal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
