@@ -78,6 +78,9 @@ public function store(Request $request, $id, $oid, $tid) {
         $contacto->dia= Carbon::parse($request->get('dater'))->format('Y-m-d');
        
         $contacto->hora=Carbon::parse($request->get('horar'))->format('H:i');
+
+        $contacto->latitud=$request->get('latr');
+        $contacto->longitud=$request->get('longr');
         
         $contacto->save();
         $Response=['success'=>'El candidato ha sido contactado'];

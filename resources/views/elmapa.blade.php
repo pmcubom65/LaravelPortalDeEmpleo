@@ -36,7 +36,7 @@
                         <input type="time" class="form-control" id="horar" name="horar"  >
                     </div>
                 </div>
-                <h3 class="text-center">Localización</h3>
+                <h3 class="text-center">Localización alternativa de la entrevista (si no es la sede de la empresa)</h3>
                 <div class="form-row">
                     <div class="form-group col-6 ">
                         <label for="latr">Latitud</label>
@@ -64,6 +64,7 @@
                 </div>
                 </form>
             <h2  class="text-center">Localización de la empresa</h2>
+            <h3  class="text-center">Si ha introducido una ubicacion alternativa, haga click en el mapa para visualizarla</h3>
             
 
 

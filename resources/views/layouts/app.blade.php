@@ -24,10 +24,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    <script async defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZcGruDejF0sPT7TA6Z4ZpuRtAq3uEKQc&callback=initMap">
-</script>
+   
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
