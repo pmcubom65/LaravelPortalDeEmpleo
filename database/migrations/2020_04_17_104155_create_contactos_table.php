@@ -23,6 +23,8 @@ class CreateContactosTable extends Migration
             $table->float('latitud')->nullable();
             $table->float('longitud')->nullable();
 
+            $table->unique('oferta_trabajador_id');
+
             $table->foreign('oferta_trabajador_id')
             ->references('id')
             ->on('oferta_trabajador')

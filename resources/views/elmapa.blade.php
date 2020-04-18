@@ -5,7 +5,7 @@
 
 
 <div class="container-fluid">
-    @include('sidebar')
+    @include('sidebarmapa')
     <div class="row col-10 espacio2 float-right">
 
 
