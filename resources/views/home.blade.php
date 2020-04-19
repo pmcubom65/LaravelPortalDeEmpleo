@@ -72,7 +72,8 @@
                 style="font-size:36px;">
                 <span class="glyphicon glyphicon-comment float-right"></span>
             </button>
-            <span class="badge badge-notify float-right">{{$trabajadorseleccionado->count()}}</span>
+            <span class="badge badge-notify float-right" style="  top: 10px;
+  left: 50px;">{{$trabajadorseleccionado->count()}}</span>
         </div>
         @endif
     </div>
@@ -115,7 +116,9 @@
                     <li class="nav-item  btn-xs-block">
                         <a class="nav-link btn-lg" id="nav-pills-03" data-toggle="pill"
                             href="#nav-item-03">Candidaturas</a>
+                            <span class="badge badge-notify float-right">{{$candidaturas->count()}}</span>
 
+                          
                     </li>
 
 
@@ -181,6 +184,9 @@
                                     <p><span class="font-weight-bold">Provincia:</span>
                                         {{$oferta->provincia->region_name}}</p>
                                     <p><span class="font-weight-bold">Contrato:</span> {{$oferta->contrato->nombre}}</p>
+                                    @if ($oferta->pivot->seleccionado===1)
+                                    <p><span class="font-weight-bold alert">Seleccionado:</span> Has pasado a seleccionado</p>
+                                    @endif
                                 </div>
                             </div>
                             <hr>
