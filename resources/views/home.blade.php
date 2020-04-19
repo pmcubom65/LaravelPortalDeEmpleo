@@ -73,7 +73,7 @@
                 <span class="glyphicon glyphicon-comment float-right"></span>
             </button>
             <span class="badge badge-notify float-right" style="  top: 10px;
-  left: 50px;">{{$trabajadorseleccionado->count()}}</span>
+  left: 50px;">{{App\Contacto::where('oferta_trabajador_id', $trabajadorseleccionado->first()->id)->count()}}</span>
         </div>
         @endif
     </div>
@@ -116,9 +116,9 @@
                     <li class="nav-item  btn-xs-block">
                         <a class="nav-link btn-lg" id="nav-pills-03" data-toggle="pill"
                             href="#nav-item-03">Candidaturas</a>
-                            <span class="badge badge-notify float-right">{{$candidaturas->count()}}</span>
+                        <span class="badge badge-notify float-right">{{$candidaturas->count()}}</span>
 
-                          
+
                     </li>
 
 
@@ -185,7 +185,8 @@
                                         {{$oferta->provincia->region_name}}</p>
                                     <p><span class="font-weight-bold">Contrato:</span> {{$oferta->contrato->nombre}}</p>
                                     @if ($oferta->pivot->seleccionado===1)
-                                    <p><span class="font-weight-bold alert">Seleccionado:</span> Has pasado a seleccionado</p>
+                                    <p><span class="font-weight-bold alert">Seleccionado:</span> Has pasado a
+                                        seleccionado</p>
                                     @endif
                                 </div>
                             </div>
@@ -247,23 +248,23 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h3  class="text-center">Entrevistas de trabajo en su agenda</h3>
+                <h3 class="text-center">Entrevistas de trabajo en su agenda</h3>
             </div>
             @foreach ($trabajadorseleccionado as $t)
-            
-            <h4  class="text-center">Día de la entrevista {{ $t->contacto->getDate() }}<h4>
-            <h4  class="text-center">Hora de la entrevista {{ $t->contacto->hora }}<h4>
-            @foreach ($t->ofertas as $o)
-            <h4  class="text-center">Empresa {{$o->empresa->usuario->name}}<h4>
-            <h4  class="text-center">Oferta {{$o->titulo}} - {{$o->salario}}€/brutos<h4>
-            
-            <h4  class="text-center">Telefono {{$o->empresa->telefono}}<h4>
-                <div class="text-center">
-                <button class="btn btn-primary">Detalles</button>
-</div>
-                <hr>
-            @endforeach
-            @endforeach
+
+            <h4 class="text-center">Día de la entrevista {{ $t->contacto->getDate() }}<h4>
+                    <h4 class="text-center">Hora de la entrevista {{ $t->contacto->hora }}<h4>
+                            @foreach ($t->ofertas as $o)
+                            <h4 class="text-center">Empresa {{$o->empresa->usuario->name}}<h4>
+                                    <h4 class="text-center">Oferta {{$o->titulo}} - {{$o->salario}}€/brutos<h4>
+
+                                            <h4 class="text-center">Telefono {{$o->empresa->telefono}}<h4>
+                                                    <div class="text-center">
+                                                        <button class="btn btn-primary">Detalles</button>
+                                                    </div>
+                                                    <hr>
+                                                    @endforeach
+                                                    @endforeach
         </div>
 
     </div>

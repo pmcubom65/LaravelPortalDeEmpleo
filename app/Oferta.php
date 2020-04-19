@@ -53,7 +53,10 @@ class Oferta extends Model
         return $this->belongsToMany('App\Trabajador', 'Oferta_trabajador', 'oferta_id', 'trabajador_id')->withPivot('seleccionado','id');
     }
 
-  
+    public function contacto()
+     {
+     return $this->hasOneThrough('App\Contacto', 'App\Trabajador');
+     }
   
 
  
