@@ -27,6 +27,8 @@ $(function(){
                 }else {
                     $('#mensajes').append('<p class="alert">'+Response.success+'</p>');
                     $('#contactar').prop('disabled', true);
+                    $('#latr').prop('disabled', true);
+                    $('#longr').prop('disabled', true);
                 }
 
             },

@@ -248,23 +248,39 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header text-center">
-                <h3 class="text-center">Entrevistas de trabajo en su agenda</h3>
+                <h3 class="text-center font-weight-bold">Entrevistas de trabajo en su agenda</h3>
+                <button type="button" class="close mx-0 px-0" data-dismiss="modal">
+                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                    </button>
             </div>
             @foreach ($trabajadorseleccionado as $t)
 
-            <h4 class="text-center">Día de la entrevista {{ $t->contacto->getDate() }}<h4>
-                    <h4 class="text-center">Hora de la entrevista {{ $t->contacto->hora }}<h4>
+            <h4 class="text-center"><span class="font-weight-bold">Día de la entrevista:</span> {{ $t->contacto->getDate() }}<h4>
+                    <h4 class="text-center"><span class="font-weight-bold">Hora de la entrevista:</span> {{ $t->contacto->hora }}<h4>
                             @foreach ($t->ofertas as $o)
-                            <h4 class="text-center">Empresa {{$o->empresa->usuario->name}}<h4>
-                                    <h4 class="text-center">Oferta {{$o->titulo}} - {{$o->salario}}€/brutos<h4>
+                            <h4 class="text-center"><span class="font-weight-bold">Empresa:</span> {{$o->empresa->usuario->name}}<h4>
+                                    <h4 class="text-center"><span class="font-weight-bold">Oferta:</span> {{$o->titulo}}<span class="font-weight-bold"> Salario:</span> {{$o->salario}}€/brutos<h4>
 
-                                            <h4 class="text-center">Telefono {{$o->empresa->telefono}}<h4>
-                                                    <div class="text-center">
-                                                        <button class="btn btn-primary">Detalles</button>
-                                                    </div>
+                                            <h4 class="text-center"><span class="font-weight-bold">Telefono:</span> {{$o->empresa->telefono}}<h4>
+                                            <div class="text-center">     
+                                            <a class=" btn btn-success btn-lg text-white m-auto btn-xs-block font-weight-bold"
+                                            href="/home/entrevista/{{$t->contacto->id}}">Detalles</a>
+                                                            </div>
+                                                    @endforeach
                                                     <hr>
                                                     @endforeach
-                                                    @endforeach
+
+
+                                                    <div class="modal-footer">
+
+                                                        <button type="button"  data-dismiss="modal" class="btn btn-lg btn-primary m-auto btn-xs-block font-weight-bold"
+                                                            >Cerrar</button>
+
+                                                
+                                                    </div>
+
+
+
         </div>
 
     </div>
@@ -351,7 +367,7 @@
                         <div class="alert alert-danger">Campo erroneo</div>
                         @enderror
                         <select name="cat" id="cat" class="form-control">
-                            @foreach ($categorias as $categoria) {
+                            @foreach ($categorias as $categoria)
 
 
                             <option value="{{ $categoria->id}}">{{$categoria->nombre}}</option>
@@ -359,7 +375,7 @@
 
 
 
-                            }
+
                             @endforeach
 
 

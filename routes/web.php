@@ -63,6 +63,8 @@ Route::post('/empresa/{id}/published/{ofertaid}/trabajador/{tid}', 'MapaControll
 
 Route::get('/empresa/{id}/published/{ofertaid}/{trabajadorid}', 'CandidatosController@fetch_data');
 
+Route::get('/home/entrevista/{contactoid}', 'EntrevistaController@show');
+
 
 Route::get('/empresa/{id}/published', 'PublicadaController@index')->name('publicada');
 
