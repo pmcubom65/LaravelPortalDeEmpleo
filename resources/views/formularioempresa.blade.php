@@ -34,6 +34,24 @@
                         <input type="text" class="form-control" id="direccion" name="direccion" >
                     </div>
                 </div>
+
+
+                <div class="form-row">
+                <div class="col-sm-12">
+                    <div class="form-group col-sm-6">
+                        <label for="latitud">Latitud</label>
+                        <input type="text" class="form-control" id="latitud" name="latitud" >
+
+                    </div>
+
+                    <div class="fom-group col-sm-6  ">
+                        <label for="longitud">Longitud</label>
+                        <input type="text" class="form-control" id="longitud" name="longitud" >
+                    </div>
+                    </div>
+                </div>
+
+
                 <div class="form-row">
                     <div class="form-group col-sm-12   ">
                         <label for="Provincia">Provincia de la empresa</label>

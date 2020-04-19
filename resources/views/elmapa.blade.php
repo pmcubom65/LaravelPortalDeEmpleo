@@ -41,14 +41,14 @@
                     <div class="form-group col-6 ">
                         <label for="latr">Latitud</label>
                    
-                        <input type="text" class="form-control" id="latr" name="latr"
+                        <input type="text" class="form-control" id="latr" name="latr" value="{{$laoferta->empresa->latitud}}"
                          >
 
                     </div>
 
                     <div class="fom-group col-6 ">
                         <label for="longr">Longitud</label>
-                        <input type="text" class="form-control" id="longr" name="longr"  >
+                        <input type="text" class="form-control" id="longr" name="longr"   value="{{$laoferta->empresa->longitud}}">
                         <input type="hidden" name="_token" id="_token" value="{{ Session::token() }}">
                     </div>
                 </div>

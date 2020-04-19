@@ -33,6 +33,19 @@
                         <label for="direccion">Direccion de la empresa</label>
                         <input type="text" class="form-control" id="direccion" name="direccion" value="{{ $datosemp->domicilio }}" >
                     </div>
+
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-sm-6">
+                        <label for="latitud">Latitud</label>
+                        <input type="text" class="form-control" id="latitud" name="latitud" value="{{ $datosemp->latitud }}" >
+
+                    </div>
+
+                    <div class="fom-group col-sm-6  ">
+                        <label for="longitud">Longitud</label>
+                        <input type="text" class="form-control" id="longitud" name="longitud" value="{{ $datosemp->longitud }}"  >
+                    </div>
                 </div>
                 <div class="form-row">
                     <div class="form-group col-sm-12   ">

@@ -119,6 +119,17 @@ hr {
 }
 
 
+
+@media (max-width: 767.98px) { 
+  .alert {
+    color: greenyellow !important;
+    font-weight: bold;
+    font-size: 120%;
+  }
+  
+
+}
+
 .inicio .glyphicon  {
   font-size: 60px;
   padding: 25px;

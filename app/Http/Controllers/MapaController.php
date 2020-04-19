@@ -55,8 +55,8 @@ public function store(Request $request, $id, $oid, $tid) {
         [
             'dater'=> 'required|date|after:today',
             'horar'=>'required',
-            'latr'=>'between:-90,90',
-            'longr'=>'between:-180,180'
+            'latr'=>'required|between:-90,90',
+            'longr'=>'required|between:-180,180'
         ],
         $messages
 

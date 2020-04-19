@@ -29,6 +29,8 @@
                     lat: 40.416775,
                     lng: -3.703790
                 };
+                uluru.lat=parseFloat(document.getElementById('latitudemp').value);
+                uluru.lng=parseFloat(document.getElementById('longitudemp').value);
                 var empresa = document.getElementById('nombreempresa').value;
 
                 // The map, centered at Uluru
@@ -84,4 +86,6 @@
 
 
             <input type="hidden" value="{{$datosempresa->nombre}}" name="nombreempresa" id="nombreempresa">
+            <input type="hidden" value="{{$laoferta->empresa->latitud}}" name="latitudemp" id="latitudemp">
+            <input type="hidden" value="{{$laoferta->empresa->longitud}}" name="longitudemp" id="longitudemp">
             <div id="map"></div>

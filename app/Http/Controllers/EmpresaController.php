@@ -38,6 +38,7 @@ class EmpresaController extends Controller
         $messages = [
             'required'=>'No se puede dejar ningún campo en blanco',
             'integer'=>'El número de empleados tiene que ser un numero',
+            'numeric'=>'Latitud entre -90 y 90, longitud entre -180 y 180',
             'string'=>'Tiene que rellenar los campos con un string excepto número de empleados'
      
         ];
@@ -52,6 +53,8 @@ class EmpresaController extends Controller
                 
                 'Provincia' => 'required|string',
                 'telefono' => 'required|string',
+                'latitud' => "required|numeric|between:-90,90",
+                'longitud'=> "required|numeric|between:-180,180"
             ],
 
                 $messages
@@ -74,6 +77,8 @@ class EmpresaController extends Controller
             $e->numero_empleados=$request->get('num');
             $e->provincia_id=$request->get('Provincia');
             $e->telefono=$request->get('telefono');
+            $e->latitud=$request->get('latitud');
+            $e->longitud=$request->get('longitud');
             $e->save();
 
             } else {
@@ -86,6 +91,8 @@ class EmpresaController extends Controller
                 $emp->numero_empleados=$request->get('num');
                 $emp->provincia_id=$request->get('Provincia');
                 $emp->telefono=$request->get('telefono');
+                $e->latitud=$request->get('latitud');
+                $e->longitud=$request->get('longitud');
                 $emp->save();
 
             }

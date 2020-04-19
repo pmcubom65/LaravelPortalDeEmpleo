@@ -14,7 +14,7 @@ class AddLatitudToEmpresasTable extends Migration
     public function up()
     {
         Schema::table('empresas', function (Blueprint $table) {
-            $table->boolean('seleccionado')->nullable();
+        
             $table->double('latitud', 4, 2);
             $table->double('longitud', 5, 2);
         });

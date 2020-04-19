@@ -26,6 +26,10 @@ $(function() {
                 $('#messages').html('<h3 class="alert text-center">'+Response.telefono+'</h3>');
             } else if (Response.cif) {
                 $('#messages').html('<h3 class="alert text-center">'+Response.cif+'</h3>');
+            }else if (Response.latitud) {
+                $('#messages').html('<h3 class="alert text-center">'+Response.latitud+'</h3>');
+            }else if (Response.longitud) {
+                $('#messages').html('<h3 class="alert text-center">'+Response.longitud+'</h3>');
             }else {
                 
                     $('#messages').html('<h3 class="alert text-center">'+Response.success+'</h3>');
