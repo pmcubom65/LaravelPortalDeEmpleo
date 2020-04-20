@@ -255,6 +255,7 @@
             </div>
             @foreach ($trabajadorseleccionado as $t)
 
+            @if (Carbon\Carbon::now()<$t->contacto->getDate())
             <h4 class="text-center"><span class="font-weight-bold">Día de la entrevista:</span> {{ $t->contacto->getDate() }}<h4>
                     <h4 class="text-center"><span class="font-weight-bold">Hora de la entrevista:</span> {{ $t->contacto->hora }}<h4>
                             @foreach ($t->ofertas as $o)
@@ -266,7 +267,9 @@
                                             <a class=" btn btn-success btn-lg text-white m-auto btn-xs-block font-weight-bold"
                                             href="/home/entrevista/{{$t->contacto->id}}">Detalles</a>
                                                             </div>
+                                                            
                                                     @endforeach
+                                                    @endif
                                                     <hr>
                                                     @endforeach
 
