@@ -48,6 +48,11 @@ class SearchController extends Controller
         unset( $miArray['salario']);
         $miArray['proceso']=1;
       
+        foreach ($miArray as $clave=>$valor) {
+            if(is_null($miArray[$clave])){
+                unset( $miArray[$clave]); 
+            }
+        }
 
         $misresultados =  Oferta::where('salario','>=',$request->get('Salarioid'))->where($miArray)->get();
   
@@ -57,6 +62,7 @@ class SearchController extends Controller
      $lasempresas=Empresa::all();
      $laempresa=User::find(Auth::id());
 
+    
      return view ('resultadosbusquedaoferta', [
         'provincias'=> $lasprovincias,
       
@@ -66,7 +72,6 @@ class SearchController extends Controller
         'datos'=>$laempresa
        
         ]);
-
 
 
 
