@@ -55,6 +55,7 @@ public function store(Request $request, $id, $oid, $tid) {
         [
             'dater'=> 'required|date|after:today',
             'horar'=>'required',
+            'direccionr'=>'required',
             'latr'=>'required|between:-90,90',
             'longr'=>'required|between:-180,180'
         ],
@@ -81,6 +82,7 @@ public function store(Request $request, $id, $oid, $tid) {
 
         $contacto->latitud=$request->get('latr');
         $contacto->longitud=$request->get('longr');
+        $contacto->direccion=$request->get('direccionr');
         
         $contacto->save();
         $Response=['success'=>'El candidato ha sido contactado'];

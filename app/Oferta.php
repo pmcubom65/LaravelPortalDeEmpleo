@@ -21,7 +21,7 @@ class Oferta extends Model
 
     public function empresa(){
 
-        return $this->belongsTo('App\Empresa', 'empresa_id');
+        return $this->belongsTo('App\Empresa', 'empresa_id', 'id');
 
     }
 

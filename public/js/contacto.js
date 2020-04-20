@@ -24,11 +24,16 @@ $(function(){
                     $('#mensajes').append('<p class="alert">'+Response.latr+'</p>');
                 } else if (Response.longr){
                     $('#mensajes').append('<p class="alert">'+Response.longr+'</p>');
-                }else {
+                }else if (Response.direccionr){
+                    $('#mensajes').append('<p class="alert">'+Response.direccionr+'</p>');
+                }
+                
+                else {
                     $('#mensajes').append('<p class="alert">'+Response.success+'</p>');
                     $('#contactar').prop('disabled', true);
                     $('#latr').prop('disabled', true);
                     $('#longr').prop('disabled', true);
+                    $('#direccionr').prop('disabled', true);
                 }
 
             },

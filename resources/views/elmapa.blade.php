@@ -38,6 +38,15 @@
                 </div>
                 <h3 class="text-center">Localización alternativa de la entrevista (si no es la sede de la empresa)</h3>
                 <div class="form-row">
+                    <div class="form-group  col-md-12 ">
+                        <label for="direccionr">Direccion</label>
+                   
+                        <input type="text" class="form-control" id="direccionr" name="direccionr" value="{{$laoferta->empresa->domicilio}}"
+                         >
+
+                    </div>
+                </div>
+                <div class="form-row">
                     <div class="form-group  col-md-6 ">
                         <label for="latr">Latitud</label>
                    
