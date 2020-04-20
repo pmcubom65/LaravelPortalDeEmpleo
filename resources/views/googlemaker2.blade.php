@@ -32,7 +32,7 @@
                 uluru.lat=parseFloat(document.getElementById('latitudemp').value);
                 uluru.lng=parseFloat(document.getElementById('longitudemp').value);
                 var empresa = document.getElementById('nombreempresa').value;
-                var dire = document.getElementById('direempresa').value;
+                var dire = document.getElementById('direemp').value;
 
                 // The map, centered at Uluru
                 var map = new google.maps.Map(
