@@ -79,9 +79,9 @@
     </div>
 </div>
 
-<section class="espacio2">
+<section class="espacio2 text-center">
 
-
+@include('boton.botoncategoria')
 
 </section>
 

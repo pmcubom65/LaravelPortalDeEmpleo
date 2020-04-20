@@ -6,8 +6,12 @@
                     class="misiconos glyphicon glyphicon-eye-open  text-light"></span></a>Cambiar busqueda</h3>
 
 
-        @if (Auth::check())
+        @if (Auth::check() && Auth::user()->rol_id===2)
         <h3 class="text-center"><a href="/empresa/{{ $datos->id }}/published"><span
+                    class="misiconos glyphicon glyphicon-paperclip  text-light"></span></a>Gestionar Candidaturas
+        </h3>
+        @elseif (Auth::check() && Auth::user()->rol_id===1)
+        <h3 class="text-center"><a href="/home"><span
                     class="misiconos glyphicon glyphicon-paperclip  text-light"></span></a>Gestionar Candidaturas
         </h3>
         @else
