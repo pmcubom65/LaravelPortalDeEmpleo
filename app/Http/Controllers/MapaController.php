@@ -12,6 +12,9 @@ use App\Oferta;
 use App\Trabajador;
 use App\Contacto;
 use Carbon\Carbon;
+use App\Mail\EntrevistaMail;
+use Illuminate\Support\Facades\Mail;
+
 
 
 class MapaController extends Controller
@@ -85,6 +88,10 @@ public function store(Request $request, $id, $oid, $tid) {
         $contacto->direccion=$request->get('direccionr');
         
         $contacto->save();
+
+        $trabajodormail=Trabajador::find($tid)->hasUser->email;
+        
+        Mail::to($trabajodormail)->send(new EntrevistaMail());
         $Response=['success'=>'El candidato ha sido contactado'];
     }
 

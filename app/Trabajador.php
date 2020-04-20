@@ -33,4 +33,10 @@ class Trabajador extends Model
 
 
 
+public function hasUser() {
+    return $this->belongsTo('App\User', 'user_id', 'id');
+}
+
+
+
 }

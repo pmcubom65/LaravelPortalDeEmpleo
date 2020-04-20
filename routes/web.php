@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+//use App\Mail\EntrevistaMail;
+//use Illuminate\Support\Facades\Mail;
+//use App\Trabajador;
 
 
 /*
@@ -16,6 +18,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'InicioController@index');
+
+//Route::get('/email', function(){
+ //// return  $trabajodormail=Trabajador::find(1)->hasUser->email;
+        
+  //  Mail::to($trabajodormail)->send(new EntrevistaMail());
+    
+//});
 
 Auth::routes();
 
