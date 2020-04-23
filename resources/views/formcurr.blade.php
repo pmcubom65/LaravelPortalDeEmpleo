@@ -18,7 +18,7 @@
                         <div class="form-group col-sm-12">
                             <label for="nombre">Nombre Completo</label>
                             <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre"
-                                value="{{ $datos->name }}" disabled>
+                                value="{{ Auth::user()->name }}" disabled>
 
                         </div>
 
@@ -102,19 +102,20 @@
                         </div>
                     </div>
 
-
+                    @if( $trabajador!==0)
                     <div class="form-row my-3">
 
-
+                                
                         <a href="" class="btn btn-primary m-auto btn-lg btn-xs-block" data-toggle="modal"
                             data-target="#sitiomodal">Añadir Experiencia</a>
 
 
                     </div>
+                    @endif
 
                     <div class="form-row my-3">
                     <input type="hidden" class="form-control" id="userid" name="userid"
-                                value="{{ $datos->id }}">
+                                value="{{ Auth::id() }}">
 
                             <input type="hidden" class="form-control" id="telefonos" name="telefonos">
                             <input type="hidden" class="form-control" id="direcciones" name="direcciones">

@@ -42,8 +42,6 @@ class AddExperienciaToOfertasTable extends Migration
      */
     public function down()
     {
-        Schema::table('ofertas', function (Blueprint $table) {
-            //
-        });
+        
     }
 }

@@ -1,10 +1,16 @@
 <?php
 
 namespace App\Providers;
+use App\Categoria;
+use App\Empresa;
+use App\Provincia;
+use App\Explaboral;
+use App\Contrato;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,6 +31,30 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+
+
+        View::composer(['welcome', 'home', 'home2'], function ($view){
+            $view->with([
+                'categorias'=>Categoria::all(),
+                'empresas'=>Empresa::all(),
+                ]);
+        });
+
+
+
+        View::composer(['welcome', 'home', 'home2'], function ($view){
+            $view->with([
+                'provincias'=>Provincia::all(),
+                'experiencias'=>Explaboral::all(),
+                'contratos'=>Contrato::all()
+
+
+                ]);
+        });
+
+
+
+
         /**
          * Paginate a standard Laravel Collection.
          *

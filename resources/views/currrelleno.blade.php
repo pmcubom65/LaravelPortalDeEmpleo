@@ -18,7 +18,7 @@
                         <div class="form-group col-sm-12">
                             <label for="nombre">Nombre Completo</label>
                             <input type="text" class="form-control" id="nombre" name="nombre" placeholder="nombre"
-                                value="{{ $datos->name }}" disabled>
+                                value="{{ Auth::user()->name }}" disabled>
 
                         </div>
 

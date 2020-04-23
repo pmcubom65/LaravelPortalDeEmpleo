@@ -6,7 +6,7 @@
 
     <div class="row">
         <div class="col-12 text-center">
-            <h1><span class="glyphicon glyphicon-user" aria-hidden="true"></span><br>Bienvenido {{ $datos->name }}</h1>
+            <h1><span class="glyphicon glyphicon-user" aria-hidden="true"></span><br>Bienvenido {{ Auth::user()->name }}</h1>
 
         </div>
 
@@ -22,7 +22,7 @@
 
         <div class="card-body">
 
-            <h4>No tienes ningún curriculum dado de alta por el momento</h4>
+            <h4>No tienes ningún curriculum dado de alta por el momento. No podrás inscribirte en ofertas aún</h4>
             @if ($errors->any())
             <div class="alert alert-danger">
                 Alguno de los campos no está correctamente relleno
@@ -35,7 +35,7 @@
 </div>
 
 
-@elseif ($experienciass===0)
+@elseif ($trabajador>0 && $experienciass===0)
 <div class="container espacio">
     <div class="card-body">
 
@@ -59,23 +59,24 @@
 
     <div class="card-body">
 
-        <h4 class="text-center">Su curriculum está dado de alta correctamente: Actualizado {{$fechaact}}</h4>
+        <h4 class="text-center">Su curriculum está dado de alta correctamente: Actualizado {{$curriculum->updated_at}}</h4>
         @if ($errors->any())
         <div class="alert alert-danger">
             Alguno de los campos no está correctamente relleno
         </div>
         @endif
 
-        @if ($trabajadorseleccionado->count() > 0)
+    
+       
         <div class="container my-0 ">
             <button class="btn btn-default btn-lg btn-link float-right " data-toggle="modal" data-target="#sitiomodal4"
                 style="font-size:36px;">
                 <span class="glyphicon glyphicon-comment float-right"></span>
             </button>
             <span class="badge badge-notify float-right" style="  top: 10px;
-  left: 50px;">{{App\Contacto::where('oferta_trabajador_id', $trabajadorseleccionado->first()->id)->count()}}</span>
+  left: 50px;"> {{ (isset($trabajadorseleccionado) &&  (isset($trabajadorseleccionado->first()->id))) ?  App\Contacto::where('oferta_trabajador_id', $trabajadorseleccionado->first()->id)->count() : 0 }}</span>
         </div>
-        @endif
+     
     </div>
 </div>
 
@@ -116,7 +117,8 @@
                     <li class="nav-item  btn-xs-block">
                         <a class="nav-link btn-lg" id="nav-pills-03" data-toggle="pill"
                             href="#nav-item-03">Candidaturas</a>
-                        <span class="badge badge-notify float-right">{{$candidaturas->count()}}</span>
+                        <span class="badge badge-notify float-right">
+                        {{isset($candidaturas) ? $candidaturas->count() : 0 }}</span>
 
 
                     </li>
@@ -164,6 +166,7 @@
 
 
                         <p>
+                        @if (isset($candidaturas))
                             @foreach ($candidaturas as $oferta)
 
                             <p>
@@ -192,6 +195,7 @@
                             </div>
                             <hr>
                             @endforeach
+                            @endif
                         </p>
                     </div>
 
@@ -241,9 +245,10 @@
 
 
 
-@endif
+
 
 <!--modal-->
+
 <div class="modal fade" id="sitiomodal4" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -253,6 +258,7 @@
                         <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                     </button>
             </div>
+            @if (isset($trabajadorseleccionado))          
             @foreach ($trabajadorseleccionado as $t)
 
             @if (Carbon\Carbon::now()<$t->contacto->getDate())
@@ -288,8 +294,10 @@
 
     </div>
 </div>
-
-
+@else
+No hay entrevistas acordadas
+@endif
+@endif
 
 
 
@@ -383,7 +391,7 @@
 
 
                         </select>
-                        <input type="hidden" class="form-control" id="userid" name="userid" value="{{ $datos->id }}">
+                        <input type="hidden" class="form-control" id="userid" name="userid" value="{{ Auth::id() }}">
 
                         <input type="hidden" class="form-control" id="telefonos" name="telefonos">
                         <input type="hidden" class="form-control" id="direcciones" name="direcciones">

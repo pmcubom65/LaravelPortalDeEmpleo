@@ -26,6 +26,98 @@ class HomeController extends Controller
     }
 
 
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index(Request $request)
+    {
+
+
+        if (Auth::user()->rol_id===1){
+            $trabajador=Trabajador::where('user_id', Auth::id())->count();
+            $trabajadorlog=Trabajador::where('user_id', Auth::id())->first();
+            $contarexperiencias=Experiencia::where('user_id', Auth::id())->count();
+
+            if ($trabajador>0) {
+                $trabajadorseleccionado=Oferta_trabajador::where('trabajador_id', $trabajadorlog->id)->where('seleccionado',1)->get();
+                $elid=$trabajadorlog->id;
+                $lascandidaturas=Trabajador::find($elid)->ofertasempleo()->orderBy('id')->get();
+            }
+
+
+
+            if ($contarexperiencias===0) {
+                return view('home', [
+
+                    'trabajador'=>$trabajador,
+                    'curriculum'=>$trabajadorlog,
+                    'experienciass'=>$contarexperiencias,
+                 ]); 
+            } else {
+
+            $lasexperiencias=Experiencia::where('user_id', Auth::id())->orderBy('fin','desc')->get();
+      
+            return view('home', [
+            'trabajador'=>$trabajador,
+            'curriculum'=>$trabajadorlog,
+            'experienciass'=>$lasexperiencias,
+            
+             'candidaturas'=>$lascandidaturas,
+             
+             'trabajadorseleccionado'=>$trabajadorseleccionado
+             ]);
+           }
+
+
+
+
+
+
+            
+  
+
+            
+
+            
+
+
+        } elseif (Auth::user()->rol_id===2) {
+ 
+            return view('home2', [
+                'datos' =>  Auth::user(),
+                'contador'=> Empresa::where('user_id', Auth::id())->count(), 
+                'datosemp'=> Empresa::where('user_id', Auth::id())->first()
+                ]);
+            
+         
+        }else {
+            return 'estoy como admin';
+            
+        }
+
+        
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public function put(Request $request) {
         $validatedData = $request->validate([
@@ -87,78 +179,7 @@ class HomeController extends Controller
 
 
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Contracts\Support\Renderable
-     */
-    public function index(Request $request)
-    {
-        $categorias=Categoria::all();
-        $lasempresas=Empresa::all();
-        $trabajador=Trabajador::where('user_id', Auth::id())->count();
-        $trabajadorlog=Trabajador::where('user_id', Auth::id())->first();
-        $provincias=Provincia::all();
 
-
-        
-
-     
-        if (Auth::user()->rol_id===1){
-            $trabajadorseleccionado=Oferta_trabajador::where('trabajador_id', $trabajadorlog->id)->where('seleccionado',1)->get();
-            $elid=Trabajador::where('user_id', Auth::id())->first()->id;
-    
-            $lascandidaturas=Trabajador::find($elid)->ofertasempleo()->orderBy('id')->get();
-
-            $contarexperiencias=Experiencia::where('user_id', Auth::id())->count();
-            if ($contarexperiencias==0) {
-                return view('home', ['trabajador'=>$trabajador,
-                'curriculum'=>$trabajadorlog,
-                'experienciass'=>$contarexperiencias,
-                'datos' => $request->user(), 
-                'provincias' => $provincias,
-                 'categorias'=>$categorias,
-                 'empresas'=>$lasempresas,
-                 'candidaturas'=>$lascandidaturas
-                 
-                 
-                 ]); 
-            }else {
-
-            $lasexperiencias=Experiencia::where('user_id', Auth::id())->orderBy('fin','desc')->get();
-            $actualizadoa=Experiencia::where('user_id', Auth::id())->orderBy('updated_at', 'desc')->get()->first()->updated_at;
-            return view('home', ['trabajador'=>$trabajador,
-            'curriculum'=>$trabajadorlog,
-            'experienciass'=>$lasexperiencias,
-            'datos' => $request->user(), 
-            'provincias' => $provincias,
-             'categorias'=>$categorias, 
-             'empresas'=>$lasempresas,
-             'candidaturas'=>$lascandidaturas,
-             'fechaact'=>$actualizadoa,
-             
-             'trabajadorseleccionado'=>$trabajadorseleccionado
-             ]);
-           }
-            
-
-
-        } elseif (Auth::user()->rol_id===2) {
-            $contadorempresa=Empresa::where('user_id', Auth::id())->count(); 
-            $emp=Empresa::where('user_id', Auth::id())->first();
-
-
-            return view('home2', ['datos' =>  Auth::user(), 'categorias'=>$categorias,  'empresas'=>$lasempresas, 
-                        'contador'=>$contadorempresa, 'datosemp'=>$emp]);
-            
-         
-        }else {
-            return 'estoy como admin';
-            
-        }
-
-        
-    }
 
 
 
