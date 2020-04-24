@@ -17,6 +17,23 @@
    left: 70px;
     /* The width is the width of the web page */
 }
+
+
+</style>
+
+
+<style  media="screen and (max-width: 767.98px)">
+/* Set the size of the div element that contains the map */
+#map {
+    height: 400px;
+    /* The height is 400 pixels */
+    width: 100%;
+    left: -50;
+  
+    /* The width is the width of the web page */
+}
+
+
 </style>
 
 <script>
@@ -49,7 +66,7 @@
                 
 
                 var infoWindow = new google.maps.InfoWindow({
-                    content: '<h1>'+marker.title+'</h1>'
+                    content: '<h1  style="color:blue;font-size:15px;">'+marker.title+'</h1>'
                 });
                 
                 marker.addListener('click', function() {
