@@ -28,6 +28,11 @@
                 Alguno de los campos no está correctamente relleno
             </div>
             @endif
+            @if ($errors->get('fecha'))
+            <div class="alert alert-danger">
+                La fecha de nacimiento tiene que ser anterior a hoy
+            </div>
+            @endif
         </div>
     </div>
 

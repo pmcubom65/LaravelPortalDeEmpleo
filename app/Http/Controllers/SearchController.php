@@ -86,7 +86,7 @@ class SearchController extends Controller
                 $inscripcion= new Oferta_trabajador();
                 $inscripcion->oferta_id=$id;
                 $inscripcion->trabajador_id=$trabajador->id;
-
+                $inscripcion->seleccionado=0;
                 $inscripcion->save();
 
                $Response=['success'=>'Has sido inscrito en la oferta'];

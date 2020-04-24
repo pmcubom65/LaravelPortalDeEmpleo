@@ -5,6 +5,7 @@ $(function() {
     var route=$('#empresaform').data('route');
     var form_data=$(this);
     $('.alert').remove;
+    $('#messages').remove;
     $.ajax({
         type: 'POST',
         url: route,
@@ -32,7 +33,7 @@ $(function() {
                 $('#messages').html('<h3 class="alert text-center">'+Response.longitud+'</h3>');
             }else {
                 
-                    $('#messages').html('<h3 class="alert text-center">'+Response.success+'</h3>');
+                    $('#messages').append('<h3 class="alert text-center">'+Response.success+'</h3>');
 
                     setTimeout(function(){  }, 4000);
                     location.reload();

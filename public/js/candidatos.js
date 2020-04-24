@@ -1,5 +1,20 @@
 $(function(){
 
+    $('#contactarconel').hide();
+    $("#seleccionados").find("#contactarconel").show();
+    if (window.location.href.indexOf('page')>0) {
+        $('#collapseExample').addClass("show");
+        $('.nav-item .active').removeClass('active');
+       $('tab-pane fade').removeClass('active');
+       var mostrar= $('#collapseExample').parents('.tab-pane').attr('id');
+       console.log(mostrar);
+       $('[href="#' + mostrar + '"]').parent('li').addClass("active");
+        $('#'+mostrar).addClass("active")
+     
+     
+
+    }
+    
 
     $('#postseleccionado').submit(function(event){
         var route=$('#postseleccionado').data('route');
@@ -16,6 +31,7 @@ $(function(){
                 $('#seleccionados').append($('#t'+Response.success).html());
       
                 $('#t'+Response.success).css("display", "none");
+                $('#contactarconel').show();
  
               
               
@@ -43,6 +59,7 @@ $('#putdescartado').submit(function(event){
             $('#descartados').append($('#t'+Response.success).html());
       
             $('#t'+Response.success).css("display", "none");
+            $("#descartados").find("#contactarconel").show();
        
            
             
@@ -51,52 +68,12 @@ $('#putdescartado').submit(function(event){
     event.preventDefault();
 });
 
+
 $(document).on('click','.pagination a', function(e){
-    e.preventDefault();
-   
-    
-    var page = $(this).attr('href').split('page=')[1];
-    // getProducts(page);
-   // location.hash = page;
 
-    console.log($(this).attr('href'));
-      e.stopPropagation();
-    getPaginas(page);
- 
-});
-
-function getPaginas(page){
-    var route=$('#putdescartado').data('route');
-    var trabajadorid=$('#seleccionado').val();
-    var $midiv=$('#poneraqui');
-    
-    $midiv.html('');
-    console.log(route+'/'+trabajadorid+'?page=' + page);
-    
-    $.ajax({
-        url: route+'/'+trabajadorid+'?page=' + page,
-        dataType: 'json',
-    }).done(function(Response){
-      
-        var stringsalida='';
-       
-      $.each(Response.experiencias.data, function(index, objeto){
-        
-
-        stringsalida=stringsalida+index+'<h5 class="font-weight-bold card-title">'+objeto.puesto+'</h5><p><span class="font-weight-bold">Empresa:</span>'+objeto.empresa+'</p><p><span class="font-weight-bold">Descripción:</span>'+objeto.descripcion+'</p><p><span class="font-weight-bold">Inicio: </span>'+objeto.inicio+'</p><p><span class="font-weight-bold">Fin: </span>'+objeto.fin+'</p><hr>';
-        console.log(stringsalida);
-    });
-   
-    $midiv.prepend(stringsalida);
- 
- 
-    
-  
+$('#poneraqui').addClass('show');
 
 });
-
-}
-
 
 
 });

@@ -49,9 +49,15 @@ class Oferta extends Model
     }
 
 
-    public function trabajadors(){
-        return $this->belongsToMany('App\Trabajador', 'Oferta_trabajador', 'oferta_id', 'trabajador_id')->withPivot('seleccionado','id');
-    }
+
+    public function  trabajadors()
+     {
+     return $this->belongsToMany('App\Trabajador', 'Oferta_trabajador', 'oferta_id', 'trabajador_id')->withPivot('seleccionado','id');
+     }
+
+
+
+
 
     public function contacto()
      {

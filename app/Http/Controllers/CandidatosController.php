@@ -14,8 +14,7 @@ class CandidatosController extends Controller
 {
     public function index($id, $ofertaid) {
         $lasprovincias=Provincia::all();
-        $lascategorias=Categoria::all();
-        $lasempresas=Empresa::all();
+ 
         $laempresa=User::find($id);
         $empresaseleccionada=Empresa::where('user_id', '=', $id)->first()->id;
      
@@ -29,8 +28,7 @@ class CandidatosController extends Controller
             'laoferta'=>$ofertae,
             'provincias'=> $lasprovincias,
             'datos'=>$laempresa, 
-            'categorias'=>$lascategorias,
-            'empresas'=>$lasempresas,
+   
            
             'contador'=>$estaempresa,
             'trabajadores'=>$trabajadoresapuntados

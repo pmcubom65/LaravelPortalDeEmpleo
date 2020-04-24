@@ -18,16 +18,14 @@ class EmpresaController extends Controller
 
         $lasprovincias=Provincia::all();
         $laempresa=User::find($id);
-        $lascategorias=Categoria::all();
-        $lasempresas=Empresa::all();
+
         $estaempresa=Empresa::where('user_id', $id)->count();
         
         $datosaempresa=Empresa::where('user_id', Auth::id())->first();
         
         return view ('miempresa', ['provincias'=> $lasprovincias,
         'datos'=>$laempresa, 
-        'categorias'=>$lascategorias,
-        'empresas'=>$lasempresas,
+
         'contador'=>$estaempresa,
         'datosemp'=>$datosaempresa
         ]);
@@ -91,8 +89,8 @@ class EmpresaController extends Controller
                 $emp->numero_empleados=$request->get('num');
                 $emp->provincia_id=$request->get('Provincia');
                 $emp->telefono=$request->get('telefono');
-                $e->latitud=$request->get('latitud');
-                $e->longitud=$request->get('longitud');
+                $emp->latitud=$request->get('latitud');
+                $emp->longitud=$request->get('longitud');
                 $emp->save();
 
             }

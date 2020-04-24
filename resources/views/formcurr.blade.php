@@ -117,12 +117,7 @@
                     <input type="hidden" class="form-control" id="userid" name="userid"
                                 value="{{ Auth::id() }}">
 
-                            <input type="hidden" class="form-control" id="telefonos" name="telefonos">
-                            <input type="hidden" class="form-control" id="direcciones" name="direcciones">
-                            <input type="hidden" class="form-control" id="provincias" name="provincias">
-                            <input type="hidden" class="form-control" id="dnis" name="dnis">
-                            <input type="hidden" class="form-control" id="fechas" name="fechas">
-
+    
                         <button type="submit" class="btn btn-success m-auto btn-lg btn-xs-block">Guardar Curriculum</button>
 
 

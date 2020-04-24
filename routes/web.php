@@ -55,10 +55,10 @@ Route::delete('/home/Expe/{id}', 'ExpeController@delete')->name('Expe');
 Route::post('/home/Expe/{id}', 'ExpeController@store')->name('Expe');
 
 
-
+Route::post('/empresa/{id}', 'EmpresaController@store')->name('empresa');
 Route::get('/empresa/{id}', 'EmpresaController@show');
 
-Route::post('/empresa/{id}', 'EmpresaController@store')->name('empresa');
+
 
 Route::get('/empresa/{id}/oferta', 'OfertaController@index')->name('oferta');
 

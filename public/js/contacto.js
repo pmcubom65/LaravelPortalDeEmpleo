@@ -1,6 +1,7 @@
 $(function(){
 
     $('#jumbotron').hide();
+    
     $('#contactoform').submit(function(event){
         event.preventDefault();
         var route=$('#contactoform').data('route');
@@ -29,6 +30,7 @@ $(function(){
                 }
                 
                 else {
+                    $("p").remove(".alert");
                     $('#mensajes').append('<p class="alert">'+Response.success+'</p>');
                     $('#contactar').prop('disabled', true);
                     $('#latr').prop('disabled', true);

@@ -33,7 +33,7 @@ class AppServiceProvider extends ServiceProvider
     {
 
 
-        View::composer(['welcome', 'home', 'home2'], function ($view){
+        View::composer(['*'], function ($view){
             $view->with([
                 'categorias'=>Categoria::all(),
                 'empresas'=>Empresa::all(),
@@ -42,7 +42,7 @@ class AppServiceProvider extends ServiceProvider
 
 
 
-        View::composer(['welcome', 'home', 'home2'], function ($view){
+        View::composer(['welcome', 'home', 'home2', 'auth.passwords.reset'], function ($view){
             $view->with([
                 'provincias'=>Provincia::all(),
                 'experiencias'=>Explaboral::all(),

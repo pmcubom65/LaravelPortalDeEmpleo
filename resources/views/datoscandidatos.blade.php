@@ -30,6 +30,13 @@
             @endforeach
             <div class="d-flex"><div class="mx-auto" id="mislinks">{{ $trabajador->user->explaborales->sortByDesc('fin')->paginate( 3 ) ->links() }}</div></div>
         </div>
+      
+        <p>
+           
+    <a id="contactarconel" type="button" href="/empresa/{{Auth::id()}}/published/{{$laoferta->id}}/trabajador/{{$trabajador->id}}"  class="btn btn-success btn-lg  btn-block font-weight-bold" ><span
+                            class="glyphicon glyphicon-ok"></span> Contactar con {{$trabajador->user->name}}</a>
+        </p>
+       
         <p>
     <form id="postseleccionado" data-route="/empresa/{{$datos->id}}/published/{{$laoferta->id}}" method="POST" >
     @csrf

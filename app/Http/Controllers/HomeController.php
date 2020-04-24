@@ -125,7 +125,7 @@ class HomeController extends Controller
 
             'direccion' => 'required',
             'dni' => 'required',
-            'fecha' => 'required',
+            'fecha' => 'required|date|before:today',
             'Provincia' => 'required',
             'telefono' => 'required',
         ]);
@@ -147,18 +147,13 @@ class HomeController extends Controller
         $trabajador=Trabajador::where('user_id', Auth::id())->count();  //1
         $trabajadorlog=Trabajador::where('user_id', Auth::id())->first();    //ok
 
-        $provincias=Provincia::all();
-        $categorias=Categoria::all();
-        $lasempresas=Empresa::all();
         $lasexperiencias=Experiencia::where('user_id', Auth::id())->count();
   
             return view('home', ['trabajador'=>$trabajador,
             'curriculum'=>$trabajadorlog,
             'experienciass'=>$lasexperiencias,
             'datos' => $request->user(), 
-            'provincias' => $provincias,
-             'categorias'=>$categorias,
-             'empresas'=>$lasempresas ]); 
+            ]); 
              
         } else {
             $mitrabajador=Trabajador::where('user_id', Auth::id())->first();

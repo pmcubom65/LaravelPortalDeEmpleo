@@ -32,6 +32,7 @@
             <div class="card-body text-center">
                 <div class="tab-content">
                     <div id="inscritos" class="tab-pane fade show active">
+                    @if (!$trabajadores->isEmpty())
                     @foreach($trabajadores as $trabajador)
                             @if(is_null($trabajador->pivot->seleccionado))
                             @include('datoscandidatos')
@@ -40,21 +41,25 @@
                     </div>
                     <div id="seleccionados" class="tab-pane fade">
                     @foreach($trabajadores as $trabajador)
-                    @if($trabajador->pivot->seleccionado==1)
+                    @if($trabajador->pivot->seleccionado===1)
                     
                             @include('datoscandidatos')
+    
                             @endif
                             @endforeach
-                        <a type="button" href="/empresa/{{Auth::id()}}/published/{{$laoferta->id}}/trabajador/{{$trabajador->id}}"  class="btn btn-success btn-lg  btn-block font-weight-bold" >Contactar con {{$trabajador->user->name}}</a>
+                            
+                      
                     </div>
                     <div id="descartados" class="tab-pane fade">
                     @foreach($trabajadores as $trabajador)
-                    @if($trabajador->pivot->seleccionado==0)
+                    @if($trabajador->pivot->seleccionado===0)
                     @include('datoscandidatos')
                             @endif
                             @endforeach
                     </div>
-               
+                @else
+                        No hay trabajadores apuntados en la oferta
+                @endif
                 </div>
                 </div>
 

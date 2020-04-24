@@ -99,6 +99,7 @@
                         </div>
                     </div>
 
+                @if(App\Experiencia::where('user_id', Auth::id())->count()===0)
 
                     <div class="form-row my-3">
 
@@ -108,6 +109,7 @@
 
 
                     </div>
+                    @endif
 
                     <div class="form-row my-3">
 
