@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'InicioController@index');
 
+Route::post('/', 'InicioController@mail' )->name('inicio');
+
 //Route::get('/email', function(){
  //// return  $trabajodormail=Trabajador::find(1)->hasUser->email;
         
