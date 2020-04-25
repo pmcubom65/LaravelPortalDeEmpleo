@@ -139,6 +139,46 @@
 
             @include('buscarempleo')
         </div>
+        <div class="container-fluid position-ref">
+        <footer id="pfooter">
+                    <div class="container">
+                        <div class="row text-light container">
+                            <div class="col-md-4 p-3 pf">
+                                <h3 class="text-center">Enlaces</h3>
+                                <div class="pft">
+
+                                    <a href="www.google.es">Google</a>
+                                </div>
+                                <div class="pft">
+
+                                    <a href="www.google.es">Linkldn</a>
+                                </div>
+                                <div class="pft">
+
+                                    <a href="www.google.es">SEPE</a>
+                                </div>
+                                <div class="pft">
+
+                                    <a href="www.google.es">Ministerio de Trabajo</a>
+                                </div>
+
+
+                            </div>
+                            <div class="col-md-4 p-3">
+                            <h3 class="text-center">Localizacion</h3>
+                            @include('googlemakerwelcome')
+
+                            </div>
+                            <div class="col-md-4 p-3">
+
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </footer>
+                </div>
 
     </div>
 

@@ -24,19 +24,20 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-   
+
 </head>
 
 <body data-spy="scroll" data-target=".navbar" data-offset="50">
 
     <div id="app">
 
-        
+
 
 
         <nav class="navbar navbar-expand-md fixed-top ">
-            <button type="button" class="navbar-toggler ml-auto" data-toggle="collapse" data-target="#navbarSupportedContent"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button type="button" class="navbar-toggler ml-auto" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
@@ -55,10 +56,11 @@
                             <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dt2">
-                        @foreach($empresas as $empresa)
-                            <a class="dropdown-item" tabindex="0"  role="button" data-toggle="popover" data-trigger="focus" 
-                            title="{{$empresa->nombre}}" data-content="">{{$empresa->usuario->name}}</a>
-                        @endforeach
+                            @foreach($empresas as $empresa)
+                            <a class="dropdown-item" tabindex="0" role="button" data-toggle="popover"
+                                data-trigger="focus" title="{{$empresa->nombre}}"
+                                data-content="">{{$empresa->usuario->name}}</a>
+                            @endforeach
                         </div>
 
                     </li>
@@ -72,45 +74,46 @@
                             <span class="caret"></span>
                         </a>
                         <div class="dropdown-menu" aria-labelledby="dt">
-                        @foreach($categorias as $categoria)
-                            <a class="dropdown-item " id="popoverData" title="{{$categoria->descripcion}}"  type="button" tabindex="0"  role="button" data-toggle="popover" data-trigger="focus" 
-                             data-content="{{$categoria->descripcion}}">{{$categoria->nombre}}</a>
+                            @foreach($categorias as $categoria)
+                            <a class="dropdown-item " id="popoverData" title="{{$categoria->descripcion}}" type="button"
+                                tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
+                                data-content="{{$categoria->descripcion}}">{{$categoria->nombre}}</a>
 
-                        @endforeach
-                        <!-- Content for Popover #1 -->
+                            @endforeach
+                            <!-- Content for Popover #1 -->
 
                     </li>
-                          <!-- Authentication Links -->
-                          </ul>
-                          <ul class="navbar-nav  ml-auto ">
-                @guest
-                <li class="nav-item ">
-                    <a class="nav-link text-white " href="{{ route('login') }}">{{ __('Login') }}</a>
-                </li>
-                @if (Route::has('register'))
-                <li class="nav-item  dropdown">
-                    <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
-                </li>
-                @endif
-                @else
-                <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }} <span class="caret"></span>
-                    </a>
-
-                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
+                    <!-- Authentication Links -->
+                </ul>
+                <ul class="navbar-nav  ml-auto ">
+                    @guest
+                    <li class="nav-item ">
+                        <a class="nav-link text-white " href="{{ route('login') }}">{{ __('Login') }}</a>
+                    </li>
+                    @if (Route::has('register'))
+                    <li class="nav-item  dropdown">
+                        <a class="nav-link text-white" href="{{ route('register') }}">{{ __('Registrarse') }}</a>
+                    </li>
+                    @endif
+                    @else
+                    <li class="nav-item dropdown">
+                        <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
-                    </div>
-                </li>
-                @endguest
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
+                    </li>
+                    @endguest
                 </ul>
             </div>
 
@@ -125,23 +128,23 @@
                 <div class="row justify-content-center ">
                     <div class="col-lg-3 col-sm-3  ">
                         <a class="navbar-brand d-xs-block  py-lg-0 ml-lg-5 mr-lg-0 " href="{{ url('/') }}">
-                        <img src="{{asset('img/logo.png')}}" class="w-50 h-50 " /></a>
-                                
+                            <img src="{{asset('img/logo.png')}}" class="w-50 h-50 " /></a>
 
-                        
+
+
                     </div>
-                   
+
                     <div class="col-lg-9 col-sm-9  ">
                         <h2 class="display-4  d-none d-sm-block ml-0 text-left">Conectamos trabajadores y empresas</h2>
                         <p class="lead d-sm-block">Hacemos el trabajo</p>
-                        
+
                     </div>
-                    
-                 
+
+
 
 
                 </div>
-     
+
 
             </div>
         </div>
@@ -152,24 +155,28 @@
 
             <div class="row w-100 justify-content-center align-items-center mx-0">
                 @yield('content')
+  
             </div>
+            
         </div>
+        
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+    $(document).ready(function() {
+       
+   
+      
+        $(".dropdown-menu").css('margin', '50px');
+        $(function() {
+            $('[data-toggle="popover"]').popover(),
 
-$(document).ready(function() {
-    $(".dropdown-menu").css('margin','50px');
-    $(function () {
-        $('[data-toggle="popover"]').popover(),
-        
-    })
-    $("#popoverData").popover({ trigger: "hover"
-        
-        }
-    });
-    );
+        });
+        $("#popoverData").popover({
+                trigger: "hover"
 
-</script>
+            });
+        });
+    </script>
 
 
 </body>
