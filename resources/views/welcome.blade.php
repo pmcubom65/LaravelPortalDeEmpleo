@@ -170,8 +170,21 @@
 
                             </div>
                             <div class="col-md-4 p-3">
-
-
+                            <h3 class="text-center">Contactanos</h3>
+                            <form id="contactar">
+                            <div class="form-group">
+                                <input type="email" class="form-control" placeholder="email">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="asunto">
+                            </div>
+                            <div class="form-group">
+                                <textarea rows="8" cols="55">Mensaje</textarea>
+                            </div>
+                            <div class="form-group text-center">
+                                <button class="btn btn-primary">Enviar Correo</button>
+                            </div>
+                            </form>
 
                             </div>
 
