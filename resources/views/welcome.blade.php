@@ -52,8 +52,8 @@
                 </a>
             </div>
         </div>
-        
-@include('welcomebarra')
+
+        @include('welcomebarra')
 
 
         <section id="informacion" class="informacion-section">
@@ -140,62 +140,65 @@
             @include('buscarempleo')
         </div>
         <div class="container-fluid position-ref">
-        <footer id="pfooter">
-                    <div class="container">
-                        <div class="row text-light container">
-                            <div class="col-md-4 p-3 pf">
-                                <h3 class="text-center">Enlaces</h3>
-                                <div class="pft">
+            <section id="pfooter">
+                <div class="container">
+                    <div class="row text-light container">
+                        <div class="col-md-4 p-3 pf">
+                            <h3 class="text-center">Enlaces</h3>
+                            <div class="pft">
 
-                                    <a href="www.google.es">Google</a>
-                                </div>
-                                <div class="pft">
-
-                                    <a href="www.google.es">Linkldn</a>
-                                </div>
-                                <div class="pft">
-
-                                    <a href="www.google.es">SEPE</a>
-                                </div>
-                                <div class="pft">
-
-                                    <a href="www.google.es">Ministerio de Trabajo</a>
-                                </div>
-
-
+                                <a href="www.google.es">Google</a>
                             </div>
-                            <div class="col-md-4 p-3">
+                            <div class="pft">
+
+                                <a href="www.google.es">Linkldn</a>
+                            </div>
+                            <div class="pft">
+
+                                <a href="www.google.es">SEPE</a>
+                            </div>
+                            <div class="pft">
+
+                                <a href="www.google.es">Ministerio de Trabajo</a>
+                            </div>
+
+
+                        </div>
+                        <div class="col-md-4 p-3">
                             <h3 class="text-center">Localizacion</h3>
                             @include('googlemakerwelcome')
 
-                            </div>
-                            <div class="col-md-4 p-3">
+                        </div>
+                        <div class="col-md-4 p-3">
                             <h3 class="text-center">Contactanos</h3>
                             <form id="contactarid" method="POST" data-route="{{route('inicio')}}">
-                            @csrf
-                            <div class="form-group">
-                                <input type="email" class="form-control" placeholder="email" name="emailid" id="emailid">
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control" placeholder="asunto" name="asuntoid" id="asuntoid">
-                            </div>
-                            <div class="form-group">
-                                <textarea rows="8" cols="55"  name="mssgid" id="mssgid">Mensaje</textarea>
-                            </div>
-                            <div class="form-group text-center">
-                                <button type="submit" class="btn btn-primary">Enviar Correo</button>
-                            </div>
-                            <div class="form-group text-center" id="informar">
-                                
-                            </div>
+                                @csrf
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="email" name="emailid"
+                                        id="emailid">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="asunto" name="asuntoid"
+                                        id="asuntoid">
+                                </div>
+                                <div class="form-group">
+                                    <textarea rows="8" cols="55" name="mssgid" id="mssgid">Mensaje</textarea>
+                                </div>
+                                <div class="form-group text-center">
+                                    <button type="submit" class="btn btn-primary">Enviar Correo</button>
+                                </div>
+                                <div class="form-group text-center" id="informar">
+
+                                </div>
                             </form>
 
-                            </div>
-
                         </div>
+
                     </div>
-                </footer>
                 </div>
+            </section>
+            
+        </div>
 
     </div>
 
@@ -207,9 +210,9 @@
 
 
 <div class="container-fluid d-lg-none" style="height: 100vh; padding-top: 0;">
-@include('welcomebarra')
-@include('buscarempleo')
-    
+    @include('welcomebarra')
+    @include('buscarempleo')
+
 
 </div>
 
@@ -311,9 +314,9 @@
 
 
 <script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
-       
-       </script>
-       <script src="{{asset('js/inicio.js')}}" type="text/javascript"   ></script>
+
+</script>
+<script src="{{asset('js/inicio.js')}}" type="text/javascript"></script>
 
 
 

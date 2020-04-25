@@ -178,7 +178,7 @@
         });
     </script>
 
-
+@include('barras.footer')
 </body>
 
 </html>

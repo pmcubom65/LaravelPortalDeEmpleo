@@ -98,7 +98,7 @@
                             <div class="form-row my-3">
 
 
-                                <button type="submit" class="btn btn-success m-auto">Realizar Búsqueda</button>
+                                <button type="submit" class="btn btn-success m-auto btn-lg">Realizar Búsqueda</button>
 
 
                             </div>
