@@ -96,6 +96,17 @@ hr {
 
 }
 
+.div1 {
+  @include mihover();
+  a:hover {
+  text-decoration: none;
+  }
+  p:hover {
+    text-decoration: none;
+  }
+ 
+}
+
 .alert {
   color: red;
   font-weight: bold;
@@ -153,14 +164,18 @@ hr {
   
  }
 
- .inicio p {display: none;}
- .inicio h3 {color:white;}
 
-.inicio .col-md-4 {
+ 
+
+.inicio { .col-md-4 {
   margin-top: 10px;
   border-bottom: 1px solid var(--light); 
   line-height: 0.1em;
   
+ 
+}
+p {display: none;}
+h3 {color:white;}
 }
 .glyphicon:hover {
 

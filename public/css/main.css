@@ -93,6 +93,18 @@ hr {
   left: 0px;
 }
 
+.div1:hover {
+  background: linear-gradient(to bottom, indigo, #ff9999) !important;
+}
+
+.div1 a:hover {
+  text-decoration: none;
+}
+
+.div1 p:hover {
+  text-decoration: none;
+}
+
 .alert {
   color: red;
   font-weight: bold;
@@ -156,18 +168,18 @@ hr {
     color: white;
   }
 
+  .inicio .col-md-4 {
+    margin-top: 10px;
+    border-bottom: 1px solid var(--light);
+    line-height: 0.1em;
+  }
+
   .inicio p {
     display: none;
   }
 
   .inicio h3 {
     color: white;
-  }
-
-  .inicio .col-md-4 {
-    margin-top: 10px;
-    border-bottom: 1px solid var(--light);
-    line-height: 0.1em;
   }
 
   .glyphicon:hover {

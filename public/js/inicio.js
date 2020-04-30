@@ -1,5 +1,7 @@
 $(function(){
 
+
+
     $('#contactarid').submit(function(e){
         var route=$('#contactarid').data('route');
         var form_data=$(this);
