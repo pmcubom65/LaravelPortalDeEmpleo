@@ -7,16 +7,7 @@
  */
 
 :root {
-  --blue: #3490dc;
-  --indigo: #6574cd;
-  --purple: #9561e2;
-  --pink: #f66d9b;
-  --red: #e3342f;
-  --orange: #f6993f;
-  --yellow: #ffed4a;
-  --green: #38c172;
-  --teal: #4dc0b5;
-  --cyan: #6cb2eb;
+
   --white: #fff;
   --gray: #6c757d;
   --gray-dark: #343a40;
@@ -41,6 +32,13 @@ nav.navbar {
   background-color: indigo;
   padding-top: 0;
   padding-bottom: 0;
+}
+
+@mixin mihover {
+  &:hover {
+    background: linear-gradient(to bottom,indigo, lighten(red, 30)) !important;
+    
+  }
 }
 
 .espacio {
@@ -116,6 +114,7 @@ hr {
 .inicio {
   background-color: indigo;
   color: white;
+
 }
 
 
@@ -136,6 +135,7 @@ hr {
   margin-bottom: 10px;
   border: 2px solid white;
   border-radius: 50%;
+  @include mihover();
 }
 /* Small devices (landscape phones, less than 768px)*/
 @media (max-width: 767.98px) { 
@@ -201,11 +201,12 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 #pfooter {
   background-color:indigo;
   margin-bottom: 100px;
-  
+
 }
 
 footer {
-  background-image: linear-gradient(to bottom,indigo, lighten(indigo, 30%));
+
+  background-image: linear-gradient(to bottom,indigo, darken(indigo, 30%));
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -214,6 +215,7 @@ footer {
   overflow: hidden;
   clear: both;
   height: 100px;
+  
  
 }
 
@@ -229,7 +231,14 @@ footer {
   border-bottom: 1px solid white;
   padding-top: 20px;
   padding-bottom: 5px;
+@include mihover();
+  
 }
+
+
+
+
+
 #map3 {
   position: relative;
   overflow: hidden;
@@ -239,6 +248,11 @@ footer {
 .pft a {
   color: white;
   text-transform: uppercase;
+  &:hover {
+    color: white !important;
+    text-decoration: none;
+  }
+
 }
 
 .wtitle {
@@ -261,6 +275,7 @@ body {
   color: #212529;
   text-align: left;
   background-color:lightgray;
+  padding-bottom: 100px;
 
 }
 
@@ -270,7 +285,7 @@ body {
   body {
   background: url('../img/sky.jpg');
   color:white;
-  
+  padding-bottom: 50px;
  }
 }
 

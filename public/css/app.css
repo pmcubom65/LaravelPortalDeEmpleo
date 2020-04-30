@@ -10928,16 +10928,6 @@ a.text-dark:focus {
  */
 
 :root {
-  --blue: #3490dc;
-  --indigo: #6574cd;
-  --purple: #9561e2;
-  --pink: #f66d9b;
-  --red: #e3342f;
-  --orange: #f6993f;
-  --yellow: #ffed4a;
-  --green: #38c172;
-  --teal: #4dc0b5;
-  --cyan: #6cb2eb;
   --white: #fff;
   --gray: #6c757d;
   --gray-dark: #343a40;
@@ -11067,6 +11057,10 @@ hr {
   border-radius: 50%;
 }
 
+.inicio .glyphicon:hover {
+  background: linear-gradient(to bottom, indigo, #ff9999) !important;
+}
+
 /* Small devices (landscape phones, less than 768px)*/
 
 @media (max-width: 767.98px) {
@@ -11155,7 +11149,7 @@ section {
 }
 
 footer {
-  background-image: linear-gradient(to bottom, indigo, #9f1cff);
+  background-image: linear-gradient(to bottom, indigo, black);
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -11177,6 +11171,10 @@ footer {
   padding-bottom: 5px;
 }
 
+.pft:hover {
+  background: linear-gradient(to bottom, indigo, #ff9999) !important;
+}
+
 #map3 {
   position: relative;
   overflow: hidden;
@@ -11187,6 +11185,11 @@ footer {
 .pft a {
   color: white;
   text-transform: uppercase;
+}
+
+.pft a:hover {
+  color: white !important;
+  text-decoration: none;
 }
 
 .wtitle {
@@ -11207,6 +11210,7 @@ body {
   color: #212529;
   text-align: left;
   background-color: lightgray;
+  padding-bottom: 100px;
 }
 
 /* Small devices (landscape phones, less than 768px)*/
@@ -11215,6 +11219,7 @@ body {
   body {
     background: url(/images/sky.jpg?8d348244ebb5130982b4adeed06d6391);
     color: white;
+    padding-bottom: 50px;
   }
 }
 
