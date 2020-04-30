@@ -63,7 +63,10 @@ nav.navbar {
 
 }
 @media (max-width: 767.98px) { 
-  h3 {color: indigo !important;}
+  h3 {color:white !important;
+
+  }
+ 
   h3 .card-title .text-light {color: white;}
   .btn-xs-block {
     display: block;
@@ -104,7 +107,7 @@ hr {
   p:hover {
     text-decoration: none;
   }
- 
+
 }
 
 .alert {
@@ -136,7 +139,6 @@ hr {
     font-weight: bold;
     font-size: 120%;
   }
-  
 
 }
 

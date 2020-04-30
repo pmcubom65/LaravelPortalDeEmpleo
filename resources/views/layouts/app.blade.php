@@ -15,7 +15,11 @@
     <meta name="keywords" content="empleo, trabajo, salario">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
+<script src="js/bootstrap.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
+
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -161,6 +165,7 @@
         </div>
         
     </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
     $(document).ready(function() {
        
