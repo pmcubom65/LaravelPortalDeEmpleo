@@ -15,8 +15,8 @@
     <meta name="keywords" content="empleo, trabajo, salario">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
-<script src="js/bootstrap.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
     <script src="{{ asset('js/app.js') }}" defer></script>
 
 
@@ -27,7 +27,7 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
 
     <!-- Styles -->
-    <link href="{{ mix('/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
 

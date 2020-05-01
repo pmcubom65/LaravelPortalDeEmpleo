@@ -1,4 +1,4 @@
-<footer class="d-none d-sm-block">
+<footer class="d-none d-lg-block">
     <div class="row text-center">
         <div class="col-md-4">
 
