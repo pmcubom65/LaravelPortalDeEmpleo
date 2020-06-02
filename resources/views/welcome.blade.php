@@ -166,33 +166,10 @@
                         </div>
                         <div class="col-md-4 p-3">
                             <h3 class="text-center">Localizacion</h3>
-                            @include('googlemakerwelcome')
+                       <!--     @include('googlemakerwelcome')-->
 
                         </div>
-                        <div class="col-md-4 p-3">
-                            <h3 class="text-center">Contactanos</h3>
-                            <form id="contactarid" method="POST" data-route="{{route('inicio')}}">
-                                @csrf
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="email" name="emailid"
-                                        id="emailid">
-                                </div>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="asunto" name="asuntoid"
-                                        id="asuntoid">
-                                </div>
-                                <div class="form-group">
-                                    <textarea rows="8" cols="55" name="mssgid" id="mssgid">Mensaje</textarea>
-                                </div>
-                                <div class="form-group text-center">
-                                    <button type="submit" class="btn btn-primary">Enviar Correo</button>
-                                </div>
-                                <div class="form-group text-center" id="informar">
-
-                                </div>
-                            </form>
-
-                        </div>
+                      <inicio-component></inicio-component>
 
                     </div>
                 </div>
@@ -313,10 +290,10 @@
 
 
 
-<script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+<!--<script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
 
 </script>
-<script src="{{asset('js/inicio.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/inicio.js')}}" type="text/javascript"></script>-->
 
 
 

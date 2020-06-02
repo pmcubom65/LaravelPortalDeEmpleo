@@ -7,15 +7,26 @@
 
                     <div class="card-body">
                         I'm an example component.
+                        <test-component></test-component>
                     </div>
                 </div>
             </div>
         </div>
+        <tooltip-component></tooltip-component>
     </div>
 </template>
 
 <script>
+import TestComponent from './TestComponent'
+import TooltipComponent from './TooltipComponent'
+Vue.component('test-component', TestComponent)
+Vue.component('tooltip-component', TooltipComponent)
+
     export default {
+        components: {
+            TestComponent,
+            TooltipComponent
+        },
         mounted() {
             console.log('Component mounted.')
         }

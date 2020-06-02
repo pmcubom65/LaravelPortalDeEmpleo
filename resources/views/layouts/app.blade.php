@@ -35,9 +35,11 @@
 
     <div id="app">
 
+  
+    <example-component></example-component>
 
-
-
+ 
+    
         <nav class="navbar navbar-expand-md fixed-top ">
             <button type="button" class="navbar-toggler ml-auto" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -184,6 +186,7 @@
     </script>
 
 @include('barras.footer')
+
 </body>
 
 </html>

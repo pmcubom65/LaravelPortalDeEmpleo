@@ -23,7 +23,8 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
-        "jquery": "3.4.1",
-        "load-google-maps-api": "^2.0.2"
+        "jquery": "^3.5.1",
+        "load-google-maps-api": "^2.0.2",
+        "v-tooltip": "^2.0.3"
     }
 }
