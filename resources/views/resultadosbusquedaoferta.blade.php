@@ -5,11 +5,24 @@
 
 
 <div class="container-fluid">
-    @include('sidebarbusqueda')
- 
+  <!--  @include('sidebarbusqueda')-->
 
-  
 
+
+  @if (Auth::check() && Auth::user()->rol_id===2)
+    <bbusqueda-component   :mihref="'/empresa/{{ $datos->id }}/published'"
+            :mioferta="new String('0')"></bbusqueda-component>
+
+            
+  @elseif (Auth::check() && Auth::user()->rol_id===1)
+  <bbusqueda-component   :mihref="new String('/home')"
+            :mioferta="new String('0')"></bbusqueda-component>
+    @else
+    <bbusqueda-component   :mihref="new String('/home')"
+            :mioferta="new String('0')"></bbusqueda-component>
+    @endif
+
+    
     <div class="row col-10 espacio2 float-right">
 
 
@@ -58,11 +71,11 @@
   
 
 
-            <script type="application/javascript"
+  <!--          <script type="application/javascript"
                 src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
 
             </script>
-            <script src="{{asset('js/search.js')}}" type="text/javascript"></script>
+            <script src="{{asset('js/search.js')}}" type="text/javascript"></script>-->
 
 
 

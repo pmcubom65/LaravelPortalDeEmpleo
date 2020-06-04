@@ -28,7 +28,11 @@ Route::post('/', 'InicioController@mail' )->name('inicio');
     
 //});
 
+
+
 Auth::routes();
+
+
 
 Route::get('/search', 'SearchController@index');
 Route::post('/search/{id}', 'SearchController@store')->name('apuntarse');
@@ -90,10 +94,13 @@ Route::post('/empresa/{id}/published/{ofertaid}', 'CandidatosController@store')-
 Route::put('/empresa/{id}/published/{ofertaid}', 'CandidatosController@put')->name('candidatos');;
 
 
-Route::get('/cv', 'CvController@index')->name('cv');
+
 
 Route::get('/login2', function() {
     return view('auth.login2');
 });
 
 
+Route::get('/0', function () {
+  return 'paco';
+});

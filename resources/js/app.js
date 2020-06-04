@@ -38,6 +38,8 @@ Vue.mixin({
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+export const bus=new Vue()
+
 const app = new Vue({
     el: '#app'
 });
