@@ -101,6 +101,6 @@ Route::get('/login2', function() {
 });
 
 
-Route::get('/0', function () {
-  return 'paco';
+Route::get('/{id}', function () {
+  return redirect()->back()->with('success', 'Tiene que elegir una oferta del listado primero');   
 });
