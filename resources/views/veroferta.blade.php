@@ -43,7 +43,7 @@
                 </div>
 
 
-                @elseif (Auth::user()->rol_id===2 && $oferta->empresa->usuario->id===Auth::id())
+            @elseif ($oferta->empresa->usuario->id===Auth::id())
                 <div class="form-row my-3">
                     <div class="col-12 text-center">
 
