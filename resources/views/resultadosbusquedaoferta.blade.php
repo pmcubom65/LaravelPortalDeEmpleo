@@ -6,6 +6,10 @@
 
 <div class="container-fluid">
     @include('sidebarbusqueda')
+ 
+
+  
+
     <div class="row col-10 espacio2 float-right">
 
 
@@ -27,13 +31,20 @@
   </div>
 
   @foreach($resultados as $oferta)
-  <div class="card-body px-0 py-2" id="{{$oferta->id}}">
+  <!--<div class="card-body px-0 py-2" id="{{$oferta->id}}">
     <h5 class="card-title">{{$oferta->titulo}} - {{$oferta->categoria->nombre}}</h5>
     <br>{{$oferta->provincia->region_name}}
     <br>{{$oferta->contrato->nombre}}
     <br>Salario {{$oferta->salario}} euros/año
     
-    <hr class="text-white">
+    <hr class="text-white">-->
+    <resultados-component   :id="'{{$oferta->id}}'"
+          :titulo ="'{{$oferta->titulo}}'" 
+          :nombre="'{{$oferta->categoria->nombre}}'"
+          :region="'{{$oferta->provincia->region_name}}'"
+          :contrato="'{{$oferta->contrato->nombre}}'"
+          :salario="'{{$oferta->salario}}'"></resultados-component>
+
     @endforeach
 
 

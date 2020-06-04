@@ -26,10 +26,12 @@
       <div class="form-group">
         <textarea rows="8" cols="55" name="mssgid" id="mssgid" v-model="mssgid">Mensaje</textarea>
       </div>
-      <div class="form-group text-center">
-        <button type="submit" class="btn btn-primary">Enviar Correo</button>
+      <div class="form-group text-center sinmargen">
+        <button type="submit" class="btn btn-primary" :disabled="resultado">Enviar Correo</button>
       </div>
-      <div class="form-group text-center" id="informar"></div>
+      <div class="form-group text-center" id="informar">
+        <p class="alert">{{ salida }}</p>
+      </div>
     </form>
   </div>
 </template>
@@ -46,7 +48,9 @@ export default {
       emailid: "",
       asuntoid: "",
       mssgid: "",
-      ruta: ""
+      ruta: "",
+      resultado: false,
+      salida: ""
     };
   },
   methods: {
@@ -57,8 +61,20 @@ export default {
           asuntoid: this.asuntoid,
           mssgid: this.mssgid
         })
-        .then(function(response) {
-          console.log(response);
+        .then(response => {
+          this.salida = "";
+          console.log(response.data);
+
+          let valores = response.data;
+
+          Object.entries(valores).forEach((entry) => {
+           this.salida=entry[1]+' ';
+           if (entry[0]==='success') {
+             this.resultado=true
+           }
+            
+         
+          });
         })
         .catch(function(error) {
           console.log(error);
@@ -67,3 +83,11 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.sinmargen {
+  margin-bottom: 3px !important;
+}
+
+
+</style>
