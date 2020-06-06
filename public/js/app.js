@@ -2092,6 +2092,157 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/OfertaComponent.vue?vue&type=script&lang=js&":
+/*!**************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/OfertaComponent.vue?vue&type=script&lang=js& ***!
+  \**************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: {
+    id: String,
+    titulo: String,
+    provincia_id: String,
+    region: String,
+    experiencia_id: String,
+    experiencia: String,
+    salario: String,
+    contrato_id: String,
+    contrato: String,
+    categoria_id: String,
+    categoria: String,
+    usuario: String,
+    token: String,
+    habilitado: Boolean,
+    abierto: String,
+    relato: String
+  },
+  data: function data() {
+    return {
+      descripcion: this.relato,
+      titulo_i: this.titulo,
+      ruta: ""
+    };
+  },
+  methods: {
+    inscribirse: function inscribirse() {
+      axios.post(this.ruta, {
+        id: this.id,
+        trabajador_id: this.usuario
+      }).then(function (response) {
+        console.log(response);
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    }
+  },
+  mounted: function mounted() {
+    console.log("Formulario Inscripción montado.");
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ResultadosComponent.vue?vue&type=script&lang=js&":
 /*!******************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ResultadosComponent.vue?vue&type=script&lang=js& ***!
@@ -44891,6 +45042,274 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/OfertaComponent.vue?vue&type=template&id=5638fc31&":
+/*!******************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/OfertaComponent.vue?vue&type=template&id=5638fc31& ***!
+  \******************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      attrs: {
+        id: "inscribirse",
+        ruta: _vm.route("apuntarse", { id: _vm.id })
+      },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.inscribirse($event)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "form-row" }, [
+        _c("div", { staticClass: "form-group col-sm-12" }, [
+          _c("label", { attrs: { for: "nombre" } }, [
+            _vm._v("Titulo de la Oferta Laboral")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              id: "titulo",
+              name: "titulo",
+              disabled: _vm.habilitado
+            },
+            domProps: { value: _vm.titulo },
+            on: {
+              input: function($event) {
+                _vm.titulo_i = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-row" }, [
+        _c("div", { staticClass: "form-group col-sm-6" }, [
+          _c("label", { attrs: { for: "Provincia" } }, [_vm._v("Provincia")]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              staticClass: "form-control",
+              attrs: {
+                id: "Provincia",
+                name: "Provincia",
+                disabled: _vm.habilitado
+              }
+            },
+            [
+              _c(
+                "option",
+                {
+                  attrs: { selected: "", hidden: "" },
+                  domProps: { value: _vm.provincia_id }
+                },
+                [_vm._v(_vm._s(_vm.region))]
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "fom-group col-sm-6" }, [
+          _c("label", { attrs: { for: "Experiencia" } }, [
+            _vm._v("Experiencia Mínima")
+          ]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              staticClass: "form-control",
+              attrs: {
+                id: "Experiencia",
+                name: "Experiencia",
+                disabled: _vm.habilitado
+              }
+            },
+            [
+              _c(
+                "option",
+                {
+                  attrs: { selected: "", hidden: "" },
+                  domProps: { value: _vm.experiencia_id }
+                },
+                [_vm._v(_vm._s(_vm.experiencia))]
+              )
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-row" }, [
+        _c("div", { staticClass: "form-group col-sm-6" }, [
+          _c("label", { attrs: { for: "Salario" } }, [
+            _vm._v("Salario bruto anual Jornada Completa")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            staticClass: "form-control",
+            attrs: {
+              type: "text",
+              id: "Salarioid",
+              name: "Salarioid",
+              disabled: _vm.habilitado
+            },
+            domProps: { value: _vm.salario }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "fom-group col-sm-6" }, [
+          _c("label", { attrs: { for: "contrato" } }, [
+            _vm._v("Tipo de Contrato")
+          ]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              staticClass: "form-control",
+              attrs: {
+                id: "contrato",
+                name: "contrato",
+                disabled: _vm.habilitado
+              }
+            },
+            [
+              _c(
+                "option",
+                {
+                  attrs: { selected: "", hidden: "" },
+                  domProps: { value: _vm.contrato_id }
+                },
+                [_vm._v(_vm._s(_vm.contrato))]
+              )
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-row" }, [
+        _c("div", { staticClass: "form-group col-sm-12" }, [
+          _c("label", { attrs: { for: "exp" } }, [
+            _vm._v("Descripcion de la Oferta")
+          ]),
+          _vm._v(" "),
+          _c("textarea", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.descripcion,
+                expression: "descripcion"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: {
+              id: "oferta",
+              disabled: _vm.habilitado,
+              name: "oferta",
+              rows: "8"
+            },
+            domProps: { value: _vm.descripcion },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.descripcion = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-row" }, [
+        _c("div", { staticClass: "form-group col-12" }, [
+          _c("label", { attrs: { for: "exp" } }, [
+            _vm._v("Categoria Profesional")
+          ]),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              staticClass: "form-control",
+              attrs: { name: "cat", id: "cat", disabled: _vm.habilitado }
+            },
+            [
+              _c(
+                "option",
+                {
+                  attrs: { selected: "", hidden: "" },
+                  domProps: { value: _vm.categoria_id }
+                },
+                [_vm._v(_vm._s(_vm.categoria))]
+              )
+            ]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("input", {
+        attrs: { type: "hidden", name: "usu", id: "usu" },
+        domProps: { value: _vm.usuario }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        attrs: { type: "hidden", name: "_token" },
+        domProps: { value: _vm.token }
+      }),
+      _vm._v(" "),
+      _c("input", {
+        attrs: { type: "hidden", name: "id" },
+        domProps: { value: _vm.id }
+      }),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-row my-3 fuera" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-success m-auto btn-lg",
+            attrs: {
+              type: "submit",
+              id: "botonsub",
+              disabled: _vm.abierto !== "1"
+            }
+          },
+          [_vm._v("Inscribirse")]
+        )
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "form-row" }, [
+      _c("div", { staticClass: "col-12", attrs: { id: "mensajesinsc" } })
+    ])
+  }
+]
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ResultadosComponent.vue?vue&type=template&id=7e5c27de&scoped=true&":
 /*!**********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ResultadosComponent.vue?vue&type=template&id=7e5c27de&scoped=true& ***!
@@ -57305,6 +57724,7 @@ var map = {
 	"./components/BbusquedaComponent.vue": "./resources/js/components/BbusquedaComponent.vue",
 	"./components/ExampleComponent.vue": "./resources/js/components/ExampleComponent.vue",
 	"./components/InicioComponent.vue": "./resources/js/components/InicioComponent.vue",
+	"./components/OfertaComponent.vue": "./resources/js/components/OfertaComponent.vue",
 	"./components/ResultadosComponent.vue": "./resources/js/components/ResultadosComponent.vue",
 	"./components/TestComponent.vue": "./resources/js/components/TestComponent.vue",
 	"./components/TooltipComponent.vue": "./resources/js/components/TooltipComponent.vue"
@@ -57656,6 +58076,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InicioComponent_vue_vue_type_template_id_3198b07d_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InicioComponent_vue_vue_type_template_id_3198b07d_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/components/OfertaComponent.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/OfertaComponent.vue ***!
+  \*****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _OfertaComponent_vue_vue_type_template_id_5638fc31___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./OfertaComponent.vue?vue&type=template&id=5638fc31& */ "./resources/js/components/OfertaComponent.vue?vue&type=template&id=5638fc31&");
+/* harmony import */ var _OfertaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./OfertaComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/OfertaComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _OfertaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _OfertaComponent_vue_vue_type_template_id_5638fc31___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _OfertaComponent_vue_vue_type_template_id_5638fc31___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/OfertaComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/OfertaComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/OfertaComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OfertaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./OfertaComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/OfertaComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_OfertaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/OfertaComponent.vue?vue&type=template&id=5638fc31&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/OfertaComponent.vue?vue&type=template&id=5638fc31& ***!
+  \************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OfertaComponent_vue_vue_type_template_id_5638fc31___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./OfertaComponent.vue?vue&type=template&id=5638fc31& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/OfertaComponent.vue?vue&type=template&id=5638fc31&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OfertaComponent_vue_vue_type_template_id_5638fc31___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_OfertaComponent_vue_vue_type_template_id_5638fc31___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

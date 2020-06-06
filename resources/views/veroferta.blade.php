@@ -62,7 +62,32 @@
                 </div>
                 @endif
 
-                <form id="inscribirse" method="POST" data-route="{{ route('apuntarse', $oferta->id) }}">
+                <oferta-component :id="'{{$oferta->id}}'" :titulo="'{{$oferta->titulo}}'"
+                        :provincia_id="'{{$oferta->provincia_id}}'"
+                        :region="'{{$oferta->provincia->region_name}}'"
+                        :experiencia_id="'{{$oferta->experiencia_id}}'"
+                        :experiencia="'{{$oferta->experiencia->nombre}}'"
+
+                        :salario="'{{$oferta->salario}}'"
+                        :habilitado="true"
+
+                        :contrato_id="'{{$oferta->contrato_id}}'"
+                        :contrato="'{{$oferta->contrato->nombre}}'"
+
+                        :relato="'{{$oferta->descripcion}}'"
+                        :categoria_id="'{{$oferta->categoria_id}}'"
+                        :categoria="'{{$oferta->categoria->nombre}}'"
+
+                        :usuario="'{{Auth::id()}}'"
+                        :token="'{{Session::token()}}'"
+
+                        
+                        :abierto="'{{$oferta->proceso}}'"
+                       >
+                    </oferta-component>
+
+
+           <!--     <form id="inscribirse" method="POST" data-route="{{ route('apuntarse', $oferta->id) }}">
 
                     {{ csrf_field() }}
                     <div class="form-row">
@@ -166,7 +191,7 @@
 
 
 
-                </form>
+                </form>-->
 
 
             </div>
@@ -175,11 +200,11 @@
             </section>
 
 
-            <script type="application/javascript"
+  <!--          <script type="application/javascript"
                 src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
 
             </script>
-            <script src="{{asset('js/inscribirse.js')}}" type="text/javascript"></script>
+            <script src="{{asset('js/inscribirse.js')}}" type="text/javascript"></script>-->
 
 
 
