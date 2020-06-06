@@ -79,8 +79,10 @@ class SearchController extends Controller
 
 
     public function store(Request $request, $id) {
-        
-        if (Auth::user()->rol_id===1) {
+        if (!Auth::check()) {
+            $Response=['success'=>'Necesitas hacer login para inscribirte'];
+        }
+        else if ( Auth::user()->rol_id===1) {
                 
                 $trabajador=Trabajador::where('user_id', Auth::id())->first();
                 $inscripcion= new Oferta_trabajador();

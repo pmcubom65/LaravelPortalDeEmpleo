@@ -80,7 +80,7 @@
 
                         :usuario="'{{Auth::id()}}'"
                         :token="'{{Session::token()}}'"
-
+                        :crearoferta="false"
                         
                         :abierto="'{{$oferta->proceso}}'"
                        >

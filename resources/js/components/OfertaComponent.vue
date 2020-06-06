@@ -1,5 +1,5 @@
 <template>
-  <form id="inscribirse" @submit.prevent="inscribirse" :ruta="route('apuntarse', {id : id})">
+  <form id="inscribirse" @submit.prevent="inscribirse" action="route('apuntarse', {id : id})">
  
     <div class="form-row">
       <div class="form-group col-sm-12">
@@ -79,15 +79,15 @@
     <input type="hidden" name="id" :value=" id " />
 
     <div class="form-row">
-      <div class="col-12" id="mensajesinsc"></div>
+      <div class="col-12" id="mensajesinsc"><p class="alert text-center">{{ salida }}</p></div>
     </div>
 
     <div class="form-row my-3 fuera">
-    
+     
       <button
         class="btn btn-success m-auto btn-lg"
         type="submit"
-        id="botonsub" :disabled="abierto!=='1'"
+        id="botonsub" :disabled="abierto_i!=='1'"
       >Inscribirse</button>
 
     
@@ -98,6 +98,7 @@
 <script>
 export default {
   props: {
+    crearoferta: Boolean,
     id: String,
     titulo: String,
     provincia_id: String,
@@ -123,27 +124,46 @@ export default {
     return {
       descripcion: this.relato,
       titulo_i: this.titulo,
-      ruta: ""
+      ruta: "",
+      salida: "",
+      abierto_i:this.abierto
     };
   },
   methods : {
       inscribirse : function() {
-        axios.post(this.ruta, {
+      var that=this;
+    if (!this.crearoferta) {
+    axios.post(this.ruta, {
     id: this.id,
     trabajador_id: this.usuario
   })
-  .then(function (response) {
+  .then( (response)=> {
+   
+     let valores = response.data;
     
-    console.log(response);
+    Object.entries(valores).forEach((entry) => {
+    
+        this.salida=entry[1];
+      
+    });
+  
+      this.abierto_i=1;
+    
+    
   })
   .catch(function (error) {
     
     console.log(error);
   });
+      } else {
+        console.log('que');
+      }
       }
   },
   mounted() {
     console.log("Formulario Inscripción montado.");
-  }
+  
+  },
+ 
 };
 </script>
