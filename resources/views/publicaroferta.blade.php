@@ -44,6 +44,8 @@
 
 </div>
 
-@include('crearcategoria')
+<!--@include('crearcategoria')-->
+
+<categoria-component  :id="'{{$datos->id}}'"  :token="'{{Session::token()}}'"></categoria-component>
 
 @endsection

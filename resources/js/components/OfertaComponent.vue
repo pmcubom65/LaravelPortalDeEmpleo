@@ -125,8 +125,14 @@ export default {
     abierto: String,
     relato: String,
     letrero: String,
-    provincias: Array,
-    categorias: Array
+     provincias: {
+      type: Array,
+      required: false
+    },
+     categorias: {
+      type: Array,
+      required: false
+     }
   },
 
   data() {

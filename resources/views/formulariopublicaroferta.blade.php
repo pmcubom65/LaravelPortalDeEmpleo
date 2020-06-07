@@ -109,7 +109,7 @@
 
 
                         <a href="" class="btn btn-warning btn-lg m-auto" data-toggle="modal" id="botoncatmodal"
-                            data-target="#sitiocategoriamodal">Añadir una nueva categoria si ninguna
+                            data-target="#sitiocategoriamodalcomponent">Añadir una nueva categoria si ninguna
                             coincide</a>
 
 
