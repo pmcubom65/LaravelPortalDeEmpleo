@@ -1,7 +1,7 @@
 <template>
   <div class="col-md-4 p-3">
     <h3 class="text-center">Contactanos</h3>
-    <form id="contactarid" @submit.prevent="submitEmail" :ruta="route('inicio')">
+    <form id="contactarid" @submit.prevent="submitEmail" >
       @csrf
       <div class="form-group">
         <input
@@ -43,12 +43,15 @@ export default {
   mounted() {
     console.log("Component mounted.");
   },
+  props: {
+    token: String
+  },
   data: function() {
     return {
       emailid: "",
       asuntoid: "",
       mssgid: "",
-      ruta: "",
+
       resultado: false,
       salida: ""
     };
@@ -56,10 +59,11 @@ export default {
   methods: {
     submitEmail: function() {
       axios
-        .post(this.ruta, {
+        .post(route('inicio'), {
           emailid: this.emailid,
           asuntoid: this.asuntoid,
-          mssgid: this.mssgid
+          mssgid: this.mssgid,
+         _token: this.token
         })
         .then(response => {
           this.salida = "";

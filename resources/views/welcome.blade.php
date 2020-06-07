@@ -169,7 +169,7 @@
                        <!--     @include('googlemakerwelcome')-->
 
                         </div>
-                      <inicio-component></inicio-component>
+                      <inicio-component  :token="'{{Session::token()}}'"></inicio-component>
 
                     </div>
                 </div>

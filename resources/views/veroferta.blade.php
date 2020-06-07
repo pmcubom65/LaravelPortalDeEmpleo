@@ -69,8 +69,8 @@
                         :experiencia="'{{$oferta->experiencia->nombre}}'"
 
                         :salario="'{{$oferta->salario}}'"
-                        :habilitado="true"
-
+                       
+                        :crearoferta="false"
                         :contrato_id="'{{$oferta->contrato_id}}'"
                         :contrato="'{{$oferta->contrato->nombre}}'"
 
@@ -80,13 +80,20 @@
 
                         :usuario="'{{Auth::id()}}'"
                         :token="'{{Session::token()}}'"
-                        :crearoferta="false"
                         
+                        :letrero="'Inscribirse'"
                         :abierto="'{{$oferta->proceso}}'"
+                        :habilitado="true"
+
+                        
+                        :categorias="JSON.parse('{{$categorias->toJson()}}')"
+                        :provincias="JSON.parse('{{$provincias->toJson()}}')"
+                        
+                     
                        >
                     </oferta-component>
 
-
+                    
            <!--     <form id="inscribirse" method="POST" data-route="{{ route('apuntarse', $oferta->id) }}">
 
                     {{ csrf_field() }}

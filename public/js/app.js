@@ -2054,12 +2054,14 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     console.log("Component mounted.");
   },
+  props: {
+    token: String
+  },
   data: function data() {
     return {
       emailid: "",
       asuntoid: "",
       mssgid: "",
-      ruta: "",
       resultado: false,
       salida: ""
     };
@@ -2068,10 +2070,11 @@ __webpack_require__.r(__webpack_exports__);
     submitEmail: function submitEmail() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(this.ruta, {
+      axios__WEBPACK_IMPORTED_MODULE_0___default.a.post(route('inicio'), {
         emailid: this.emailid,
         asuntoid: this.asuntoid,
-        mssgid: this.mssgid
+        mssgid: this.mssgid,
+        _token: this.token
       }).then(function (response) {
         _this.salida = "";
         console.log(response.data);
@@ -2198,8 +2201,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
+    crearoferta: Boolean,
     id: String,
     titulo: String,
     provincia_id: String,
@@ -2215,29 +2226,49 @@ __webpack_require__.r(__webpack_exports__);
     token: String,
     habilitado: Boolean,
     abierto: String,
-    relato: String
+    relato: String,
+    letrero: String,
+    provincias: Array,
+    categorias: Array
   },
   data: function data() {
     return {
       descripcion: this.relato,
       titulo_i: this.titulo,
-      ruta: ""
+      salida: "",
+      abierto_i: this.abierto
     };
   },
   methods: {
     inscribirse: function inscribirse() {
-      axios.post(this.ruta, {
-        id: this.id,
-        trabajador_id: this.usuario
-      }).then(function (response) {
-        console.log(response);
-      })["catch"](function (error) {
-        console.log(error);
-      });
+      var _this = this;
+
+      var that = this;
+
+      if (!this.crearoferta) {
+        axios.post(route("apuntarse", {
+          id: this.id
+        }), {
+          id: this.id,
+          trabajador_id: this.usuario,
+          _token: this.token
+        }).then(function (response) {
+          var valores = response.data;
+          Object.entries(valores).forEach(function (entry) {
+            _this.salida = entry[1];
+          });
+          _this.abierto_i = 1;
+        })["catch"](function (error) {
+          console.log(error);
+        });
+      } else {
+        console.log("que");
+      }
     }
   },
   mounted: function mounted() {
     console.log("Formulario Inscripción montado.");
+    console.log(this.provincias);
   }
 });
 
@@ -44920,7 +44951,7 @@ var render = function() {
     _c(
       "form",
       {
-        attrs: { id: "contactarid", ruta: _vm.route("inicio") },
+        attrs: { id: "contactarid" },
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -45060,10 +45091,7 @@ var render = function() {
   return _c(
     "form",
     {
-      attrs: {
-        id: "inscribirse",
-        ruta: _vm.route("apuntarse", { id: _vm.id })
-      },
+      attrs: { id: "inscribirse" },
       on: {
         submit: function($event) {
           $event.preventDefault()
@@ -45118,8 +45146,23 @@ var render = function() {
                   domProps: { value: _vm.provincia_id }
                 },
                 [_vm._v(_vm._s(_vm.region))]
-              )
-            ]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.provincias, function(item) {
+                return _c(
+                  "option",
+                  { key: item.id, domProps: { value: item.id } },
+                  [
+                    _vm._v(
+                      "\n                 " +
+                        _vm._s(item.region_name) +
+                        "\n                 \n  "
+                    )
+                  ]
+                )
+              })
+            ],
+            2
           )
         ]),
         _vm._v(" "),
@@ -45254,8 +45297,23 @@ var render = function() {
                   domProps: { value: _vm.categoria_id }
                 },
                 [_vm._v(_vm._s(_vm.categoria))]
-              )
-            ]
+              ),
+              _vm._v(" "),
+              _vm._l(_vm.categorias, function(item) {
+                return _c(
+                  "option",
+                  { key: item.id, domProps: { value: item.id } },
+                  [
+                    _vm._v(
+                      "\n                 " +
+                        _vm._s(item.nombre) +
+                        "\n                 \n  "
+                    )
+                  ]
+                )
+              })
+            ],
+            2
           )
         ])
       ]),
@@ -45275,7 +45333,13 @@ var render = function() {
         domProps: { value: _vm.id }
       }),
       _vm._v(" "),
-      _vm._m(0),
+      _c("div", { staticClass: "form-row" }, [
+        _c("div", { staticClass: "col-12", attrs: { id: "mensajesinsc" } }, [
+          _c("p", { staticClass: "alert text-center" }, [
+            _vm._v(_vm._s(_vm.salida))
+          ])
+        ])
+      ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-row my-3 fuera" }, [
         _c(
@@ -45285,25 +45349,16 @@ var render = function() {
             attrs: {
               type: "submit",
               id: "botonsub",
-              disabled: _vm.abierto !== "1"
+              disabled: _vm.abierto_i !== "1"
             }
           },
-          [_vm._v("Inscribirse")]
+          [_vm._v(_vm._s(_vm.letrero))]
         )
       ])
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-row" }, [
-      _c("div", { staticClass: "col-12", attrs: { id: "mensajesinsc" } })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
