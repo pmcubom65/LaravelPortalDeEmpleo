@@ -11,8 +11,11 @@ window.Vue = require('vue');
 import VTooltip from 'v-tooltip'
 import route from 'ziggy'
 import { Ziggy } from './ziggy'
+import store from './store'
+
 
 Vue.use(VTooltip)
+
 
 Vue.mixin({
     methods: {
@@ -40,6 +43,9 @@ Vue.mixin({
 
 export const bus=new Vue()
 
+
+
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    store
 });

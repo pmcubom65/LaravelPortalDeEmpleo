@@ -63,7 +63,7 @@
         </form>
     </div>
 </div>
-<script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+<!--<script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
 
 </script>
-<script src="{{asset('js/categoria.js')}}" type="text/javascript"></script>
+<script src="{{asset('js/categoria.js')}}" type="text/javascript"></script>-->

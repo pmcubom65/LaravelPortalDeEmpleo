@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 //use App\Mail\EntrevistaMail;
 //use Illuminate\Support\Facades\Mail;
-//use App\Trabajador;
+use App\Categoria;
 
 
 /*
@@ -31,6 +31,13 @@ Route::post('/', 'InicioController@mail' )->name('inicio');
 
 
 Auth::routes();
+
+
+Route::get('/categorias', function(){
+  $Response=Categoria::all();
+  return response()->json($Response,200);
+
+})->name('categorias');
 
 
 

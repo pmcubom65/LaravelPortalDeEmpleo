@@ -83,12 +83,10 @@
                         
                         :letrero="'Inscribirse'"
                         :abierto="'{{$oferta->proceso}}'"
+                        :necesitocategoria="false"
                         :habilitado="true"
 
-                        
-                        :categorias="JSON.parse('{{$categorias->toJson()}}')"
-                        :provincias="JSON.parse('{{$provincias->toJson()}}')"
-                        
+                                     
                      
                        >
                     </oferta-component>

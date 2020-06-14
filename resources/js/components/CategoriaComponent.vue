@@ -6,6 +6,7 @@
     tabindex="-1"
     role="dialog"
     aria-hidden="true"
+   
   >
     <div class="modal-dialog" role="document">
       <form id="categoria-data" @submit.prevent="crearcategoria">
@@ -43,6 +44,12 @@
                 >Descripcion de la Categoria</textarea>
               </div>
             </div>
+
+
+
+
+
+
             <div class="form-row text-center">
               <div class="form-group col-12 mx-auto">
                 <div id="mismensajes2">
@@ -51,11 +58,22 @@
               </div>
             </div>
           </div>
-          <div class="modal-footer" id="botoncat"  v-show="mostrarbotoncat">
-            <button class="btn btn-success m-auto" type="submit">
+          <div class="modal-footer" id="botoncat" >
+            <button class="btn btn-success m-auto" type="submit"  v-show="mostrarbotoncat">
               Guardar
               Categoria
             </button>
+                  
+                 <select
+          name="categoria"
+          id="categoria"
+          class="form-control"
+        >
+          <option  selected hidden class="text-center">Categorias Existentes</option>
+          <option v-for="item in categorias" v-bind:key="item.id" :value="item.id">{{item.nombre}}</option>
+        </select>
+
+
           </div>
         </div>
       </form>
@@ -64,6 +82,8 @@
 </template>
 
 <script>
+
+
 export default {
   props: {
     token: String,
@@ -74,11 +94,16 @@ export default {
       nombre: "",
       descripcion: "",
       salida: "",
-      mostrarbotoncat: true
+      mostrarbotoncat: true,
+      categoriacreada: []
     };
   },
   methods: {
+
+
     crearcategoria: function() {
+    
+      
       axios
         .post(route("oferta", { id: this.id }), {
           catname: this.nombre,
@@ -88,19 +113,39 @@ export default {
         .then(response => {
           console.log(response);
           let valores = response.data;
-
+          let key;
+         
           Object.entries(valores).forEach(entry => {
+            key=entry[0]
             this.salida = entry[1].mssg;
+            this.categoriacreada = {
+              id : entry[1].elid,
+              name: entry[1].elname
+            }
           });
-          this.mostrarbotoncat=false
+          if (key==='success'){
+              this.mostrarbotoncat=false
+               this.$store.dispatch('getCategorias')
+             
+          }else {
+            this.salida="Todos los campos se tienen que rellenar";
+          }
+         
         })
         .catch(function(error) {
           console.log(error);
         });
+            
     }
   },
   mounted() {
     console.log("Component mounted.");
+    this.$store.dispatch('getCategorias')
+  },
+  computed: {
+    categorias: function() {
+      return this.$store.state.categorias
+    }
   }
 };
 </script>
