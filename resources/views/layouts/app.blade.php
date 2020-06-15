@@ -69,9 +69,9 @@
                             @endforeach
                         </div>
 
-                    </li>-->
-                    <dropdown-component  :lista="JSON.parse('{{$empresas->toJson()}}')" :titulo="'Empresas Colaboradoras'" :empresa="true">
-                    </dropdown-component>
+                    </li>
+                    <dropdownempresa-component   :titulo="'Empresas Colaboradoras'"  >
+                    </dropdown-component>-->
 
                     <li class="nav-item">
                         <a class="nav-link" href="/#buscar">Buscar Trabajo</a>
@@ -93,7 +93,7 @@
 
                     </li>-->
                   
-                    <dropdown-component  :lista="JSON.parse('{{$categorias->toJson()}}')" :titulo="'Categorias Profesionales'" :empresa="false">
+                    <dropdowncategoria-component  :titulo="'Categorias Profesionales'" >
                     </dropdown-component>
 
 
