@@ -63,7 +63,7 @@
                         <div class="row">
                             <div class="col  float-left">
                                 <div class="card float-right" style="width: 18rem;">
-                                    <img src="https://i.picsum.photos/id/1035/300/300.jpg" class="card-img-top"
+                                    <img src="https://picsum.photos/id/1035/300/300" class="card-img-top"
                                         alt="...">
 
                                     <div class="card-body">
@@ -94,7 +94,7 @@
 
                             <div class="col  float-right">
                                 <div class="card float-left" style="width: 18rem;">
-                                    <img src="https://i.picsum.photos/id/1078/300/300.jpg" class="card-img-top"
+                                    <img src="https://picsum.photos/id/1078/300/300" class="card-img-top"
                                         alt="...">
                                     <div class="card-body">
                                         <h5 class="card-title">Soy una empresa</h5>

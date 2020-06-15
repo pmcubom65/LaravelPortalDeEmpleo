@@ -39,9 +39,8 @@
   
     <example-component></example-component>
 
- 
     
-        <nav class="navbar navbar-expand-md fixed-top ">
+     <nav class="navbar navbar-expand-md fixed-top ">
             <button type="button" class="navbar-toggler ml-auto" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -56,7 +55,7 @@
                     <li class="nav-item">
                         <a class="nav-link " href="/#informacion">Ayuda</a>
                     </li>
-                    <li class="nav-item dropdown">
+                 <!--   <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toogle " aria-expanded="false" data-toggle="dropdown"
                             data-target="dt2" href="#">
                             Empresas Colaboradoras
@@ -70,11 +69,14 @@
                             @endforeach
                         </div>
 
-                    </li>
+                    </li>-->
+                    <dropdown-component  :lista="JSON.parse('{{$empresas->toJson()}}')" :titulo="'Empresas Colaboradoras'" :empresa="true">
+                    </dropdown-component>
+
                     <li class="nav-item">
                         <a class="nav-link" href="/#buscar">Buscar Trabajo</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <!--<li class="nav-item dropdown">
                         <a class="nav-link dropdown-toogle " aria-expanded="false" data-toggle="dropdown"
                             data-target="dt" href="#">
                             Categorias Profesionales
@@ -87,10 +89,14 @@
                                 data-content="{{$categoria->descripcion}}">{{$categoria->nombre}}</a>
 
                             @endforeach
-                            <!-- Content for Popover #1 -->
+                         
 
-                    </li>
-                    <!-- Authentication Links -->
+                    </li>-->
+                  
+                    <dropdown-component  :lista="JSON.parse('{{$categorias->toJson()}}')" :titulo="'Categorias Profesionales'" :empresa="false">
+                    </dropdown-component>
+
+
                 </ul>
                 <ul class="navbar-nav  ml-auto ">
                     @guest
@@ -127,8 +133,9 @@
 
 
 
-
+       
         </nav>
+        
         <div id="jumbotron" class="jumbotron jumbotron-fluid text-white py-xs-20 mt-xs-20">
 
             <div class="container">
@@ -162,14 +169,14 @@
 
             <div class="row w-100 justify-content-center align-items-center mx-0">
                 @yield('content')
-  
+              
             </div>
             
         </div>
         
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+ <!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
     $(document).ready(function() {
        
    
@@ -184,7 +191,7 @@
 
             });
         });
-    </script>
+    </script>-->
 
 @include('barras.footer')
 
