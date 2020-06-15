@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 //use App\Mail\EntrevistaMail;
 //use Illuminate\Support\Facades\Mail;
 use App\Categoria;
+use App\Empresa;
 
 
 /*
@@ -39,6 +40,26 @@ Route::get('/categorias', function(){
 
 })->name('categorias');
 
+
+Route::get('/empresas', function(){
+  $Response=Empresa::all();
+  return response()->json($Response,200);
+
+})->name('empresas');
+
+
+Route::get('/empresas/{id}', function($id){
+  $Response=Empresa::find($id);
+  return response()->json($Response,200);
+
+})->name('empresaid');
+
+
+Route::get('/categorias/{id}', function($id){
+  $Response=Categoria::find($id);
+  return response()->json($Response,200);
+
+})->name('categoriaid');
 
 
 Route::get('/search', 'SearchController@index');
