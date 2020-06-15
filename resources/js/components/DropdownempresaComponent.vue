@@ -11,7 +11,7 @@
       {{titulo}}
       <span class="caret"></span>
     </a>
-    <div class="dropdown-menu" aria-labelledby="dt2"  v-if="empresa">
+    <div class="dropdown-menu" aria-labelledby="dt2" >
       <a 
         type="button"
         v-for="item in lista"
@@ -27,20 +27,7 @@
       >{{item.nombre}}</a>
     </div>
 
-        <div class="dropdown-menu" aria-labelledby="dt2"  v-else>
-      <a 
-        type="button"
-        v-for="item in lista"
-        :key="item.id"
-        class="dropdown-item"
-        tabindex="0"
-        role="button"
-       
-        :title="item.descripcion"
-      data-toggle="modal" data-target="#componentmodal"
-      @click="llamomodal(item, empresa)"
-      >{{item.nombre}}</a>
-    </div>
+ 
 
 
 <modalbarra-component :titulo="modaltitulo" :cuerpo="cuerpo" :empresa="esempresa" ></modalbarra-component>
@@ -87,4 +74,5 @@ export default {
 .dropdown-item {
   background-color: indigo;
 }
+
 </style>

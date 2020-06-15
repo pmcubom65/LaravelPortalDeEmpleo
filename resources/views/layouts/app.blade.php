@@ -93,7 +93,7 @@
 
                     </li>-->
                   
-                    <dropdowncategoria-component  :titulo="'Categorias Profesionales'" >
+                    <dropdowncategoria-component  :titulo="'Categorias Profesionales'">
                     </dropdown-component>
 
 

@@ -2154,8 +2154,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
-    titulo: String,
-    empresa: Boolean
+    titulo: String
   },
   data: function data() {
     return {
@@ -2174,14 +2173,11 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    llamomodal: function llamomodal(item, empresa) {
+    llamomodal: function llamomodal(item) {
       console.log(item);
-
-      if (empresa) {} else {
-        this.modaltitulo = item.nombre;
-        this.cuerpo = item.descripcion;
-        this.esempresa = false;
-      }
+      this.modaltitulo = item.nombre;
+      this.cuerpo = item.descripcion;
+      this.esempresa = false;
     }
   }
 });
@@ -2197,19 +2193,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -7444,7 +7427,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".dropdown-item[data-v-6bee0806] {\n  background-color: indigo;\n}", ""]);
+exports.push([module.i, ".dropdown-item[data-v-6bee0806] {\n  background-color: indigo;\n}\n.scrollable[data-v-6bee0806] {\n  overflow-y: scroll;\n  max-height: 300px;\n}", ""]);
 
 // exports
 
@@ -45742,7 +45725,10 @@ var render = function() {
       _vm._v(" "),
       _c(
         "div",
-        { staticClass: "dropdown-menu", attrs: { "aria-labelledby": "dt2" } },
+        {
+          staticClass: "dropdown-menu  scrollable",
+          attrs: { "aria-labelledby": "dt2" }
+        },
         _vm._l(_vm.lista, function(item) {
           return _c(
             "a",
@@ -45759,7 +45745,7 @@ var render = function() {
               },
               on: {
                 click: function($event) {
-                  return _vm.llamomodal(item, _vm.empresa)
+                  return _vm.llamomodal(item)
                 }
               }
             },
@@ -45823,69 +45809,34 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _vm.empresa
-        ? _c(
-            "div",
+      _c(
+        "div",
+        { staticClass: "dropdown-menu", attrs: { "aria-labelledby": "dt2" } },
+        _vm._l(_vm.lista, function(item) {
+          return _c(
+            "a",
             {
-              staticClass: "dropdown-menu",
-              attrs: { "aria-labelledby": "dt2" }
+              key: item.id,
+              staticClass: "dropdown-item ",
+              attrs: {
+                type: "button",
+                tabindex: "0",
+                role: "button",
+                title: item.apellidos,
+                "data-toggle": "modal",
+                "data-target": "#componentmodal"
+              },
+              on: {
+                click: function($event) {
+                  return _vm.llamomodal(item, _vm.empresa)
+                }
+              }
             },
-            _vm._l(_vm.lista, function(item) {
-              return _c(
-                "a",
-                {
-                  key: item.id,
-                  staticClass: "dropdown-item ",
-                  attrs: {
-                    type: "button",
-                    tabindex: "0",
-                    role: "button",
-                    title: item.apellidos,
-                    "data-toggle": "modal",
-                    "data-target": "#componentmodal"
-                  },
-                  on: {
-                    click: function($event) {
-                      return _vm.llamomodal(item, _vm.empresa)
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(item.nombre))]
-              )
-            }),
-            0
+            [_vm._v(_vm._s(item.nombre))]
           )
-        : _c(
-            "div",
-            {
-              staticClass: "dropdown-menu",
-              attrs: { "aria-labelledby": "dt2" }
-            },
-            _vm._l(_vm.lista, function(item) {
-              return _c(
-                "a",
-                {
-                  key: item.id,
-                  staticClass: "dropdown-item",
-                  attrs: {
-                    type: "button",
-                    tabindex: "0",
-                    role: "button",
-                    title: item.descripcion,
-                    "data-toggle": "modal",
-                    "data-target": "#componentmodal"
-                  },
-                  on: {
-                    click: function($event) {
-                      return _vm.llamomodal(item, _vm.empresa)
-                    }
-                  }
-                },
-                [_vm._v(_vm._s(item.nombre))]
-              )
-            }),
-            0
-          ),
+        }),
+        0
+      ),
       _vm._v(" "),
       _c("modalbarra-component", {
         attrs: {
@@ -46188,7 +46139,7 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "btn btn-secondary",
+          staticClass: "btn btn-secondary  mx-auto",
           attrs: { type: "button", "data-dismiss": "modal" }
         },
         [_vm._v("Close")]

@@ -12,7 +12,7 @@
       <span class="caret"></span>
     </a>
 
-        <div class="dropdown-menu" aria-labelledby="dt2"  >
+        <div class="dropdown-menu  scrollable" aria-labelledby="dt2"  >
       <a 
         type="button"
         v-for="item in lista"
@@ -23,7 +23,7 @@
        
         :title="item.descripcion"
       data-toggle="modal" data-target="#componentmodal"
-      @click="llamomodal(item, empresa)"
+      @click="llamomodal(item)"
       >{{item.nombre}}</a>
     </div>
 
@@ -37,8 +37,7 @@ export default {
  
   props: {
    
-    titulo: String,
-    empresa: Boolean
+    titulo: String
   },
   data(){
     return {
@@ -58,15 +57,13 @@ export default {
     }
   },
   methods: {
-    llamomodal: function(item, empresa) {
+    llamomodal: function(item) {
     console.log(item)
-    if (empresa){
-
-    }else {
+   
       this.modaltitulo=item.nombre;
       this.cuerpo=item.descripcion;
       this.esempresa=false;
-    }
+    
     }
 
   }
@@ -77,5 +74,9 @@ export default {
 <style lang="scss" scoped>
 .dropdown-item {
   background-color: indigo;
+}
+.scrollable {
+  overflow-y:scroll;
+   max-height:300px;
 }
 </style>
