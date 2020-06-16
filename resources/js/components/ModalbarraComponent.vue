@@ -11,25 +11,26 @@
       </div>
       <div class="modal-body">
 <div v-if="generarcuerpo" >
-  <h4>Numero de empleados: {{numero}} </h4>
+  <h4>Numero de empleados: {{numero}} {{objeto}} </h4>
         <GmapMap 
-  :center="center"
+  :center="{ lat: parseFloat(this.objeto.lat), lng: parseFloat(this.objeto.lng) }"
   :zoom="7"
   map-type-id="roadmap"
   style="width: 450px; height: 300px"
 >
   <GmapMarker
-    :key="index"
-    v-for="(m, index) in markers"
-    :position="m.position"
+    
+   
+    :position="{ lat: parseFloat(this.objeto.lat), lng: parseFloat(this.objeto.lng) }"
     :clickable="true"
     :draggable="true"
-    @click="center=m.position"
+    @click="center=position"
 
 
 
 
   />
+   
 </GmapMap>
 </div>
 
@@ -64,7 +65,7 @@
             numero: Number,
             latitud: Number,
             longitud: Number,
-
+            objeto: Object
           
         },
     
@@ -85,12 +86,12 @@
           return {
             markers: [
                 {
-                    position:  { lat: 45.508, lng: -73.587 },
+                    position:  { lat:  parseFloat(this.objeto.lat), lng:  parseFloat(this.objeto.lng) },
                     infoText: 'daddaasfdfaddf'
                 },
            
             ],
-           center: { lat: 45.508, lng: -73.587 },
+         
           }
         }
     }
