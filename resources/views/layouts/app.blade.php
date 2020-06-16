@@ -71,7 +71,7 @@
 
                     </li>-->
                     <dropdown-component   :titulo="'Empresas Colaboradoras'" 
-                    :titulo2="'Categorias Profesionales'"  >
+                    :titulo2="'Categorias Profesionales'" >
                     </dropdown-component>
 
                   <!--  <li class="nav-item">

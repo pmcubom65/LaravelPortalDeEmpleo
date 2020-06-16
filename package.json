@@ -26,6 +26,7 @@
         "jquery": "^3.5.1",
         "load-google-maps-api": "^2.0.2",
         "v-tooltip": "^2.0.3",
+        "vue2-google-maps": "^0.10.7",
         "vuex": "^3.4.0"
     }
 }

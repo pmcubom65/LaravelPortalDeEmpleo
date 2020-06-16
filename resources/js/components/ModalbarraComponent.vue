@@ -10,7 +10,36 @@
         </button>
       </div>
       <div class="modal-body">
-        {{ cuerpo }}
+<div v-if="generarcuerpo" >
+  <h4>Numero de empleados: {{numero}} </h4>
+        <GmapMap 
+  :center="center"
+  :zoom="7"
+  map-type-id="roadmap"
+  style="width: 450px; height: 300px"
+>
+  <GmapMarker
+    :key="index"
+    v-for="(m, index) in markers"
+    :position="m.position"
+    :clickable="true"
+    :draggable="true"
+    @click="center=m.position"
+
+
+
+
+  />
+</GmapMap>
+</div>
+
+  <div v-else>
+
+    {{ cuerpo }}
+  </div>
+
+
+        
       </div>
       <div class="modal-footer col text-center">
         <button type="button" class="btn btn-secondary  mx-auto" data-dismiss="modal">Close</button>
@@ -31,10 +60,38 @@
         props: {
             titulo: String,
             cuerpo: String,
-            empresa: Boolean
+            empresa: Boolean,
+            numero: Number,
+            latitud: Number,
+            longitud: Number,
+
+          
         },
+    
         mounted() {
             console.log('Modal barra component montado')
+            
+        },
+        computed: {
+          generarcuerpo: function(){
+            return this.empresa;
+          },
+
+          
+        },
+        data() {
+         
+    
+          return {
+            markers: [
+                {
+                    position:  { lat: 45.508, lng: -73.587 },
+                    infoText: 'daddaasfdfaddf'
+                },
+           
+            ],
+           center: { lat: 45.508, lng: -73.587 },
+          }
         }
     }
 </script>
