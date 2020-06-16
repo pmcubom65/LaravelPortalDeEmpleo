@@ -1,3 +1,4 @@
 export default {
-    categorias: []
+    categorias: [],
+    empresas: []
 }

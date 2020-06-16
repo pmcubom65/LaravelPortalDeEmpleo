@@ -9,3 +9,13 @@ export const getCategorias=({commit})=>{
     })
 
 }
+
+
+
+export const getEmpresas=({commit})=>{
+    axios.get(route('empresas')).
+    then(response=>{
+        commit('SET_EMPRESAS', response.data);
+    })
+
+}

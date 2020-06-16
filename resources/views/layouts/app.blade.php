@@ -37,7 +37,7 @@
     <div id="app">
 
   
-    <example-component></example-component>
+   
 
     
      <nav class="navbar navbar-expand-md fixed-top ">
@@ -48,14 +48,14 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ">
+             <!--     <ul class="navbar-nav ">
                     <li class="nav-item">
                         <a class="nav-link " href="/#inicio" active>Inicio</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link " href="/#informacion">Ayuda</a>
                     </li>
-                 <!--   <li class="nav-item dropdown">
+                  <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toogle " aria-expanded="false" data-toggle="dropdown"
                             data-target="dt2" href="#">
                             Empresas Colaboradoras
@@ -69,13 +69,14 @@
                             @endforeach
                         </div>
 
-                    </li>
-                    <dropdownempresa-component   :titulo="'Empresas Colaboradoras'"  >
-                    </dropdown-component>-->
+                    </li>-->
+                    <dropdown-component   :titulo="'Empresas Colaboradoras'" 
+                    :titulo2="'Categorias Profesionales'"  >
+                    </dropdown-component>
 
-                    <li class="nav-item">
+                  <!--  <li class="nav-item">
                         <a class="nav-link" href="/#buscar">Buscar Trabajo</a>
-                    </li>
+                    </li>-->
                     <!--<li class="nav-item dropdown">
                         <a class="nav-link dropdown-toogle " aria-expanded="false" data-toggle="dropdown"
                             data-target="dt" href="#">
@@ -91,10 +92,10 @@
                             @endforeach
                          
 
-                    </li>-->
+                    </li>
                   
                     <dropdowncategoria-component  :titulo="'Categorias Profesionales'">
-                    </dropdown-component>
+                    </dropdown-component>-->
 
 
                 </ul>
