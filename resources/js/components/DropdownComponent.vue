@@ -60,7 +60,7 @@
       </div>
 
       <modalbarra-component :titulo= "modaltitulo" :cuerpo= "cuerpo" :empresa= "esempresa"
-       :numero= "numeroempleados"  :latitud= "lat"  :longitud= "long" :objeto="latlong"></modalbarra-component>
+         :objeto="latlong" ></modalbarra-component>
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/#buscar">Buscar Trabajo</a>
@@ -80,10 +80,10 @@ export default {
       modaltitulo: "",
       cuerpo: "",
       esempresa: true,
-      numeroempleados:0,
-      lat:0,
-      long:0,
-      latlong: { lat: 0, lng: 0 }
+     
+     
+ 
+      latlong: { lat: 0, lng: 0,   numeroempleados:0,  domicilio: ""}
       
     };
   },
@@ -107,9 +107,8 @@ export default {
       if (empresa) {
         this.modaltitulo = item.nombre;
         this.cuerpo = item.nombre;
-        this.numeroempleados= new Number(item.numero_empleados);
-        this.lat= new Number(item.latitud);
-        this.long= new Number(item.longitud);
+        this.latlong.numeroempleados= new Number(item.numero_empleados);
+        this.latlong.domicilio=item.domicilio;
         this.latlong.lat=new Number(item.latitud);
         this.latlong.lng=new Number(item.longitud);
 

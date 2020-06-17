@@ -1,21 +1,6 @@
 <template>
-<!-- Modal -->
-<div class="modal fade" id="componentmodal"  data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2 class="modal-title" id="exampleModalLongTitle">{{ titulo }}</h2>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-<div v-if="generarcuerpo" >
-  <h3>Numero de empleados: {{objeto.numeroempleados}}  </h3>
-
-
-
-  <GmapMap 
+<div>
+      <GmapMap 
         
   :center="{ lat: parseFloat(this.objeto.lat), lng: parseFloat(this.objeto.lng) }"
   :zoom="7"
@@ -49,28 +34,13 @@
 
   
     
-    ><p>{{objeto.domicilio}}</p></gmap-info-window>
+    ><p class="mensaje">{{objeto.domicilio}}</p></gmap-info-window>
    
 </GmapMap>
-
-</div>
-
-  <div v-else>
-
-    {{ cuerpo }}
-  </div>
-
-
-        
-      </div>
-      <div class="modal-footer col text-center">
-        <button type="button" class="btn btn-secondary btn-lg  mx-auto" data-dismiss="modal">Cerrar</button>
-        
-      </div>
-    </div>
-  </div>
 </div>
 </template>
+
+
 
 <script>
 
@@ -80,11 +50,7 @@
  
         },
         props: {
-            titulo: String,
-            cuerpo: String,
-            empresa: Boolean,
-            numero: Number,
-            empdom: String,
+           
             objeto: Object
           
         },
@@ -99,17 +65,11 @@
       
     
         mounted() {
-            console.log('Modal barra component montado')
+            console.log('Mapa montado')
             
         },
         computed: {
-          generarcuerpo: function(){
-            return this.empresa;
-          },
-
-          getObjeto: function() {
-            return this.objeto;
-          }
+         
 
           
         },
@@ -135,3 +95,9 @@
     }
 </script>
 
+
+<style lang="scss" scoped>
+.mensaje {
+    color: blue;
+}
+</style>
