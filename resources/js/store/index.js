@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import * as VueGoogleMaps from 'vue2-google-maps'
 
+
 Vue.use(Vuex)
 
 import state from './state';

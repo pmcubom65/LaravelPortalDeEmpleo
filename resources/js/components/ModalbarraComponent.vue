@@ -12,7 +12,11 @@
       <div class="modal-body">
 <div v-if="generarcuerpo" >
   <h4>Numero de empleados: {{numero}} {{objeto}} </h4>
-        <GmapMap 
+
+
+
+  <GmapMap 
+        
   :center="{ lat: parseFloat(this.objeto.lat), lng: parseFloat(this.objeto.lng) }"
   :zoom="7"
   map-type-id="roadmap"
@@ -24,14 +28,31 @@
     :position="{ lat: parseFloat(this.objeto.lat), lng: parseFloat(this.objeto.lng) }"
     :clickable="true"
     :draggable="true"
-    @click="center=position"
-
-
-
+   @click="openWindow"
 
   />
+
+
+      <gmap-info-window 
+        @closeclick="window_open=false" 
+        :opened="window_open" 
+        :position="{ lat: parseFloat(this.objeto.lat), lng: parseFloat(this.objeto.lng) }"
+        :content="infocontent"
+
+       
+        :options="{
+          pixelOffset: {
+            width: 0,
+            height: -35
+          }
+        }"
+
+  
+    
+    ><p>{{objeto}}</p></gmap-info-window>
    
 </GmapMap>
+
 </div>
 
   <div v-else>
@@ -68,6 +89,15 @@
             objeto: Object
           
         },
+        methods: {
+        openWindow () {
+            this.window_open = true
+            
+        }
+         
+},
+          
+      
     
         mounted() {
             console.log('Modal barra component montado')
@@ -78,19 +108,28 @@
             return this.empresa;
           },
 
+          getObjeto: function() {
+            return this.objeto;
+          }
+
           
         },
         data() {
          
     
           return {
+           
             markers: [
                 {
-                    position:  { lat:  parseFloat(this.objeto.lat), lng:  parseFloat(this.objeto.lng) },
+                    position:  { lat:  parseFloat(this.$props.objeto.lat), lng:  parseFloat(this.$props.objeto.lng) },
                     infoText: 'daddaasfdfaddf'
                 },
            
             ],
+            info_marker: null,
+            infocontent: 'hola que tal',
+           
+            window_open: false
          
           }
         }
