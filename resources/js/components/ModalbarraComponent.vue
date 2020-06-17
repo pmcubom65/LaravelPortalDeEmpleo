@@ -14,44 +14,8 @@
   <h3>Numero de empleados: {{objeto.numeroempleados}}  </h3>
 
 
+<mapa-component :objeto="objeto"></mapa-component>
 
-  <GmapMap 
-        
-  :center="{ lat: parseFloat(this.objeto.lat), lng: parseFloat(this.objeto.lng) }"
-  :zoom="7"
-  map-type-id="roadmap"
-  style="width: 450px; height: 300px"
->
-  <GmapMarker
-    
-   
-    :position="{ lat: parseFloat(this.objeto.lat), lng: parseFloat(this.objeto.lng) }"
-    :clickable="true"
-    :draggable="true"
-   @click="openWindow"
-
-  />
-
-
-      <gmap-info-window 
-        @closeclick="window_open=false" 
-        :opened="window_open" 
-        :position="{ lat: parseFloat(this.objeto.lat), lng: parseFloat(this.objeto.lng) }"
-        :content="infocontent"
-
-       
-        :options="{
-          pixelOffset: {
-            width: 0,
-            height: -35
-          }
-        }"
-
-  
-    
-    ><p>{{objeto.domicilio}}</p></gmap-info-window>
-   
-</GmapMap>
 
 </div>
 

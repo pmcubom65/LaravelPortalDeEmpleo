@@ -34,7 +34,7 @@
 
   
     
-    ><p class="mensaje">{{objeto.domicilio}}</p></gmap-info-window>
+    ><p class="font-weight-bold mensaje" >{{objeto.domicilio}}</p></gmap-info-window>
    
 </GmapMap>
 </div>
