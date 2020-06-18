@@ -17,7 +17,9 @@
         {{titulo}}
         <span class="caret"></span>
       </a>
+      
       <div class="dropdown-menu scrollable" aria-labelledby="dt2">
+        
         <a
           type="button"
           v-for="item in lista"
@@ -56,19 +58,52 @@
           data-toggle="modal"
           data-target="#componentmodal"
           @click="llamomodal(item, false)"
+        
         >{{item.nombre}}</a>
       </div>
 
-      <modalbarra-component :titulo= "modaltitulo" :cuerpo= "cuerpo" :empresa= "esempresa"
-         :objeto="latlong" ></modalbarra-component>
+  
     </li>
     <li class="nav-item">
       <a class="nav-link" href="/#buscar">Buscar Trabajo</a>
     </li>
+
+
+                <li class="izquierda">
+                        <input type="text" list="lasempresas" v-model="inputemp"  placeholder="Buscador Empresas"
+                        :disabled="disableemp" @click="activaemp">
+                        <datalist id="lasempresas">
+                            <option v-for="item in lista"  :key="item.id" :value="item.nombre" ></option>
+                            
+                        </datalist>
+                    </li>
+                    <li>
+                          <input type="text" v-model="inputcat" list="lascategorias" placeholder="Buscador de Categorias"
+                          :disabled="disablecat" @click="activacat">
+                        <datalist id="lascategorias">
+                            <option  v-for="item in lista2"  :key="item.id"  :value="item.nombre"></option>
+                            
+                        </datalist>
+
+                    </li>
+                    <li>
+
+                      <button class="btn btn-primary btn-sm" @click="busqueda">Buscar</button>
+                    </li>
+                    <li>
+
+                      <button class="btn btn-danger btn-sm" @click="volver">Borrar</button>
+                    </li>
+
+      
+      <modalbarra-component :titulo= "modaltitulo" :cuerpo= "cuerpo" :empresa= "esempresa"
+         :objeto="latlong" ></modalbarra-component>
+
   </ul>
 </template>
 
 <script>
+
 export default {
   props: {
     titulo: String,
@@ -80,9 +115,10 @@ export default {
       modaltitulo: "",
       cuerpo: "",
       esempresa: true,
-     
-     
- 
+     inputemp: '',
+     inputcat: '',
+     disablecat: false,
+     disableemp: false,
       latlong: { lat: 0, lng: 0,   numeroempleados:0,  domicilio: ""}
       
     };
@@ -98,12 +134,22 @@ export default {
     },
     lista2() {
       return this.$store.state.categorias;
+    },
+    getCategoria() {
+      console.log(this.inputcat)
+         return this.$store.getters.getCategoriaById(this.inputcat);
+    },
+    getEmpresa() {
+      console.log(this.inputemp)
+          return this.$store.getters.getEmpresaById(this.inputemp);
     }
   },
 
   methods: {
+ 
+
     llamomodal: function(item, empresa) {
-      
+      console.log(item);
       if (empresa) {
         this.modaltitulo = item.nombre;
         this.cuerpo = item.nombre;
@@ -119,7 +165,33 @@ export default {
         this.cuerpo = item.descripcion;
         this.esempresa = false;
       }
+    },
+
+
+    activacat: function() {
+      this.disableemp=true;
+      
+    },
+
+    activaemp: function() {
+      this.disablecat=true;
+      
+    },
+    volver: function() {
+      this.disableemp=false;
+        this.disablecat=false;
+    },
+    busqueda: function() {
+      if (this.disableemp) {
+        console.log(this.getCategoria)
+        console.log(this.getEmpresa)
+      }else {
+        console.log(this.getEmpresa)
+          console.log(this.getCategoria)
+      }
     }
+
+
   }
 };
 </script>
@@ -133,5 +205,11 @@ export default {
 .scrollable {
   overflow-y: scroll;
   max-height: 300px;
+}
+
+@media (min-width: 700px) {
+.izquierda {
+  margin-left: 15em;
+}
 }
 </style>

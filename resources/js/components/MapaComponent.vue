@@ -1,11 +1,11 @@
 <template>
-<div>
+<div id="contenedor">
       <GmapMap 
-        
+        id="mapa"
   :center="{ lat: parseFloat(this.objeto.lat), lng: parseFloat(this.objeto.lng) }"
-  :zoom="7"
+  :zoom="11"
   map-type-id="roadmap"
-  style="width: 450px; height: 300px"
+  style="width: 275px; height: 300px"
 >
   <GmapMarker
     
@@ -100,4 +100,13 @@
 .mensaje {
     color: blue;
 }
+
+@media (min-width: 700px) {
+#mapa {
+  
+   width: 200px; 
+   height: 200px;
+}
+}
+
 </style>

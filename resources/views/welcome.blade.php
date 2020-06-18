@@ -166,7 +166,19 @@
                         </div>
                         <div class="col-md-4 p-3">
                             <h3 class="text-center">Localizacion</h3>
-                       <!--     @include('googlemakerwelcome')-->
+                    
+
+
+               <!--        <mapa-component :objeto="{
+                        lat: 40.451315,
+                        lng: -3.599181,
+                        domicilio: 'IES Barajas'
+
+
+                       }"></mapa-component>-->
+
+
+
 
                         </div>
                       <inicio-component  :token="'{{Session::token()}}'"></inicio-component>

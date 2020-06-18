@@ -36,11 +36,11 @@
 
     <div id="app">
 
-  
-   
 
-    
-     <nav class="navbar navbar-expand-md fixed-top ">
+
+
+
+        <nav class="navbar navbar-expand-md fixed-top ">
             <button type="button" class="navbar-toggler ml-auto" data-toggle="collapse"
                 data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -48,7 +48,7 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-             <!--     <ul class="navbar-nav ">
+                <!--     <ul class="navbar-nav ">
                     <li class="nav-item">
                         <a class="nav-link " href="/#inicio" active>Inicio</a>
                     </li>
@@ -70,14 +70,13 @@
                         </div>
 
                     </li>-->
-                    <dropdown-component   :titulo="'Empresas Colaboradoras'" 
-                    :titulo2="'Categorias Profesionales'" >
-                    </dropdown-component>
+                <dropdown-component :titulo="'Empresas Colaboradoras'" :titulo2="'Categorias Profesionales'">
+                </dropdown-component>
 
-                  <!--  <li class="nav-item">
+                <!--  <li class="nav-item">
                         <a class="nav-link" href="/#buscar">Buscar Trabajo</a>
                     </li>-->
-                    <!--<li class="nav-item dropdown">
+                <!--<li class="nav-item dropdown">
                         <a class="nav-link dropdown-toogle " aria-expanded="false" data-toggle="dropdown"
                             data-target="dt" href="#">
                             Categorias Profesionales
@@ -100,6 +99,7 @@
 
                 </ul>
                 <ul class="navbar-nav  ml-auto ">
+  
                     @guest
                     <li class="nav-item ">
                         <a class="nav-link text-white " href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -128,15 +128,16 @@
                         </div>
                     </li>
                     @endguest
+
                 </ul>
             </div>
 
 
 
 
-       
+
         </nav>
-        
+
         <div id="jumbotron" class="jumbotron jumbotron-fluid text-white py-xs-20 mt-xs-20">
 
             <div class="container">
@@ -163,6 +164,8 @@
 
             </div>
         </div>
+        </ul>
+        
 
         <div class="container-fluid w-100 px-0">
 
@@ -170,14 +173,14 @@
 
             <div class="row w-100 justify-content-center align-items-center mx-0">
                 @yield('content')
-              
+
             </div>
-            
+
         </div>
-        
+
     </div>
 
- <!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
+    <!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
     $(document).ready(function() {
        
    
@@ -194,7 +197,7 @@
         });
     </script>-->
 
-@include('barras.footer')
+    @include('barras.footer')
 
 </body>
 

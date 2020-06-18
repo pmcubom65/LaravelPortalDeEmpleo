@@ -11457,6 +11457,7 @@ button:focus {
   height: auto;
   /* padding-top: 10px !important;*/
   padding-bottom: 10px !important;
+  margin-bottom: 0 !important;
 }
 
 input,
