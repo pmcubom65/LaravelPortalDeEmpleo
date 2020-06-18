@@ -1,16 +1,17 @@
 
-   export const getCategoriaById = function (state,id) {
-           
-       return state.categorias.filter(categoria=> {
-         return  categoria.nombre===id;
-       });
+export const getCategoriaById = (state) => (id) => {
+
+  var salida = state.categorias.filter(categoria => {
+    return categoria.nombre === id;
+  });
+  return salida;
 }
 
 
-    export const getEmpresaById = function (state, id) {
-        
-      state.empresas.filter(empresa => {
-        return empresa.nombre===id;
-    }
-        );
-    }
+export const getEmpresaById = (state) => (id) => {
+
+  var salida = state.empresas.filter(empresa => {
+    return empresa.nombre === id;
+  });
+  return salida;
+}
