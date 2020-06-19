@@ -17,10 +17,3 @@ export const getEmpresaById = (state) => (id) => {
 }
 
 
-export const getEmpresaByUserId = (state) => (user_id) => {
-  
-  var salida = state.empresas.filter(empresa => {
-    return empresa.user_id === user_id;
-  });
-  return salida;
-}

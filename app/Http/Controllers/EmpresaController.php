@@ -49,7 +49,7 @@ class EmpresaController extends Controller
                 'cif' => 'required|string',
                 'num' => 'required|integer',
                 
-                'Provincia' => 'required|string',
+                'Provincia' => 'required',
                 'telefono' => 'required|string',
                 'latitud' => "required|numeric|between:-90,90",
                 'longitud'=> "required|numeric|between:-180,180"

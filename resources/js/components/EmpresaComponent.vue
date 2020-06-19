@@ -58,6 +58,7 @@
           :value="domicilio"
           @change="domicilio_i=$event.target.value"
           :disabled="habilitado"
+        
         />
       </div>
     </div>
@@ -99,10 +100,11 @@
           class="form-control"
           id="Provincia"
           name="Provincia"
+       
           :disabled="habilitado"
           @change="provincia_i=$event.target.value"
         >
-          <option :value="provincia_id" selected hidden>{{region}}</option>
+          <option :value="provincia_id" selected>{{region}}</option>
           <option
             v-for="item in provincias"
             v-bind:key="item.id"
@@ -121,7 +123,7 @@
           id="telefono"
           name="telefono"
           placeholder="Telefono"
-          :value="telefono"
+           :value="telefono"
           @change="telefono_i=$event.target.value"
           :disabled="habilitado"
         />
@@ -160,6 +162,7 @@
 import {bus} from '../app' ;
 export default {
   components: {},
+  inheritAttrs: false,
   mounted() {
     console.log("Formulario de empresa montado");
   },
@@ -212,10 +215,6 @@ export default {
       type: Boolean,
       required: false
     },
-     crearempresa: {
-      type: Boolean,
-      required: true
-    },
     id : {
       type: String,
       required: true
@@ -224,25 +223,26 @@ export default {
   },
   data() {
     return {
-      apellidos_i: "",
-      cif_i: "",
-      domicilio_i: "",
-      latitud_i: "",
-      longitud_i: "",
-      nombre_i: "",
-      numero_empleados_i: 0,
-      provincia_i: 0,
-      telefono_i: "",
+      apellidos_i: this.$props.apellidos,
+      cif_i: this.$props.cif,
+      domicilio_i: this.$props.domicilio,
+      latitud_i: this.$props.latitud,
+      longitud_i: this.$props.longitud,
+      nombre_i: this.$props.nombre,
+      numero_empleados_i: this.$props.numero_empleados,
+      provincia_i: this.$props.provincia_id,
+      telefono_i: this.$props.telefono,
+      region_i: this.$props.region,
       salida: "",
       abierto_i: false
     };
   },
- 
+
 
 
   methods : {
       crearoeditar: function() {
-        
+        console.log('tele'+this.$props.telefono)
    
                   axios
           .post(route("empresa", { id: this.id }), {
@@ -268,7 +268,7 @@ export default {
                   this.abierto_i = true;
                   this.$store.dispatch('getEmpresas');
                   this.$props.habilitado=true;
-                  this.$props.crearempresa=false;
+                 
 
                   bus.$emit('empresacreada');
               } 
