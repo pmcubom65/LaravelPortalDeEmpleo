@@ -5,7 +5,13 @@
 
 
 <div class="container-fluid">
-@include('sidebar')
+<!--@include('sidebar')-->
+@if($contador===0)
+<sidebarempresa-component :user_id="'{{Auth::id()}}'" :esempresa="true"></sidebarempresa-component>
+@else
+<sidebarempresa-component :user_id="'{{Auth::id()}}'" :esempresa="false"></sidebarempresa-component>
+@endif
+
 <div class="row col-10 espacio float-right">
 
 
@@ -40,20 +46,22 @@
  
         <div class="col-12 d-inline-block ">
     @if($contador===0)
-    @include('formularioempresa')
+
+
+    <empresa-component  :habilitado="false" 
+     :provincias="JSON.parse('{{$provincias->toJson()}}')" 
+     :crearempresa="true"
+    
+    :id="'{{Auth::id()}}'"
+    :token="'{{Session::token()}}'" ></empresa-component>
+   
+
     @else
-    @include('formularioempresarelleno')
+   <!-- @include('formularioempresarelleno')-->
     @endif
         </div>
 
 
-  
-
-
-        <script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
-       
-        </script>
-        <script src="{{asset('js/empresa.js')}}" type="text/javascript"   ></script>
 
 
 

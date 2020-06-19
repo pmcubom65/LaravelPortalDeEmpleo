@@ -169,7 +169,7 @@ export default {
         this.esempresa = true;
       } else {
         console.log(item);
-        console.log("en serio");
+       
         this.modaltitulo = item.nombre;
         this.cuerpo = item.descripcion;
         this.esempresa = false;

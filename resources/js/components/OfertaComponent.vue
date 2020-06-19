@@ -278,8 +278,7 @@ export default {
             console.log(error);
           });
       } else {
-        console.log("que");
-        console.log(this.titulo_i);
+        
 
         axios
           .put(route("oferta", { id: this.id }), {
