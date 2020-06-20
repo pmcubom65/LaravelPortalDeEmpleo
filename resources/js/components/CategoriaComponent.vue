@@ -23,6 +23,7 @@
                   name="catname"
                   placeholder="Nombre de la Categoria"
                   v-model="nombre"
+                  :disabled="quitar"
                 />
               </div>
             </div>
@@ -41,6 +42,7 @@
                   name="desccat"
                   rows="8"
                   v-model="descripcion"
+                   :disabled="quitar"
                 >Descripcion de la Categoria</textarea>
               </div>
             </div>
@@ -95,7 +97,8 @@ export default {
       descripcion: "",
       salida: "",
       mostrarbotoncat: true,
-      categoriacreada: []
+      categoriacreada: [],
+      quitar: false
     };
   },
   methods: {
@@ -126,6 +129,7 @@ export default {
           if (key==='success'){
               this.mostrarbotoncat=false
                this.$store.dispatch('getCategorias')
+               this.quitar=true;
              
           }else {
             this.salida="Todos los campos se tienen que rellenar";

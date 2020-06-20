@@ -12,11 +12,14 @@ use App\Mail\RecibidoMail;
 use App\Mail\ConfirmacionMail;
 
 
+
 class InicioController extends Controller
 {
   
 
     public function index() {
+
+   
   
 
     return view('welcome');

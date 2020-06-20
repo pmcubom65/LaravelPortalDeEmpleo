@@ -26,11 +26,11 @@
           class="dropdown-item"
           tabindex="0"
           role="button"
-          :title="item.apellidos"
+          :title="item.email"
           data-toggle="modal"
           data-target="#componentmodal"
           @click="llamomodal(item, true)"
-        >{{item.nombre}}</a>
+        >{{item.name}}</a>
       </div>
     </li>
     <li class="nav-item dropdown">
@@ -76,12 +76,12 @@
         type="text"
         list="lasempresas"
         v-model="inputemp"
-        placeholder="Buscador Empresas"
+        placeholder="Buscar Empresas"
         :disabled="disableemp"
         @click="activaemp"
       />
       <datalist id="lasempresas">
-        <option v-for="item in lista" :key="item.id" :value="item.nombre"></option>
+        <option v-for="item in lista" :key="item.id" :value="item.name"></option>
       </datalist>
     </li>
     <li>
@@ -89,7 +89,7 @@
         type="text"
         v-model="inputcat"
         list="lascategorias"
-        placeholder="Buscador de Categorias"
+        placeholder="Buscar Categorias"
         :disabled="disablecat"
         
         @click="activacat"
@@ -108,7 +108,7 @@
         
         data-toggle="modal"
         data-target="#componentmodal"
-      >Buscar</button>
+      >Buscar Filtro</button>
     </li>
     <li>
       <button class="btn btn-danger btn-sm" @click="volver">Borrar</button>
@@ -159,8 +159,8 @@ export default {
   methods: {
     llamomodal: function(item, empresa) {
       if (empresa) {
-        this.modaltitulo = item.nombre;
-        this.cuerpo = item.nombre;
+        this.modaltitulo = item.name;
+        this.cuerpo = item.email;
         this.latlong.numeroempleados = new Number(item.numero_empleados);
         this.latlong.domicilio = item.domicilio;
         this.latlong.lat = new Number(item.latitud);

@@ -114,6 +114,17 @@
                     @endif
 
                     <div class="form-row my-3">
+                    <div class="form-group col-sm-12 text-center">
+                            <label class="btn btn-primary" for="file">
+                            
+                            <input type="file" class="d-none" style="margin: 0 auto !important;" id="file" name="file">
+                                Subir Archivo
+                            </label>
+                        </div>
+                    
+                    </div>
+
+                    <div class="form-row my-3">
                     <input type="hidden" class="form-control" id="userid" name="userid"
                                 value="{{ Auth::id() }}">
 

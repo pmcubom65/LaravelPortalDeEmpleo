@@ -79,12 +79,14 @@ class SearchController extends Controller
 
 
     public function store(Request $request, $id) {
+        $trabajador=Trabajador::where('user_id', Auth::id())->first();
+        
         if (!Auth::check()) {
             $Response=['success'=>'Necesitas hacer login para inscribirte'];
         }
-        else if ( Auth::user()->rol_id===1) {
+        else if ( Auth::user()->rol_id===1 && $trabajador) {
                 
-                $trabajador=Trabajador::where('user_id', Auth::id())->first();
+           
                 $inscripcion= new Oferta_trabajador();
                 $inscripcion->oferta_id=$id;
                 $inscripcion->trabajador_id=$trabajador->id;
@@ -93,7 +95,7 @@ class SearchController extends Controller
 
                $Response=['success'=>'Has sido inscrito en la oferta'];
         }else {
-            $Response=['success'=>'Necesitas ser trabajador para inscribirte'];
+            $Response=['success'=>'Necesitas tener el perfil de trabajador completo para inscribirte'];
         }
         return response()->json($Response,200);
     }

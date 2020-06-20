@@ -105,26 +105,25 @@ class OfertaController extends Controller
             ],
             $messages
         );
-
+        $creada=Categoria::where('nombre', $request->get('catname'))->first();
 
         if($Validator->fails()) {
             $Response=$Validator->messages();
-        } else {
+        } else if($creada) {
+            $Response=['success'=>['mssg'=>'El nombre de categoria indicado ya existe. Categoria no guardada', 'elid'=>$creada->id, 'elname'=>$creada->nombre]];
+        }  else {
             $micategoria=new Categoria();
             $micategoria->nombre=$request->get('catname');
             $micategoria->descripcion=$request->get('desccat');
             $micategoria->save();
-            $creada=Categoria::where('nombre', $request->get('catname'))->first();
+            
             $Response=['success'=>['mssg'=>'La categoria ha sido creada y ya se encuentra disponible', 'elid'=>$creada->id, 'elname'=>$creada->nombre]];
         }
+        
+        
+      
 
 
         return response()->json($Response,200);
     }
 }
-
-
-
-
-
-

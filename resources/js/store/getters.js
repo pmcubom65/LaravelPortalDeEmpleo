@@ -8,10 +8,10 @@ export const getCategoriaById = (state) => (id) => {
 }
 
 
-export const getEmpresaById = (state) => (id) => {
+export const getEmpresaById = (state) => (name) => {
 
   var salida = state.empresas.filter(empresa => {
-    return empresa.nombre === id;
+    return empresa.name === name;
   });
   return salida;
 }

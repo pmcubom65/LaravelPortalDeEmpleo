@@ -128,7 +128,30 @@ class HomeController extends Controller
             'fecha' => 'required|date|before:today',
             'Provincia' => 'required',
             'telefono' => 'required',
+            'imagen'=> 'image|nullable|max:1999'
         ]);
+
+            if($request->hasFile('imagen')){
+                //filename con extension
+                $filenameWithExt=$request->file('imagen')->getClientOriginalName();
+                //solo filename
+                $filename=pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                //extension
+                $extension=$request->file('imagen')->getClientOriginalExtension();
+
+                //filename a almacenar
+                $fileNameToStore=$filename.'_'.time().'.'.$extension;
+                //subir la imagen
+                $path=$request->file('imagen')->storeAs('public/imagenes', $fileNameToStore);
+            }else {
+                $fileNameToStore='noimage.jpg';
+            }
+
+
+
+
+
+
         $tienetrabajo=Trabajador::where('user_id', Auth::id())->count();
 
         if ($tienetrabajo===0) {
@@ -141,6 +164,7 @@ class HomeController extends Controller
         $mitrabajador->provincia_id=$request->get('Provincia');
         $mitrabajador->telefono=$request->get('telefono');
         $mitrabajador->user_id=Auth::id();
+        $mitrabajador->imagen=$fileNameToStore;
         
         $mitrabajador->save();
 

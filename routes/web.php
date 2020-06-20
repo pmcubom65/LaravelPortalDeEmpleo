@@ -42,7 +42,9 @@ Route::get('/categorias', function(){
 
 
 Route::get('/empresas', function(){
-  $Response=Empresa::all();
+  $Response=DB::table('empresas')->leftJoin('users', 'empresas.user_id', '=', 'users.id')->
+  select ('empresas.id','empresas.domicilio', 'users.name', 'empresas.numero_empleados', 'empresas.latitud', 'empresas.longitud', 'users.email')->get();
+
   return response()->json($Response,200);
 
 })->name('empresas');

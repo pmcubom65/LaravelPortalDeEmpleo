@@ -23,6 +23,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "dotenv": "^8.2.0",
         "jquery": "^3.5.1",
         "v-tooltip": "^2.0.3",
         "vue2-google-maps": "^0.10.7",

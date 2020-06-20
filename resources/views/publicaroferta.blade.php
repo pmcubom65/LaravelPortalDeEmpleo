@@ -40,7 +40,7 @@
                         :habilitado="false"
 
                         
-                        :categorias="JSON.parse('{{$categorias->toJson()}}')"
+                      
                         :provincias="JSON.parse('{{$provincias->toJson()}}')"
 
                         :contratos="JSON.parse('{{$contratos->toJson()}}')"

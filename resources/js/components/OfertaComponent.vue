@@ -228,10 +228,7 @@ export default {
       type: Array,
       required: false
     },
-    categorias: {
-      type: Array,
-      required: false
-    },
+ 
     contratos: {
       type: Array,
       required: false
