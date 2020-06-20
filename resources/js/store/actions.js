@@ -11,6 +11,15 @@ export const getCategorias=({commit})=>{
 }
 
 
+export const getTrabajadores=({commit})=>{
+    axios.get(route('trabajadors')).
+    then(response=>{
+        commit('SET_TRABAJADORES', response.data);
+    })
+
+}
+
+
 
 export const getEmpresas=({commit})=>{
     axios.get(route('empresas')).

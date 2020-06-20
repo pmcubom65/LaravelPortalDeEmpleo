@@ -12,6 +12,7 @@ use App\Experiencia;
 use App\Empresa;
 use App\Contacto;
 use App\Oferta_trabajador;
+use Validator;
 
 class HomeController extends Controller
 {
@@ -120,16 +121,28 @@ class HomeController extends Controller
 
 
     public function put(Request $request) {
-        $validatedData = $request->validate([
-    
-
+        $messages = [
+            'required'=>'No se puede dejar ningún campo en blanco',
+            'fecha.date'=>'Error en la fecha',
+            'fecha.before'=>'La fecha tiene que ser anterior a la actual',
+            'image'=>'Error en el archivo subido',
+            'max:1999'=>'Error en el archivo subido'
+     
+        ];
+       
+       
+       
+        $Validator=Validator::make(
+            $request->all(),
+            [
             'direccion' => 'required',
             'dni' => 'required',
             'fecha' => 'required|date|before:today',
             'Provincia' => 'required',
             'telefono' => 'required',
             'imagen'=> 'image|nullable|max:1999'
-        ]);
+            ], 
+            $messages);
 
             if($request->hasFile('imagen')){
                 //filename con extension
@@ -147,14 +160,11 @@ class HomeController extends Controller
                 $fileNameToStore='noimage.jpg';
             }
 
+            $mitrabajador=Trabajador::where('user_id', Auth::id())->first();
 
-
-
-
-
-        $tienetrabajo=Trabajador::where('user_id', Auth::id())->count();
-
-        if ($tienetrabajo===0) {
+            if ($Validator->fails()) {
+                $Response=$Validator->messages();
+            }else if (!$mitrabajador) {
         
 
         $mitrabajador=new Trabajador();
@@ -168,16 +178,7 @@ class HomeController extends Controller
         
         $mitrabajador->save();
 
-        $trabajador=Trabajador::where('user_id', Auth::id())->count();  //1
-        $trabajadorlog=Trabajador::where('user_id', Auth::id())->first();    //ok
-
-        $lasexperiencias=Experiencia::where('user_id', Auth::id())->count();
-  
-            return view('home', ['trabajador'=>$trabajador,
-            'curriculum'=>$trabajadorlog,
-            'experienciass'=>$lasexperiencias,
-            'datos' => $request->user(), 
-            ]); 
+        $Response=['success'=>'Curriculum dado de alta'];
              
         } else {
             $mitrabajador=Trabajador::where('user_id', Auth::id())->first();
@@ -187,12 +188,12 @@ class HomeController extends Controller
             $mitrabajador->provincia_id=$request->get('Provincia');
             $mitrabajador->telefono=$request->get('telefono');
             $mitrabajador->user_id=Auth::id();
-            
+            $mitrabajador->imagen=$fileNameToStore;
             $mitrabajador->save();
-            return back(); 
+            $Response=['success'=>'Curriculum actualizado'];
 
         }
-
+        return response()->json($Response, 200);
 
     }
 

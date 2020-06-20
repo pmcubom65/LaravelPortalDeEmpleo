@@ -6,3 +6,8 @@ export const SET_CATEGORIAS=(state, categoria) => {
 export const SET_EMPRESAS=(state, empresa) => {
     state.empresas=empresa
 }
+
+
+export const SET_TRABAJADORES=(state, trabajador) => {
+    state.trabajadores=trabajador
+}

@@ -58,7 +58,7 @@
                     :longitud="'{{$datosemp->longitud}}'"  :nombre="'{{$datosemp->nombre}}'"
                     :numero_empleados="Number('{{$datosemp->numero_empleados}}')"
                     :provincia_id="Number('{{$datosemp->provincia_id}}')" :region="'{{$datosemp->provincia->region_name}}'"
-                    :telefono ="'{{$datosemp->telefono}}'">               
+                    :telefono ="'{{$datosemp->telefono}}'" :editar="true">               
       
                     </empresa-component>
                 @endif

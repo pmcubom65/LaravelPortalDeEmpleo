@@ -169,13 +169,13 @@
                     
 
 
-               <!--        <mapa-component :objeto="{
+                       <mapa-component :objeto="{
                         lat: 40.451315,
                         lng: -3.599181,
                         domicilio: 'IES Barajas'
+                        
 
-
-                       }"></mapa-component>-->
+                       }" ></mapa-component>
 
 
 
@@ -302,19 +302,6 @@
 
 
 
-<!--<script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
-
-</script>
-<script src="{{asset('js/inicio.js')}}" type="text/javascript"></script>-->
-
-
-
-
-
-
-
-
-
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
@@ -338,9 +325,6 @@
         </div>
     </div>
 </div>
-
-
-
 
 
 

@@ -23,7 +23,7 @@
 
             <div class="col-12 d-inline-block ">
 
-           <!-- @include('formulariopublicaroferta')-->
+           
 
 
            <oferta-component  

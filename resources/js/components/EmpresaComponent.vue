@@ -11,7 +11,7 @@
           id="nombrer"
           name="nombrer"
           placeholder="Nombre del representante"
-          :value="nombre"
+          v-model="nombre_i"
           @change="nombre_i=$event.target.value"
           :disabled="habilitado"
         />
@@ -25,7 +25,7 @@
           id="apellidos"
           name="apellidos"
           placeholder="Apellidos del representante"
-          :value="apellidos"
+          v-model="apellidos_i"
           @change="apellidos_i=$event.target.value"
           :disabled="habilitado"
         />
@@ -41,7 +41,7 @@
           id="cif"
           name="cif"
           placeholder="cif de la empresa"
-          :value="cif"
+          v-model="cif_i"
           @change="cif_i=$event.target.value"
           :disabled="habilitado"
         />
@@ -55,7 +55,7 @@
           id="direccion"
           name="direccion"
           placeholder="Domicilio de la empresa"
-          :value="domicilio"
+          v-model="domicilio_i"
           @change="domicilio_i=$event.target.value"
           :disabled="habilitado"
         
@@ -72,7 +72,7 @@
           id="latitud"
           name="latitud"
           placeholder="latitud sede de la empresa"
-          :value="latitud"
+          v-model="latitud_i"
           @change="latitud_i=$event.target.value"
           :disabled="habilitado"
         />
@@ -86,7 +86,7 @@
           id="longitud"
           name="longitud"
           placeholder="longitud sede de la empresa"
-          :value="longitud"
+          v-model="longitud_i"
           @change="longitud_i=$event.target.value"
           :disabled="habilitado"
         />
@@ -123,7 +123,7 @@
           id="telefono"
           name="telefono"
           placeholder="Telefono"
-           :value="telefono"
+           v-model="telefono_i"
           @change="telefono_i=$event.target.value"
           :disabled="habilitado"
         />
@@ -137,7 +137,7 @@
           id="num"
           name="num"
           placeholder="Número de empleados"
-          :value="numero_empleados"
+          v-model="numero_empleados_i"
           @change="numero_empleados_i=$event.target.value"
           :disabled="habilitado"
         />
@@ -149,7 +149,7 @@
       </div>
     </div>
 
-    <div class="form-row my-3">
+    <div class="form-row my-3" v-show="editar">
       <button type="submit" class="btn btn-success m-auto btn-lg" :disabled="abierto_i">
         <span class="glyphicon glyphicon-ok"></span> Actualizar Datos
       </button>
@@ -215,6 +215,10 @@ export default {
       type: Boolean,
       required: false
     },
+    editar: {
+      type: Boolean,
+      required: true
+    },
     id : {
       type: String,
       required: true
@@ -242,8 +246,7 @@ export default {
 
   methods : {
       crearoeditar: function() {
-        console.log('tele'+this.$props.telefono)
-   
+      
                   axios
           .post(route("empresa", { id: this.id }), {
             id: this.id,

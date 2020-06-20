@@ -111,7 +111,7 @@
       >Buscar Filtro</button>
     </li>
     <li>
-      <button class="btn btn-danger btn-sm" @click="volver">Borrar</button>
+      <button class="btn btn-danger btn-sm" @click="volver">Cancelar</button>
     </li>
   </ul>
 </template>

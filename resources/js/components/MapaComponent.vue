@@ -1,7 +1,7 @@
 <template>
 <div id="contenedor">
       <GmapMap 
-        id="mapa"
+     
   :center="{ lat: parseFloat(this.objeto.lat), lng: parseFloat(this.objeto.lng) }"
   :zoom="11"
   map-type-id="roadmap"
@@ -51,7 +51,7 @@
         },
         props: {
            
-            objeto: Object
+            objeto: Object,
           
         },
         methods: {
@@ -101,12 +101,11 @@
     color: blue;
 }
 
-@media (min-width: 700px) {
-#mapa {
+
+#contenedor {
   
-   width: 200px; 
-   height: 200px;
+  margin-right: 100px;
 }
-}
+
 
 </style>

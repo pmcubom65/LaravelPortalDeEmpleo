@@ -50,6 +50,19 @@ Route::get('/empresas', function(){
 })->name('empresas');
 
 
+Route::get('/trabajadores', function(){
+  $Response=DB::table('trabajadors')->leftJoin('users', 'trabajadors.user_id', '=', 'users.id')->
+  select ('trabajadors.id','trabajadors.direccion', 'users.name', 'users.email')->get();
+
+  return response()->json($Response,200);
+
+})->name('trabajadors');
+
+
+
+
+
+
 Route::get('/empresas/{id}', function($id){
   $Response=Empresa::find($id);
   return response()->json($Response,200);
@@ -81,7 +94,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/home', 'HomeController@store')->name('home');
 
-Route::match(['put', 'patch'], '/home', 'HomeController@put');
+Route::match(['put', 'patch'], '/home', 'HomeController@put')->name('homeput');
 
 
 

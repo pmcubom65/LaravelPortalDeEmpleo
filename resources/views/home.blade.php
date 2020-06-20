@@ -23,20 +23,12 @@
         <div class="card-body">
 
             <h4>No tienes ningún curriculum dado de alta por el momento. No podrás inscribirte en ofertas aún</h4>
-            @if ($errors->any())
-            <div class="alert alert-danger">
-                Alguno de los campos no está correctamente relleno
-            </div>
-            @endif
-            @if ($errors->get('fecha'))
-            <div class="alert alert-danger">
-                La fecha de nacimiento tiene que ser anterior a hoy
-            </div>
-            @endif
+            
         </div>
     </div>
 
-    @include('formcurr')
+   <curriculum-component :habilitado="false" :estrabajador="false"  :token="'{{Session::token()}}'"
+     :provincias="JSON.parse('{{$provincias->toJson()}}')" :nombre="'{{Auth::user()->name}}'" ></curriculum-component>
 </div>
 
 
