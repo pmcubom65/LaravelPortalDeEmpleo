@@ -51,8 +51,11 @@ Route::get('/empresas', function(){
 
 
 Route::get('/trabajadores', function(){
-  $Response=DB::table('trabajadors')->leftJoin('users', 'trabajadors.user_id', '=', 'users.id')->
-  select ('trabajadors.id','trabajadors.direccion', 'users.name', 'users.email')->get();
+  $Response=DB::table('trabajadors')->leftJoin('users', 'trabajadors.user_id', '=', 'users.id')
+  ->leftJoin('expe', 'users.id', '=', 'expe.user_id')->
+  select ('trabajadors.id','trabajadors.direccion',
+  DB::raw('users.id as user_id'), 'users.name', 'users.email', DB::raw('count(expe.id) as numero_experiencias'))->
+  groupBy('expe.user_id', 'trabajadors.id','trabajadors.direccion', 'users.name', 'users.email', 'users.id')->get();
 
   return response()->json($Response,200);
 

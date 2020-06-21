@@ -1,6 +1,19 @@
 <template>
-  <section class="espacio">
-    <div class="container">
+  <section >
+
+    <div class="card">
+
+
+        <div class="card-body">
+
+            <h4 v-if="!trabajador">No tienes ningún curriculum dado de alta por el momento. No podrás inscribirte en ofertas aún</h4>
+            <h4 v-else>Tienes el curriculum dado de alta</h4>
+        </div>
+    </div>
+
+
+
+    <div class="container espacio2">
       <div class="row">
         <div class="col-12 text-center">
           <h1>
@@ -110,12 +123,16 @@
               </div>
             </div>
 
-            <div class="form-row my-3" v-show="estrabajador">
-              <a
-                class="btn btn-primary m-auto btn-lg btn-xs-block"
-                data-toggle="modal"
-                data-target="#sitiomodal"
-              >Añadir Experiencia</a>
+            <div class="form-row my-3" v-show="trabajador">
+             <div class="form-group col-sm-12 text-center">
+                  <tooltip-component :contenidotooltip="{ content: 'Añade aquí tus experiencias laborales.', show: 5000 }"
+                        :contenidoslot= "'Tienes registradas '+String(getNumeroExperiencias) + ' experiencias'"
+                        :letrero="'Añadir Experiencia'"
+                        :experiencia="true"
+                       
+                  ></tooltip-component>
+                  
+                </div>
             </div>
 
             <div class="form-row my-3">
@@ -159,6 +176,15 @@ import {bus} from '../app' ;
 export default {
   mounted() {
     console.log("Curriculum montado");
+        this.$store.dispatch("getTrabajadores");
+  },
+  computed: {
+
+  getNumeroExperiencias() {
+      
+      return this.$store.getters.numero_experiencias(this.$props.id);
+    }
+
   },
   props: {
     nombre: {
@@ -190,7 +216,7 @@ export default {
       type: Array,
       required: false
     },
-    habilitado: {
+    hhabilitado: {
       type: Boolean,
       required: false
     },
@@ -202,7 +228,8 @@ export default {
       type: String,
       required: false
     },
-    token: String
+    token: String,
+    id: String,
   },
 
   data() {
@@ -215,6 +242,10 @@ export default {
       fecha_i: this.$props.fecha,
       salida: '',
       abierto_i: false,
+      trabajador : this.$props.estrabajador,
+      habilitado: this.$props.habilitado,
+     
+     
       
     };
   },
@@ -231,17 +262,17 @@ export default {
           dni: this.dni_i
         })
         .then(response => {
-          console.log(response);
+          
 
             let valores = response.data;
 
             Object.entries(valores).forEach(entry => {
               if (entry[0].toString()==='success'){
                   this.abierto_i = true;
-                  this.estrabajador=true;
+                  this.trabajador=true;
 
                   this.$store.dispatch('getTrabajadores');
-                  this.$props.habilitado=true;
+                  this.habilitado=true;
                   this.salida = entry[1].toString();
 
                   bus.$emit('trabajadorcreado');
@@ -254,7 +285,17 @@ export default {
         .catch(function(error) {
           console.log(error);
         });
-    }
-  }
+    },
+
+
+  },
+ 
 };
 </script>
+
+
+<style scoped>
+.alert {
+  font-size: 1.5rem;
+}
+</style>

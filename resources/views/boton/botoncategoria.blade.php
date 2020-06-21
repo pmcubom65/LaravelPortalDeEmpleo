@@ -8,7 +8,7 @@
                                         id="Salarioid" name="Salarioid">
 <input type="hidden"class="form-control" id="contrato" name="contrato" value="">
 
-<button type="submit" class="btn btn-primary btn-lg">Buscar ofertas de mi categoria profesional</a>
+<button type="submit" class="btn btn-primary btn-lg">Buscar ofertas de mi categoria profesional</button>
 
 
 </form>

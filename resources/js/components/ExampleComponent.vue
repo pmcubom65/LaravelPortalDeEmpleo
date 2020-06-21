@@ -17,14 +17,14 @@
 </template>
 
 <script>
-import TestComponent from './TestComponent'
+
 import TooltipComponent from './TooltipComponent'
-Vue.component('test-component', TestComponent)
+
 Vue.component('tooltip-component', TooltipComponent)
 
     export default {
         components: {
-            TestComponent,
+      
             TooltipComponent
         },
         mounted() {

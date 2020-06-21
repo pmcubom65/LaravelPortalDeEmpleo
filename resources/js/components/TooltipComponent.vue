@@ -1,10 +1,17 @@
 
 <template>
-    <v-popover>
+    <v-popover >
   <!-- This will be the popover target (for the events and position) -->
-  <button  v-tooltip="{ content: 'You have new messages.', show: 5000 }" class="btn btn-danger">Click me</button>
+  <button  v-tooltip="contenidotooltip" class="btn btn-danger btn-lg"  type="button" >{{ letrero }}</button>
   <!-- This will be the content of the popover -->
-  <test-component slot="popover"/>
+  
+  <p slot="popover" >{{contenidoslot}}<br>
+
+    <button class="btn btn-lg btn-primary"  data-toggle="modal"
+                        data-target="#sitiomodalexperiencia"  type="button" >Crear nueva experiencia</button>
+
+  </p>
+  
 </v-popover>
 
 
@@ -17,6 +24,21 @@
       
         mounted() {
             console.log('montado tootltip.')
+        },
+        props : {
+          contenidotooltip: Object,
+          contenidoslot: String,
+          letrero: String,
+          experiencia: Boolean,
+          
+        },
+        methods : {
+           
+        },
+        data() {
+          return {
+             
+          } 
         }
     }
 </script>
@@ -31,6 +53,7 @@
     color: white;
     border-radius: 16px;
     padding: 5px 10px 4px;
+    font-size: 1.25rem;
   }
 
   .tooltip-arrow {
@@ -130,5 +153,6 @@
     opacity: 1;
     transition: opacity .15s;
   }
+ 
 }
 </style>
