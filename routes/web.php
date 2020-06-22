@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 //use Illuminate\Support\Facades\Mail;
 use App\Categoria;
 use App\Empresa;
+use App\Experiencia;
 
 
 /*
@@ -62,6 +63,15 @@ Route::get('/trabajadores', function(){
 })->name('trabajadors');
 
 
+Route::get('/experiencias', function(){
+  $Response=DB::table('expe')->
+  select ('id','updated_at', 'puesto', 'empresa', 'inicio', 'fin', 'user_id','categoria_id','descripcion')->
+  groupBy('id','updated_at', 'puesto', 'empresa', 'inicio', 'fin', 'user_id','categoria_id','descripcion')->get();
+
+  return response()->json($Response, 200);
+})->name('experiencias');
+
+
 
 
 
@@ -95,7 +105,7 @@ Route::match(['put', 'patch'], '/search/{id}', 'SearchController@put');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/home', 'HomeController@store')->name('home');
+Route::post('/home', 'HomeController@store')->name('homeexpe');
 
 Route::match(['put', 'patch'], '/home', 'HomeController@put')->name('homeput');
 

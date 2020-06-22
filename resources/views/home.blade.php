@@ -12,25 +12,64 @@
 
 
 
-    @if( $trabajador===0)
-    <curriculum-component :hhabilitado="false" :estrabajador="false"  :token="'{{Session::token()}}'"
+
+
+    <miarea-component :hhabilitado="true" :estrabajador="false"  :token="'{{Session::token()}}'"
      :provincias="JSON.parse('{{$provincias->toJson()}}')" :nombre="'{{Auth::user()->name}}'" 
-     :id="'{{Auth::user()->id}}'"></curriculum-component>
+     :id="'{{Auth::user()->id}}'"
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     ></miarea-component>
 
-    @else
-    <curriculum-component :hhabilitado="true" :estrabajador="true"  :token="'{{Session::token()}}'"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ <!--   @if(!$trabajador)
+ <curriculum-component :hhabilitado="false" :estrabajador="false"  :token="'{{Session::token()}}'"
      :provincias="JSON.parse('{{$provincias->toJson()}}')" :nombre="'{{Auth::user()->name}}'" 
-     :id="'{{Auth::user()->id}}'"></curriculum-component>
+     :id="'{{Auth::user()->id}}'"  :cabecera="true"></curriculum-component>-->
 
-    @endif
+ <!--   @else-->
+
+    
+    <!--<miarea-component></miarea-component>-->
 
 
+ <!--   @endif -->
+
+ <experiencia-component  :hhabilitado="false"   :token="'{{Session::token()}}'"
+     :categorias="JSON.parse('{{$categorias->toJson()}}')" 
+     :id="'{{Auth::id()}}'"
+     :hhabilitado="false"
+    ></experiencia-component>
 
 </div>
-<experiencia-component  :hhabilitado="false"   :token="'{{Session::token()}}'"
-     :categorias="JSON.parse('{{$categorias->toJson()}}')" 
-     :id="'{{Auth::user()->id}}'"
-     hhabilitado="false"
-    ></experiencia-component>
+
 
 @endsection

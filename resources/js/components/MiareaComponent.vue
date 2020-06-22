@@ -1,0 +1,215 @@
+<template>
+    <div class="jumbotron jumbotron-fluid" id="jumbotronarea">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center titular">
+                <h1 class="display-4">Mi área</h1>
+                <p class="lead">Acceda a sus datos y a sus candidaturas</p>
+                <hr>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <ul class="nav nav-pills justify-content-center" id="pills-nav" role="tablist">
+                    <li class="nav-item btn-xs-block">
+                        <a class="nav-link active btn-lg " id="nav-pills-01" data-toggle="pill"
+                            href="#nav-item-01">Datos
+                            Personales</a>
+
+                    </li>
+                    <li class="nav-item   btn-xs-block">
+                        <a class="nav-link btn-lg" id="nav-pills-02" data-toggle="pill" href="#nav-item-02" 
+                        @click="mostrartooltipdialogo">Experiencias
+                            Laborales <span class="badge badge-light">
+                                <!--contar experiencias-->
+
+                            </span></a>
+
+                    </li>
+                    <li class="nav-item  btn-xs-block">
+                        <a class="nav-link btn-lg" id="nav-pills-03" data-toggle="pill"
+                            href="#nav-item-03">Candidaturas</a>
+                        <span class="badge badge-notify float-right">
+                       <!-- {{isset($candidaturas) ? $candidaturas->count() : 0 }}
+                       
+                       Contar candidaturas-->
+                       </span>
+                            
+
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+
+
+
+
+        <div class="tab-content" id="nav-pills-content">
+
+                    <div class="tab-pane fade show active" id="nav-item-01" role="tabpanel">
+
+                        <!--Curriculum relleno-->
+                           <curriculum-component :hhabilitado="false" :estrabajador="false"  :token="token"
+     :provincias="provincias" :nombre="nombre" 
+     :id="id" :cabecera="false"></curriculum-component>
+
+                    </div>
+                    <div class="tab-pane fade " id="nav-item-02" role="tabpanel">
+
+                        <div class="form-row my-3 justify-content-center" >
+
+
+                                  <tooltip-component  :contenidotooltip="{ content: 'Añade aquí tus experiencias laborales.', show: 5000 }"
+                        :contenidoslot= "'Tienes registradas +String(getNumeroExperiencias) +  experiencias'"
+                        :letrero="'Añadir Experiencia'"
+                        :experiencia="true"
+                       
+                                 ></tooltip-component>
+
+
+                    </div>
+                   <!--     @foreach ($experienciass as $experiencia)
+
+                        <div class="card">
+                            <h5 class="card-header">{{$experiencia->puesto}} - {{$experiencia->categoria->nombre}}</h5>
+                            <div class="card-body">
+                                <h5 class="card-title">{{$experiencia->empresa}}</h5>
+                                <p class="card-text">{{$experiencia->descripcion}}</p>
+                                <p class="card-text">Desde: {{$experiencia->inicio}}</p>
+                                <p class="card-text">Hasta: {{$experiencia->fin}}</p>
+
+                                <a href="/home/Expe/{{$experiencia->id}}" class="btn btn-primary btn-xs-block ">Editar o
+                                    Borrar</a>
+                            </div>
+                        </div>
+
+                        @endforeach-->
+
+                    </div>
+                    <div class="tab-pane fade" id="nav-item-03" role="tabpanel">
+
+
+
+
+              <!--          <p>
+                        @if (isset($candidaturas))
+                            @foreach ($candidaturas as $oferta)
+
+                            <p>
+                                <a class="btn btn-primary btn-block font-weight-bold" data-toggle="collapse"
+                                    href="#collapseExample{{$oferta->id}}" role="button" aria-expanded="false"
+                                    aria-controls="collapseExample">
+                                    {{$oferta->titulo}} - Categoria: {{$oferta->categoria->nombre}} - Salario:
+                                    {{$oferta->salario}} euros brutos
+                                </a>
+
+                            </p>
+                            <div class="collapse" id="collapseExample{{$oferta->id}}">
+                                <div class="card card-body text-center">
+                                    <h5 class="font-weight-bold card-title">Empresa: {{$oferta->empresa->usuario->name}}
+                                        - Inscrito en la oferta desde: {{$oferta->created_at}}</h5>
+                                    <p><span class="font-weight-bold">Descripción de la oferta:</span>
+                                        {{$oferta->descripcion}}</p>
+                                    <p><span class="font-weight-bold">Provincia:</span>
+                                        {{$oferta->provincia->region_name}}</p>
+                                    <p><span class="font-weight-bold">Contrato:</span> {{$oferta->contrato->nombre}}</p>
+                                    @if ($oferta->pivot->seleccionado===1)
+                                    <p><span class="font-weight-bold alert">Seleccionado:</span> Has pasado a
+                                        seleccionado</p>
+                                    @endif
+                                </div>
+                            </div>
+                            <hr>
+                            @endforeach
+                            @endif
+                        </p>-->
+                    </div>
+        </div>
+    </div>
+    </div>
+</template>
+
+<script>
+export default {
+      mounted() {
+    console.log("Perfil montado");
+    this.$store.dispatch("getTrabajadores");
+   
+  },
+
+  props: {
+    nombre: {
+      type: String,
+      required: false
+    },
+    dni: {
+      type: String,
+      required: false
+    },
+    direccion: {
+      type: String,
+      required: false
+    },
+
+    provincia_id: {
+      type: Number,
+      required: false
+    },
+    region: {
+      type: String,
+      required: false
+    },
+    telefono: {
+      type: String,
+      required: false
+    },
+    provincias: {
+      type: Array,
+      required: false
+    },
+    hhabilitado: {
+      type: Boolean,
+      required: false
+    },
+    estrabajador: {
+      type: Boolean,
+      required: false
+    },
+     cabecera: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
+    fecha: {
+      type: String,
+      required: false
+    },
+    token: String,
+    id: String
+  },
+
+ data() {
+          return {
+            
+          } 
+        },
+
+      methods : {
+        
+      }
+
+
+}
+</script>
+
+
+<style lang="scss" scoped>
+.tab-pane, .titular {
+    color: white;
+}
+
+</style>

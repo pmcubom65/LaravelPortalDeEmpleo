@@ -21,8 +21,11 @@ export const getEmpresaById = (state) => (name) => {
 export const numero_experiencias = (state) => (user_id) => {
 
   var salida = state.trabajadores.filter(trabajador => {
-    return trabajador.user_id === user_id;
+    
+ 
+    return trabajador.user_id == user_id;
   });
+
   if (typeof salida[0] === "undefined") {
     return 0;
   } else {

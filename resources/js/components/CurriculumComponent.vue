@@ -1,17 +1,13 @@
 <template>
-  <section >
-
-    <div class="card">
-
-
-        <div class="card-body">
-
-            <h4 v-if="!trabajador">No tienes ningún curriculum dado de alta por el momento. No podrás inscribirte en ofertas aún</h4>
-            <h4 v-else>Tienes el curriculum dado de alta</h4>
-        </div>
+  <section>
+    <div class="card" v-show="cabecera">
+      <div class="card-body">
+        <h4
+          v-if="!trabajador"
+        >No tienes ningún curriculum dado de alta por el momento. No podrás inscribirte en ofertas aún</h4>
+        <h4 v-else>Tienes el curriculum dado de alta</h4>
+      </div>
     </div>
-
-
 
     <div class="container espacio2">
       <div class="row">
@@ -36,7 +32,7 @@
                   name="nombre"
                   placeholder="nombre"
                   :value="nombre"
-                  disabled="true"
+                  disabled="trues"
                 />
               </div>
             </div>
@@ -124,18 +120,17 @@
             </div>
 
             <div class="form-row my-3" v-show="trabajador">
-             <div class="form-group col-sm-12 text-center">
-                  <tooltip-component :contenidotooltip="{ content: 'Añade aquí tus experiencias laborales.', show: 5000 }"
-                        :contenidoslot= "'Tienes registradas '+String(getNumeroExperiencias) + ' experiencias'"
-                        :letrero="'Añadir Experiencia'"
-                        :experiencia="true"
-                       
-                  ></tooltip-component>
-                  
-                </div>
+              <div class="form-group col-sm-12 text-center">
+                <tooltip-component
+                  :contenidotooltip="{ content: 'Añade aquí tus experiencias laborales.', show: 5000 }"
+                  :contenidoslot="'Tienes registradas '+String(getNumeroExperiencias) + ' experiencias'"
+                  :letrero="'Añadir Experiencia'"
+                  :experiencia="true"
+                ></tooltip-component>
+              </div>
             </div>
 
-            <div class="form-row my-3">
+            <div class="form-row my-3"  v-show="!abierto_i">
               <div class="form-group col-sm-12 text-center">
                 <label class="btn btn-primary btn-lg" for="imagen">
                   <input
@@ -144,9 +139,9 @@
                     style="margin: 0 auto !important;"
                     id="imagen"
                     name="imagen"
-                  /><span
-                            class="glyphicon glyphicon-upload"></span>
-                   Subir Foto
+                  />
+                  <span class="glyphicon glyphicon-upload"></span>
+                  Subir Foto
                 </label>
               </div>
             </div>
@@ -155,13 +150,16 @@
                 <p class="alert">{{salida}}</p>
               </div>
             </div>
+            <div class="form-row my-3" v-show="abierto_i">
+              <button type="button" href="/home" class="btn btn-success m-auto btn-lg btn-xs-block">
+                <span class="glyphicon glyphicon-ok-circle"></span> No tengo más experiencias laborales. Terminar
+              </button>
+            </div>
 
-            <div class="form-row my-3">
-              <button
-                type="submit"
-                class="btn btn-success m-auto btn-lg btn-xs-block" :disabled="abierto_i"
-              ><span
-                            class="glyphicon glyphicon-ok"></span> Guardar Curriculum</button>
+            <div class="form-row my-3" v-show="!abierto_i">
+              <button type="submit" class="btn btn-success m-auto btn-lg btn-xs-block">
+                <span class="glyphicon glyphicon-ok"></span> Guardar Curriculum
+              </button>
             </div>
           </form>
         </div>
@@ -171,20 +169,18 @@
 </template>
 
 <script>
-import {bus} from '../app' ;
+import { bus } from "../app";
 
 export default {
   mounted() {
     console.log("Curriculum montado");
-        this.$store.dispatch("getTrabajadores");
+    this.$store.dispatch("getTrabajadores");
+   
   },
   computed: {
-
-  getNumeroExperiencias() {
-      
+    getNumeroExperiencias() {
       return this.$store.getters.numero_experiencias(this.$props.id);
     }
-
   },
   props: {
     nombre: {
@@ -224,12 +220,17 @@ export default {
       type: Boolean,
       required: false
     },
+     cabecera: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     fecha: {
       type: String,
       required: false
     },
     token: String,
-    id: String,
+    id: String
   },
 
   data() {
@@ -240,13 +241,10 @@ export default {
       provincia_i: this.$props.provincia_id,
       telefono_i: this.$props.telefono,
       fecha_i: this.$props.fecha,
-      salida: '',
+      salida: "",
       abierto_i: false,
-      trabajador : this.$props.estrabajador,
-      habilitado: this.$props.habilitado,
-     
-     
-      
+      trabajador: this.$props.estrabajador,
+      habilitado: this.$props.hhabilitado
     };
   },
   methods: {
@@ -262,34 +260,28 @@ export default {
           dni: this.dni_i
         })
         .then(response => {
-          
+          let valores = response.data;
 
-            let valores = response.data;
+          Object.entries(valores).forEach(entry => {
+            if (entry[0].toString() === "success") {
+              this.abierto_i = true;
+              this.trabajador = true;
 
-            Object.entries(valores).forEach(entry => {
-              if (entry[0].toString()==='success'){
-                  this.abierto_i = true;
-                  this.trabajador=true;
-
-                  this.$store.dispatch('getTrabajadores');
-                  this.habilitado=true;
-                  this.salida = entry[1].toString();
-
-                  bus.$emit('trabajadorcreado');
-              } 
-              
+              this.$store.dispatch("getTrabajadores");
+              this.habilitado = true;
               this.salida = entry[1].toString();
 
-            });
+              bus.$emit("trabajadorcreado");
+            }
+
+            this.salida = entry[1].toString();
+          });
         })
         .catch(function(error) {
           console.log(error);
         });
-    },
-
-
-  },
- 
+    }
+  }
 };
 </script>
 

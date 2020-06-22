@@ -67,7 +67,7 @@
             <div class="form-group col-12">
               <label>Categoria Profesional</label>
 
-              <select class="form-control" id="cat" name="cat" @change="cat_i=$event.target.value">
+              <select class="form-control" id="cat" name="cat" @change="cat_i=$event.target.value" :disabled="habilitado">
                 <option :value="categoria_id" selected>{{nombre}}</option>
                 <option
                   v-for="item in categorias"
@@ -88,11 +88,22 @@
               >Descripcion del puesto</textarea>
             </div>
           </div>
-          <div class="modal-footer">
-            <button class="btn btn-success m-auto btn-xs-block" type="submit">
+          <div class="modal-footer" >
+             <div class="form-row col-12  m-auto ">
+             <p class="alert text-center">{{salida}}</p>
+            </div>
+            <div class="form-row col-12">
+            <button class="btn btn-success m-auto btn-xs-block btn-lg" type="submit" v-show="abierto_i">
               Guardar
               Experiencia
             </button>
+            
+
+            <button class="btn btn-success m-auto btn-xs-block btn-lg"  data-dismiss="modal" type="button" v-show="!abierto_i">
+              Cerrar
+            </button>
+            </div>
+           
           </div>
         </div>
       </form>
@@ -128,6 +139,14 @@ export default {
       type: String,
       required: false
     },
+    categoria_id: {
+      type: String,
+      required: false
+    },
+    nombre: {
+      type: String,
+      required: false
+    },
     
     hhabilitado: {
       type: Boolean,
@@ -136,12 +155,12 @@ export default {
     
     token: String,
     id: String,
-  },
+ 
     categorias: {
       type: Array,
       required: false
     },
-
+ },
   data() {
     return {
       tituloexp_i: this.$props.tituloexp,
@@ -151,12 +170,48 @@ export default {
       cat_i: this.$props.cat,
       desexp_i: this.$props.desexp,
       salida: '',
-      abierto_i: false,
+      abierto_i: true,
       trabajador : this.$props.estrabajador,
       habilitado: this.$props.hhabilitado,
      
       
     };
+  },
+  methods: {
+    nuevaexperiencia : function() {
+            axios
+        .post(route("homeexpe"), {
+          _token: this.token,
+          tituloexp: this.tituloexp_i,
+          inicioexp: this.inicioexp_i,
+          finexp: this.finexp_i,
+          cat: this.cat_i,
+          desexp: this.desexp_i,
+          empresaexp: this.empresaexp_i
+      
+        })
+        .then(response => {
+          let valores = response.data;
+
+          Object.entries(valores).forEach(entry => {
+            if (entry[0].toString() === "success") {
+              this.abierto_i = false;
+              
+              this.$store.dispatch("getTrabajadores");
+              this.$store.dispatch("getExperiencias");
+              this.habilitado = true;
+              this.salida = entry[1].toString();
+
+              
+            }
+
+            this.salida = entry[1].toString();
+          });
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    }
   },
   mounted() {
     console.log("Formulario experiencia montado");
@@ -168,5 +223,10 @@ export default {
 <style lang="scss" scoped>
 #sitiomodalexperiencia {
     position: absolute;
+}
+
+.alert {
+  font-size: 1.5rem;
+  margin: 0 auto; 
 }
 </style>

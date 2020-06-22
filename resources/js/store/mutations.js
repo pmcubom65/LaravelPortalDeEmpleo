@@ -11,3 +11,8 @@ export const SET_EMPRESAS=(state, empresa) => {
 export const SET_TRABAJADORES=(state, trabajador) => {
     state.trabajadores=trabajador
 }
+
+
+export const SET_EXPERIENCIAS=(state, experiencia) => {
+    state.experiencias=experiencia
+}
