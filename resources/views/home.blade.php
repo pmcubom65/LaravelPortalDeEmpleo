@@ -16,7 +16,7 @@
 
     <miarea-component :hhabilitado="true" :estrabajador="true"  :token="'{{Session::token()}}'"
      :provincias=" JSON.parse('{{$provincias->toJson()}}') " :nombre="'{{Auth::user()->name}}'" 
-     :id="'{{Auth::user()->id}}'"  :datostrabajador="'{{$trabajador}}'" 
+     :id="'{{Auth::user()->id}}'"  :datostrabajador="JSON.parse('{{$trabajador}}')" 
 
      ></miarea-component>
 

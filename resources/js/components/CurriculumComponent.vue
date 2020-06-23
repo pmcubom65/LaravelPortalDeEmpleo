@@ -29,7 +29,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="nombre"
+                
                   name="nombre"
                   placeholder="nombre"
                   :value="nombre"
@@ -45,7 +45,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="dni"
+               
                   name="dni"
                   placeholder="Dni"
                   v-model="dni_i"
@@ -60,7 +60,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="direccion"
+                
                   name="direccion"
                   placeholder="Direccion"
                   v-model="direccion_i"
@@ -74,7 +74,7 @@
                 <label for="Provincia">Provincia</label>
                 <select
                   class="form-control"
-                  id="Provincia"
+            
                   name="Provincia"
                   :disabled="habilitado"
                   @change="provincia_i=$event.target.value"
@@ -96,7 +96,7 @@
                 <input
                   type="text"
                   class="form-control"
-                  id="telefono"
+          
                   name="telefono"
                   placeholder="telefono"
                   v-model="telefono_i"
@@ -111,7 +111,7 @@
                 <input
                   type="date"
                   class="form-control"
-                  id="fecha"
+                  
                   name="fecha"
                   v-model="fecha_i"
                   @change="fecha_i=$event.target.value"
@@ -205,7 +205,7 @@ export default {
     },
     dni: {
       type: String,
-      required: false
+      required: false,
     },
     direccion: {
       type: String,
@@ -250,18 +250,23 @@ export default {
       type: String,
       required: false
     },
+      datostrabajador: {
+      type: Object,
+      required: false
+    },
     token: String,
     id: String
   },
 
   data() {
     return {
-      nombre_i: this.$props.nombre,
-      dni_i: this.$props.dni,
-      direccion_i: this.$props.direccion,
-      provincia_i: this.$props.provincia_id,
-      telefono_i: this.$props.telefono,
-      fecha_i: this.$props.fecha,
+      nombre_i: this.$props.datostrabajador.nombre,
+      dni_i:  this.$props.datostrabajador.dni,
+      direccion_i:  this.$props.datostrabajador.direccion,
+      provincia_i: this.$props.datostrabajador.provincia_id,
+      telefono_i: this.$props.datostrabajador.telefono,
+      fecha_i: this.$props.datostrabajador.fecha,
+      
       salida: "",
       abierto_i: false,
       trabajador: this.$props.estrabajador,

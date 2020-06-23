@@ -2371,17 +2371,21 @@ __webpack_require__.r(__webpack_exports__);
       type: String,
       required: false
     },
+    datostrabajador: {
+      type: Object,
+      required: false
+    },
     token: String,
     id: String
   },
   data: function data() {
     return {
-      nombre_i: this.$props.nombre,
-      dni_i: this.$props.dni,
-      direccion_i: this.$props.direccion,
-      provincia_i: this.$props.provincia_id,
-      telefono_i: this.$props.telefono,
-      fecha_i: this.$props.fecha,
+      nombre_i: this.$props.datostrabajador.nombre,
+      dni_i: this.$props.datostrabajador.dni,
+      direccion_i: this.$props.datostrabajador.direccion,
+      provincia_i: this.$props.datostrabajador.provincia_id,
+      telefono_i: this.$props.datostrabajador.telefono,
+      fecha_i: this.$props.datostrabajador.fecha,
       salida: "",
       abierto_i: false,
       trabajador: this.$props.estrabajador,
@@ -3526,7 +3530,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -3587,7 +3590,11 @@ __webpack_require__.r(__webpack_exports__);
       required: false
     },
     token: String,
-    id: String
+    id: String,
+    datostrabajador: {
+      type: Object,
+      required: false
+    }
   },
   data: function data() {
     return {
@@ -47630,7 +47637,6 @@ var render = function() {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
-                      id: "nombre",
                       name: "nombre",
                       placeholder: "nombre",
                       disabled: "true"
@@ -47656,7 +47662,6 @@ var render = function() {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
-                      id: "dni",
                       name: "dni",
                       placeholder: "Dni",
                       disabled: _vm.habilitado
@@ -47693,7 +47698,6 @@ var render = function() {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
-                      id: "direccion",
                       name: "direccion",
                       placeholder: "Direccion",
                       disabled: _vm.habilitado
@@ -47724,11 +47728,7 @@ var render = function() {
                     "select",
                     {
                       staticClass: "form-control",
-                      attrs: {
-                        id: "Provincia",
-                        name: "Provincia",
-                        disabled: _vm.habilitado
-                      },
+                      attrs: { name: "Provincia", disabled: _vm.habilitado },
                       on: {
                         change: function($event) {
                           _vm.provincia_i = $event.target.value
@@ -47776,7 +47776,6 @@ var render = function() {
                     staticClass: "form-control",
                     attrs: {
                       type: "text",
-                      id: "telefono",
                       name: "telefono",
                       placeholder: "telefono",
                       disabled: _vm.habilitado
@@ -47813,7 +47812,6 @@ var render = function() {
                     staticClass: "form-control",
                     attrs: {
                       type: "date",
-                      id: "fecha",
                       name: "fecha",
                       disabled: _vm.habilitado
                     },
@@ -49438,7 +49436,8 @@ var render = function() {
             provincias: _vm.provincias,
             nombre: _vm.nombre,
             id: _vm.id,
-            cabecera: true
+            cabecera: true,
+            datostrabajador: _vm.datostrabajador
           }
         })
       ],
@@ -49463,43 +49462,7 @@ var render = function() {
         _c("div", { staticClass: "container" }, [
           _vm._m(0),
           _vm._v(" "),
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-12" }, [
-              _c(
-                "ul",
-                {
-                  staticClass: "nav nav-pills justify-content-center",
-                  attrs: { id: "pills-nav", role: "tablist" }
-                },
-                [
-                  _vm._m(1),
-                  _vm._v(" "),
-                  _c("li", { staticClass: "nav-item   btn-xs-block" }, [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "nav-link btn-lg",
-                        attrs: {
-                          id: "nav-pills-02",
-                          "data-toggle": "pill",
-                          href: "#nav-item-02"
-                        },
-                        on: { click: _vm.mostrartooltipdialogo }
-                      },
-                      [
-                        _vm._v(
-                          "Experiencias\n                        Laborales "
-                        ),
-                        _c("span", { staticClass: "badge badge-light" })
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(2)
-                ]
-              )
-            ])
-          ]),
+          _vm._m(1),
           _vm._v(" "),
           _c(
             "div",
@@ -49521,7 +49484,8 @@ var render = function() {
                       nombre: _vm.nombre,
                       id: _vm.id,
                       cabecera: false,
-                      esarea: true
+                      esarea: true,
+                      datostrabajador: _vm.datostrabajador
                     }
                   })
                 ],
@@ -49589,40 +49553,67 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item btn-xs-block" }, [
-      _c(
-        "a",
-        {
-          staticClass: "nav-link active btn-lg ",
-          attrs: {
-            id: "nav-pills-01",
-            "data-toggle": "pill",
-            href: "#nav-item-01"
-          }
-        },
-        [_vm._v("Datos\n                        Personales")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item  btn-xs-block" }, [
-      _c(
-        "a",
-        {
-          staticClass: "nav-link btn-lg",
-          attrs: {
-            id: "nav-pills-03",
-            "data-toggle": "pill",
-            href: "#nav-item-03"
-          }
-        },
-        [_vm._v("Candidaturas")]
-      ),
-      _vm._v(" "),
-      _c("span", { staticClass: "badge badge-notify float-right" })
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-12" }, [
+        _c(
+          "ul",
+          {
+            staticClass: "nav nav-pills justify-content-center",
+            attrs: { id: "pills-nav", role: "tablist" }
+          },
+          [
+            _c("li", { staticClass: "nav-item btn-xs-block" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link active btn-lg ",
+                  attrs: {
+                    id: "nav-pills-01",
+                    "data-toggle": "pill",
+                    href: "#nav-item-01"
+                  }
+                },
+                [_vm._v("Datos\n                        Personales")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "nav-item   btn-xs-block" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link btn-lg",
+                  attrs: {
+                    id: "nav-pills-02",
+                    "data-toggle": "pill",
+                    href: "#nav-item-02"
+                  }
+                },
+                [
+                  _vm._v("Experiencias\n                        Laborales "),
+                  _c("span", { staticClass: "badge badge-light" })
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", { staticClass: "nav-item  btn-xs-block" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "nav-link btn-lg",
+                  attrs: {
+                    id: "nav-pills-03",
+                    "data-toggle": "pill",
+                    href: "#nav-item-03"
+                  }
+                },
+                [_vm._v("Candidaturas")]
+              ),
+              _vm._v(" "),
+              _c("span", { staticClass: "badge badge-notify float-right" })
+            ])
+          ]
+        )
+      ])
     ])
   }
 ]

@@ -3,7 +3,7 @@
       <div  v-show="!modelestrabajador">
        <curriculum-component :hhabilitado="false" :estrabajador="true"  :token="token"
      :provincias="provincias" :nombre="nombre" 
-     :id="id"  :cabecera="true"></curriculum-component>
+     :id="id"  :cabecera="true" :datostrabajador="datostrabajador"></curriculum-component>
 
       </div>
 
@@ -29,8 +29,7 @@
 
                     </li>
                     <li class="nav-item   btn-xs-block">
-                        <a class="nav-link btn-lg" id="nav-pills-02" data-toggle="pill" href="#nav-item-02" 
-                        @click="mostrartooltipdialogo">Experiencias
+                        <a class="nav-link btn-lg" id="nav-pills-02" data-toggle="pill" href="#nav-item-02">Experiencias
                             Laborales <span class="badge badge-light">
                                 <!--contar experiencias-->
 
@@ -64,7 +63,7 @@
                         <!--Curriculum relleno-->
                            <curriculum-component :hhabilitado="true" :estrabajador="false"  :token="token"
      :provincias="provincias" :nombre="nombre" 
-     :id="id" :cabecera="false"  :esarea="true"></curriculum-component>
+     :id="id" :cabecera="false"  :esarea="true" :datostrabajador="datostrabajador"></curriculum-component>
 
                     </div>
                     <div class="tab-pane fade " id="nav-item-02" role="tabpanel">
@@ -206,8 +205,14 @@ export default {
       required: false
     },
     token: String,
-    id: String
+    id: String,
+
+     datostrabajador: {
+      type: Object,
+      required: false
+    }
   },
+   
 
  data() {
           return {
