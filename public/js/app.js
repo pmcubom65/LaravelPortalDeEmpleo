@@ -1991,8 +1991,10 @@ __webpack_require__.r(__webpack_exports__);
     },
     categoria_id: {
       type: String,
-      required: true
-    }
+      required: true,
+      "default": ''
+    },
+    data: function data() {}
   }
 });
 
@@ -3430,6 +3432,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
+/* harmony import */ var _store_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/actions */ "./resources/js/store/actions.js");
 //
 //
 //
@@ -3586,6 +3589,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -3603,6 +3611,10 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     getExperiencias: function getExperiencias() {
       return this.$store.getters.getExperienciasById(this.$props.id);
+    },
+    getUltimaCategoria: function getUltimaCategoria() {
+      var arrayexperiencias = this.$store.getters.getExperienciasById(this.$props.id);
+      return String(arrayexperiencias[0].categoria_id);
     }
   },
   props: {
@@ -3666,9 +3678,6 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getRuta: function getRuta(id) {
       return "/home/Expe/" + id;
-    },
-    ultimacategoria: function ultimacategoria() {
-      return getExperiencias[0].categoria_id;
     }
   }
 });
@@ -49555,7 +49564,7 @@ var render = function() {
                     _c("buscarcategoriatrabajador-component", {
                       attrs: {
                         token: _vm.token,
-                        categoria_id: String(_vm.ultimacategoria)
+                        categoria_id: _vm.getUltimaCategoria
                       }
                     })
                   ],
@@ -67876,7 +67885,7 @@ var getEmpresaById = function getEmpresaById(state) {
 var getExperienciasById = function getExperienciasById(state) {
   return function (user_id) {
     var salida = state.experiencias.filter(function (experiencia) {
-      return experiencia.user_id == user_id;
+      return experiencia && experiencia.user_id == user_id;
     });
     return salida;
   };

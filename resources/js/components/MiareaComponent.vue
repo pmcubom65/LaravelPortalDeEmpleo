@@ -1,5 +1,6 @@
-<template>
+<template >
   <div>
+   
     <div v-show="!modelestrabajador">
       <curriculum-component
         :hhabilitado="false"
@@ -26,7 +27,9 @@
         </div>
         <div class="row text-center mb-5" v-if="getExperiencias">
           <div class="col-12 mx-auto">
-            <buscarcategoriatrabajador-component :token="token" :categoria_id="String(ultimacategoria)"></buscarcategoriatrabajador-component>
+           
+            <buscarcategoriatrabajador-component  :token="token" :categoria_id="getUltimaCategoria"></buscarcategoriatrabajador-component>
+            
           </div>
         </div>
 
@@ -152,10 +155,12 @@
       </div>
     </div>
   </div>
+  
 </template>
 
 <script>
 import { bus } from "../app";
+import { getExperiencias } from '../store/actions';
 export default {
   mounted() {
     console.log("Perfil montado");
@@ -166,10 +171,16 @@ export default {
     bus.$on("editarcurriculum", () => {
       this.modelestrabajador = false;
     });
+    
   },
   computed: {
     getExperiencias() {
       return this.$store.getters.getExperienciasById(this.$props.id);
+    },
+    getUltimaCategoria() {
+      var arrayexperiencias= this.$store.getters.getExperienciasById(this.$props.id);
+      
+      return String(arrayexperiencias[0].categoria_id);
     }
   },
 
@@ -231,7 +242,8 @@ export default {
 
   data() {
     return {
-      modelestrabajador: this.$props.estrabajador
+      modelestrabajador: this.$props.estrabajador,
+  
     };
   },
 
@@ -239,9 +251,7 @@ export default {
     getRuta: function(id) {
       return "/home/Expe/" + id;
     },
-    ultimacategoria: function() {
-      return getExperiencias[0].categoria_id;
-    }
+   
   }
 };
 </script>
