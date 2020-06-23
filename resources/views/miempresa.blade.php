@@ -18,7 +18,7 @@
 
 
         <div class="col-10 text-center mx-auto">
-            <h1><span class="glyphicon glyphicon-user mx-auto" aria-hidden="true"></span><br>Bienvenido Empresa:
+            <h1><span class="glyphicon glyphicon-piggy-bank mx-auto" aria-hidden="true"></span><br>Bienvenido Empresa:
                 {{ $datos->name }}</h1>
 
         </div>

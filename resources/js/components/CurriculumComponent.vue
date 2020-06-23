@@ -127,6 +127,7 @@
                   :contenidoslot="'Tienes registradas '+String(getNumeroExperiencias) + ' experiencias'"
                   :letrero="'Añadir Experiencia'"
                   :experiencia="true"
+                  :id="id"
                 ></tooltip-component>
               </div>
             </div>
@@ -154,9 +155,9 @@
               </div>
             </div>
             <div class="form-row my-3" v-show="abierto_i">
-              <button type="button" href="/home" class="btn btn-success m-auto btn-lg btn-xs-block">
+              <a type="button" href="/home" class="btn btn-success m-auto btn-lg btn-xs-block">
                 <span class="glyphicon glyphicon-ok-circle"></span> No tengo más experiencias laborales. Terminar
-              </button>
+              </a>
             </div>
 
             <div class="form-row my-3" v-show="!abierto_i">

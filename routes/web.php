@@ -64,9 +64,9 @@ Route::get('/trabajadores', function(){
 
 
 Route::get('/experiencias', function(){
-  $Response=DB::table('expe')->
-  select ('id','updated_at', 'puesto', 'empresa', 'inicio', 'fin', 'user_id','categoria_id','descripcion')->
-  groupBy('id','updated_at', 'puesto', 'empresa', 'inicio', 'fin', 'user_id','categoria_id','descripcion')->get();
+  $Response=DB::table('expe')->leftJoin('categorias', 'expe.categoria_id', '=', 'categorias.id')->
+  select ('expe.id','expe.updated_at', 'expe.puesto', 'expe.empresa', 'expe.inicio', 'expe.fin', 'expe.user_id',
+  'categorias.nombre','expe.descripcion')->get();
 
   return response()->json($Response, 200);
 })->name('experiencias');

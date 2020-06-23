@@ -12,30 +12,28 @@ class ExpeController extends Controller
     public function show($id) {
 
         $laexperiencia=Experiencia::find($id);
-        $miscategorias=Categoria::all();
+        
         $c=Experiencia::where('id',$id)->count();
-        $lasempresas=Empresa::all();
+       
 
-        return view('expe', ['contador'=>$c, 'miexpe'=>$laexperiencia, 'categorias'=>$miscategorias, 'midisplay'=>'none',
-        'empresas'=>$lasempresas]);
+        return view('expe', ['contador'=>$c, 'miexpe'=>$laexperiencia, 'midisplay'=>'none']);
 
 
     }
 
     public function delete(Request $request,$id) {
         $laexperiencia=Experiencia::find($id);
-        $miscategorias=Categoria::all();
+       
                 
         $laexperiencia->delete();
         $c=Experiencia::where('id',$id)->count();
-        return back()->withInput(['contador'=>$c, 'miexpe'=>$laexperiencia, 'categorias'=>$miscategorias]);
+        return back()->withInput(['contador'=>$c, 'miexpe'=>$laexperiencia]);
     }
 
 
     public function store(Request $request, $id) {
         $laexperiencia=Experiencia::find($id);
-        $miscategorias=Categoria::all();
-        $lasempresas=Empresa::all();
+     
         $laexperiencia->categoria_id=$request->get('cat');
         $laexperiencia->descripcion=$request->get('desexp');
         $laexperiencia->empresa=$request->get('empresaexp');
@@ -45,8 +43,6 @@ class ExpeController extends Controller
         $laexperiencia->save();
         $c=Experiencia::where('id',$id)->count();
 
-        return view('expe', ['contador'=>$c, 'miexpe'=>$laexperiencia, 'categorias'=>$miscategorias, 'midisplay'=>'block',
-        'empresas'=>$lasempresas
-        ]);
+        return view('expe', ['contador'=>$c, 'miexpe'=>$laexperiencia, 'midisplay'=>'block']);
     }
 }

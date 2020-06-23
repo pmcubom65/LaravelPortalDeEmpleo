@@ -6,7 +6,7 @@
 @if ($contador>0)
     <div class="row">
         <div class="col-12 text-center">
-            <h1><span class="glyphicon glyphicon-user" aria-hidden="true"></span><br>Experiencia {{ $miexpe->puesto }}</h1>
+            <h1><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span><br>Experiencia {{ $miexpe->puesto }}</h1>
 
         </div>
 

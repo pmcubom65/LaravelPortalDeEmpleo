@@ -1,56 +1,53 @@
 
 <template>
-    <v-popover >
-  <!-- This will be the popover target (for the events and position) -->
-  <button  v-tooltip="contenidotooltip" class="btn btn-danger btn-lg"  type="button" >{{ letrero }}</button>
-  <!-- This will be the content of the popover -->
-  
-  <p slot="popover" >{{contenidoslot}}<br>
+  <v-popover>
+    <!-- This will be the popover target (for the events and position) -->
+    <button v-tooltip="contenidotooltip" class="btn btn-danger btn-lg" type="button">{{ letrero }}</button>
+    <!-- This will be the content of the popover -->
 
-    <button class="btn btn-lg btn-primary"  data-toggle="modal"
-                        data-target="#sitiomodalexperiencia"  type="button" >Crear nueva experiencia</button>
+    <p slot="popover">
+     Tienes registradas {{getNumeroExperiencias}} experiencias
+      <br />
 
-  </p>
-  
-</v-popover>
-
-
- 
+      <button
+        class="btn btn-lg btn-primary"
+        data-toggle="modal"
+        data-target="#sitiomodalexperiencia"
+        type="button"
+      >Crear nueva experiencia</button>
+    </p>
+  </v-popover>
 </template>
 
 <script>
-
-    export default {
-      
-        mounted() {
-            console.log('montado tootltip.')
-        },
-        props : {
-          contenidotooltip: Object,
-          contenidoslot: String,
-          letrero: String,
-          experiencia: Boolean,
-          
-        },
-        methods : {
-           
-        },
-        data() {
-          return {
-             
-          } 
-        }
+export default {
+  mounted() {
+    console.log("montado tootltip.");
+    this.$store.dispatch("getTrabajadores");
+  },
+  computed: {
+    getNumeroExperiencias() {
+      return this.$store.getters.numero_experiencias(this.$props.id);
     }
+  },
+  props: {
+    contenidotooltip: Object,
+    contenidoslot: String,
+    letrero: String,
+    experiencia: Boolean,
+    id: String
+  },
+  methods: {},
+  data() {
+    return {};
+  }
+};
 </script>
 
 <style lang="scss">
-
-
 .tooltip {
   display: block !important;
   z-index: 2000;
-  
-  
 
   .tooltip-inner {
     background: indigo;
@@ -138,7 +135,7 @@
       color: black;
       padding: 24px;
       border-radius: 5px;
-      box-shadow: 0 5px 30px rgba(black, .1);
+      box-shadow: 0 5px 30px rgba(black, 0.1);
     }
 
     .popover-arrow {
@@ -146,17 +143,16 @@
     }
   }
 
-  &[aria-hidden='true'] {
+  &[aria-hidden="true"] {
     visibility: hidden;
     opacity: 0;
-    transition: opacity .15s, visibility .15s;
+    transition: opacity 0.15s, visibility 0.15s;
   }
 
-  &[aria-hidden='false'] {
+  &[aria-hidden="false"] {
     visibility: visible;
     opacity: 1;
-    transition: opacity .15s;
+    transition: opacity 0.15s;
   }
- 
 }
 </style>

@@ -1,109 +1,116 @@
 <template>
-    <div>
-      <div  v-show="!modelestrabajador">
-       <curriculum-component :hhabilitado="false" :estrabajador="true"  :token="token"
-     :provincias="provincias" :nombre="nombre" 
-     :id="id"  :cabecera="true" :datostrabajador="datostrabajador" :fecha="fecha" :region="region"></curriculum-component>
-
-      </div>
-
+  <div>
+    <div v-show="!modelestrabajador">
+      <curriculum-component
+        :hhabilitado="false"
+        :estrabajador="true"
+        :token="token"
+        :provincias="provincias"
+        :nombre="nombre"
+        :id="id"
+        :cabecera="true"
+        :datostrabajador="datostrabajador"
+        :fecha="fecha"
+        :region="region"
+      ></curriculum-component>
+    </div>
 
     <div class="jumbotron jumbotron-fluid" id="jumbotronarea" v-show="modelestrabajador">
-    <div class="container">
+      <div class="container">
         <div class="row">
-            <div class="col-12 text-center titular">
-                <h1 class="display-4">Mi área</h1>
-                <p class="lead">Acceda a sus datos y a sus candidaturas</p>
-                <hr>
-
-            </div>
+          <div class="col-12 text-center titular">
+            <h1 class="display-4">Mi área</h1>
+            <p class="lead">Acceda a sus datos y a sus candidaturas</p>
+            <hr />
+          </div>
         </div>
 
         <div class="row">
-            <div class="col-12">
-                <ul class="nav nav-pills justify-content-center" id="pills-nav" role="tablist">
-                    <li class="nav-item btn-xs-block">
-                        <a class="nav-link active btn-lg " id="nav-pills-01" data-toggle="pill"
-                            href="#nav-item-01">Datos
-                            Personales</a>
-
-                    </li>
-                    <li class="nav-item   btn-xs-block">
-                        <a class="nav-link btn-lg" id="nav-pills-02" data-toggle="pill" href="#nav-item-02">Experiencias
-                            Laborales <span class="badge badge-light">
-                                <!--contar experiencias-->
-
-                            </span></a>
-
-                    </li>
-                    <li class="nav-item  btn-xs-block">
-                        <a class="nav-link btn-lg" id="nav-pills-03" data-toggle="pill"
-                            href="#nav-item-03">Candidaturas</a>
-                        <span class="badge badge-notify float-right">
-                       <!-- {{isset($candidaturas) ? $candidaturas->count() : 0 }}
+          <div class="col-12">
+            <ul class="nav nav-pills justify-content-center" id="pills-nav" role="tablist">
+              <li class="nav-item btn-xs-block">
+                <a
+                  class="nav-link active btn-lg"
+                  id="nav-pills-01"
+                  data-toggle="pill"
+                  href="#nav-item-01"
+                >
+                  Datos
+                  Personales
+                </a>
+              </li>
+              <li class="nav-item btn-xs-block">
+                <a class="nav-link btn-lg" id="nav-pills-02" data-toggle="pill" href="#nav-item-02">
+                  Experiencias
+                  Laborales
+                  <span class="badge badge-light">
+                    <!--contar experiencias-->
+                  </span>
+                </a>
+              </li>
+              <li class="nav-item btn-xs-block">
+                <a
+                  class="nav-link btn-lg"
+                  id="nav-pills-03"
+                  data-toggle="pill"
+                  href="#nav-item-03"
+                >Candidaturas</a>
+                <span class="badge badge-notify float-right">
+                  <!-- {{isset($candidaturas) ? $candidaturas->count() : 0 }}
                        
-                       Contar candidaturas-->
-                       </span>
-                            
-
-                    </li>
-
-
-                </ul>
-            </div>
+                  Contar candidaturas-->
+                </span>
+              </li>
+            </ul>
+          </div>
         </div>
-
-
-
 
         <div class="tab-content" id="nav-pills-content">
+          <div class="tab-pane fade show active" id="nav-item-01" role="tabpanel">
+            <!--Curriculum relleno-->
+            <curriculum-component
+              :hhabilitado="true"
+              :estrabajador="false"
+              :token="token"
+              :provincias="provincias"
+              :nombre="nombre"
+              :id="id"
+              :cabecera="false"
+              :esarea="true"
+              :datostrabajador="datostrabajador"
+              :fecha="fecha"
+              :region="region"
+            ></curriculum-component>
+          </div>
+          <div class="tab-pane fade" id="nav-item-02" role="tabpanel">
+            <div class="form-row my-3 justify-content-center">
+              <tooltip-component
+                :contenidotooltip="{ content: 'Añade aquí tus experiencias laborales.', show: false }"
+                :contenidoslot="'Tienes registradas +String(getNumeroExperiencias) +  experiencias'"
+                :letrero="'Añadir Experiencia'"
+                :experiencia="true"
+                :id="id"
+              ></tooltip-component>
+            </div>
+            <div class="card" v-for="item in getExperiencias" :key="item.id">
+              <h5 class="card-header text-center">{{item.puesto}} - {{item.nombre}}</h5>
 
-                    <div class="tab-pane fade show active" id="nav-item-01" role="tabpanel">
+              <div class="card-body text-center">
+                <h5 class="card-title text-center">{{item.empresa}}</h5>
+                <p class="card-text text-center">{{item.descripcion}}</p>
+                <p class="card-text text-center">Desde: {{item.inicio}}</p>
+                <p class="card-text text-center">Hasta: {{item.fin}}</p>
 
-                        <!--Curriculum relleno-->
-                           <curriculum-component :hhabilitado="true" :estrabajador="false"  :token="token"
-     :provincias="provincias" :nombre="nombre" 
-     :id="id" :cabecera="false"  :esarea="true" :datostrabajador="datostrabajador" :fecha="fecha"  :region="region"></curriculum-component>
-
-                    </div>
-                    <div class="tab-pane fade " id="nav-item-02" role="tabpanel">
-
-                        <div class="form-row my-3 justify-content-center" >
-
-
-                                  <tooltip-component :contenidotooltip="{ content: 'Añade aquí tus experiencias laborales.', show: false }"
-                        :contenidoslot= "'Tienes registradas +String(getNumeroExperiencias) +  experiencias'"
-                        :letrero="'Añadir Experiencia'"
-                        :experiencia="true"
-                       
-                                 ></tooltip-component>
-
-
-                    </div>
-                   <!--     @foreach ($experienciass as $experiencia)
-
-                        <div class="card">
-                            <h5 class="card-header">{{$experiencia->puesto}} - {{$experiencia->categoria->nombre}}</h5>
-                            <div class="card-body">
-                                <h5 class="card-title">{{$experiencia->empresa}}</h5>
-                                <p class="card-text">{{$experiencia->descripcion}}</p>
-                                <p class="card-text">Desde: {{$experiencia->inicio}}</p>
-                                <p class="card-text">Hasta: {{$experiencia->fin}}</p>
-
-                                <a href="/home/Expe/{{$experiencia->id}}" class="btn btn-primary btn-xs-block ">Editar o
-                                    Borrar</a>
-                            </div>
-                        </div>
-
-                        @endforeach-->
-
-                    </div>
-                    <div class="tab-pane fade" id="nav-item-03" role="tabpanel">
-
-
-
-
-              <!--          <p>
+                <a :href="getRuta(item.id)" class="btn btn-primary btn-xs-block btn-lg">
+                  Editar o
+                  Borrar
+                </a>
+              </div>
+            </div>
+         
+          </div>
+          <div class="tab-pane fade" id="nav-item-03" role="tabpanel">
+            <!--          <p>
                         @if (isset($candidaturas))
                             @foreach ($candidaturas as $oferta)
 
@@ -134,27 +141,31 @@
                             <hr>
                             @endforeach
                             @endif
-                        </p>-->
-                    </div>
+            </p>-->
+          </div>
         </div>
+      </div>
     </div>
-    </div>
-    </div>
+  </div>
 </template>
 
 <script>
 import { bus } from "../app";
 export default {
-      mounted() {
+  mounted() {
     console.log("Perfil montado");
     this.$store.dispatch("getTrabajadores");
-   
+    this.$store.dispatch("getExperiencias");
   },
   created() {
-    bus.$on('editarcurriculum', ()=>{
-        this.modelestrabajador=false;
+    bus.$on("editarcurriculum", () => {
+      this.modelestrabajador = false;
     });
-    
+  },
+  computed: {
+    getExperiencias() {
+      return this.$store.getters.getExperienciasById(this.$props.id);
+    }
   },
 
   props: {
@@ -195,7 +206,7 @@ export default {
       type: Boolean,
       required: false
     },
-     cabecera: {
+    cabecera: {
       type: Boolean,
       required: false,
       default: true
@@ -207,33 +218,34 @@ export default {
     token: String,
     id: String,
 
-     datostrabajador: {
+    datostrabajador: {
       type: Object,
       required: false
     }
   },
-   
 
- data() {
-          return {
-              modelestrabajador: this.$props.estrabajador,
-          } 
-        },
+  data() {
+    return {
+      modelestrabajador: this.$props.estrabajador
+    };
+  },
 
-      methods : {
-        
-      }
-
-
-}
+  methods: {
+    getRuta: function(id) {
+      return "/home/Expe/" + id;
+    }
+  }
+};
 </script>
 
 
 <style lang="scss" scoped>
-.tab-pane, .titular {
-    color: white;
+.tab-pane,
+.titular {
+  color: white;
 }
 
-
-
+.card-header {
+  background-color: black;
+}
 </style>

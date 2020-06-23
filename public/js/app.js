@@ -2310,6 +2310,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -3530,18 +3531,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("Perfil montado");
     this.$store.dispatch("getTrabajadores");
+    this.$store.dispatch("getExperiencias");
   },
   created: function created() {
     var _this = this;
 
-    _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$on('editarcurriculum', function () {
+    _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$on("editarcurriculum", function () {
       _this.modelestrabajador = false;
     });
+  },
+  computed: {
+    getExperiencias: function getExperiencias() {
+      return this.$store.getters.getExperienciasById(this.$props.id);
+    }
   },
   props: {
     nombre: {
@@ -3601,7 +3615,11 @@ __webpack_require__.r(__webpack_exports__);
       modelestrabajador: this.$props.estrabajador
     };
   },
-  methods: {}
+  methods: {
+    getRuta: function getRuta(id) {
+      return "/home/Expe/" + id;
+    }
+  }
 });
 
 /***/ }),
@@ -4184,15 +4202,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    console.log('montado tootltip.');
+    console.log("montado tootltip.");
+    this.$store.dispatch("getTrabajadores");
+  },
+  computed: {
+    getNumeroExperiencias: function getNumeroExperiencias() {
+      return this.$store.getters.numero_experiencias(this.$props.id);
+    }
   },
   props: {
     contenidotooltip: Object,
     contenidoslot: String,
     letrero: String,
-    experiencia: Boolean
+    experiencia: Boolean,
+    id: String
   },
   methods: {},
   data: function data() {
@@ -8821,7 +8847,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".tab-pane[data-v-fbd1a58e], .titular[data-v-fbd1a58e] {\n  color: white;\n}", ""]);
+exports.push([module.i, ".tab-pane[data-v-fbd1a58e],\n.titular[data-v-fbd1a58e] {\n  color: white;\n}\n.card-header[data-v-fbd1a58e] {\n  background-color: black;\n}", ""]);
 
 // exports
 
@@ -47860,7 +47886,8 @@ var render = function() {
                             String(_vm.getNumeroExperiencias) +
                             " experiencias",
                           letrero: "Añadir Experiencia",
-                          experiencia: true
+                          experiencia: true,
+                          id: _vm.id
                         }
                       })
                     ],
@@ -48027,7 +48054,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c(
-      "button",
+      "a",
       {
         staticClass: "btn btn-success m-auto btn-lg btn-xs-block",
         attrs: { type: "button", href: "/home" }
@@ -49499,7 +49526,7 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "tab-pane fade ",
+                  staticClass: "tab-pane fade",
                   attrs: { id: "nav-item-02", role: "tabpanel" }
                 },
                 [
@@ -49516,13 +49543,56 @@ var render = function() {
                           contenidoslot:
                             "Tienes registradas +String(getNumeroExperiencias) +  experiencias",
                           letrero: "Añadir Experiencia",
-                          experiencia: true
+                          experiencia: true,
+                          id: _vm.id
                         }
                       })
                     ],
                     1
-                  )
-                ]
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.getExperiencias, function(item) {
+                    return _c("div", { key: item.id, staticClass: "card" }, [
+                      _c("h5", { staticClass: "card-header text-center" }, [
+                        _vm._v(
+                          _vm._s(item.puesto) + " - " + _vm._s(item.nombre)
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "card-body text-center" }, [
+                        _c("h5", { staticClass: "card-title text-center" }, [
+                          _vm._v(_vm._s(item.empresa))
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "card-text text-center" }, [
+                          _vm._v(_vm._s(item.descripcion))
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "card-text text-center" }, [
+                          _vm._v("Desde: " + _vm._s(item.inicio))
+                        ]),
+                        _vm._v(" "),
+                        _c("p", { staticClass: "card-text text-center" }, [
+                          _vm._v("Hasta: " + _vm._s(item.fin))
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-primary btn-xs-block btn-lg",
+                            attrs: { href: _vm.getRuta(item.id) }
+                          },
+                          [
+                            _vm._v(
+                              "\n                Editar o\n                Borrar\n              "
+                            )
+                          ]
+                        )
+                      ])
+                    ])
+                  })
+                ],
+                2
               ),
               _vm._v(" "),
               _c("div", {
@@ -49570,18 +49640,22 @@ var staticRenderFns = [
               _c(
                 "a",
                 {
-                  staticClass: "nav-link active btn-lg ",
+                  staticClass: "nav-link active btn-lg",
                   attrs: {
                     id: "nav-pills-01",
                     "data-toggle": "pill",
                     href: "#nav-item-01"
                   }
                 },
-                [_vm._v("Datos\n                        Personales")]
+                [
+                  _vm._v(
+                    "\n                Datos\n                Personales\n              "
+                  )
+                ]
               )
             ]),
             _vm._v(" "),
-            _c("li", { staticClass: "nav-item   btn-xs-block" }, [
+            _c("li", { staticClass: "nav-item btn-xs-block" }, [
               _c(
                 "a",
                 {
@@ -49593,13 +49667,15 @@ var staticRenderFns = [
                   }
                 },
                 [
-                  _vm._v("Experiencias\n                        Laborales "),
+                  _vm._v(
+                    "\n                Experiencias\n                Laborales\n                "
+                  ),
                   _c("span", { staticClass: "badge badge-light" })
                 ]
               )
             ]),
             _vm._v(" "),
-            _c("li", { staticClass: "nav-item  btn-xs-block" }, [
+            _c("li", { staticClass: "nav-item btn-xs-block" }, [
               _c(
                 "a",
                 {
@@ -50280,7 +50356,11 @@ var render = function() {
     ),
     _vm._v(" "),
     _c("p", { attrs: { slot: "popover" }, slot: "popover" }, [
-      _vm._v(_vm._s(_vm.contenidoslot)),
+      _vm._v(
+        "\n   Tienes registradas " +
+          _vm._s(_vm.getNumeroExperiencias) +
+          " experiencias\n    "
+      ),
       _c("br"),
       _vm._v(" "),
       _c(
@@ -67679,13 +67759,14 @@ var getExperiencias = function getExperiencias(_ref4) {
 /*!***************************************!*\
   !*** ./resources/js/store/getters.js ***!
   \***************************************/
-/*! exports provided: getCategoriaById, getEmpresaById, numero_experiencias */
+/*! exports provided: getCategoriaById, getEmpresaById, getExperienciasById, numero_experiencias */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCategoriaById", function() { return getCategoriaById; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getEmpresaById", function() { return getEmpresaById; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getExperienciasById", function() { return getExperienciasById; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "numero_experiencias", function() { return numero_experiencias; });
 var getCategoriaById = function getCategoriaById(state) {
   return function (id) {
@@ -67699,6 +67780,14 @@ var getEmpresaById = function getEmpresaById(state) {
   return function (name) {
     var salida = state.empresas.filter(function (empresa) {
       return empresa.name === name;
+    });
+    return salida;
+  };
+};
+var getExperienciasById = function getExperienciasById(state) {
+  return function (user_id) {
+    var salida = state.experiencias.filter(function (experiencia) {
+      return experiencia.user_id == user_id;
     });
     return salida;
   };
