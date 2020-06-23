@@ -1988,6 +1988,10 @@ __webpack_require__.r(__webpack_exports__);
     token: {
       type: String,
       required: true
+    },
+    categoria_id: {
+      type: String,
+      required: true
     }
   }
 });
@@ -3664,9 +3668,7 @@ __webpack_require__.r(__webpack_exports__);
       return "/home/Expe/" + id;
     },
     ultimacategoria: function ultimacategoria() {
-      getExperiencias.sort(function (expea, expeb) {
-        return expea.fin > expeb.fin ? expea.categoria_id : expeb.categoria_id;
-      });
+      return getExperiencias[0].categoria_id;
     }
   }
 });
@@ -47377,48 +47379,52 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("form", { attrs: { method: "get", action: "/search" } }, [
+    _c("input", {
+      staticClass: "form-control",
+      attrs: { type: "hidden", name: "cat", id: "cat" },
+      domProps: { value: _vm.categoria_id }
+    }),
+    _vm._v(" "),
+    _c("input", {
+      attrs: { type: "hidden", name: "_token", id: "_token" },
+      domProps: { value: _vm.token }
+    }),
+    _vm._v(" "),
+    _c("input", {
+      attrs: { type: "hidden", id: "Provincia", name: "Provincia", value: "" }
+    }),
+    _vm._v(" "),
+    _c("input", {
+      attrs: {
+        type: "hidden",
+        id: "Experiencia",
+        name: "Experiencia",
+        value: ""
+      }
+    }),
+    _vm._v(" "),
+    _c("input", {
+      attrs: {
+        type: "hidden",
+        value: "12000",
+        id: "Salarioid",
+        name: "Salarioid"
+      }
+    }),
+    _vm._v(" "),
+    _c("input", {
+      attrs: { type: "hidden", id: "contrato", name: "contrato", value: "" }
+    }),
+    _vm._v(" "),
+    _c(
+      "button",
+      { staticClass: "btn btn-primary btn-lg", attrs: { type: "submit" } },
+      [_vm._v("Buscar ofertas de mi categoria profesional")]
+    )
+  ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("form", { attrs: { method: "get", action: "/search" } }, [
-      _c("input", {
-        attrs: { type: "hidden", id: "Provincia", name: "Provincia", value: "" }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        attrs: {
-          type: "hidden",
-          id: "Experiencia",
-          name: "Experiencia",
-          value: ""
-        }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        attrs: {
-          type: "hidden",
-          value: "12000",
-          id: "Salarioid",
-          name: "Salarioid"
-        }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        attrs: { type: "hidden", id: "contrato", name: "contrato", value: "" }
-      }),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-primary btn-lg", attrs: { type: "submit" } },
-        [_vm._v("Buscar ofertas de mi categoria profesional")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -49549,7 +49555,7 @@ var render = function() {
                     _c("buscarcategoriatrabajador-component", {
                       attrs: {
                         token: _vm.token,
-                        categoria_id: _vm.ultimacategoria
+                        categoria_id: String(_vm.ultimacategoria)
                       }
                     })
                   ],

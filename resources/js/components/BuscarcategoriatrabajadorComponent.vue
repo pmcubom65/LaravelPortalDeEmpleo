@@ -1,8 +1,8 @@
 <template>
     <form method="get" action="/search"> 
 
-<!--<input type="hidden" name="cat" id="cat" value="{{$experienciass->first()->categoria_id}}" class="form-control">
-<input type="hidden" name="_token" id="_token" value="{{ Session::token() }}">-->
+<input type="hidden" name="cat" id="cat" :value="categoria_id" class="form-control">
+<input type="hidden" name="_token" id="_token" :value="token">
 <input type="hidden"   id="Provincia" name="Provincia" value="">
 <input type="hidden"  id="Experiencia" name="Experiencia" value="" >
 <input type="hidden" value="12000" 
@@ -21,6 +21,10 @@
 export default {
     props : {
         token : {
+            type: String,
+            required: true
+        },
+        categoria_id: {
             type: String,
             required: true
         }

@@ -26,7 +26,7 @@
         </div>
         <div class="row text-center mb-5" v-if="getExperiencias">
           <div class="col-12 mx-auto">
-            <buscarcategoriatrabajador-component :token="token" :categoria_id="ultimacategoria"></buscarcategoriatrabajador-component>
+            <buscarcategoriatrabajador-component :token="token" :categoria_id="String(ultimacategoria)"></buscarcategoriatrabajador-component>
           </div>
         </div>
 
@@ -240,9 +240,7 @@ export default {
       return "/home/Expe/" + id;
     },
     ultimacategoria: function() {
-      getExperiencias.sort(function(expea, expeb){
-        return (expea.fin>expeb.fin) ? expea.categoria_id : expeb.categoria_id;
-        })
+      return getExperiencias[0].categoria_id;
     }
   }
 };
