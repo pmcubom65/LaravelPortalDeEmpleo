@@ -3,7 +3,7 @@
       <div  v-show="!modelestrabajador">
        <curriculum-component :hhabilitado="false" :estrabajador="true"  :token="token"
      :provincias="provincias" :nombre="nombre" 
-     :id="id"  :cabecera="true" :datostrabajador="datostrabajador"></curriculum-component>
+     :id="id"  :cabecera="true" :datostrabajador="datostrabajador" :fecha="fecha" :region="region"></curriculum-component>
 
       </div>
 
@@ -63,7 +63,7 @@
                         <!--Curriculum relleno-->
                            <curriculum-component :hhabilitado="true" :estrabajador="false"  :token="token"
      :provincias="provincias" :nombre="nombre" 
-     :id="id" :cabecera="false"  :esarea="true" :datostrabajador="datostrabajador"></curriculum-component>
+     :id="id" :cabecera="false"  :esarea="true" :datostrabajador="datostrabajador" :fecha="fecha"  :region="region"></curriculum-component>
 
                     </div>
                     <div class="tab-pane fade " id="nav-item-02" role="tabpanel">

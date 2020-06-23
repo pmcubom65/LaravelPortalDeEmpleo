@@ -265,7 +265,7 @@ export default {
       direccion_i:  this.$props.datostrabajador.direccion,
       provincia_i: this.$props.datostrabajador.provincia_id,
       telefono_i: this.$props.datostrabajador.telefono,
-      fecha_i: this.$props.datostrabajador.fecha,
+      fecha_i: this.$props.fecha,
       
       salida: "",
       abierto_i: false,

@@ -2385,7 +2385,7 @@ __webpack_require__.r(__webpack_exports__);
       direccion_i: this.$props.datostrabajador.direccion,
       provincia_i: this.$props.datostrabajador.provincia_id,
       telefono_i: this.$props.datostrabajador.telefono,
-      fecha_i: this.$props.datostrabajador.fecha,
+      fecha_i: this.$props.fecha,
       salida: "",
       abierto_i: false,
       trabajador: this.$props.estrabajador,
@@ -49437,7 +49437,9 @@ var render = function() {
             nombre: _vm.nombre,
             id: _vm.id,
             cabecera: true,
-            datostrabajador: _vm.datostrabajador
+            datostrabajador: _vm.datostrabajador,
+            fecha: _vm.fecha,
+            region: _vm.region
           }
         })
       ],
@@ -49485,7 +49487,9 @@ var render = function() {
                       id: _vm.id,
                       cabecera: false,
                       esarea: true,
-                      datostrabajador: _vm.datostrabajador
+                      datostrabajador: _vm.datostrabajador,
+                      fecha: _vm.fecha,
+                      region: _vm.region
                     }
                   })
                 ],
