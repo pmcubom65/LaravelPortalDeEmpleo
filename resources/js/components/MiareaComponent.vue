@@ -1,5 +1,14 @@
 <template>
-    <div class="jumbotron jumbotron-fluid" id="jumbotronarea">
+    <div>
+      <div  v-show="!modelestrabajador">
+       <curriculum-component :hhabilitado="false" :estrabajador="true"  :token="token"
+     :provincias="provincias" :nombre="nombre" 
+     :id="id"  :cabecera="true"></curriculum-component>
+
+      </div>
+
+
+    <div class="jumbotron jumbotron-fluid" id="jumbotronarea" v-show="modelestrabajador">
     <div class="container">
         <div class="row">
             <div class="col-12 text-center titular">
@@ -53,9 +62,9 @@
                     <div class="tab-pane fade show active" id="nav-item-01" role="tabpanel">
 
                         <!--Curriculum relleno-->
-                           <curriculum-component :hhabilitado="false" :estrabajador="false"  :token="token"
+                           <curriculum-component :hhabilitado="true" :estrabajador="false"  :token="token"
      :provincias="provincias" :nombre="nombre" 
-     :id="id" :cabecera="false"></curriculum-component>
+     :id="id" :cabecera="false"  :esarea="true"></curriculum-component>
 
                     </div>
                     <div class="tab-pane fade " id="nav-item-02" role="tabpanel">
@@ -63,7 +72,7 @@
                         <div class="form-row my-3 justify-content-center" >
 
 
-                                  <tooltip-component  :contenidotooltip="{ content: 'Añade aquí tus experiencias laborales.', show: 5000 }"
+                                  <tooltip-component :contenidotooltip="{ content: 'Añade aquí tus experiencias laborales.', show: false }"
                         :contenidoslot= "'Tienes registradas +String(getNumeroExperiencias) +  experiencias'"
                         :letrero="'Añadir Experiencia'"
                         :experiencia="true"
@@ -131,14 +140,22 @@
         </div>
     </div>
     </div>
+    </div>
 </template>
 
 <script>
+import { bus } from "../app";
 export default {
       mounted() {
     console.log("Perfil montado");
     this.$store.dispatch("getTrabajadores");
    
+  },
+  created() {
+    bus.$on('editarcurriculum', ()=>{
+        this.modelestrabajador=false;
+    });
+    
   },
 
   props: {
@@ -194,7 +211,7 @@ export default {
 
  data() {
           return {
-            
+              modelestrabajador: this.$props.estrabajador,
           } 
         },
 
@@ -211,5 +228,7 @@ export default {
 .tab-pane, .titular {
     color: white;
 }
+
+
 
 </style>

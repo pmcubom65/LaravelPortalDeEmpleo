@@ -44,12 +44,16 @@
 </script>
 
 <style lang="scss">
+
+
 .tooltip {
   display: block !important;
-  z-index: 10000;
+  z-index: 2000;
+  
+  
 
   .tooltip-inner {
-    background: black;
+    background: indigo;
     color: white;
     border-radius: 16px;
     padding: 5px 10px 4px;
@@ -62,7 +66,7 @@
     border-style: solid;
     position: absolute;
     margin: 5px;
-    border-color: black;
+    border-color: indigo;
     z-index: 1;
   }
 

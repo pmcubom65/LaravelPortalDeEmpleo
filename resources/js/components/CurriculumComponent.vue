@@ -1,5 +1,6 @@
 <template>
   <section>
+   
     <div class="card" v-show="cabecera">
       <div class="card-body">
         <h4
@@ -32,7 +33,7 @@
                   name="nombre"
                   placeholder="nombre"
                   :value="nombre"
-                  disabled="trues"
+                  disabled="true"
                 />
               </div>
             </div>
@@ -129,22 +130,24 @@
                 ></tooltip-component>
               </div>
             </div>
-
+            <div v-show="!esarea">
             <div class="form-row my-3"  v-show="!abierto_i">
               <div class="form-group col-sm-12 text-center">
-                <label class="btn btn-primary btn-lg" for="imagen">
+                <label class="btn btn-primary btn-lg" for="imagen" >
                   <input
                     type="file"
                     class="d-none"
                     style="margin: 0 auto !important;"
                     id="imagen"
                     name="imagen"
+                    
                   />
                   <span class="glyphicon glyphicon-upload"></span>
                   Subir Foto
                 </label>
               </div>
             </div>
+            
             <div class="form-group col-sm-12">
               <div id="messages" class="text-center">
                 <p class="alert">{{salida}}</p>
@@ -161,10 +164,23 @@
                 <span class="glyphicon glyphicon-ok"></span> Guardar Curriculum
               </button>
             </div>
+
+
+            </div>
+            <div v-show="esarea">
+            <div class="form-row my-3" >
+              <button type="button" class="btn btn-success m-auto btn-lg btn-xs-block" @click="editarlo">
+                 Editar Curriculum
+              </button>
+            </div>
+
+
+            </div>
           </form>
         </div>
       </div>
     </div>
+  
   </section>
 </template>
 
@@ -220,10 +236,15 @@ export default {
       type: Boolean,
       required: false
     },
+    
      cabecera: {
       type: Boolean,
       required: false,
       default: true
+    },
+       esarea: {
+      type: Boolean,
+      required: false
     },
     fecha: {
       type: String,
@@ -244,7 +265,8 @@ export default {
       salida: "",
       abierto_i: false,
       trabajador: this.$props.estrabajador,
-      habilitado: this.$props.hhabilitado
+      habilitado: this.$props.hhabilitado,
+      
     };
   },
   methods: {
@@ -280,6 +302,9 @@ export default {
         .catch(function(error) {
           console.log(error);
         });
+    },
+    editarlo: function() {
+        bus.$emit("editarcurriculum");
     }
   }
 };

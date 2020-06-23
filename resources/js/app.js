@@ -14,7 +14,7 @@ import { Ziggy } from './ziggy'
 import store from './store'
 
 
-Vue.use(VTooltip)
+Vue.use(VTooltip, {defaultTrigger: 'hover', defaultContainer: 'div', disposeTimeout: 1000})
 
 
 Vue.mixin({

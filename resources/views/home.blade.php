@@ -14,24 +14,10 @@
 
 
 
-    <miarea-component :hhabilitado="true" :estrabajador="false"  :token="'{{Session::token()}}'"
-     :provincias="JSON.parse('{{$provincias->toJson()}}')" :nombre="'{{Auth::user()->name}}'" 
-     :id="'{{Auth::user()->id}}'"
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
-     
+    <miarea-component :hhabilitado="true" :estrabajador="true"  :token="'{{Session::token()}}'"
+     :provincias=" JSON.parse('{{$provincias->toJson()}}') " :nombre="'{{Auth::user()->name}}'" 
+     :id="'{{Auth::user()->id}}'"  :datostrabajador="'{{$trabajador}}'" 
+
      ></miarea-component>
 
 

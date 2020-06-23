@@ -2294,6 +2294,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -2347,6 +2363,10 @@ __webpack_require__.r(__webpack_exports__);
       required: false,
       "default": true
     },
+    esarea: {
+      type: Boolean,
+      required: false
+    },
     fecha: {
       type: String,
       required: false
@@ -2398,6 +2418,9 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         console.log(error);
       });
+    },
+    editarlo: function editarlo() {
+      _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$emit("editarcurriculum");
     }
   }
 });
@@ -3358,6 +3381,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
 //
 //
 //
@@ -3493,10 +3517,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
     console.log("Perfil montado");
     this.$store.dispatch("getTrabajadores");
+  },
+  created: function created() {
+    var _this = this;
+
+    _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$on('editarcurriculum', function () {
+      _this.modelestrabajador = false;
+    });
   },
   props: {
     nombre: {
@@ -3548,7 +3590,9 @@ __webpack_require__.r(__webpack_exports__);
     id: String
   },
   data: function data() {
-    return {};
+    return {
+      modelestrabajador: this.$props.estrabajador
+    };
   },
   methods: {}
 });
@@ -8808,7 +8852,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".tooltip {\n  display: block !important;\n  z-index: 10000;\n}\n.tooltip .tooltip-inner {\n  background: black;\n  color: white;\n  border-radius: 16px;\n  padding: 5px 10px 4px;\n  font-size: 1.25rem;\n}\n.tooltip .tooltip-arrow {\n  width: 0;\n  height: 0;\n  border-style: solid;\n  position: absolute;\n  margin: 5px;\n  border-color: black;\n  z-index: 1;\n}\n.tooltip[x-placement^=top] {\n  margin-bottom: 5px;\n}\n.tooltip[x-placement^=top] .tooltip-arrow {\n  border-width: 5px 5px 0 5px;\n  border-left-color: transparent !important;\n  border-right-color: transparent !important;\n  border-bottom-color: transparent !important;\n  bottom: -5px;\n  left: calc(50% - 5px);\n  margin-top: 0;\n  margin-bottom: 0;\n}\n.tooltip[x-placement^=bottom] {\n  margin-top: 5px;\n}\n.tooltip[x-placement^=bottom] .tooltip-arrow {\n  border-width: 0 5px 5px 5px;\n  border-left-color: transparent !important;\n  border-right-color: transparent !important;\n  border-top-color: transparent !important;\n  top: -5px;\n  left: calc(50% - 5px);\n  margin-top: 0;\n  margin-bottom: 0;\n}\n.tooltip[x-placement^=right] {\n  margin-left: 5px;\n}\n.tooltip[x-placement^=right] .tooltip-arrow {\n  border-width: 5px 5px 5px 0;\n  border-left-color: transparent !important;\n  border-top-color: transparent !important;\n  border-bottom-color: transparent !important;\n  left: -5px;\n  top: calc(50% - 5px);\n  margin-left: 0;\n  margin-right: 0;\n}\n.tooltip[x-placement^=left] {\n  margin-right: 5px;\n}\n.tooltip[x-placement^=left] .tooltip-arrow {\n  border-width: 5px 0 5px 5px;\n  border-top-color: transparent !important;\n  border-right-color: transparent !important;\n  border-bottom-color: transparent !important;\n  right: -5px;\n  top: calc(50% - 5px);\n  margin-left: 0;\n  margin-right: 0;\n}\n.tooltip.popover .popover-inner {\n  background: #f9f9f9;\n  color: black;\n  padding: 24px;\n  border-radius: 5px;\n  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);\n}\n.tooltip.popover .popover-arrow {\n  border-color: #f9f9f9;\n}\n.tooltip[aria-hidden=true] {\n  visibility: hidden;\n  opacity: 0;\n  transition: opacity 0.15s, visibility 0.15s;\n}\n.tooltip[aria-hidden=false] {\n  visibility: visible;\n  opacity: 1;\n  transition: opacity 0.15s;\n}", ""]);
+exports.push([module.i, ".tooltip {\n  display: block !important;\n  z-index: 2000;\n}\n.tooltip .tooltip-inner {\n  background: indigo;\n  color: white;\n  border-radius: 16px;\n  padding: 5px 10px 4px;\n  font-size: 1.25rem;\n}\n.tooltip .tooltip-arrow {\n  width: 0;\n  height: 0;\n  border-style: solid;\n  position: absolute;\n  margin: 5px;\n  border-color: indigo;\n  z-index: 1;\n}\n.tooltip[x-placement^=top] {\n  margin-bottom: 5px;\n}\n.tooltip[x-placement^=top] .tooltip-arrow {\n  border-width: 5px 5px 0 5px;\n  border-left-color: transparent !important;\n  border-right-color: transparent !important;\n  border-bottom-color: transparent !important;\n  bottom: -5px;\n  left: calc(50% - 5px);\n  margin-top: 0;\n  margin-bottom: 0;\n}\n.tooltip[x-placement^=bottom] {\n  margin-top: 5px;\n}\n.tooltip[x-placement^=bottom] .tooltip-arrow {\n  border-width: 0 5px 5px 5px;\n  border-left-color: transparent !important;\n  border-right-color: transparent !important;\n  border-top-color: transparent !important;\n  top: -5px;\n  left: calc(50% - 5px);\n  margin-top: 0;\n  margin-bottom: 0;\n}\n.tooltip[x-placement^=right] {\n  margin-left: 5px;\n}\n.tooltip[x-placement^=right] .tooltip-arrow {\n  border-width: 5px 5px 5px 0;\n  border-left-color: transparent !important;\n  border-top-color: transparent !important;\n  border-bottom-color: transparent !important;\n  left: -5px;\n  top: calc(50% - 5px);\n  margin-left: 0;\n  margin-right: 0;\n}\n.tooltip[x-placement^=left] {\n  margin-right: 5px;\n}\n.tooltip[x-placement^=left] .tooltip-arrow {\n  border-width: 5px 0 5px 5px;\n  border-top-color: transparent !important;\n  border-right-color: transparent !important;\n  border-bottom-color: transparent !important;\n  right: -5px;\n  top: calc(50% - 5px);\n  margin-left: 0;\n  margin-right: 0;\n}\n.tooltip.popover .popover-inner {\n  background: #f9f9f9;\n  color: black;\n  padding: 24px;\n  border-radius: 5px;\n  box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);\n}\n.tooltip.popover .popover-arrow {\n  border-color: #f9f9f9;\n}\n.tooltip[aria-hidden=true] {\n  visibility: hidden;\n  opacity: 0;\n  transition: opacity 0.15s, visibility 0.15s;\n}\n.tooltip[aria-hidden=false] {\n  visibility: visible;\n  opacity: 1;\n  transition: opacity 0.15s;\n}", ""]);
 
 // exports
 
@@ -47589,7 +47633,7 @@ var render = function() {
                       id: "nombre",
                       name: "nombre",
                       placeholder: "nombre",
-                      disabled: "trues"
+                      disabled: "true"
                     },
                     domProps: { value: _vm.nombre }
                   })
@@ -47834,41 +47878,72 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: !_vm.abierto_i,
-                      expression: "!abierto_i"
+                      value: !_vm.esarea,
+                      expression: "!esarea"
                     }
-                  ],
-                  staticClass: "form-row my-3"
-                },
-                [_vm._m(1)]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group col-sm-12" }, [
-                _c(
-                  "div",
-                  { staticClass: "text-center", attrs: { id: "messages" } },
-                  [
-                    _c("p", { staticClass: "alert" }, [
-                      _vm._v(_vm._s(_vm.salida))
-                    ])
                   ]
-                )
-              ]),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  directives: [
-                    {
-                      name: "show",
-                      rawName: "v-show",
-                      value: _vm.abierto_i,
-                      expression: "abierto_i"
-                    }
-                  ],
-                  staticClass: "form-row my-3"
                 },
-                [_vm._m(2)]
+                [
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: !_vm.abierto_i,
+                          expression: "!abierto_i"
+                        }
+                      ],
+                      staticClass: "form-row my-3"
+                    },
+                    [_vm._m(1)]
+                  ),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "form-group col-sm-12" }, [
+                    _c(
+                      "div",
+                      { staticClass: "text-center", attrs: { id: "messages" } },
+                      [
+                        _c("p", { staticClass: "alert" }, [
+                          _vm._v(_vm._s(_vm.salida))
+                        ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.abierto_i,
+                          expression: "abierto_i"
+                        }
+                      ],
+                      staticClass: "form-row my-3"
+                    },
+                    [_vm._m(2)]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: !_vm.abierto_i,
+                          expression: "!abierto_i"
+                        }
+                      ],
+                      staticClass: "form-row my-3"
+                    },
+                    [_vm._m(3)]
+                  )
+                ]
               ),
               _vm._v(" "),
               _c(
@@ -47878,13 +47953,29 @@ var render = function() {
                     {
                       name: "show",
                       rawName: "v-show",
-                      value: !_vm.abierto_i,
-                      expression: "!abierto_i"
+                      value: _vm.esarea,
+                      expression: "esarea"
                     }
-                  ],
-                  staticClass: "form-row my-3"
+                  ]
                 },
-                [_vm._m(3)]
+                [
+                  _c("div", { staticClass: "form-row my-3" }, [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "btn btn-success m-auto btn-lg btn-xs-block",
+                        attrs: { type: "button" },
+                        on: { click: _vm.editarlo }
+                      },
+                      [
+                        _vm._v(
+                          "\n               Editar Curriculum\n            "
+                        )
+                      ]
+                    )
+                  ])
+                ]
               )
             ]
           )
@@ -49325,118 +49416,157 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticClass: "jumbotron jumbotron-fluid",
-      attrs: { id: "jumbotronarea" }
-    },
-    [
-      _c("div", { staticClass: "container" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c("div", { staticClass: "row" }, [
-          _c("div", { staticClass: "col-12" }, [
-            _c(
-              "ul",
-              {
-                staticClass: "nav nav-pills justify-content-center",
-                attrs: { id: "pills-nav", role: "tablist" }
-              },
-              [
-                _vm._m(1),
-                _vm._v(" "),
-                _c("li", { staticClass: "nav-item   btn-xs-block" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "nav-link btn-lg",
-                      attrs: {
-                        id: "nav-pills-02",
-                        "data-toggle": "pill",
-                        href: "#nav-item-02"
-                      },
-                      on: { click: _vm.mostrartooltipdialogo }
-                    },
-                    [
-                      _vm._v(
-                        "Experiencias\n                        Laborales "
-                      ),
-                      _c("span", { staticClass: "badge badge-light" })
-                    ]
-                  )
-                ]),
-                _vm._v(" "),
-                _vm._m(2)
-              ]
-            )
-          ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "tab-content", attrs: { id: "nav-pills-content" } },
-          [
-            _c(
-              "div",
-              {
-                staticClass: "tab-pane fade show active",
-                attrs: { id: "nav-item-01", role: "tabpanel" }
-              },
-              [
-                _c("curriculum-component", {
-                  attrs: {
-                    hhabilitado: false,
-                    estrabajador: false,
-                    token: _vm.token,
-                    provincias: _vm.provincias,
-                    nombre: _vm.nombre,
-                    id: _vm.id,
-                    cabecera: false
-                  }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              {
-                staticClass: "tab-pane fade ",
-                attrs: { id: "nav-item-02", role: "tabpanel" }
-              },
-              [
-                _c(
-                  "div",
-                  { staticClass: "form-row my-3 justify-content-center" },
-                  [
-                    _c("tooltip-component", {
-                      attrs: {
-                        contenidotooltip: {
-                          content: "Añade aquí tus experiencias laborales.",
-                          show: 5000
+  return _c("div", [
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: !_vm.modelestrabajador,
+            expression: "!modelestrabajador"
+          }
+        ]
+      },
+      [
+        _c("curriculum-component", {
+          attrs: {
+            hhabilitado: false,
+            estrabajador: true,
+            token: _vm.token,
+            provincias: _vm.provincias,
+            nombre: _vm.nombre,
+            id: _vm.id,
+            cabecera: true
+          }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.modelestrabajador,
+            expression: "modelestrabajador"
+          }
+        ],
+        staticClass: "jumbotron jumbotron-fluid",
+        attrs: { id: "jumbotronarea" }
+      },
+      [
+        _c("div", { staticClass: "container" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-12" }, [
+              _c(
+                "ul",
+                {
+                  staticClass: "nav nav-pills justify-content-center",
+                  attrs: { id: "pills-nav", role: "tablist" }
+                },
+                [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "nav-item   btn-xs-block" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link btn-lg",
+                        attrs: {
+                          id: "nav-pills-02",
+                          "data-toggle": "pill",
+                          href: "#nav-item-02"
                         },
-                        contenidoslot:
-                          "Tienes registradas +String(getNumeroExperiencias) +  experiencias",
-                        letrero: "Añadir Experiencia",
-                        experiencia: true
-                      }
-                    })
-                  ],
-                  1
-                )
-              ]
-            ),
-            _vm._v(" "),
-            _c("div", {
-              staticClass: "tab-pane fade",
-              attrs: { id: "nav-item-03", role: "tabpanel" }
-            })
-          ]
-        )
-      ])
-    ]
-  )
+                        on: { click: _vm.mostrartooltipdialogo }
+                      },
+                      [
+                        _vm._v(
+                          "Experiencias\n                        Laborales "
+                        ),
+                        _c("span", { staticClass: "badge badge-light" })
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _vm._m(2)
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "tab-content", attrs: { id: "nav-pills-content" } },
+            [
+              _c(
+                "div",
+                {
+                  staticClass: "tab-pane fade show active",
+                  attrs: { id: "nav-item-01", role: "tabpanel" }
+                },
+                [
+                  _c("curriculum-component", {
+                    attrs: {
+                      hhabilitado: true,
+                      estrabajador: false,
+                      token: _vm.token,
+                      provincias: _vm.provincias,
+                      nombre: _vm.nombre,
+                      id: _vm.id,
+                      cabecera: false,
+                      esarea: true
+                    }
+                  })
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "tab-pane fade ",
+                  attrs: { id: "nav-item-02", role: "tabpanel" }
+                },
+                [
+                  _c(
+                    "div",
+                    { staticClass: "form-row my-3 justify-content-center" },
+                    [
+                      _c("tooltip-component", {
+                        attrs: {
+                          contenidotooltip: {
+                            content: "Añade aquí tus experiencias laborales.",
+                            show: false
+                          },
+                          contenidoslot:
+                            "Tienes registradas +String(getNumeroExperiencias) +  experiencias",
+                          letrero: "Añadir Experiencia",
+                          experiencia: true
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ]
+              ),
+              _vm._v(" "),
+              _c("div", {
+                staticClass: "tab-pane fade",
+                attrs: { id: "nav-item-03", role: "tabpanel" }
+              })
+            ]
+          )
+        ])
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -66189,7 +66319,11 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
-Vue.use(v_tooltip__WEBPACK_IMPORTED_MODULE_0__["default"]);
+Vue.use(v_tooltip__WEBPACK_IMPORTED_MODULE_0__["default"], {
+  defaultTrigger: 'hover',
+  defaultContainer: 'div',
+  disposeTimeout: 1000
+});
 Vue.mixin({
   methods: {
     route: function route(name, params, absolute) {
@@ -67038,15 +67172,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*****************************************************!*\
   !*** ./resources/js/components/MiareaComponent.vue ***!
   \*****************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _MiareaComponent_vue_vue_type_template_id_fbd1a58e_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MiareaComponent.vue?vue&type=template&id=fbd1a58e&scoped=true& */ "./resources/js/components/MiareaComponent.vue?vue&type=template&id=fbd1a58e&scoped=true&");
 /* harmony import */ var _MiareaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MiareaComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/MiareaComponent.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _MiareaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _MiareaComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _MiareaComponent_vue_vue_type_style_index_0_id_fbd1a58e_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MiareaComponent.vue?vue&type=style&index=0&id=fbd1a58e&lang=scss&scoped=true& */ "./resources/js/components/MiareaComponent.vue?vue&type=style&index=0&id=fbd1a58e&lang=scss&scoped=true&");
+/* empty/unused harmony star reexport *//* harmony import */ var _MiareaComponent_vue_vue_type_style_index_0_id_fbd1a58e_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MiareaComponent.vue?vue&type=style&index=0&id=fbd1a58e&lang=scss&scoped=true& */ "./resources/js/components/MiareaComponent.vue?vue&type=style&index=0&id=fbd1a58e&lang=scss&scoped=true&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -67078,7 +67211,7 @@ component.options.__file = "resources/js/components/MiareaComponent.vue"
 /*!******************************************************************************!*\
   !*** ./resources/js/components/MiareaComponent.vue?vue&type=script&lang=js& ***!
   \******************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
