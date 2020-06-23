@@ -1,6 +1,5 @@
 <template >
   <div>
-   
     <div v-show="!modelestrabajador">
       <curriculum-component
         :hhabilitado="false"
@@ -27,9 +26,7 @@
         </div>
         <div class="row text-center mb-5" v-if="getExperiencias">
           <div class="col-12 mx-auto">
-           
-            <buscarcategoriatrabajador-component  :token="token" :categoria_id="getUltimaCategoria"></buscarcategoriatrabajador-component>
-            
+            <buscarcategoriatrabajador-component :token="token" :categoria_id="getUltimaCategoria"></buscarcategoriatrabajador-component>
           </div>
         </div>
 
@@ -115,7 +112,6 @@
                 </a>
               </div>
             </div>
-         
           </div>
           <div class="tab-pane fade" id="nav-item-03" role="tabpanel">
             <!--          <p>
@@ -155,12 +151,11 @@
       </div>
     </div>
   </div>
-  
 </template>
 
 <script>
 import { bus } from "../app";
-import { getExperiencias } from '../store/actions';
+import { getExperiencias } from "../store/actions";
 export default {
   mounted() {
     console.log("Perfil montado");
@@ -171,16 +166,21 @@ export default {
     bus.$on("editarcurriculum", () => {
       this.modelestrabajador = false;
     });
-    
   },
   computed: {
     getExperiencias() {
       return this.$store.getters.getExperienciasById(this.$props.id);
     },
     getUltimaCategoria() {
-      var arrayexperiencias= this.$store.getters.getExperienciasById(this.$props.id);
-      
-      return String(arrayexperiencias[0].categoria_id);
+      var arrayexperiencias = this.$store.getters.getExperienciasById(
+        this.$props.id
+      );
+
+      if (typeof arrayexperiencias[0] === "undefined") {
+        return "";
+      } else {
+        return String(arrayexperiencias[0].categoria_id);
+      }
     }
   },
 
@@ -242,16 +242,14 @@ export default {
 
   data() {
     return {
-      modelestrabajador: this.$props.estrabajador,
-  
+      modelestrabajador: this.$props.estrabajador
     };
   },
 
   methods: {
     getRuta: function(id) {
       return "/home/Expe/" + id;
-    },
-   
+    }
   }
 };
 </script>

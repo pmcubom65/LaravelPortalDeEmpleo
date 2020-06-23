@@ -31,8 +31,8 @@ export const getEmpresas=({commit})=>{
 
 
 
-export const getExperiencias=({commit})=>{
-    axios.get(route('experiencias')).
+export const getExperiencias= async ({commit})=>{
+    await axios.get(route('experiencias')).
     then(response=>{
         commit('SET_EXPERIENCIAS', response.data);
     })
