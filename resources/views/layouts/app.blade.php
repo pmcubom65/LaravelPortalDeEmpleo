@@ -180,22 +180,7 @@
 
     </div>
 
-    <!--   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js">
-    $(document).ready(function() {
-       
-   
-      
-        $(".dropdown-menu").css('margin', '50px');
-        $(function() {
-            $('[data-toggle="popover"]').popover(),
 
-        });
-        $("#popoverData").popover({
-                trigger: "hover"
-
-            });
-        });
-    </script>-->
 
     @include('barras.footer')
 
