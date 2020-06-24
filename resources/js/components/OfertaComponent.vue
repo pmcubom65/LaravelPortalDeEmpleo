@@ -11,7 +11,7 @@
           placeholder="titulo de la oferta"
           :value="titulo"
           @change="titulo_i=$event.target.value"
-          :disabled="habilitado"
+          :disabled="habilitado_i"
         />
       </div>
     </div>
@@ -23,7 +23,7 @@
           class="form-control"
           id="Provincia"
           name="Provincia"
-          :disabled="habilitado"
+          :disabled="habilitado_i"
           @change="provincia_i=$event.target.value"
         >
           <option :value="provincia_id" selected hidden>{{region}}</option>
@@ -41,7 +41,7 @@
           class="form-control"
           id="Experiencia"
           name="Experiencia"
-          :disabled="habilitado"
+          :disabled="habilitado_i"
           @change="experiencia_i=$event.target.value"
         >
           <option :value="experiencia_id" selected hidden>{{experiencia}}</option>
@@ -59,7 +59,7 @@
           id="Salarioid"
           name="Salarioid"
           placeholder="introduzca salario"
-          :disabled="habilitado"
+          :disabled="habilitado_i"
           :value="salario"
           @change="salario_i=$event.target.value"
         />
@@ -71,7 +71,7 @@
           class="form-control"
           id="contrato"
           name="contrato"
-          :disabled="habilitado"
+          :disabled="habilitado_i"
           @change="contrato_i=$event.target.value"
         >
           <option :value="contrato_id" selected hidden>{{contrato}}</option>
@@ -86,7 +86,7 @@
         <textarea
           class="form-control"
           id="oferta"
-          :disabled="habilitado"
+          :disabled="habilitado_i"
           name="oferta"
           rows="8"
           v-model="descripcion"
@@ -100,7 +100,7 @@
           name="cat"
           id="cat"
           class="form-control"
-          :disabled="habilitado"
+          :disabled="habilitado_i"
           @change="cat_i=$event.target.value"
         >
           <option :value="categoria_id" selected hidden>{{categoria}}</option>
@@ -108,21 +108,20 @@
         </select>
       </div>
     </div>
-    <input type="hidden" name="usu" id="usu" :value="usuario" />
-    <input type="hidden" name="_token" :value=" token " />
-    <input type="hidden" name="id" :value=" id " />
+  
 
     <div class="form-row my-3 fuera" v-show="necesitocategoria">
-      <a
-        href
+      <button
+        type="button"
         class="btn btn-warning btn-lg m-auto"
         data-toggle="modal"
         id="botoncatmodal"
         data-target="#sitiocategoriamodalcomponent"
+        :disabled="habilitado_i"
       >
         Añadir una nueva categoria si ninguna
         coincide
-      </a>
+      </button>
     </div>
 
     <categoria-component :id="id" :token="token" ref="categoriaInput"></categoria-component>
@@ -249,7 +248,8 @@ export default {
       contrato_i: this.contrato_id,
       salida: "",
       abierto_i: this.abierto,
-      cat_i: this.categoria_id
+      cat_i: this.categoria_id,
+      habilitado_i: this.$props.habilitado,
     };
   },
   methods: {
@@ -298,6 +298,7 @@ export default {
             });
             if (key === "success") {
               this.abierto_i = 1;
+              this.habilitado_i=true;
             }
           })
           .catch(function(error) {

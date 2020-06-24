@@ -2374,11 +2374,6 @@ __webpack_require__.r(__webpack_exports__);
     console.log("Curriculum montado");
     this.$store.dispatch("getTrabajadores");
   },
-  computed: {
-    getNumeroExperiencias: function getNumeroExperiencias() {
-      return this.$store.getters.numero_experiencias(this.$props.id);
-    }
-  },
   props: {
     nombre: {
       type: String,
@@ -3600,6 +3595,28 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3607,6 +3624,7 @@ __webpack_require__.r(__webpack_exports__);
     console.log("Perfil montado");
     this.$store.dispatch("getTrabajadores");
     this.$store.dispatch("getExperiencias");
+    this.$store.dispatch("getEmpresas");
   },
   created: function created() {
     var _this = this;
@@ -3623,10 +3641,13 @@ __webpack_require__.r(__webpack_exports__);
       var arrayexperiencias = this.$store.getters.getExperienciasById(this.$props.id);
 
       if (typeof arrayexperiencias[0] === "undefined") {
-        return "";
+        return "0";
       } else {
         return String(arrayexperiencias[0].categoria_id);
       }
+    },
+    getEmpresas: function getEmpresas() {
+      return this.$store.state.empresas;
     }
   },
   props: {
@@ -3655,6 +3676,10 @@ __webpack_require__.r(__webpack_exports__);
       required: false
     },
     provincias: {
+      type: Array,
+      required: false
+    },
+    candidaturas: {
       type: Array,
       required: false
     },
@@ -3690,6 +3715,20 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     getRuta: function getRuta(id) {
       return "/home/Expe/" + id;
+    },
+    getRutaOferta: function getRutaOferta(id) {
+      return "/search/" + id;
+    },
+    empresanombre: function empresanombre(user_id) {
+      var nombreempresa = this.getEmpresas.filter(function (empresa) {
+        return empresa.id == user_id;
+      });
+
+      if (typeof nombreempresa[0] === "undefined") {
+        return '';
+      } else {
+        return nombreempresa[0].name;
+      }
     }
   }
 });
@@ -3941,7 +3980,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     crearoferta: {
@@ -4040,7 +4078,8 @@ __webpack_require__.r(__webpack_exports__);
       contrato_i: this.contrato_id,
       salida: "",
       abierto_i: this.abierto,
-      cat_i: this.categoria_id
+      cat_i: this.categoria_id,
+      habilitado_i: this.$props.habilitado
     };
   },
   methods: {
@@ -4088,6 +4127,7 @@ __webpack_require__.r(__webpack_exports__);
 
           if (key === "success") {
             _this.abierto_i = 1;
+            _this.habilitado_i = true;
           }
         })["catch"](function (error) {
           console.log(error);
@@ -4287,9 +4327,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     contenidotooltip: Object,
-    contenidoslot: String,
     letrero: String,
-    experiencia: Boolean,
     id: String
   },
   methods: {},
@@ -48180,8 +48218,24 @@ var render = function() {
     _vm._v(" "),
     _c(
       "button",
-      { staticClass: "btn btn-primary btn-lg", attrs: { type: "submit" } },
-      [_vm._v("Buscar ofertas de mi categoria profesional")]
+      {
+        directives: [
+          {
+            name: "tooltip",
+            rawName: "v-tooltip",
+            value: {
+              content:
+                "Tienes que tener experiencias registradas. Mostrará las ofertas de trabajo actuales con la categoría profesional de la experiencia laboral más reciente",
+              show: false
+            },
+            expression:
+              "{ content: 'Tienes que tener experiencias registradas. Mostrará las ofertas de trabajo actuales con la categoría profesional de la experiencia laboral más reciente', show: false }"
+          }
+        ],
+        staticClass: "btn btn-primary btn-lg",
+        attrs: { type: "submit" }
+      },
+      [_vm._v("Buscar ofertas de mi última categoria profesional")]
     )
   ])
 }
@@ -48697,12 +48751,7 @@ var render = function() {
                             content: "Añade aquí tus experiencias laborales.",
                             show: 5000
                           },
-                          contenidoslot:
-                            "Tienes registradas " +
-                            String(_vm.getNumeroExperiencias) +
-                            " experiencias",
                           letrero: "Añadir Experiencia",
-                          experiencia: true,
                           id: _vm.id
                         }
                       })
@@ -50325,7 +50374,86 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _vm._m(1),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-12" }, [
+              _c(
+                "ul",
+                {
+                  staticClass: "nav nav-pills justify-content-center",
+                  attrs: { id: "pills-nav", role: "tablist" }
+                },
+                [
+                  _vm._m(1),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "nav-item btn-xs-block" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link btn-lg",
+                        attrs: {
+                          id: "nav-pills-02",
+                          "data-toggle": "pill",
+                          href: "#nav-item-02"
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                Experiencias\n                Laborales\n                "
+                        ),
+                        _c("span", { staticClass: "badge badge-light" }, [
+                          _vm._v(
+                            "\n                  " +
+                              _vm._s(_vm.getExperiencias.length) +
+                              "\n                "
+                          )
+                        ])
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("li", { staticClass: "nav-item btn-xs-block" }, [
+                    _c(
+                      "a",
+                      {
+                        directives: [
+                          {
+                            name: "tooltip",
+                            rawName: "v-tooltip",
+                            value: {
+                              content:
+                                "Aquí obtendrás información sobre las ofertas en las que te has inscrito",
+                              show: false
+                            },
+                            expression:
+                              "{ content: 'Aquí obtendrás información sobre las ofertas en las que te has inscrito', show: false }"
+                          }
+                        ],
+                        staticClass: "nav-link btn-lg",
+                        attrs: {
+                          id: "nav-pills-03",
+                          "data-toggle": "pill",
+                          href: "#nav-item-03"
+                        }
+                      },
+                      [_vm._v("Candidaturas")]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      { staticClass: "badge badge-notify float-right" },
+                      [
+                        _vm._v(
+                          "\n                " +
+                            _vm._s(_vm.candidaturas.length) +
+                            "\n              "
+                        )
+                      ]
+                    )
+                  ])
+                ]
+              )
+            ])
+          ]),
           _vm._v(" "),
           _c(
             "div",
@@ -50374,10 +50502,7 @@ var render = function() {
                             content: "Añade aquí tus experiencias laborales.",
                             show: false
                           },
-                          contenidoslot:
-                            "Tienes registradas +String(getNumeroExperiencias) +  experiencias",
                           letrero: "Añadir Experiencia",
-                          experiencia: true,
                           id: _vm.id
                         }
                       })
@@ -50429,10 +50554,143 @@ var render = function() {
                 2
               ),
               _vm._v(" "),
-              _c("div", {
-                staticClass: "tab-pane fade",
-                attrs: { id: "nav-item-03", role: "tabpanel" }
-              })
+              _c(
+                "div",
+                {
+                  staticClass: "tab-pane fade",
+                  attrs: { id: "nav-item-03", role: "tabpanel" }
+                },
+                [
+                  _vm.candidaturas.length > 0
+                    ? _c(
+                        "div",
+                        _vm._l(_vm.candidaturas, function(item) {
+                          return _c(
+                            "div",
+                            { key: item.id, staticClass: "card" },
+                            [
+                              _c(
+                                "h5",
+                                { staticClass: "card-header text-center" },
+                                [_vm._v(_vm._s(item.titulo))]
+                              ),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                { staticClass: "card-body text-center" },
+                                [
+                                  _c(
+                                    "h5",
+                                    { staticClass: "card-title text-center" },
+                                    [
+                                      _vm._v(
+                                        "Fecha de inscripción en la oferta: " +
+                                          _vm._s(item.pivot.updated_at)
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "h5",
+                                    { staticClass: "card-title text-center" },
+                                    [
+                                      _vm._v(
+                                        _vm._s(
+                                          _vm.empresanombre(item.empresa_id)
+                                        )
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    { staticClass: "card-text text-center" },
+                                    [
+                                      _vm._v(
+                                        "Salario: " +
+                                          _vm._s(item.salario) +
+                                          " euros"
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    { staticClass: "card-text text-center" },
+                                    [
+                                      _vm._v(
+                                        "Provincia: " +
+                                          _vm._s(
+                                            _vm.provincias[item.provincia_id]
+                                              .region_name
+                                          )
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  item.proceso == 1
+                                    ? _c(
+                                        "p",
+                                        {
+                                          staticClass:
+                                            "card-text text-center alert"
+                                        },
+                                        [_vm._v("Candidatura Abierta")]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  item.proceso == 0
+                                    ? _c(
+                                        "p",
+                                        {
+                                          staticClass:
+                                            "card-text text-center alert"
+                                        },
+                                        [_vm._v("Candidatura Cerrada")]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  item.pivot.seleccionado == 1
+                                    ? _c(
+                                        "p",
+                                        {
+                                          staticClass:
+                                            "card-text text-center alert"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "La Empresa te ha seleccionado"
+                                          )
+                                        ]
+                                      )
+                                    : _vm._e(),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      staticClass:
+                                        "btn btn-primary btn-xs-block btn-lg",
+                                      attrs: {
+                                        href: _vm.getRutaOferta(item.id),
+                                        disabled: item.proceso == 0
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                Ver detalles completos de la Oferta\n              "
+                                      )
+                                    ]
+                                  )
+                                ]
+                              )
+                            ]
+                          )
+                        }),
+                        0
+                      )
+                    : _vm._e()
+                ]
+              )
             ]
           )
         ])
@@ -50461,73 +50719,23 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12" }, [
-        _c(
-          "ul",
-          {
-            staticClass: "nav nav-pills justify-content-center",
-            attrs: { id: "pills-nav", role: "tablist" }
-          },
-          [
-            _c("li", { staticClass: "nav-item btn-xs-block" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link active btn-lg",
-                  attrs: {
-                    id: "nav-pills-01",
-                    "data-toggle": "pill",
-                    href: "#nav-item-01"
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                Datos\n                Personales\n              "
-                  )
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item btn-xs-block" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link btn-lg",
-                  attrs: {
-                    id: "nav-pills-02",
-                    "data-toggle": "pill",
-                    href: "#nav-item-02"
-                  }
-                },
-                [
-                  _vm._v(
-                    "\n                Experiencias\n                Laborales\n                "
-                  ),
-                  _c("span", { staticClass: "badge badge-light" })
-                ]
-              )
-            ]),
-            _vm._v(" "),
-            _c("li", { staticClass: "nav-item btn-xs-block" }, [
-              _c(
-                "a",
-                {
-                  staticClass: "nav-link btn-lg",
-                  attrs: {
-                    id: "nav-pills-03",
-                    "data-toggle": "pill",
-                    href: "#nav-item-03"
-                  }
-                },
-                [_vm._v("Candidaturas")]
-              ),
-              _vm._v(" "),
-              _c("span", { staticClass: "badge badge-notify float-right" })
-            ])
-          ]
-        )
-      ])
+    return _c("li", { staticClass: "nav-item btn-xs-block" }, [
+      _c(
+        "a",
+        {
+          staticClass: "nav-link active btn-lg",
+          attrs: {
+            id: "nav-pills-01",
+            "data-toggle": "pill",
+            href: "#nav-item-01"
+          }
+        },
+        [
+          _vm._v(
+            "\n                Datos\n                Personales\n              "
+          )
+        ]
+      )
     ])
   }
 ]
@@ -50696,7 +50904,7 @@ var render = function() {
               id: "titulo",
               name: "titulo",
               placeholder: "titulo de la oferta",
-              disabled: _vm.habilitado
+              disabled: _vm.habilitado_i
             },
             domProps: { value: _vm.titulo },
             on: {
@@ -50719,7 +50927,7 @@ var render = function() {
               attrs: {
                 id: "Provincia",
                 name: "Provincia",
-                disabled: _vm.habilitado
+                disabled: _vm.habilitado_i
               },
               on: {
                 change: function($event) {
@@ -50761,7 +50969,7 @@ var render = function() {
               attrs: {
                 id: "Experiencia",
                 name: "Experiencia",
-                disabled: _vm.habilitado
+                disabled: _vm.habilitado_i
               },
               on: {
                 change: function($event) {
@@ -50805,7 +51013,7 @@ var render = function() {
               id: "Salarioid",
               name: "Salarioid",
               placeholder: "introduzca salario",
-              disabled: _vm.habilitado
+              disabled: _vm.habilitado_i
             },
             domProps: { value: _vm.salario },
             on: {
@@ -50828,7 +51036,7 @@ var render = function() {
               attrs: {
                 id: "contrato",
                 name: "contrato",
-                disabled: _vm.habilitado
+                disabled: _vm.habilitado_i
               },
               on: {
                 change: function($event) {
@@ -50877,7 +51085,7 @@ var render = function() {
             staticClass: "form-control",
             attrs: {
               id: "oferta",
-              disabled: _vm.habilitado,
+              disabled: _vm.habilitado_i,
               name: "oferta",
               rows: "8"
             },
@@ -50904,7 +51112,7 @@ var render = function() {
             "select",
             {
               staticClass: "form-control",
-              attrs: { name: "cat", id: "cat", disabled: _vm.habilitado },
+              attrs: { name: "cat", id: "cat", disabled: _vm.habilitado_i },
               on: {
                 change: function($event) {
                   _vm.cat_i = $event.target.value
@@ -50934,21 +51142,6 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _c("input", {
-        attrs: { type: "hidden", name: "usu", id: "usu" },
-        domProps: { value: _vm.usuario }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        attrs: { type: "hidden", name: "_token" },
-        domProps: { value: _vm.token }
-      }),
-      _vm._v(" "),
-      _c("input", {
-        attrs: { type: "hidden", name: "id" },
-        domProps: { value: _vm.id }
-      }),
-      _vm._v(" "),
       _c(
         "div",
         {
@@ -50964,14 +51157,15 @@ var render = function() {
         },
         [
           _c(
-            "a",
+            "button",
             {
               staticClass: "btn btn-warning btn-lg m-auto",
               attrs: {
-                href: "",
+                type: "button",
                 "data-toggle": "modal",
                 id: "botoncatmodal",
-                "data-target": "#sitiocategoriamodalcomponent"
+                "data-target": "#sitiocategoriamodalcomponent",
+                disabled: _vm.habilitado_i
               }
             },
             [

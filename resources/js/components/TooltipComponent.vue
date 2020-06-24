@@ -32,9 +32,9 @@ export default {
   },
   props: {
     contenidotooltip: Object,
-    contenidoslot: String,
+    
     letrero: String,
-    experiencia: Boolean,
+    
     id: String
   },
   methods: {},

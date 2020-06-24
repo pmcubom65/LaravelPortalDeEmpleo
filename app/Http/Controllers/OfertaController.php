@@ -41,11 +41,11 @@ class OfertaController extends Controller
                 $messages
 
         );
-
+        $oferta=Oferta::find($id);
 
         if ($Validator->fails()) {
             $Response=$Validator->messages();
-        } else {
+        } else if(!$oferta) {
 
             $laoferta=new Oferta();
             $laoferta->categoria_id=$request->get('cat');
@@ -59,6 +59,20 @@ class OfertaController extends Controller
         
             $laoferta->save();
             $Response=['success'=>'La oferta ha sido publicada. Vaya a Revisar ofertas publicadas para gestionarla'];
+            
+        } else {
+            $laoferta=Oferta::find($id);
+            $laoferta->categoria_id=$request->get('cat');
+            $laoferta->contrato_id=$request->get('contrato');
+            $laoferta->descripcion=$request->get('oferta');
+            $laoferta->empresa_id=Empresa::where('user_id', Auth::id())->first()->id;
+            $laoferta->experiencia_id=$request->get('Experiencia');
+            $laoferta->provincia_id=$request->get('Provincia');
+            $laoferta->salario=$request->get('Salarioid');
+            $laoferta->titulo=$request->get('titulo');
+        
+            $laoferta->save();
+            $Response=['success'=>'La oferta ha sido editada con éxito'];
             
         }
 
@@ -116,7 +130,7 @@ class OfertaController extends Controller
             $micategoria->nombre=$request->get('catname');
             $micategoria->descripcion=$request->get('desccat');
             $micategoria->save();
-            
+            $creada=Categoria::where('nombre', $request->get('catname'))->first();
             $Response=['success'=>['mssg'=>'La categoria ha sido creada y ya se encuentra disponible', 'elid'=>$creada->id, 'elname'=>$creada->nombre]];
         }
         

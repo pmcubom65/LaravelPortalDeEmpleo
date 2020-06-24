@@ -13,10 +13,10 @@ class ExpeController extends Controller
 
         $laexperiencia=Experiencia::find($id);
         
-        $c=Experiencia::where('id',$id)->count();
+      
        
 
-        return view('expe', ['contador'=>$c, 'miexpe'=>$laexperiencia, 'midisplay'=>'none']);
+        return view('expe', ['miexpe'=>$laexperiencia, 'midisplay'=>'none']);
 
 
     }
@@ -26,8 +26,8 @@ class ExpeController extends Controller
        
                 
         $laexperiencia->delete();
-        $c=Experiencia::where('id',$id)->count();
-        return back()->withInput(['contador'=>$c, 'miexpe'=>$laexperiencia]);
+       
+        return back()->withInput(['miexpe'=>$laexperiencia]);
     }
 
 
@@ -41,8 +41,8 @@ class ExpeController extends Controller
         $laexperiencia->fin=$request->get('finexp');
         $laexperiencia->puesto=$request->get('tituloexp');
         $laexperiencia->save();
-        $c=Experiencia::where('id',$id)->count();
+        
 
-        return view('expe', ['contador'=>$c, 'miexpe'=>$laexperiencia, 'midisplay'=>'block']);
+        return view('expe', ['miexpe'=>$laexperiencia, 'midisplay'=>'block']);
     }
 }

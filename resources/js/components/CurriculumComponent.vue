@@ -124,9 +124,9 @@
               <div class="form-group col-sm-12 text-center">
                 <tooltip-component
                   :contenidotooltip="{ content: 'Añade aquí tus experiencias laborales.', show: 5000 }"
-                  :contenidoslot="'Tienes registradas '+String(getNumeroExperiencias) + ' experiencias'"
+                
                   :letrero="'Añadir Experiencia'"
-                  :experiencia="true"
+               
                   :id="id"
                 ></tooltip-component>
               </div>
@@ -194,11 +194,7 @@ export default {
     this.$store.dispatch("getTrabajadores");
    
   },
-  computed: {
-    getNumeroExperiencias() {
-      return this.$store.getters.numero_experiencias(this.$props.id);
-    }
-  },
+ 
   props: {
     nombre: {
       type: String,

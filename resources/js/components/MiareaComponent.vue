@@ -50,6 +50,7 @@
                   Laborales
                   <span class="badge badge-light">
                     <!--contar experiencias-->
+                    {{getExperiencias.length}}
                   </span>
                 </a>
               </li>
@@ -59,11 +60,13 @@
                   id="nav-pills-03"
                   data-toggle="pill"
                   href="#nav-item-03"
+                   v-tooltip="{ content: 'Aquí obtendrás información sobre las ofertas en las que te has inscrito', show: false }" 
                 >Candidaturas</a>
                 <span class="badge badge-notify float-right">
                   <!-- {{isset($candidaturas) ? $candidaturas->count() : 0 }}
                        
                   Contar candidaturas-->
+                  {{candidaturas.length}}
                 </span>
               </li>
             </ul>
@@ -91,9 +94,7 @@
             <div class="form-row my-3 justify-content-center">
               <tooltip-component
                 :contenidotooltip="{ content: 'Añade aquí tus experiencias laborales.', show: false }"
-                :contenidoslot="'Tienes registradas +String(getNumeroExperiencias) +  experiencias'"
                 :letrero="'Añadir Experiencia'"
-                :experiencia="true"
                 :id="id"
               ></tooltip-component>
             </div>
@@ -101,6 +102,7 @@
               <h5 class="card-header text-center">{{item.puesto}} - {{item.nombre}}</h5>
 
               <div class="card-body text-center">
+                
                 <h5 class="card-title text-center">{{item.empresa}}</h5>
                 <p class="card-text text-center">{{item.descripcion}}</p>
                 <p class="card-text text-center">Desde: {{item.inicio}}</p>
@@ -114,12 +116,32 @@
             </div>
           </div>
           <div class="tab-pane fade" id="nav-item-03" role="tabpanel">
-            <!--          <p>
-                        @if (isset($candidaturas))
-                            @foreach ($candidaturas as $oferta)
+            <div v-if="candidaturas.length>0">
+            <div class="card" v-for="item in candidaturas" :key="item.id">
+              <h5 class="card-header text-center">{{item.titulo}}</h5>
 
-                            <p>
-                                <a class="btn btn-primary btn-block font-weight-bold" data-toggle="collapse"
+              <div class="card-body text-center">
+                  
+                <h5 class="card-title text-center">Fecha de inscripción en la oferta: {{item.pivot.updated_at}}</h5>
+                <h5 class="card-title text-center">{{empresanombre(item.empresa_id)}}</h5>
+                <p class="card-text text-center">Salario: {{item.salario}} euros</p>
+                <p class="card-text text-center">Provincia: {{provincias[item.provincia_id].region_name}}</p>
+             
+                <p class="card-text text-center alert" v-if="item.proceso==1">Candidatura Abierta</p>
+                <p class="card-text text-center alert" v-if="item.proceso==0">Candidatura Cerrada</p>
+                <p class="card-text text-center alert" v-if="item.pivot.seleccionado==1">La Empresa te ha seleccionado</p>
+
+                <a :href="getRutaOferta(item.id)" class="btn btn-primary btn-xs-block btn-lg" :disabled="item.proceso==0">
+                  Ver detalles completos de la Oferta
+                </a>
+              </div>
+            </div>
+            </div>
+
+
+                         
+
+                        <!--        <a class="btn btn-primary btn-block font-weight-bold" data-toggle="collapse"
                                     href="#collapseExample{{$oferta->id}}" role="button" aria-expanded="false"
                                     aria-controls="collapseExample">
                                     {{$oferta->titulo}} - Categoria: {{$oferta->categoria->nombre}} - Salario:
@@ -161,6 +183,7 @@ export default {
     console.log("Perfil montado");
     this.$store.dispatch("getTrabajadores");
     this.$store.dispatch("getExperiencias");
+    this.$store.dispatch("getEmpresas");
   },
   created() {
     bus.$on("editarcurriculum", () => {
@@ -177,11 +200,15 @@ export default {
       );
 
       if (typeof arrayexperiencias[0] === "undefined") {
-        return "";
+        return "0";
       } else {
         return String(arrayexperiencias[0].categoria_id);
       }
-    }
+    },
+      getEmpresas() {
+      return this.$store.state.empresas;
+    },
+    
   },
 
   props: {
@@ -211,6 +238,11 @@ export default {
       required: false
     },
     provincias: {
+      type: Array,
+      required: false
+    },
+    
+    candidaturas: {
       type: Array,
       required: false
     },
@@ -249,6 +281,23 @@ export default {
   methods: {
     getRuta: function(id) {
       return "/home/Expe/" + id;
+    },
+    getRutaOferta: function(id) {
+      return "/search/" + id;
+    },
+    empresanombre : function(user_id) {
+      
+      const nombreempresa=this.getEmpresas.filter(empresa => {
+        
+          return empresa.id==user_id
+      });
+
+      if (typeof nombreempresa[0] === "undefined") {
+        return '';
+      }else {
+          return  nombreempresa[0].name;
+      }
+     
     }
   }
 };

@@ -15,32 +15,45 @@
 
             <div class="col-12 d-inline-block ">
 
-            @if (Auth::user()->rol_id===2)
+ 
 
+                <oferta-component :id="'{{$oferta->id}}'" :titulo="'{{$oferta->titulo}}'"
+                        :provincia_id="'{{$oferta->provincia_id}}'"
+                        :region="'{{$oferta->provincia->region_name}}'"
+                        :experiencia_id="'{{$oferta->experiencia_id}}'"
+                        :experiencia="'{{$oferta->experiencia->nombre}}'"
 
-                <div class="form-row my-3">
-                    <div class="col-12 text-center">
+                        :salario="'{{$oferta->salario}}'"
+                       
+                        :crearoferta="true"
+                        :contrato_id="'{{$oferta->contrato_id}}'"
+                        :contrato="'{{$oferta->contrato->nombre}}'"
 
-                        <button class="editborr btn btn-danger btn-block    m-auto btn-lg" type="button" data-toggle="modal"
-                            data-target="#sitiomodal2">Cerrar Proceso</button>
+                        :relato="'{{$oferta->descripcion}}'"
+                        :categoria_id="'{{$oferta->categoria_id}}'"
+                        :categoria="'{{$oferta->categoria->nombre}}'"
 
-                    </div>
-                </div>
-                @endif
+                        :usuario="'{{Auth::id()}}'"
+                        :token="'{{Session::token()}}'"
+                        
+                        :letrero="'Editar Oferta'"
+                        :abierto="'{{$oferta->proceso}}'"
+                        :necesitocategoria="true"
+                        :habilitado="false"
+                        :provincias="JSON.parse('{{$provincias->toJson()}}')"
 
-
-                @include('formularioeditaroferta')
-
+                        :contratos="JSON.parse('{{$contratos->toJson()}}')"
+                        :experiencias="JSON.parse('{{$experiencias->toJson()}}')"
+                                     
+                        :abierto="'1'"
+                       >
+                    </oferta-component>
+                   
             </div>
 
 
 
 
-            <script type="application/javascript"
-                src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
-
-            </script>
-            <script src="{{asset('js/editaroferta.js')}}" type="text/javascript"></script>
 
 
 
@@ -48,47 +61,7 @@
     </div>
 
 
-    <!-- modal -->
-    <div class="modal fade" id="sitiomodal2" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <form action="" method='POST'>
-                @method('PUT')
-                @csrf
-                <div class="modal-content">
-                    <div class="modal-header">
-
-
-
-                        <div class="form-row col-12">
-                            Alerta
-                        </div>
-                        <button type="button" class="close mx-0 px-0" data-dismiss="modal">
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-
-
-
-                        <input type="hidden" name="mihidden" id="mihidden">
-                        <p>¿Esta seguro que desea terminar el proceso?</p>
-
-
-                    </div>
-                    <div class="modal-footer">
-
-                        <button class="btn btn-danger m-auto" type="submit">Confirmar</button>
-                        <button class="btn btn-primary m-auto" class="close mx-0 px-0" data-dismiss="modal"
-                            type="button">Volver</button>
-
-                    </div>
-
-
-                </div>
-            </form>
-        </div>
-    </div>
-
+  
 
 
 

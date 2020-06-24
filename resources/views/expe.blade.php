@@ -3,7 +3,7 @@
 @section('content')
 <div class="container espacio">
 
-@if ($contador>0)
+@if ($miexpe)
     <div class="row">
         <div class="col-12 text-center">
             <h1><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span><br>Experiencia {{ $miexpe->puesto }}</h1>
@@ -173,7 +173,7 @@
 @else
 <div class="row">
         <div class="col-12 text-center">
-            <h1><span class="glyphicon glyphicon-user" aria-hidden="true"></span><br>Esta experiencia ya no se encuentra registrada</h1>
+            <h1><span class="glyphicon glyphicon-hdd" aria-hidden="true"></span><br>Esta experiencia ya no se encuentra registrada</h1>
             <a href="/home" class="btn btn-primary m-auto " type="button">Volver</a>
 
         </div>

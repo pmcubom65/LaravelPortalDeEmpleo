@@ -17,8 +17,6 @@ export const getEmpresaById = (state) => (name) => {
 }
 
 
-
-
 export const getExperienciasById = (state) => (user_id) => {
 
   var salida = state.experiencias.filter(experiencia => {

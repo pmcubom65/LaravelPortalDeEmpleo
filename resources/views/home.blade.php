@@ -23,7 +23,8 @@
     <miarea-component :hhabilitado="true" :estrabajador="true" :token="'{{Session::token()}}'"
         :provincias=" JSON.parse('{{$provincias->toJson()}}') " :nombre="'{{Auth::user()->name}}'"
         :id="'{{Auth::id()}}'" :datostrabajador="JSON.parse('{{$trabajador}}')" :fecha="'{{$trabajador->getDate()}}'"
-        :region="'{{$trabajador->hasProvincia->region_name}}'"></miarea-component>
+        :region="'{{$trabajador->hasProvincia->region_name}}'" :candidaturas=" JSON.parse('{{$candidaturas->toJson()}}') "
+       ></miarea-component>
 
     @endif
 

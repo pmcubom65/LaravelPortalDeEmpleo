@@ -9,7 +9,7 @@
                                         id="Salarioid" name="Salarioid">
 <input type="hidden" id="contrato" name="contrato" value="">
 
-<button type="submit" class="btn btn-primary btn-lg">Buscar ofertas de mi categoria profesional</button>
+<button type="submit" v-tooltip="{ content: 'Tienes que tener experiencias registradas. Mostrará las ofertas de trabajo actuales con la categoría profesional de la experiencia laboral más reciente', show: false }" class="btn btn-primary btn-lg">Buscar ofertas de mi última categoria profesional</button>
 
 
 </form>

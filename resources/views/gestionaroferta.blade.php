@@ -5,7 +5,13 @@
 
 
 <div class="container-fluid">
-    @include('sidebar')
+
+
+    <sidebarempresa-component   :user_id="'{{Auth::id()}}'"
+        :esempresa="false"></sidebarempresa-component>
+
+
+
     <div class="row col-10 espacio2 float-right">
 
 
@@ -22,7 +28,7 @@
 
             <div class="col-12 d-inline-block ">
             <div class="card">
-            <div class="card-header">
+            <div class="card-header" id="candidatos">
                 <ul class="nav nav-tabs  card-header-tabs">
                     <li class="nav-item active"><a class="nav-link" data-toggle="tab" href="#abierto"><h5 class="font-weight-bolder" >Proceso Abierto</h5></a></li>
                     <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#cerrado"><h5 class="font-weight-bolder" >Proceso Cerrado</h5></a></li>
@@ -68,11 +74,7 @@
 
 
 
-            <script type="application/javascript"
-                src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
 
-            </script>
-            <script src="{{asset('js/oferta.js')}}" type="text/javascript"></script>
 
 
 

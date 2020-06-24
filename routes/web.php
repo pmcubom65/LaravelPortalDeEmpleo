@@ -44,7 +44,7 @@ Route::get('/categorias', function(){
 
 Route::get('/empresas', function(){
   $Response=DB::table('empresas')->leftJoin('users', 'empresas.user_id', '=', 'users.id')->
-  select ('empresas.id','empresas.domicilio', 'users.name', 'empresas.numero_empleados', 'empresas.latitud', 'empresas.longitud', 'users.email')->get();
+  select ('empresas.id','empresas.domicilio', 'users.name', 'empresas.numero_empleados', 'empresas.latitud', 'empresas.longitud', 'users.email',  DB::raw('users.id as user_id'))->get();
 
   return response()->json($Response,200);
 
@@ -88,6 +88,7 @@ Route::get('/categorias/{id}', function($id){
   return response()->json($Response,200);
 
 })->name('categoriaid');
+
 
 
 Route::get('/search', 'SearchController@index');

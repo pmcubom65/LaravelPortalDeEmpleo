@@ -39,11 +39,17 @@ class HomeController extends Controller
         if (Auth::user()->rol_id===1){
            
             $trabajador=Trabajador::where('user_id', Auth::id())->first();
-         
-            return view('home', [
 
-                'trabajador'=>$trabajador
-            ]);
+          //  $candidaturas=Oferta_trabajador::where('trabajador_id', $trabajador->id)->first();
+
+            if ($trabajador) {
+            $candidaturas=Trabajador::find($trabajador->id)->ofertasempleo()->orderBy('updated_at')->get();
+            
+            }else {
+                $candidaturas=[];
+            }
+         
+            return view('home', compact(['trabajador', 'candidaturas']));
 
 
         } elseif (Auth::user()->rol_id===2) {

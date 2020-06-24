@@ -58,16 +58,15 @@ class SearchController extends Controller
   
 
      $lasprovincias=Provincia::all();
-     $lascategorias=Categoria::all();
-     $lasempresas=Empresa::all();
+  
+ 
      $laempresa=User::find(Auth::id());
 
     
      return view ('resultadosbusquedaoferta', [
         'provincias'=> $lasprovincias,
       
-        'categorias'=>$lascategorias,
-        'empresas'=>$lasempresas,
+
         'resultados'=>$misresultados,
         'datos'=>$laempresa
        
@@ -107,16 +106,14 @@ class SearchController extends Controller
         $laoferta->save();
 
         $lasprovincias=Provincia::all();
-        $lascategorias=Categoria::all();
-        $lasempresas=Empresa::all();
+
         $mioferta=Oferta::find($id);
         $elusuario=User::find(Auth::id());
 
         return view ('veroferta', [
             'provincias'=> $lasprovincias,
             'datos'=> $elusuario,
-            'categorias'=>$lascategorias,
-            'empresas'=>$lasempresas,
+    
             'oferta'=>$mioferta
           
            
@@ -130,8 +127,7 @@ class SearchController extends Controller
 
 
         $lasprovincias=Provincia::all();
-        $lascategorias=Categoria::all();
-        $lasempresas=Empresa::all();
+     
         $mioferta=Oferta::find($id);
         $elusuario=User::find(Auth::id());
       
@@ -141,8 +137,7 @@ class SearchController extends Controller
         return view ('veroferta', [
         'provincias'=> $lasprovincias,
         'datos'=> $elusuario,
-        'categorias'=>$lascategorias,
-        'empresas'=>$lasempresas,
+    
         'oferta'=>$mioferta
       
        
