@@ -15,16 +15,31 @@
     @if(!$trabajador)
     <curriculum-component :hhabilitado="false" :estrabajador="false" :token="'{{Session::token()}}'"
         :provincias="JSON.parse('{{$provincias->toJson()}}')" :nombre="'{{Auth::user()->name}}'"
-        :id="'{{Auth::user()->id}}'" :cabecera="true"></curriculum-component>
+        :id="'{{Auth::user()->id}}'" :cabecera="true" 
+       :region="'Region'" :esarea="false" :fecha="'2000-01-01'" 
+       
+       :datostrabajador="{ direccion: 'direccion',
+                            dni: 'dni',
+                            
+                            provincia_id : 1,
+                            telefono: '0000',
+                            }"
+
+   
+        ></curriculum-component>
+
+ 
 
     @else
 
 
-    <miarea-component :hhabilitado="true" :estrabajador="true" :token="'{{Session::token()}}'"
-        :provincias=" JSON.parse('{{$provincias->toJson()}}') " :nombre="'{{Auth::user()->name}}'"
-        :id="'{{Auth::id()}}'" :datostrabajador="JSON.parse('{{$trabajador}}')" :fecha="'{{$trabajador->getDate()}}'"
-        :region="'{{$trabajador->hasProvincia->region_name}}'" :candidaturas=" JSON.parse('{{$candidaturas->toJson()}}') "
+    <miarea-component :hhabilitado="true" :estrabajador="true"  :token="'{{Session::token()}}'"
+        :provincias=" JSON.parse('{{$provincias->toJson() }}') " :nombre="'{{Auth::user()->name}}'"
+        :id="'{{Auth::id()}}'"  :cabecera="true"  :esarea="true" 
+        :datostrabajador="JSON.parse('{{$trabajador->toJson()}}')" :fecha="'{{$trabajador->getDate()}}'"
+        :region="'{{$trabajador->hasProvincia->region_name}}'" :candidaturas="JSON.parse('{{$candidaturas->toJson()}}')"
        ></miarea-component>
+
 
     @endif
 

@@ -13,6 +13,8 @@ use App\Empresa;
 use App\Contacto;
 use App\Oferta_trabajador;
 use Validator;
+use Carbon\Carbon;
+use Intervention\Image\Facades\Image;
 
 class HomeController extends Controller
 {
@@ -93,7 +95,7 @@ class HomeController extends Controller
             'required'=>'No se puede dejar ningún campo en blanco',
             'fecha.date'=>'Error en la fecha',
             'fecha.before'=>'La fecha tiene que ser anterior a la actual',
-            'image'=>'Error en el archivo subido',
+            'image64'=>'Error en el archivo subido',
             'max:1999'=>'Error en el archivo subido'
      
         ];
@@ -108,27 +110,19 @@ class HomeController extends Controller
             'fecha' => 'required|date|before:today',
             'Provincia' => 'required',
             'telefono' => 'required',
-            'imagen'=> 'image|nullable|max:1999'
+            'imagen'=> 'nullable|image64:jpeg,jpg,png'
             ], 
             $messages);
 
-            if($request->hasFile('imagen')){
-                //filename con extension
-                $filenameWithExt=$request->file('imagen')->getClientOriginalName();
-                //solo filename
-                $filename=pathinfo($filenameWithExt, PATHINFO_FILENAME);
-                //extension
-                $extension=$request->file('imagen')->getClientOriginalExtension();
-
-                //filename a almacenar
-                $fileNameToStore=$filename.'_'.time().'.'.$extension;
-                //subir la imagen
-                $path=$request->file('imagen')->storeAs('public/imagenes', $fileNameToStore);
-            }else {
-                $fileNameToStore='noimage.jpg';
-            }
-
             $mitrabajador=Trabajador::where('user_id', Auth::id())->first();
+
+            if ( $request->get('imagen')) {
+            $imageData = $request->get('imagen');
+            $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
+            Image::make($request->get('imagen'))->save(public_path('images/').$fileName);
+            }else {
+                $fileName='No_image.jpg';
+            }
 
             if ($Validator->fails()) {
                 $Response=$Validator->messages();
@@ -142,7 +136,7 @@ class HomeController extends Controller
         $mitrabajador->provincia_id=$request->get('Provincia');
         $mitrabajador->telefono=$request->get('telefono');
         $mitrabajador->user_id=Auth::id();
-        $mitrabajador->imagen=$fileNameToStore;
+        $mitrabajador->imagen=$fileName;
         
         $mitrabajador->save();
 
@@ -156,7 +150,7 @@ class HomeController extends Controller
             $mitrabajador->provincia_id=$request->get('Provincia');
             $mitrabajador->telefono=$request->get('telefono');
             $mitrabajador->user_id=Auth::id();
-            $mitrabajador->imagen=$fileNameToStore;
+            $mitrabajador->imagen=$fileName;
             $mitrabajador->save();
             $Response=['success'=>'Curriculum actualizado'];
 

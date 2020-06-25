@@ -1,6 +1,5 @@
 <template>
   <section>
-   
     <div class="card" v-show="cabecera">
       <div class="card-body">
         <h4
@@ -22,14 +21,14 @@
       </div>
       <div class="row justify-content-center mb-5">
         <div class="col-sm-12 col-md-10 col-lg-8">
-          <form @submit.prevent="curriculum">
+          <form enctype="multipart/form-data" @submit.prevent="curriculum">
             <div class="form-row">
               <div class="form-group col-sm-12">
+                <input type="hidden" value="inicializar">
                 <label for="nombre">Nombre Completo</label>
                 <input
                   type="text"
                   class="form-control"
-                
                   name="nombre"
                   placeholder="nombre"
                   :value="nombre"
@@ -45,7 +44,6 @@
                 <input
                   type="text"
                   class="form-control"
-               
                   name="dni"
                   placeholder="Dni"
                   v-model="dni_i"
@@ -60,7 +58,6 @@
                 <input
                   type="text"
                   class="form-control"
-                
                   name="direccion"
                   placeholder="Direccion"
                   v-model="direccion_i"
@@ -74,12 +71,11 @@
                 <label for="Provincia">Provincia</label>
                 <select
                   class="form-control"
-            
                   name="Provincia"
                   :disabled="habilitado"
                   @change="provincia_i=$event.target.value"
                 >
-                  <option :value="provincia_id" selected>{{region}}</option>
+                  <option :value="provincia_i" selected>{{region}}</option>
                   <option
                     v-for="item in provincias"
                     v-bind:key="item.id"
@@ -96,7 +92,6 @@
                 <input
                   type="text"
                   class="form-control"
-          
                   name="telefono"
                   placeholder="telefono"
                   v-model="telefono_i"
@@ -111,7 +106,6 @@
                 <input
                   type="date"
                   class="form-control"
-                  
                   name="fecha"
                   v-model="fecha_i"
                   @change="fecha_i=$event.target.value"
@@ -124,64 +118,61 @@
               <div class="form-group col-sm-12 text-center">
                 <tooltip-component
                   :contenidotooltip="{ content: 'Añade aquí tus experiencias laborales.', show: 5000 }"
-                
                   :letrero="'Añadir Experiencia'"
-               
                   :id="id"
                 ></tooltip-component>
               </div>
             </div>
             <div v-show="!esarea">
-            <div class="form-row my-3"  v-show="!abierto_i">
-              <div class="form-group col-sm-12 text-center">
-                <label class="btn btn-primary btn-lg" for="imagen" >
+              <div class="form-row my-3" v-show="!abierto_i">
+                
+                <div class="form-group col-sm-12 text-center">
                   <input
                     type="file"
-                    class="d-none"
-                    style="margin: 0 auto !important;"
+                    class="custom-file-input"
                     id="imagen"
                     name="imagen"
-                    
+                    lang="es"
+                    multiple="multiple"
+                    @change="fileChange($event.target.name, $event.target.files)"
                   />
-                  <span class="glyphicon glyphicon-upload"></span>
-                  Subir Foto
-                </label>
+                  <label class="custom-file-label btn btn-success btn-lg" for="customFileLang">
+                    <span class="glyphicon glyphicon-upload"></span>{{labelfile}}
+                  </label>
+                  <img :src="image" style="width: auto; height: 195px;">
+                </div>
               </div>
-            </div>
-            
-            <div class="form-group col-sm-12">
-              <div id="messages" class="text-center">
-                <p class="alert">{{salida}}</p>
+
+              <div class="form-group col-sm-12">
+                <div id="messages" class="text-center">
+                  <p class="alert">{{salida}}</p>
+                </div>
               </div>
-            </div>
-            <div class="form-row my-3" v-show="abierto_i">
-              <a type="button" href="/home" class="btn btn-success m-auto btn-lg btn-xs-block">
-                <span class="glyphicon glyphicon-ok-circle"></span> No tengo más experiencias laborales. Terminar
-              </a>
-            </div>
+              <div class="form-row my-3" v-show="abierto_i">
+                <a type="button" href="/home" class="btn btn-success m-auto btn-lg btn-xs-block">
+                  <span class="glyphicon glyphicon-ok-circle"></span> No tengo más experiencias laborales. Terminar
+                </a>
+              </div>
 
-            <div class="form-row my-3" v-show="!abierto_i">
-              <button type="submit" class="btn btn-success m-auto btn-lg btn-xs-block">
-                <span class="glyphicon glyphicon-ok"></span> Guardar Curriculum
-              </button>
-            </div>
-
-
+              <div class="form-row my-3" v-show="!abierto_i">
+                <button type="submit" class="btn btn-success m-auto btn-lg btn-xs-block">
+                  <span class="glyphicon glyphicon-ok"></span> Guardar Curriculum
+                </button>
+              </div>
             </div>
             <div v-show="esarea">
-            <div class="form-row my-3" >
-              <button type="button" class="btn btn-success m-auto btn-lg btn-xs-block" @click="editarlo">
-                 Editar Curriculum
-              </button>
-            </div>
-
-
+              <div class="form-row my-3">
+                <button
+                  type="button"
+                  class="btn btn-success m-auto btn-lg btn-xs-block"
+                  @click="editarlo"
+                >Editar Curriculum</button>
+              </div>
             </div>
           </form>
         </div>
       </div>
     </div>
-  
   </section>
 </template>
 
@@ -192,35 +183,20 @@ export default {
   mounted() {
     console.log("Curriculum montado");
     this.$store.dispatch("getTrabajadores");
-   
+    
   },
- 
+
   props: {
     nombre: {
       type: String,
       required: false
     },
-    dni: {
-      type: String,
-      required: false,
-    },
-    direccion: {
-      type: String,
-      required: false
-    },
 
-    provincia_id: {
-      type: Number,
-      required: false
-    },
     region: {
       type: String,
       required: false
     },
-    telefono: {
-      type: String,
-      required: false
-    },
+
     provincias: {
       type: Array,
       required: false
@@ -233,13 +209,13 @@ export default {
       type: Boolean,
       required: false
     },
-    
-     cabecera: {
+
+    cabecera: {
       type: Boolean,
       required: false,
       default: true
     },
-       esarea: {
+    esarea: {
       type: Boolean,
       required: false
     },
@@ -247,7 +223,7 @@ export default {
       type: String,
       required: false
     },
-      datostrabajador: {
+    datostrabajador: {
       type: Object,
       required: false
     },
@@ -257,21 +233,36 @@ export default {
 
   data() {
     return {
-      nombre_i: this.$props.datostrabajador.nombre,
-      dni_i:  this.$props.datostrabajador.dni,
-      direccion_i:  this.$props.datostrabajador.direccion,
+      nombre_i: "",
+      dni_i: this.$props.datostrabajador.dni,
+      direccion_i: this.$props.datostrabajador.direccion,
       provincia_i: this.$props.datostrabajador.provincia_id,
       telefono_i: this.$props.datostrabajador.telefono,
       fecha_i: this.$props.fecha,
-      
+
       salida: "",
       abierto_i: false,
       trabajador: this.$props.estrabajador,
       habilitado: this.$props.hhabilitado,
-      
+      file: {},
+      labelfile: 'Seleccionar Archivo',
+      image: ''
     };
   },
   methods: {
+    fileChange: function(nombre,evt) {
+      this.file = evt[0];
+      this.labelfile=evt[0].name;
+      console.log("file Object:==>", this.file);
+             let reader = new FileReader();
+                let vm = this;
+                reader.onload = (e) => {
+                    vm.image = e.target.result;
+                };
+                reader.readAsDataURL(this.file);
+    },
+
+
     curriculum: function() {
       axios
         .put(route("homeput"), {
@@ -281,7 +272,8 @@ export default {
           Provincia: this.provincia_i,
           telefono: this.telefono_i,
           fecha: this.fecha_i,
-          dni: this.dni_i
+          dni: this.dni_i,
+          imagen: this.image
         })
         .then(response => {
           let valores = response.data;
@@ -306,7 +298,7 @@ export default {
         });
     },
     editarlo: function() {
-        bus.$emit("editarcurriculum");
+      bus.$emit("editarcurriculum");
     }
   }
 };

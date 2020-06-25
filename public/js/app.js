@@ -2359,15 +2359,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -2379,23 +2370,7 @@ __webpack_require__.r(__webpack_exports__);
       type: String,
       required: false
     },
-    dni: {
-      type: String,
-      required: false
-    },
-    direccion: {
-      type: String,
-      required: false
-    },
-    provincia_id: {
-      type: Number,
-      required: false
-    },
     region: {
-      type: String,
-      required: false
-    },
-    telefono: {
       type: String,
       required: false
     },
@@ -2433,7 +2408,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      nombre_i: this.$props.datostrabajador.nombre,
+      nombre_i: "",
       dni_i: this.$props.datostrabajador.dni,
       direccion_i: this.$props.datostrabajador.direccion,
       provincia_i: this.$props.datostrabajador.provincia_id,
@@ -2442,10 +2417,26 @@ __webpack_require__.r(__webpack_exports__);
       salida: "",
       abierto_i: false,
       trabajador: this.$props.estrabajador,
-      habilitado: this.$props.hhabilitado
+      habilitado: this.$props.hhabilitado,
+      file: {},
+      labelfile: 'Seleccionar Archivo',
+      image: ''
     };
   },
   methods: {
+    fileChange: function fileChange(nombre, evt) {
+      this.file = evt[0];
+      this.labelfile = evt[0].name;
+      console.log("file Object:==>", this.file);
+      var reader = new FileReader();
+      var vm = this;
+
+      reader.onload = function (e) {
+        vm.image = e.target.result;
+      };
+
+      reader.readAsDataURL(this.file);
+    },
     curriculum: function curriculum() {
       var _this = this;
 
@@ -2455,7 +2446,8 @@ __webpack_require__.r(__webpack_exports__);
         Provincia: this.provincia_i,
         telefono: this.telefono_i,
         fecha: this.fecha_i,
-        dni: this.dni_i
+        dni: this.dni_i,
+        imagen: this.image
       }).then(function (response) {
         var valores = response.data;
         Object.entries(valores).forEach(function (entry) {
@@ -48515,6 +48507,7 @@ var render = function() {
           _c(
             "form",
             {
+              attrs: { enctype: "multipart/form-data" },
               on: {
                 submit: function($event) {
                   $event.preventDefault()
@@ -48525,6 +48518,10 @@ var render = function() {
             [
               _c("div", { staticClass: "form-row" }, [
                 _c("div", { staticClass: "form-group col-sm-12" }, [
+                  _c("input", {
+                    attrs: { type: "hidden", value: "inicializar" }
+                  }),
+                  _vm._v(" "),
                   _c("label", { attrs: { for: "nombre" } }, [
                     _vm._v("Nombre Completo")
                   ]),
@@ -48636,7 +48633,7 @@ var render = function() {
                         "option",
                         {
                           attrs: { selected: "" },
-                          domProps: { value: _vm.provincia_id }
+                          domProps: { value: _vm.provincia_i }
                         },
                         [_vm._v(_vm._s(_vm.region))]
                       ),
@@ -48787,7 +48784,54 @@ var render = function() {
                       ],
                       staticClass: "form-row my-3"
                     },
-                    [_vm._m(1)]
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "form-group col-sm-12 text-center" },
+                        [
+                          _c("input", {
+                            staticClass: "custom-file-input",
+                            attrs: {
+                              type: "file",
+                              id: "imagen",
+                              name: "imagen",
+                              lang: "es",
+                              multiple: "multiple"
+                            },
+                            on: {
+                              change: function($event) {
+                                return _vm.fileChange(
+                                  $event.target.name,
+                                  $event.target.files
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              staticClass:
+                                "custom-file-label btn btn-success btn-lg",
+                              attrs: { for: "customFileLang" }
+                            },
+                            [
+                              _c("span", {
+                                staticClass: "glyphicon glyphicon-upload"
+                              }),
+                              _vm._v(
+                                _vm._s(_vm.labelfile) + "\n                "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("img", {
+                            staticStyle: { width: "auto", height: "195px" },
+                            attrs: { src: _vm.image }
+                          })
+                        ]
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c("div", { staticClass: "form-group col-sm-12" }, [
@@ -48815,7 +48859,7 @@ var render = function() {
                       ],
                       staticClass: "form-row my-3"
                     },
-                    [_vm._m(2)]
+                    [_vm._m(1)]
                   ),
                   _vm._v(" "),
                   _c(
@@ -48831,7 +48875,7 @@ var render = function() {
                       ],
                       staticClass: "form-row my-3"
                     },
-                    [_vm._m(3)]
+                    [_vm._m(2)]
                   )
                 ]
               ),
@@ -48858,11 +48902,7 @@ var render = function() {
                         attrs: { type: "button" },
                         on: { click: _vm.editarlo }
                       },
-                      [
-                        _vm._v(
-                          "\n               Editar Curriculum\n            "
-                        )
-                      ]
+                      [_vm._v("Editar Curriculum")]
                     )
                   ])
                 ]
@@ -48897,27 +48937,6 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group col-sm-12 text-center" }, [
-      _c(
-        "label",
-        { staticClass: "btn btn-primary btn-lg", attrs: { for: "imagen" } },
-        [
-          _c("input", {
-            staticClass: "d-none",
-            staticStyle: { margin: "0 auto !important" },
-            attrs: { type: "file", id: "imagen", name: "imagen" }
-          }),
-          _vm._v(" "),
-          _c("span", { staticClass: "glyphicon glyphicon-upload" }),
-          _vm._v("\n                Subir Foto\n              ")
-        ]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c(
       "a",
       {
@@ -48926,7 +48945,7 @@ var staticRenderFns = [
       },
       [
         _c("span", { staticClass: "glyphicon glyphicon-ok-circle" }),
-        _vm._v(" No tengo más experiencias laborales. Terminar\n            ")
+        _vm._v(" No tengo más experiencias laborales. Terminar\n              ")
       ]
     )
   },
@@ -48942,7 +48961,7 @@ var staticRenderFns = [
       },
       [
         _c("span", { staticClass: "glyphicon glyphicon-ok" }),
-        _vm._v(" Guardar Curriculum\n            ")
+        _vm._v(" Guardar Curriculum\n              ")
       ]
     )
   }
