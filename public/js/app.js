@@ -3624,6 +3624,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -50469,18 +50470,15 @@ var render = function() {
                           href: "#nav-item-03"
                         }
                       },
-                      [_vm._v("Candidaturas")]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "span",
-                      { staticClass: "badge badge-notify float-right" },
                       [
-                        _vm._v(
-                          "\n                 " +
-                            _vm._s(_vm.candidaturas.length) +
-                            "\n               "
-                        )
+                        _vm._v("Candidaturas\n                "),
+                        _c("span", { staticClass: "badge badge-notify " }, [
+                          _vm._v(
+                            "\n                 \n                 " +
+                              _vm._s(_vm.candidaturas.length) +
+                              "\n               "
+                          )
+                        ])
                       ]
                     )
                   ])

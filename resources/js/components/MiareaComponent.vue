@@ -76,13 +76,14 @@
                   data-toggle="pill"
                   href="#nav-item-03"
                    v-tooltip="{ content: 'Aquí obtendrás información sobre las ofertas en las que te has inscrito', show: false }" 
-                >Candidaturas</a>
-                <span class="badge badge-notify float-right">
-                  <!-- {{isset($candidaturas) ? $candidaturas->count() : 0 }}
-                       
-                  Contar candidaturas-->
+                >Candidaturas
+                 <span class="badge badge-notify ">
+                  
                   {{candidaturas.length}}
                 </span>
+                
+                </a>
+               
               </li>
             </ul>
           </div>
@@ -327,4 +328,6 @@ export default {
 #area {
   padding-top: 25px;
 }
+
+
 </style>
