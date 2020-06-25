@@ -15,15 +15,30 @@
       ></curriculum-component>
     </div>
 
+
+
+
     <div class="jumbotron jumbotron-fluid" id="jumbotronarea" v-show="modelestrabajador">
       <div class="container">
         <div class="row">
-          <div class="col-12 text-center titular">
+           <div class="col-5 text-center titular">
+ <img :src="'/images/'+datostrabajador.imagen"  id="mifoto" alt="Image"/>
+            </div>
+          <div class="col-7 text-left titular" id="area">
             <h1 class="display-4">Mi área</h1>
             <p class="lead">Acceda a sus datos y a sus candidaturas</p>
-            <hr />
+         
           </div>
         </div>
+   <hr />
+
+ 
+
+
+
+
+
+
         <div class="row text-center mb-5" v-if="getExperiencias">
           <div class="col-12 mx-auto">
             <buscarcategoriatrabajador-component :token="token" :categoria_id="getUltimaCategoria"></buscarcategoriatrabajador-component>
@@ -216,27 +231,13 @@ export default {
       type: String,
       required: false
     },
-    dni: {
-      type: String,
-      required: false
-    },
-    direccion: {
-      type: String,
-      required: false
-    },
 
-    provincia_id: {
-      type: Number,
-      required: false
-    },
+
     region: {
       type: String,
       required: false
     },
-    telefono: {
-      type: String,
-      required: false
-    },
+
     provincias: {
       type: Array,
       required: false
@@ -269,7 +270,8 @@ export default {
     datostrabajador: {
       type: Object,
       required: false
-    }
+    },
+    
   },
 
   data() {
@@ -282,6 +284,8 @@ export default {
     getRuta: function(id) {
       return "/home/Expe/" + id;
     },
+  
+
     getRutaOferta: function(id) {
       return "/search/" + id;
     },
@@ -312,5 +316,15 @@ export default {
 
 .card-header {
   background-color: black;
+}
+
+#mifoto {
+  width: auto;
+  height: 100px;
+  float: right;
+}
+
+#area {
+  padding-top: 25px;
 }
 </style>

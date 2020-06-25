@@ -1,11 +1,11 @@
 
 <template>
-  <v-popover>
+  <v-popover >
     <!-- This will be the popover target (for the events and position) -->
     <button v-tooltip="contenidotooltip" class="btn btn-danger btn-lg" type="button">{{ letrero }}</button>
     <!-- This will be the content of the popover -->
 
-    <p slot="popover">
+    <p slot="popover" >
      Tienes registradas {{getNumeroExperiencias}} experiencias
       <br />
 
@@ -14,6 +14,8 @@
         data-toggle="modal"
         data-target="#sitiomodalexperiencia"
         type="button"
+        v-close-popover
+        
       >Crear nueva experiencia</button>
     </p>
   </v-popover>
@@ -37,9 +39,13 @@ export default {
     
     id: String
   },
-  methods: {},
+  methods: {
+   
+  },
   data() {
-    return {};
+    return {
+   
+    }
   }
 };
 </script>

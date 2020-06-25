@@ -3609,6 +3609,21 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -3647,23 +3662,7 @@ __webpack_require__.r(__webpack_exports__);
       type: String,
       required: false
     },
-    dni: {
-      type: String,
-      required: false
-    },
-    direccion: {
-      type: String,
-      required: false
-    },
-    provincia_id: {
-      type: Number,
-      required: false
-    },
     region: {
-      type: String,
-      required: false
-    },
-    telefono: {
       type: String,
       required: false
     },
@@ -4286,6 +4285,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
 //
 //
 //
@@ -8949,7 +8950,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".tab-pane[data-v-fbd1a58e],\n.titular[data-v-fbd1a58e] {\n  color: white;\n}\n.card-header[data-v-fbd1a58e] {\n  background-color: black;\n}", ""]);
+exports.push([module.i, ".tab-pane[data-v-fbd1a58e],\n.titular[data-v-fbd1a58e] {\n  color: white;\n}\n.card-header[data-v-fbd1a58e] {\n  background-color: black;\n}\n#mifoto[data-v-fbd1a58e] {\n  width: auto;\n  height: 100px;\n  float: right;\n}\n#area[data-v-fbd1a58e] {\n  padding-top: 25px;\n}", ""]);
 
 // exports
 
@@ -50373,7 +50374,21 @@ var render = function() {
       },
       [
         _c("div", { staticClass: "container" }, [
-          _vm._m(0),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-5 text-center titular" }, [
+              _c("img", {
+                attrs: {
+                  src: "/images/" + _vm.datostrabajador.imagen,
+                  id: "mifoto",
+                  alt: "Image"
+                }
+              })
+            ]),
+            _vm._v(" "),
+            _vm._m(0)
+          ]),
+          _vm._v(" "),
+          _c("hr"),
           _vm._v(" "),
           _vm.getExperiencias
             ? _c("div", { staticClass: "row text-center mb-5" }, [
@@ -50417,13 +50432,13 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                Experiencias\n                Laborales\n                "
+                          "\n                 Experiencias\n                 Laborales\n                 "
                         ),
                         _c("span", { staticClass: "badge badge-light" }, [
                           _vm._v(
-                            "\n                  " +
+                            "\n                   " +
                               _vm._s(_vm.getExperiencias.length) +
-                              "\n                "
+                              "\n                 "
                           )
                         ])
                       ]
@@ -50462,9 +50477,9 @@ var render = function() {
                       { staticClass: "badge badge-notify float-right" },
                       [
                         _vm._v(
-                          "\n                " +
+                          "\n                 " +
                             _vm._s(_vm.candidaturas.length) +
-                            "\n              "
+                            "\n               "
                         )
                       ]
                     )
@@ -50562,7 +50577,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                Editar o\n                Borrar\n              "
+                              "\n                 Editar o\n                 Borrar\n               "
                             )
                           ]
                         )
@@ -50696,7 +50711,7 @@ var render = function() {
                                     },
                                     [
                                       _vm._v(
-                                        "\n                Ver detalles completos de la Oferta\n              "
+                                        "\n                 Ver detalles completos de la Oferta\n               "
                                       )
                                     ]
                                   )
@@ -50722,17 +50737,17 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-12 text-center titular" }, [
+    return _c(
+      "div",
+      { staticClass: "col-7 text-left titular", attrs: { id: "area" } },
+      [
         _c("h1", { staticClass: "display-4" }, [_vm._v("Mi área")]),
         _vm._v(" "),
         _c("p", { staticClass: "lead" }, [
           _vm._v("Acceda a sus datos y a sus candidaturas")
-        ]),
-        _vm._v(" "),
-        _c("hr")
-      ])
-    ])
+        ])
+      ]
+    )
   },
   function() {
     var _vm = this
@@ -50751,7 +50766,7 @@ var staticRenderFns = [
         },
         [
           _vm._v(
-            "\n                Datos\n                Personales\n              "
+            "\n                 Datos\n                 Personales\n               "
           )
         ]
       )
@@ -51413,6 +51428,7 @@ var render = function() {
       _c(
         "button",
         {
+          directives: [{ name: "close-popover", rawName: "v-close-popover" }],
           staticClass: "btn btn-lg btn-primary",
           attrs: {
             "data-toggle": "modal",
@@ -67444,7 +67460,11 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 Vue.use(v_tooltip__WEBPACK_IMPORTED_MODULE_0__["default"], {
   defaultTrigger: 'hover',
   defaultContainer: 'div',
-  disposeTimeout: 1000
+  disposeTimeout: 1000,
+  popover: {
+    defaultContainer: 'div',
+    defaultAutoHide: true
+  }
 });
 Vue.mixin({
   methods: {
