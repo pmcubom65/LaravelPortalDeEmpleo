@@ -5,11 +5,12 @@
 
 
 <div class="container-fluid">
-    @include('sidebar')
+    <sidebarempresa-component    :user_id="'{{ Auth::id() }}'"
+        :esempresa="false" ></sidebarempresa-component>
+
+
+
     <div class="row col-10 espacio2 float-right">
-
-
-
 
         <div class="col-10 text-center mx-auto">
             <h1><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span><br>Candidatos a la oferta</h1>
@@ -22,7 +23,7 @@
 
             <div class="col-12 d-inline-block ">
             <div class="card">
-            <div class="card-header">
+            <div class="card-header" >
                 <ul class="nav nav-tabs  card-header-tabs">
                     <li class="nav-item active btn-xs-block"><a class="nav-link" data-toggle="tab" href="#inscritos"><h5 class="font-weight-bolder" >Inscritos</h5></a></li>
                     <li class="nav-item btn-xs-block"><a class="nav-link" data-toggle="tab" href="#seleccionados"><h5 class="font-weight-bolder" >Seleccionados</h5></a></li>

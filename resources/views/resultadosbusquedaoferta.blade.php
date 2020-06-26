@@ -49,13 +49,7 @@
                     </div>
 
                     @foreach($resultados as $oferta)
-                    <!--<div class="card-body px-0 py-2" id="{{$oferta->id}}">
-    <h5 class="card-title">{{$oferta->titulo}} - {{$oferta->categoria->nombre}}</h5>
-    <br>{{$oferta->provincia->region_name}}
-    <br>{{$oferta->contrato->nombre}}
-    <br>Salario {{$oferta->salario}} euros/año
-    
-    <hr class="text-white">-->
+                   
                     <resultados-component :id="'{{$oferta->id}}'" :titulo="'{{$oferta->titulo}}'"
                         :nombre="'{{$oferta->categoria->nombre}}'" :region="'{{$oferta->provincia->region_name}}'"
                         :contrato="'{{$oferta->contrato->nombre}}'" :salario="'{{$oferta->salario}}'">
@@ -71,14 +65,6 @@
         </div>
 
 
-
-
-
-        <!--          <script type="application/javascript"
-                src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
-
-            </script>
-            <script src="{{asset('js/search.js')}}" type="text/javascript"></script>-->
 
 
 

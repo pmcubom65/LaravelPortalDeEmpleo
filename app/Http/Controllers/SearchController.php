@@ -60,7 +60,7 @@ class SearchController extends Controller
      $lasprovincias=Provincia::all();
   
  
-     $laempresa=User::find(Auth::id());
+   
 
     
      return view ('resultadosbusquedaoferta', [
@@ -68,7 +68,7 @@ class SearchController extends Controller
       
 
         'resultados'=>$misresultados,
-        'datos'=>$laempresa
+       
        
         ]);
 
@@ -105,18 +105,12 @@ class SearchController extends Controller
         $laoferta->proceso=0;
         $laoferta->save();
 
-        $lasprovincias=Provincia::all();
-
-        $mioferta=Oferta::find($id);
-        $elusuario=User::find(Auth::id());
+      
 
         return view ('veroferta', [
-            'provincias'=> $lasprovincias,
-            'datos'=> $elusuario,
-    
-            'oferta'=>$mioferta
-          
-           
+            'provincias'=> Provincia::all(),
+        
+            'oferta'=>Oferta::find($id)  
             ]);
     }
 
@@ -125,22 +119,11 @@ class SearchController extends Controller
     public function oferta($id) {
 
 
-
-        $lasprovincias=Provincia::all();
-     
-        $mioferta=Oferta::find($id);
-        $elusuario=User::find(Auth::id());
-      
-     
-
-   
         return view ('veroferta', [
-        'provincias'=> $lasprovincias,
-        'datos'=> $elusuario,
-    
-        'oferta'=>$mioferta
-      
+        'provincias'=> Provincia::all(),
        
+        'oferta'=>Oferta::find($id)
+      
         ]);
 
 

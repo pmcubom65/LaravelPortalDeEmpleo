@@ -13,7 +13,7 @@ use App\Trabajador;
 class CandidatosController extends Controller
 {
     public function index($id, $ofertaid) {
-        $lasprovincias=Provincia::all();
+      
  
         $laempresa=User::find($id);
         $empresaseleccionada=Empresa::where('user_id', '=', $id)->first()->id;
@@ -26,7 +26,7 @@ class CandidatosController extends Controller
         
         return view ('mostrarloscandidatos', [
             'laoferta'=>$ofertae,
-            'provincias'=> $lasprovincias,
+            'provincias'=> Provincia::all(),
             'datos'=>$laempresa, 
    
            
