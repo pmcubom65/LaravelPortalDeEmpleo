@@ -7,7 +7,7 @@
     <div class="row">
         <div class="col-12 text-center">
             <h1><span class="glyphicon glyphicon-user" aria-hidden="true"></span><br>Bienvenido Empresa:
-                {{ $datos->name }}</h1>
+                {{ Auth::user()->name }}</h1>
 
         </div>
 
@@ -16,7 +16,7 @@
     @include('barraempresa')
 
 
-    @if ($contador==0)
+    @if (!$datosemp)
     <div class="card">
 
 
@@ -28,16 +28,15 @@
     </div>
 
     @else
-    <section class="espacio">
-    <empresa-component :habilitado="true" 
+    <section class="espacio2">
+    <empresa-component :hhabilitado="true" 
                      :id="'{{Auth::id()}}'" :token="'{{Session::token()}}'"
                     :apellidos="'{{$datosemp->apellidos}}'"  :cif="'{{$datosemp->cif}}'"
                     :domicilio="'{{$datosemp->domicilio}}'"  :latitud="'{{$datosemp->latitud}}'" 
                     :longitud="'{{$datosemp->longitud}}'"  :nombre="'{{$datosemp->nombre}}'"
                     :numero_empleados="Number('{{$datosemp->numero_empleados}}')"
                     :provincia_id="Number('{{$datosemp->provincia_id}}')" :region="'{{$datosemp->provincia->region_name}}'"
-                    :telefono ="'{{$datosemp->telefono}}'" :editar="false">               
-      
+                    :telefono ="'{{$datosemp->telefono}}'"  :home="true"> 
                     </empresa-component>
     </section>
     

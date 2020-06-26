@@ -12,7 +12,7 @@
         <div class="col-md-4 text-right pt-3 ">
 
             <a href="#">
-                <img id="imagefooter" src="{{asset('img/logo.png')}}" class="thumbnail img-responsive "  alt="logo" /></a>
+                <img id="imagefooter" src="{{asset('img/logo.png')}}"   alt="logo" /></a>
         </div>
 
 

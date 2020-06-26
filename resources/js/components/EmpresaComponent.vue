@@ -149,7 +149,7 @@
       </div>
     </div>
 
-    <div class="form-row my-3" v-show="editar">
+    <div class="form-row my-3" v-if="!home" >
       <button type="submit" class="btn btn-success m-auto btn-lg" :disabled="abierto_i">
         <span class="glyphicon glyphicon-ok"></span> Actualizar Datos
       </button>
@@ -171,6 +171,7 @@ export default {
       type: String,
       required: false
     },
+
     cif: {
       type: String,
       required: false
@@ -211,14 +212,15 @@ export default {
       type: Array,
       required: false
     },
-    habilitado: {
+    hhabilitado: {
       type: Boolean,
       required: false
     },
-    editar: {
+      home: {
       type: Boolean,
-      required: true
+      required: false
     },
+  
     id : {
       type: String,
       required: true
@@ -238,7 +240,8 @@ export default {
       telefono_i: this.$props.telefono,
       region_i: this.$props.region,
       salida: "",
-      abierto_i: false
+      abierto_i: false,
+      habilitado: this.$props.hhabilitado,
     };
   },
 
@@ -246,7 +249,7 @@ export default {
 
   methods : {
       crearoeditar: function() {
-      
+         
                   axios
           .post(route("empresa", { id: this.id }), {
             id: this.id,
@@ -270,7 +273,7 @@ export default {
               if (entry[0].toString()==='success'){
                   this.abierto_i = true;
                   this.$store.dispatch('getEmpresas');
-                  this.$props.habilitado=true;
+                  this.habilitado=true;
                  
 
                   bus.$emit('empresacreada');
@@ -285,8 +288,14 @@ export default {
           .catch(function(error) {
             console.log(error);
           });
-       
       }
-  }
+      }
+  
 };
 </script>
+
+<style lang="scss" scoped>
+.alert {
+  font-size: 1.5rem;
+}
+</style>

@@ -17,17 +17,13 @@ class EmpresaController extends Controller
     public function show($id) {
 
         $lasprovincias=Provincia::all();
-        $laempresa=User::find($id);
 
-        $estaempresa=Empresa::where('user_id', $id)->count();
         
-        $datosaempresa=Empresa::where('user_id', Auth::id())->first();
+      
         
         return view ('miempresa', ['provincias'=> $lasprovincias,
-        'datos'=>$laempresa, 
 
-        'contador'=>$estaempresa,
-        'datosemp'=>$datosaempresa
+        'datosemp'=>Empresa::where('user_id', Auth::id())->first()
         ]);
 
     }

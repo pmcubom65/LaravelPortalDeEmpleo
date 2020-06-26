@@ -83,24 +83,18 @@ class OfertaController extends Controller
 
 
     public function index($id) {
-        $lasprovincias=Provincia::all();
-        $lascategorias=Categoria::all();
-        $lasempresas=Empresa::all();
-        $laempresa=User::find($id);
-        $lasexperienciaslaborales=Explaboral::all();
-        $loscontratos=Contrato::all();
-        $estaempresa=Empresa::where('user_id', $id)->count();
+        
+       
 
 
    
         return view ('publicaroferta', [
-        'provincias'=> $lasprovincias,
-        'datos'=>$laempresa, 
-        'categorias'=>$lascategorias,
-        'empresas'=>$lasempresas,
-        'experiencias'=>$lasexperienciaslaborales,
-        'contratos'=>$loscontratos,
-       'contador'=>$estaempresa
+        'provincias'=> Provincia::all(),
+      
+   
+        'experiencias'=>Explaboral::all(),
+        'contratos'=>Contrato::all(),
+       
         ]);
     }
 

@@ -5,7 +5,8 @@
 
 
 <div class="container-fluid">
-    @include('sidebar')
+    <sidebarempresa-component  :user_id="'{{ Auth::id() }}'"
+        :esempresa="false"></sidebarempresa-component>
     <div class="row col-10 espacio2 float-right">
 
 
@@ -61,11 +62,6 @@
             </section>
 
 
-           <!-- <script type="application/javascript"
-                src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
-
-            </script>
-            <script src="{{asset('js/oferta.js')}}" type="text/javascript"></script>-->
 
 
 
@@ -74,8 +70,7 @@
 
 </div>
 
-<!--@include('crearcategoria')-->
 
-<categoria-component  :id="'{{$datos->id}}'"  :token="'{{Session::token()}}'"></categoria-component>
+<categoria-component  :id="'{{Auth::id()}}'"  :token="'{{Session::token()}}'"></categoria-component>
 
 @endsection

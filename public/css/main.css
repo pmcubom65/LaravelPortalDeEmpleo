@@ -253,8 +253,10 @@ footer {
 
 #imagefooter {
   display: block;
-  max-width: 40%;
-  max-height: 50%;
+  width: auto;
+  height: 70px;
+  float: right;
+  margin-right: 50px;
 }
 
 .pft {

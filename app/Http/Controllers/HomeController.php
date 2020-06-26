@@ -57,8 +57,8 @@ class HomeController extends Controller
         } elseif (Auth::user()->rol_id===2) {
  
             return view('home2', [
-                'datos' =>  Auth::user(),
-                'contador'=> Empresa::where('user_id', Auth::id())->count(), 
+               
+               
                 'datosemp'=> Empresa::where('user_id', Auth::id())->first()
                 ]);
             

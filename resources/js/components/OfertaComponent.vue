@@ -9,7 +9,7 @@
           id="titulo"
           name="titulo"
           placeholder="titulo de la oferta"
-          :value="titulo"
+          v-model="titulo_i"
           @change="titulo_i=$event.target.value"
           :disabled="habilitado_i"
         />
@@ -60,7 +60,7 @@
           name="Salarioid"
           placeholder="introduzca salario"
           :disabled="habilitado_i"
-          :value="salario"
+          v-model="salario_i"
           @change="salario_i=$event.target.value"
         />
       </div>
@@ -241,10 +241,10 @@ export default {
   data() {
     return {
       descripcion: this.relato,
-      titulo_i: this.titulo,
+      titulo_i: this.$props.titulo,
       provincia_i: this.provincia_id,
       experiencia_i: this.experiencia_id,
-      salario_i: this.salario,
+      salario_i: this.$props.salario,
       contrato_i: this.contrato_id,
       salida: "",
       abierto_i: this.abierto,
