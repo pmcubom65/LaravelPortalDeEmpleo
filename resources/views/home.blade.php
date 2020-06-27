@@ -18,11 +18,11 @@
         :id="'{{Auth::user()->id}}'" :cabecera="true" 
        :region="'Region'" :esarea="false" :fecha="'2000-01-01'" 
        
-       :datostrabajador="{ direccion: 'direccion',
-                            dni: 'dni',
+       :datostrabajador="{ direccion: 'Escriba aqui su direccion',
+                            dni: 'Escriba aqui su dni',
                             
                             provincia_id : 1,
-                            telefono: '0000',
+                            telefono: 'Escriba aqui su telefono',
                             }"
 
    

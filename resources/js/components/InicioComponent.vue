@@ -2,7 +2,7 @@
   <div class="col-md-4 p-3">
     <h3 class="text-center">Contactanos</h3>
     <form id="contactarid" @submit.prevent="submitEmail" >
-      @csrf
+
       <div class="form-group">
         <input
           type="email"

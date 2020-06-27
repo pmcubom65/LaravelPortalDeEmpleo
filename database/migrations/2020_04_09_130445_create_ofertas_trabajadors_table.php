@@ -30,8 +30,8 @@ class CreateOfertasTrabajadorsTable extends Migration
             ->onDelete('cascade');
 
 
-            $table->index(['trabajador_id','oferta_id'], 'unico');
-            $table->unique('unico');
+
+            $table->unique(['trabajador_id','oferta_id'], 'unico');
         });
     }
 

@@ -5,8 +5,11 @@
 
 
 <div class="container-fluid">
-    <sidebarempresa-component    :user_id="'{{ Auth::id() }}'"
-        :esempresa="false" ></sidebarempresa-component>
+
+
+
+<barracandidatos-component    :id="'{{ Auth::id() }}'" :oferta='{{$oferta->id}}' :token="'{{Session::token()}}'"
+        ></barracandidatos-component>
 
 
 
@@ -16,7 +19,15 @@
             <h1><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span><br>Candidatos a la oferta</h1>
 
         </div>
+        <div class="col-12 d-inline-block mb-5 ">
+                <div class="card text-center">
+                    <div class="card-header d-none d-lg-block">
+                        <h4 class="font-weight-bold my-2 py-2">Haga click en el candidato y elija en la barra de
+                            menú seleccionar o descartar para gestionarlo</h4>
+                    </div>
 
+                </div>
+        </div>
 
 
 <div class="row-fluid col-10  d-inline-block mx-auto" >
@@ -33,10 +44,13 @@
             <div class="card-body text-center">
                 <div class="tab-content">
                     <div id="inscritos" class="tab-pane fade show active">
-                    @if (!$trabajadores->isEmpty())
+                    @if ($trabajadores)
                     @foreach($trabajadores as $trabajador)
                             @if(is_null($trabajador->pivot->seleccionado))
-                            @include('datoscandidatos')
+               
+                    <datoscandidatos-component :datostrabajador="JSON.parse('{{$trabajador->toJson()}}')" :fecha="'{{$trabajador->getDate()}}'"
+                  :region="'{{$trabajador->hasProvincia->region_name}}'" :seleccionado="false" :nombre="'{{$trabajador->user->name}}'"
+                  ></datoscandidatos-component>
                             @endif
                         @endforeach
                     </div>
@@ -44,8 +58,10 @@
                     @foreach($trabajadores as $trabajador)
                     @if($trabajador->pivot->seleccionado===1)
                     
-                            @include('datoscandidatos')
-    
+ 
+                    <datoscandidatos-component :datostrabajador="JSON.parse('{{$trabajador->toJson()}}')" :fecha="'{{$trabajador->getDate()}}'"
+                  :region="'{{$trabajador->hasProvincia->region_name}}'"  :seleccionado="true" :nombre="'{{$trabajador->user->name}}'"
+                  ></datoscandidatos-component>
                             @endif
                             @endforeach
                             
@@ -54,7 +70,10 @@
                     <div id="descartados" class="tab-pane fade">
                     @foreach($trabajadores as $trabajador)
                     @if($trabajador->pivot->seleccionado===0)
-                    @include('datoscandidatos')
+               
+                  <datoscandidatos-component :datostrabajador="JSON.parse('{{$trabajador->toJson()}}')" :fecha="'{{$trabajador->getDate()}}'"
+                  :region="'{{$trabajador->hasProvincia->region_name}}'" :seleccionado="false" :nombre="'{{$trabajador->user->name}}'"
+                  ></datoscandidatos-component>
                             @endif
                             @endforeach
                     </div>

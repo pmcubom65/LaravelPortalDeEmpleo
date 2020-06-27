@@ -5,7 +5,7 @@
 
 
 <div class="container-fluid">
-    <!--  @include('sidebarbusqueda')-->
+    
 
     @if (\Session::has('success'))
     <div class="alert alert-success">

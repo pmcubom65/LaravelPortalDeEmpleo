@@ -14,24 +14,13 @@ class CandidatosController extends Controller
 {
     public function index($id, $ofertaid) {
       
- 
-        $laempresa=User::find($id);
-        $empresaseleccionada=Empresa::where('user_id', '=', $id)->first()->id;
-     
-        $estaempresa=Empresa::where('user_id', $id)->count();
-
-        $ofertae=Oferta::find($ofertaid);
-
-        $trabajadoresapuntados=Oferta::find($ofertaid)->trabajadors()->orderby('created_at')->get();
         
         return view ('mostrarloscandidatos', [
-            'laoferta'=>$ofertae,
+            'oferta'=>Oferta::find($ofertaid),
             'provincias'=> Provincia::all(),
-            'datos'=>$laempresa, 
-   
            
-            'contador'=>$estaempresa,
-            'trabajadores'=>$trabajadoresapuntados
+      
+            'trabajadores'=>Oferta::find($ofertaid)->trabajadors()->orderby('created_at')->get()
        
             ]);
       
@@ -66,10 +55,8 @@ class CandidatosController extends Controller
     public function store($id, $ofertaid, Request $request) {
 
         $ofertae=Oferta::find($ofertaid);
-
-        $trabajadorid=$request->get('seleccionado');
+        $trabajadorid=$request->get('trabajador_id');
        
-
         $ofertae->trabajadors()->updateExistingPivot($trabajadorid, ['seleccionado'=>1]);
 
         $Response=['success'=> $trabajadorid];

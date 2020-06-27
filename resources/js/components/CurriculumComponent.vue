@@ -1,7 +1,7 @@
 <template>
   <section>
-    <div class="card" v-show="cabecera">
-      <div class="card-body">
+    <div class="card animate__animated  animate__heartBeat" v-show="cabecera">
+      <div class="card-body ">
         <h4
           v-if="!trabajador"
         >No tienes ningún curriculum dado de alta por el momento. No podrás inscribirte en ofertas aún</h4>
@@ -19,7 +19,7 @@
           </h1>
         </div>
       </div>
-      <div class="row justify-content-center mb-5">
+      <div class="row justify-content-center mb-5" >
         <div class="col-sm-12 col-md-10 col-lg-8">
           <form enctype="multipart/form-data" @submit.prevent="curriculum">
             <div class="form-row">

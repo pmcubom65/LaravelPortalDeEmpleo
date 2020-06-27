@@ -22,7 +22,7 @@
       <div class="container">
         <div class="row">
            <div class="col-5 text-center titular">
- <img :src="'/images/'+datostrabajador.imagen"  id="mifoto" alt="Image"/>
+ <img :src="'/images/'+datostrabajador.imagen"  class="mifoto" alt="Image"/>
             </div>
           <div class="col-7 text-left titular" id="area">
             <h1 class="display-4">Mi área</h1>
@@ -319,7 +319,7 @@ export default {
   background-color: black;
 }
 
-#mifoto {
+.mifoto {
   width: auto;
   height: 100px;
   float: right;

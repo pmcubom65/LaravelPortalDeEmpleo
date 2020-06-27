@@ -13,6 +13,7 @@ use App\Explaboral;
 use App\Contrato;
 use App\Oferta_trabajador;
 use App\Trabajador;
+Use Exception;
 
 
 class SearchController extends Controller
@@ -85,14 +86,18 @@ class SearchController extends Controller
         }
         else if ( Auth::user()->rol_id===1 && $trabajador) {
                 
-           
+        try {
                 $inscripcion= new Oferta_trabajador();
                 $inscripcion->oferta_id=$id;
                 $inscripcion->trabajador_id=$trabajador->id;
-                $inscripcion->seleccionado=0;
+          
                 $inscripcion->save();
+                $Response=['success'=>'Has sido inscrito en la oferta'];
+        }catch (Exception $e) {
+            $Response=['success'=>'Ya estabas inscrito en la oferta'];
+        }
 
-               $Response=['success'=>'Has sido inscrito en la oferta'];
+               
         }else {
             $Response=['success'=>'Necesitas tener el perfil de trabajador completo para inscribirte'];
         }

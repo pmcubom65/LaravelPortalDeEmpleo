@@ -254,7 +254,7 @@ export default {
   },
   methods: {
     inscribirse: function() {
-      var that = this;
+      
       if (!this.crearoferta) {
         axios
           .post(route("apuntarse", { id: this.id }), {
@@ -276,7 +276,6 @@ export default {
           });
       } else {
         
-
         axios
           .put(route("oferta", { id: this.id }), {
             titulo: this.titulo_i,
@@ -301,8 +300,10 @@ export default {
               this.habilitado_i=true;
             }
           })
-          .catch(function(error) {
+          .catch(error => {
             console.log(error);
+           
+    
           });
       }
     }
@@ -319,3 +320,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.alert {
+  font-size: 1.5rem;
+}
+</style>
