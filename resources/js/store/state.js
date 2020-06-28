@@ -2,5 +2,6 @@ export default {
     categorias: [],
     empresas: [],
     trabajadores: [],
-    experiencias: []
+    experiencias: [],
+    trabajadoresporoferta: [],
 }

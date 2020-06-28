@@ -8,15 +8,20 @@
 
 
 
-<barracandidatos-component    :id="'{{ Auth::id() }}'" :oferta='{{$oferta->id}}' :token="'{{Session::token()}}'"
+<barracandidatos-component    :id="'{{ Auth::id() }}'" :oferta="Number('{{$oferta->id}}')" :token="'{{Session::token()}}'"
         ></barracandidatos-component>
 
 
 
-    <div class="row col-10 espacio2 float-right">
 
-        <div class="col-10 text-center mx-auto">
-            <h1><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span><br>Candidatos a la oferta</h1>
+
+
+  <div class="row col-10 espacio2 float-right">
+
+
+         <div class="col-10 text-center mx-auto">
+    <mostrarcandidatos-component :oferta="Number('{{$oferta->id}}')"></mostrarcandidatos-component>
+     <!--        <h1><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span><br>Candidatos a la oferta</h1>
 
         </div>
         <div class="col-12 d-inline-block mb-5 ">
@@ -48,7 +53,7 @@
                
                     <datoscandidatos-component :datostrabajador="JSON.parse('{{$trabajador->toJson()}}')" :fecha="'{{$trabajador->getDate()}}'"
                   :region="'{{$trabajador->hasProvincia->region_name}}'" :entrevista="false" :nombre="'{{$trabajador->user->name}}'"
-               
+                  :oferta='{{$oferta->id}}' 
                   ></datoscandidatos-component>
                             @endif
                         @endforeach
@@ -60,7 +65,7 @@
  
                     <datoscandidatos-component :datostrabajador="JSON.parse('{{$trabajador->toJson()}}')" :fecha="'{{$trabajador->getDate()}}'"
                   :region="'{{$trabajador->hasProvincia->region_name}}'"  :entrevista="true" :nombre="'{{$trabajador->user->name}}'"
-            
+                  :oferta='{{$oferta->id}}'  :seleccionado=1
                   ></datoscandidatos-component>
                             @endif
                             @endforeach
@@ -73,7 +78,7 @@
                
                   <datoscandidatos-component :datostrabajador="JSON.parse('{{$trabajador->toJson()}}')" :fecha="'{{$trabajador->getDate()}}'"
                   :region="'{{$trabajador->hasProvincia->region_name}}'" :entrevista="false" :nombre="'{{$trabajador->user->name}}'"
-           
+                  :oferta='{{$oferta->id}}'  :seleccionado=0
                   ></datoscandidatos-component>
                             @endif
                             @endforeach
@@ -84,7 +89,7 @@
                 </div>
                 </div>
 
-            </div>
+            </div>-->
             </div>
 
 

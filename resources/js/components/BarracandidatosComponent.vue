@@ -55,19 +55,21 @@ export default {
       ruta1: "/empresa/" + this.$props.id + "/published",
       ruta2: "",
       ruta3: "",
-      trabajador: "",
+      trabajador: 0,
       gris: true,
       seleccion: 0
     };
   },
   created() {
     bus.$on("trabajadorElegido", data => {
-      this.trabajador = data;
+  
       this.gris = false;
+      this.trabajador=data.trabajador_id;
     });
   },
   mounted() {
     console.log("Barra candidatos montada");
+       this.$store.dispatch("getTrabajadoresPorOferta");
   },
 
   methods: {
@@ -88,10 +90,8 @@ export default {
         .then(response => {
           console.log(response.data.success);
           if (response.data.success == 1) {
-            bus.$emit("trabajadorCambiado", {
-              id: this.trabajador,
-              ofertaid: this.$props.oferta
-            });
+            console.log('trabajador seleccionado')
+              this.$store.dispatch("getTrabajadoresPorOferta");
           }
         })
         .catch(function(error) {
@@ -115,6 +115,8 @@ export default {
         .then(response => {
           console.log(response.data.success);
           if (response.data.success == 1) {
+            console.log('trabajador descartado')
+              this.$store.dispatch("getTrabajadoresPorOferta");
           }
         })
         .catch(function(error) {

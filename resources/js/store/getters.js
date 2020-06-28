@@ -26,6 +26,18 @@ export const getExperienciasById = (state) => (user_id) => {
 }
 
 
+export const getTrabajadorByOferta = (state) => (oferta_id) => {
+
+  var salida = state.trabajadoresporoferta.filter(trabajador => {
+    return trabajador.oferta_id == oferta_id;
+  });
+  return salida;
+}
+
+
+
+
+
 
 export const numero_experiencias = (state) => (user_id) => {
 

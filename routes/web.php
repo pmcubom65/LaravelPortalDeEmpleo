@@ -92,8 +92,11 @@ Route::get('/categorias/{id}', function($id){
 
 
 
-Route::get('/trabajadoresporoferta/{id}', function($id){
-   return Oferta::find($id)->trabajadors()->orderby('created_at')->get();
+Route::get('/trabajadoresporoferta', function(){
+  $Response=DB::table('oferta_trabajador')->leftJoin('trabajadors', 'oferta_trabajador.trabajador_id', '=', 'trabajadors.id')->
+  leftJoin('ofertas', 'oferta_trabajador.oferta_id', '=', 'ofertas.id')->leftJoin('users', 'trabajadors.user_id', '=', 'users.id')->
+  select (DB::raw('ofertas.id as oferta_id'), 'trabajadors.imagen','users.name', 'trabajadors.direccion', 'trabajadors.fecha',  DB::raw('trabajadors.id as trabajador_id'), 'oferta_trabajador.seleccionado')->get();
+  return response()->json($Response,200);
 })->name('trabajadoresporoferta');
 
 
