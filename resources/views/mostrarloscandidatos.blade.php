@@ -28,8 +28,6 @@
 
                 </div>
         </div>
-
-
 <div class="row-fluid col-10  d-inline-block mx-auto" >
 
             <div class="col-12 d-inline-block ">
@@ -49,7 +47,8 @@
                             @if(is_null($trabajador->pivot->seleccionado))
                
                     <datoscandidatos-component :datostrabajador="JSON.parse('{{$trabajador->toJson()}}')" :fecha="'{{$trabajador->getDate()}}'"
-                  :region="'{{$trabajador->hasProvincia->region_name}}'" :seleccionado="false" :nombre="'{{$trabajador->user->name}}'"
+                  :region="'{{$trabajador->hasProvincia->region_name}}'" :entrevista="false" :nombre="'{{$trabajador->user->name}}'"
+               
                   ></datoscandidatos-component>
                             @endif
                         @endforeach
@@ -60,7 +59,8 @@
                     
  
                     <datoscandidatos-component :datostrabajador="JSON.parse('{{$trabajador->toJson()}}')" :fecha="'{{$trabajador->getDate()}}'"
-                  :region="'{{$trabajador->hasProvincia->region_name}}'"  :seleccionado="true" :nombre="'{{$trabajador->user->name}}'"
+                  :region="'{{$trabajador->hasProvincia->region_name}}'"  :entrevista="true" :nombre="'{{$trabajador->user->name}}'"
+            
                   ></datoscandidatos-component>
                             @endif
                             @endforeach
@@ -72,7 +72,8 @@
                     @if($trabajador->pivot->seleccionado===0)
                
                   <datoscandidatos-component :datostrabajador="JSON.parse('{{$trabajador->toJson()}}')" :fecha="'{{$trabajador->getDate()}}'"
-                  :region="'{{$trabajador->hasProvincia->region_name}}'" :seleccionado="false" :nombre="'{{$trabajador->user->name}}'"
+                  :region="'{{$trabajador->hasProvincia->region_name}}'" :entrevista="false" :nombre="'{{$trabajador->user->name}}'"
+           
                   ></datoscandidatos-component>
                             @endif
                             @endforeach

@@ -18,11 +18,16 @@
         <a @click="seleccionado">
           <span class="misiconos glyphicon glyphicon-ok text-light"></span>
         </a>Seleccionar
-        <input type="hidden" v-model="trabajador" name="trabajador_id" id="trabajador_id">
+        <input
+          type="hidden"
+          v-model="trabajador"
+          name="trabajador_id"
+          id="trabajador_id"
+        />
       </h3>
 
       <h3 class="text-center">
-        <a>
+        <a @click="descartado">
           <span class="misiconos glyphicon glyphicon-remove text-light"></span>
         </a>Descartar
       </h3>
@@ -33,7 +38,6 @@
         <br />
       </a>Volver
     </h3>
-    <form 
   </div>
 </template>
 
@@ -52,7 +56,8 @@ export default {
       ruta2: "",
       ruta3: "",
       trabajador: "",
-      gris: true
+      gris: true,
+      seleccion: 0
     };
   },
   created() {
@@ -67,21 +72,50 @@ export default {
 
   methods: {
     seleccionado: function() {
-      
-      axios.post(
-          route("candidatos", { 
+      axios
+        .post(
+          route("candidatos", {
             id: this.$props.id,
             ofertaid: this.$props.oferta,
-          
-        
-             _token: this.token
-          }), {
-              trabajador_id: this.trabajador
-           }
-         
+
+            _token: this.token
+          }),
+          {
+            trabajador_id: this.trabajador,
+            seleccion: 1
+          }
         )
         .then(response => {
-          console.log(response.data);
+          console.log(response.data.success);
+          if (response.data.success == 1) {
+            bus.$emit("trabajadorCambiado", {
+              id: this.trabajador,
+              ofertaid: this.$props.oferta
+            });
+          }
+        })
+        .catch(function(error) {
+          console.log(error);
+        });
+    },
+    descartado: function() {
+      axios
+        .post(
+          route("candidatos", {
+            id: this.$props.id,
+            ofertaid: this.$props.oferta,
+
+            _token: this.token
+          }),
+          {
+            trabajador_id: this.trabajador,
+            seleccion: 0
+          }
+        )
+        .then(response => {
+          console.log(response.data.success);
+          if (response.data.success == 1) {
+          }
         })
         .catch(function(error) {
           console.log(error);

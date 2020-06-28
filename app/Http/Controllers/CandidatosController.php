@@ -56,10 +56,14 @@ class CandidatosController extends Controller
 
         $ofertae=Oferta::find($ofertaid);
         $trabajadorid=$request->get('trabajador_id');
-       
-        $ofertae->trabajadors()->updateExistingPivot($trabajadorid, ['seleccionado'=>1]);
 
-        $Response=['success'=> $trabajadorid];
+        $seleccion=$request->get('seleccion');
+       
+        $resultado=$ofertae->trabajadors()->updateExistingPivot($trabajadorid, ['seleccionado'=>$seleccion]);
+
+        
+
+        $Response=['success'=> $resultado];
         
     
         return response()->json($Response, 200);
@@ -67,15 +71,5 @@ class CandidatosController extends Controller
     }
 
 
-    public function put($id, $ofertaid, Request $request) {
-        $ofertae=Oferta::find($ofertaid);
 
-        $trabajadorid=$request->get('descartado');
-
-        $ofertae->trabajadors()->updateExistingPivot($trabajadorid, ['seleccionado'=>0]);
-
-        $Response=['success'=>$trabajadorid];
-    
-        return response()->json($Response, 200);
-    }
 }

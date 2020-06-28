@@ -1960,6 +1960,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -1973,7 +1977,8 @@ __webpack_require__.r(__webpack_exports__);
       ruta2: "",
       ruta3: "",
       trabajador: "",
-      gris: true
+      gris: true,
+      seleccion: 0
     };
   },
   created: function created() {
@@ -1989,14 +1994,40 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     seleccionado: function seleccionado() {
+      var _this2 = this;
+
       axios.post(route("candidatos", {
         id: this.$props.id,
         ofertaid: this.$props.oferta,
         _token: this.token
       }), {
-        trabajador_id: this.trabajador
+        trabajador_id: this.trabajador,
+        seleccion: 1
       }).then(function (response) {
-        console.log(response.data);
+        console.log(response.data.success);
+
+        if (response.data.success == 1) {
+          _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$emit("trabajadorCambiado", {
+            id: _this2.trabajador,
+            ofertaid: _this2.$props.oferta
+          });
+        }
+      })["catch"](function (error) {
+        console.log(error);
+      });
+    },
+    descartado: function descartado() {
+      axios.post(route("candidatos", {
+        id: this.$props.id,
+        ofertaid: this.$props.oferta,
+        _token: this.token
+      }), {
+        trabajador_id: this.trabajador,
+        seleccion: 0
+      }).then(function (response) {
+        console.log(response.data.success);
+
+        if (response.data.success == 1) {}
       })["catch"](function (error) {
         console.log(error);
       });
@@ -2595,13 +2626,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     var _this = this;
 
-    _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$on('trabajadorElegido', function (data) {
-      console.log('escucho');
+    _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$on("trabajadorElegido", function (data) {
       console.log(data);
 
       if (data == _this.datostrabajador.id) {
@@ -2628,7 +2677,7 @@ __webpack_require__.r(__webpack_exports__);
       type: String,
       required: false
     },
-    seleccionado: {
+    entrevista: {
       type: Boolean,
       required: true
     }
@@ -2641,7 +2690,7 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     elejido: function elejido() {
       this.destacar = true;
-      _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$emit('trabajadorElegido', this.datostrabajador.id);
+      _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$emit("trabajadorElegido", this.datostrabajador.id);
     }
   }
 });
@@ -48520,7 +48569,14 @@ var render = function() {
               })
             ]),
             _vm._v(" "),
-            _vm._m(2)
+            _c("h3", { staticClass: "text-center" }, [
+              _c("a", { on: { click: _vm.descartado } }, [
+                _c("span", {
+                  staticClass: "misiconos glyphicon glyphicon-remove text-light"
+                })
+              ]),
+              _vm._v("Descartar\n    ")
+            ])
           ]),
       _vm._v(" "),
       _c("h3", { staticClass: "text-center" }, [
@@ -48558,19 +48614,6 @@ var staticRenderFns = [
       _c("a", [
         _c("span", {
           staticClass: "misiconos glyphicon glyphicon-remove text-secondary"
-        })
-      ]),
-      _vm._v("Descartar\n    ")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "text-center" }, [
-      _c("a", [
-        _c("span", {
-          staticClass: "misiconos glyphicon glyphicon-remove text-light"
         })
       ]),
       _vm._v("Descartar\n    ")
@@ -49503,11 +49546,11 @@ var render = function() {
             _vm._v("Direccion:")
           ]),
           _vm._v(
-            "  " +
+            "\n      " +
               _vm._s(_vm.datostrabajador.direccion) +
               " (" +
               _vm._s(_vm.region) +
-              ")"
+              ")\n    "
           )
         ]),
         _vm._v(" "),
@@ -49515,7 +49558,7 @@ var render = function() {
           _c("span", { staticClass: "font-weight-bold" }, [
             _vm._v("Fecha de nacimiento:")
           ]),
-          _vm._v(" " + _vm._s(_vm.fecha))
+          _vm._v("\n      " + _vm._s(_vm.fecha) + "\n    ")
         ]),
         _vm._v(" "),
         _c(
@@ -49534,8 +49577,8 @@ var render = function() {
               {
                 name: "show",
                 rawName: "v-show",
-                value: _vm.seleccionado,
-                expression: "seleccionado"
+                value: _vm.entrevista,
+                expression: "entrevista"
               }
             ],
             staticClass: "btn btn-success btn-lg botonescandidatos",
@@ -68526,14 +68569,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!**************************************************************!*\
   !*** ./resources/js/components/DatoscandidatosComponent.vue ***!
   \**************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _DatoscandidatosComponent_vue_vue_type_template_id_843a0e32_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DatoscandidatosComponent.vue?vue&type=template&id=843a0e32&scoped=true& */ "./resources/js/components/DatoscandidatosComponent.vue?vue&type=template&id=843a0e32&scoped=true&");
 /* harmony import */ var _DatoscandidatosComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DatoscandidatosComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/DatoscandidatosComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _DatoscandidatosComponent_vue_vue_type_style_index_0_id_843a0e32_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DatoscandidatosComponent.vue?vue&type=style&index=0&id=843a0e32&lang=scss&scoped=true& */ "./resources/js/components/DatoscandidatosComponent.vue?vue&type=style&index=0&id=843a0e32&lang=scss&scoped=true&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _DatoscandidatosComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _DatoscandidatosComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _DatoscandidatosComponent_vue_vue_type_style_index_0_id_843a0e32_lang_scss_scoped_true___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./DatoscandidatosComponent.vue?vue&type=style&index=0&id=843a0e32&lang=scss&scoped=true& */ "./resources/js/components/DatoscandidatosComponent.vue?vue&type=style&index=0&id=843a0e32&lang=scss&scoped=true&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -68565,7 +68609,7 @@ component.options.__file = "resources/js/components/DatoscandidatosComponent.vue
 /*!***************************************************************************************!*\
   !*** ./resources/js/components/DatoscandidatosComponent.vue?vue&type=script&lang=js& ***!
   \***************************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

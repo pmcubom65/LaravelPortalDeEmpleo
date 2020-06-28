@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Categoria;
 use App\Empresa;
 use App\Experiencia;
+use App\Oferta;
 
 
 /*
@@ -88,6 +89,14 @@ Route::get('/categorias/{id}', function($id){
   return response()->json($Response,200);
 
 })->name('categoriaid');
+
+
+
+Route::get('/trabajadoresporoferta/{id}', function($id){
+   return Oferta::find($id)->trabajadors()->orderby('created_at')->get();
+})->name('trabajadoresporoferta');
+
+
 
 
 
