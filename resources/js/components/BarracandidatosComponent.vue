@@ -129,7 +129,7 @@ export default {
 
 <style lang="scss" scoped>
 .bajando {
-  padding-top: 100px;
+  padding-top: 10px;
 }
 
 @media (max-width: 1000px) {

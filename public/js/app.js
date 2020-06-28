@@ -2658,6 +2658,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -9199,7 +9201,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".bajando[data-v-a5f9c180] {\n  padding-top: 100px;\n}", ""]);
+exports.push([module.i, ".bajando[data-v-a5f9c180] {\n  padding-top: 10px;\n}", ""]);
 
 // exports
 
@@ -9218,7 +9220,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".media[data-v-843a0e32] {\n  padding: 10px;\n  margin: 10px;\n}\n.botonescandidatos[data-v-843a0e32] {\n  margin-top: 5px;\n}\n.mifoto[data-v-843a0e32] {\n  width: auto;\n  height: 100px;\n  float: right;\n}\n.fondo[data-v-843a0e32] {\n  background-color: red !important;\n}", ""]);
+exports.push([module.i, ".media[data-v-843a0e32] {\n  padding: 10px;\n  margin: 10px;\n}\n.botonescandidatos[data-v-843a0e32] {\n  margin-top: 5px;\n}\n.mifoto[data-v-843a0e32] {\n  width: auto;\n  height: 100px;\n  float: right;\n}\n.fondo[data-v-843a0e32] {\n  background-color: red !important;\n}\n@media screen and (max-width: 768px) {\n.lead[data-v-843a0e32] {\n    margin-left: auto !important;\n    margin-right: auto !important;\n    display: block !important;\n    overflow: hidden;\n}\n}", ""]);
 
 // exports
 
@@ -49631,7 +49633,7 @@ var render = function() {
           _c(
             "div",
             {
-              staticClass: "media border border-primary rounded",
+              staticClass: "media border border-primary rounded lead",
               class: { fondo: _vm.destacar },
               on: {
                 click: function($event) {
@@ -49641,7 +49643,7 @@ var render = function() {
             },
             [
               _c("img", {
-                staticClass: "align-self-center mr-3 mifoto",
+                staticClass: "align-self-center mr-3 mifoto d-xs-block",
                 attrs: {
                   src: "/images/" + _vm.datostrabajador.imagen,
                   alt: "foto"
@@ -49649,14 +49651,14 @@ var render = function() {
               }),
               _vm._v(" "),
               _c("div", { staticClass: "media-body" }, [
-                _c("h3", { staticClass: "mt-0" }, [
+                _c("h3", { staticClass: "mt-0 d-none d-lg-block d-xl-none" }, [
                   _c("span", { staticClass: "font-weight-bold" }, [
                     _vm._v(_vm._s(_vm.datostrabajador.name))
                   ])
                 ]),
                 _vm._v(" "),
-                _c("p", [
-                  _c("span", { staticClass: "font-weight-bold" }, [
+                _c("p", { staticClass: "d-none d-lg-block d-xl-none" }, [
+                  _c("span", { staticClass: "font-weight-bold " }, [
                     _vm._v("Direccion:")
                   ]),
                   _vm._v(
@@ -49668,13 +49670,23 @@ var render = function() {
                   )
                 ]),
                 _vm._v(" "),
-                _c("p", { staticClass: "mb-0" }, [
-                  _c("span", { staticClass: "font-weight-bold" }, [
-                    _vm._v("Fecha de nacimiento:")
-                  ]),
+                _c("p", { staticClass: "mb-0 d-none d-lg-block d-xl-none" }, [
+                  _c(
+                    "span",
+                    {
+                      staticClass:
+                        "font-weight-bold d-none d-lg-block d-xl-none"
+                    },
+                    [_vm._v("Fecha de nacimiento:")]
+                  ),
                   _vm._v(
                     "\n      " +
-                      _vm._s(_vm.datostrabajador.fecha) +
+                      _vm._s(
+                        _vm.datostrabajador.fecha.substr(
+                          0,
+                          _vm.datostrabajador.fecha.indexOf(" ")
+                        )
+                      ) +
                       "\n\n    \n    "
                   )
                 ]),
@@ -49682,7 +49694,7 @@ var render = function() {
                 _c(
                   "button",
                   {
-                    staticClass: "btn btn-primary btn-lg botonescandidatos",
+                    staticClass: "btn btn-primary btn-lg botonescandidatos ",
                     attrs: { type: "button" }
                   },
                   [_vm._v("Ver más detalles")]
@@ -49699,7 +49711,7 @@ var render = function() {
                         expression: "entrevista"
                       }
                     ],
-                    staticClass: "btn btn-success btn-lg botonescandidatos",
+                    staticClass: "btn btn-success btn-lg botonescandidatos ",
                     attrs: { type: "button" }
                   },
                   [_vm._v("Contactar")]
