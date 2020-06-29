@@ -149,7 +149,7 @@ Route::get('/empresa/{id}/published/{ofertaid}/trabajador/{tid}', 'EntrevistaCon
 
 Route::post('/empresa/{id}/published/{ofertaid}/trabajador/{tid}', 'EntrevistaController@store')->name('contacto');
 
-
+Route::get('/empresa/{id}/published/{ofertaid}/ofertatrabajador/{tid}', 'OfertatrabajadorController@show');
 
 Route::get('/home/entrevista/{contactoid}', 'Entrevista2Controller@show');
 

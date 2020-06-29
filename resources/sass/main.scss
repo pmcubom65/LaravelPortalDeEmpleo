@@ -61,7 +61,9 @@ nav.navbar {
   margin-bottom: 0;
   padding-bottom: 0;
   display:block;
-
+  @media (max-width: 767.98px) { 
+    min-width: 70px;
+  }
 }
 @media (max-width: 767.98px) { 
   h3 {color:white !important;
