@@ -24,7 +24,7 @@
         
         </p>
      
-        <button type="button" class="btn btn-primary btn-lg botonescandidatos ">Ver más detalles</button>
+        <a type="button" class="btn btn-primary btn-lg botonescandidatos " :href="rutacurriculum">Ver más detalles</a>
         <a
           class="btn btn-success btn-lg botonescandidatos "
           :href="this.rutaentrevista"
@@ -82,7 +82,8 @@ export default {
   data() {
     return {
       destacar: false,
-      rutaentrevista: '/empresa/'+this.$props.id+'/published/'+this.$props.datostrabajador.oferta_id+'/trabajador/'+this.$props.datostrabajador.trabajador_id
+      rutaentrevista: '/empresa/'+this.$props.id+'/published/'+this.$props.datostrabajador.oferta_id+'/trabajador/'+this.$props.datostrabajador.trabajador_id,
+      rutacurriculum: '/empresa/'+this.$props.id+'/published/'+this.$props.datostrabajador.oferta_id+'/ofertatrabajador/'+this.$props.datostrabajador.trabajador_id
   
     }
   },

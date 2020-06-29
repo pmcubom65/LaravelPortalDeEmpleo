@@ -3,16 +3,17 @@
 @section('content')
 
 
-<miarea-component :hhabilitado="true" :estrabajador="true"  :token="'{{Session::token()}}'"
-        :provincias=" JSON.parse('{{$provincias->toJson() }}') " :nombre="'{{Auth::user()->name}}'"
-        :id="'{{Auth::id()}}'"  :cabecera="true"  :esarea="true" 
+<miarea-component :hhabilitado="true" :estrabajador="true"  
+        :id="'{{$trabajador->user_id}}'"  :cabecera="true"  :esarea="true" 
         :datostrabajador="JSON.parse('{{$trabajador->toJson()}}')" :fecha="'{{$trabajador->getDate()}}'"
-        :region="'{{$trabajador->hasProvincia->region_name}}'" :candidaturas="JSON.parse('{{$candidaturas->toJson()}}')"
+        :region="'{{$trabajador->hasProvincia->region_name}}'" :hhabilitado="true" :cabecera="false" :token="'{{Session::token()}}'"
+        :soyunaempresa="false" :nombre="'{{$usuario->name}}'"
+
        ></miarea-component>
 
 
-    <experiencia-component :hhabilitado="false" :token="'{{Session::token()}}'"
-        :categorias="JSON.parse('{{$categorias->toJson()}}')" :id="'{{Auth::id()}}'" :hhabilitado="false">
+    <experiencia-component   :token="'{{Session::token()}}'"
+    :id="'{{$trabajador->user_id}}'" :hhabilitado="true">
     </experiencia-component>
 
 

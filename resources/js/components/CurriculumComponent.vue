@@ -12,7 +12,7 @@
     <div class="container espacio2">
       <div class="row">
         <div class="col-12 text-center">
-          <h1>
+          <h1 v-show="soyunaempresa">
             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
             <br />Complete su
             curriculum
@@ -161,7 +161,7 @@
               </div>
             </div>
             <div v-show="esarea">
-              <div class="form-row my-3">
+              <div class="form-row my-3" v-show="soyunaempresa">
                 <button
                   type="button"
                   class="btn btn-success m-auto btn-lg btn-xs-block"
@@ -190,6 +190,11 @@ export default {
     nombre: {
       type: String,
       required: false
+    },
+     soyunaempresa: {
+      type: Boolean,
+      required: false,
+      default: true,
     },
 
     region: {
