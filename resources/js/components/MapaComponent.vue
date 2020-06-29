@@ -5,7 +5,7 @@
   :center="{ lat: parseFloat(this.objeto.lat), lng: parseFloat(this.objeto.lng) }"
   :zoom="11"
   map-type-id="roadmap"
-  style="width: 275px; height: 300px"
+  style="width: 450px; height: 300px"
 >
   <GmapMarker
     
@@ -107,5 +107,11 @@
   margin-right: 100px;
 }
 
+
+
+@media (max-width: 767.98px) { 
+
+
+}
 
 </style>

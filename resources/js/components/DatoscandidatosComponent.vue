@@ -25,11 +25,11 @@
         </p>
      
         <button type="button" class="btn btn-primary btn-lg botonescandidatos ">Ver más detalles</button>
-        <button
-          type="button"
+        <a
           class="btn btn-success btn-lg botonescandidatos "
+          :href="this.rutaentrevista"
           v-show="entrevista"
-        >Contactar</button>
+        >Contactar</a>
         
 
        
@@ -56,7 +56,7 @@ export default {
     bus.$on("trabajadorElegido", data => {
       
 
-      if (data.trabajador_id == this.datostrabajador.trabajador_id) {
+      if (data.trabajador_id == this.$props.datostrabajador.trabajador_id) {
         this.destacar = true;
       } else {
         this.destacar = false;
@@ -69,6 +69,10 @@ export default {
       type: Object,
       required: false
     },
+      id: {
+      type: Number,
+      required: true
+    },
 
     entrevista: {
       type: Boolean,
@@ -78,8 +82,9 @@ export default {
   data() {
     return {
       destacar: false,
+      rutaentrevista: '/empresa/'+this.$props.id+'/published/'+this.$props.datostrabajador.oferta_id+'/trabajador/'+this.$props.datostrabajador.trabajador_id
   
-    };
+    }
   },
 
   methods: {
@@ -88,6 +93,8 @@ export default {
       bus.$emit("trabajadorElegido", datostrabajador);
     
     },
+
+   
 
 
   }

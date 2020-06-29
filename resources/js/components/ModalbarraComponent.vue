@@ -1,6 +1,6 @@
 <template>
 <!-- Modal -->
-<div class="modal fade" id="componentmodal"  data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div  class="modal fade" id="componentmodal"  data-backdrop="false" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -9,7 +9,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" id="componentmodal2">
 <div v-if="generarcuerpo" >
   <h3>Numero de empleados: {{objeto.numeroempleados}}  </h3>
 
@@ -99,4 +99,12 @@
     }
 </script>
 
+<style lang="scss" scoped>
+
+#componentmodal2 {
+  overflow: hidden;
+}
+
+
+</style>
 

@@ -164,7 +164,7 @@
 
 
                         </div>
-                        <div class="col-md-4 p-3">
+                        <div class="col-md-4 p-3" id="mapainicio">
                             <h3 class="text-center">Localizacion</h3>
                     
 

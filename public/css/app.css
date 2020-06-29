@@ -15071,6 +15071,10 @@ nav.navbar {
   }
 }
 
+#mapainicio {
+  overflow: hidden;
+}
+
 hr {
   height: 1px;
   color: white;

@@ -20,7 +20,7 @@
 
 
          <div class="col-10 text-center mx-auto">
-    <mostrarcandidatos-component :oferta="Number('{{$oferta->id}}')"></mostrarcandidatos-component>
+    <mostrarcandidatos-component   :id="Number('{{ Auth::id() }}')" :oferta="Number('{{$oferta->id}}')"></mostrarcandidatos-component>
      <!--        <h1><span class="glyphicon glyphicon-dashboard" aria-hidden="true"></span><br>Candidatos a la oferta</h1>
 
         </div>

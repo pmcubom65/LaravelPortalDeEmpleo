@@ -16,7 +16,7 @@
                         <div v-for="item in lista" :key="item.id">
                           <div v-if="item.seleccionado === null">  
               
-                    <datoscandidatos-component  :datostrabajador="item"  :entrevista="false"
+                    <datoscandidatos-component  :datostrabajador="item"  :entrevista="false" :id="id"
                   ></datoscandidatos-component >
              
                           </div>
@@ -27,7 +27,7 @@
                                 <div v-for="item in lista" :key="item.id">
                           <div v-if="item.seleccionado==1 && item">  
                   
-                    <datoscandidatos-component  :datostrabajador="item"  :entrevista="true"
+                    <datoscandidatos-component  :datostrabajador="item"  :entrevista="true" :id="id"
                   ></datoscandidatos-component>
               
                           </div>
@@ -40,7 +40,7 @@
                                <div v-for="item in lista" :key="item.id">
                           <div v-if="item.seleccionado==0 && item">  
                   
-                    <datoscandidatos-component  :datostrabajador="item"
+                    <datoscandidatos-component  :datostrabajador="item" :entrevista="false" :id="id"
                   ></datoscandidatos-component>
                 
                           </div>
@@ -88,7 +88,10 @@ export default {
       type: Number,
       required: true
     },
-
+  id: {
+      type: Number,
+      required: true
+    },
    
   },
   data() {
