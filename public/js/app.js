@@ -4134,6 +4134,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4246,6 +4247,12 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         return nombreempresa[0].name;
       }
+    },
+    buscaempresa: function buscaempresa(id) {
+      console.log('oferta_id' + id);
+      return this.empresanombre(this.$props.candidaturas.find(function (candidatura) {
+        return candidatura.id == id;
+      }).empresa_id);
     }
   }
 });
@@ -51876,7 +51883,12 @@ var render = function() {
           }
         ],
         staticClass: "modal",
-        attrs: { tabindex: "-1", role: "dialog", id: "modalentrevista" }
+        attrs: {
+          tabindex: "-1",
+          role: "dialog",
+          id: "modalentrevista",
+          "aria-hidden": "true"
+        }
       },
       [
         _c(
@@ -51895,6 +51907,14 @@ var render = function() {
                     { key: item.id },
                     [
                       _c("div", { staticClass: "col text-center" }, [
+                        _c("h2", { staticClass: "font-weight-bold" }, [
+                          _vm._v(
+                            _vm._s(
+                              _vm.buscaempresa(item.oferta_trabajador.oferta_id)
+                            )
+                          )
+                        ]),
+                        _vm._v(" "),
                         _c("h5", { staticClass: "font-weight-bold" }, [
                           _vm._v(
                             "Día de la entrevista: " +
@@ -51909,7 +51929,8 @@ var render = function() {
                         _c(
                           "a",
                           {
-                            staticClass: "btn btn-primary btn-xs-block btn-lg",
+                            staticClass:
+                              "btn btn-primary btn-xs-block btn-lg mb-5",
                             attrs: {
                               href: _vm.getRutaOferta(
                                 item.oferta_trabajador.oferta_id

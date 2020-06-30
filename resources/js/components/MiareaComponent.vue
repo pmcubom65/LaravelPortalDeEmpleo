@@ -27,7 +27,7 @@
         </div>
 
 
-         <div class="modal" tabindex="-1" role="dialog" id="modalentrevista" v-show="soyunaempresa">
+         <div class="modal" tabindex="-1" role="dialog" id="modalentrevista" v-show="soyunaempresa" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -39,12 +39,13 @@
       <div class="modal-body">
         <div v-for="item in contactos" :key="item.id">
           <div class="col text-center">
+             <h2 class="font-weight-bold">{{buscaempresa(item.oferta_trabajador.oferta_id)}}</h2>
           <h5 class="font-weight-bold">Día de la entrevista: {{item.dia.substr(0, item.dia.indexOf(' '))}}</h5>
           <h5 class="font-weight-bold">Hora de la entrevista: {{item.hora}}</h5>
           
                   <a
                     :href="getRutaOferta(item.oferta_trabajador.oferta_id)"
-                    class="btn btn-primary btn-xs-block btn-lg"
+                    class="btn btn-primary btn-xs-block btn-lg mb-5"
                    
                   >Ver detalles completos de la Oferta</a>
           </div>
@@ -354,6 +355,11 @@ export default {
         return nombreempresa[0].name;
       }
     },
+
+    buscaempresa: function(id) {
+      console.log('oferta_id'+id)
+      return this.empresanombre(this.$props.candidaturas.find(candidatura => candidatura.id == id).empresa_id);
+    }
 
 }
 }
