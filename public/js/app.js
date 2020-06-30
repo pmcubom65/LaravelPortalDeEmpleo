@@ -4082,6 +4082,58 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4113,6 +4165,12 @@ __webpack_require__.r(__webpack_exports__);
     },
     getEmpresas: function getEmpresas() {
       return this.$store.state.empresas;
+    },
+    computar: function computar() {
+      return this.$props.candidaturas && this.$props.candidaturas.length > 0 && this.$props.soyunaempresa;
+    },
+    computarcontactos: function computarcontactos() {
+      return this.modelestrabajador && this.$props.contactos && this.$props.soyunaempresa;
     }
   },
   props: {
@@ -4137,13 +4195,18 @@ __webpack_require__.r(__webpack_exports__);
       type: Array,
       required: false
     },
+    contactos: {
+      type: Array,
+      required: false
+    },
     hhabilitado: {
       type: Boolean,
       required: false
     },
     estrabajador: {
       type: Boolean,
-      required: false
+      required: false,
+      "default": true
     },
     cabecera: {
       type: Boolean,
@@ -4242,39 +4305,15 @@ __webpack_require__.r(__webpack_exports__);
     titulo: String,
     cuerpo: String,
     empresa: Boolean,
-    numero: Number,
-    empdom: String,
     objeto: Object
   },
-  methods: {
-    openWindow: function openWindow() {
-      this.window_open = true;
-    }
-  },
+  methods: {},
   mounted: function mounted() {
     console.log('Modal barra component montado');
   },
-  computed: {
-    generarcuerpo: function generarcuerpo() {
-      return this.empresa;
-    },
-    getObjeto: function getObjeto() {
-      return this.objeto;
-    }
-  },
+  computed: {},
   data: function data() {
-    return {
-      markers: [{
-        position: {
-          lat: parseFloat(this.$props.objeto.lat),
-          lng: parseFloat(this.$props.objeto.lng)
-        },
-        infoText: ''
-      }],
-      info_marker: null,
-      infocontent: '',
-      window_open: false
-    };
+    return {};
   }
 });
 
@@ -9593,7 +9632,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".tab-pane[data-v-fbd1a58e],\n.titular[data-v-fbd1a58e] {\n  color: white;\n}\n.card-header[data-v-fbd1a58e] {\n  background-color: black;\n}\n.mifoto[data-v-fbd1a58e] {\n  width: auto;\n  height: 100px;\n  float: right;\n}\n#area[data-v-fbd1a58e] {\n  padding-top: 25px;\n}", ""]);
+exports.push([module.i, ".tab-pane[data-v-fbd1a58e],\n.titular[data-v-fbd1a58e] {\n  color: white;\n}\n.card-header[data-v-fbd1a58e] {\n  background-color: black;\n}\n.mifoto[data-v-fbd1a58e] {\n  width: auto;\n  height: 100px;\n  float: right;\n}\n@media (max-width: 767.98px) {\n.mifoto[data-v-fbd1a58e] {\n    float: none;\n    margin-left: 80px;\n}\n}\n#area[data-v-fbd1a58e] {\n  padding-top: 25px;\n}\n#contactos[data-v-fbd1a58e] {\n  font-size: 36px;\n}\n#mibadge[data-v-fbd1a58e] {\n  color: white !important;\n}\n.modal-body[data-v-fbd1a58e] {\n  overflow: hidden;\n}", ""]);
 
 // exports
 
@@ -51808,6 +51847,102 @@ var render = function() {
       1
     ),
     _vm._v(" "),
+    _vm.computarcontactos
+      ? _c("div", { staticClass: "container my-0 " }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass:
+                "badge badge-notify float-right animate__animated animate__bounce animate__repeat-3",
+              staticStyle: { top: "10px", left: "50px" },
+              attrs: { id: "mibadge" }
+            },
+            [_vm._v(" " + _vm._s(_vm.contactos.length))]
+          )
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.soyunaempresa,
+            expression: "soyunaempresa"
+          }
+        ],
+        staticClass: "modal",
+        attrs: { tabindex: "-1", role: "dialog", id: "modalentrevista" }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "modal-body" },
+                _vm._l(_vm.contactos, function(item) {
+                  return _c(
+                    "div",
+                    { key: item.id },
+                    [
+                      _c("div", { staticClass: "col text-center" }, [
+                        _c("h5", { staticClass: "font-weight-bold" }, [
+                          _vm._v(
+                            "Día de la entrevista: " +
+                              _vm._s(item.dia.substr(0, item.dia.indexOf(" ")))
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("h5", { staticClass: "font-weight-bold" }, [
+                          _vm._v("Hora de la entrevista: " + _vm._s(item.hora))
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-primary btn-xs-block btn-lg",
+                            attrs: {
+                              href: _vm.getRutaOferta(
+                                item.oferta_trabajador.oferta_id
+                              )
+                            }
+                          },
+                          [_vm._v("Ver detalles completos de la Oferta")]
+                        )
+                      ]),
+                      _vm._v(" "),
+                      _c("mapa-component", {
+                        attrs: {
+                          objeto: {
+                            lat: item.latitud,
+                            lng: item.longitud,
+                            domicilio: item.direccion
+                          }
+                        }
+                      })
+                    ],
+                    1
+                  )
+                }),
+                0
+              ),
+              _vm._v(" "),
+              _vm._m(2)
+            ])
+          ]
+        )
+      ]
+    ),
+    _vm._v(" "),
     _c(
       "div",
       {
@@ -51825,7 +51960,7 @@ var render = function() {
       [
         _c("div", { staticClass: "container" }, [
           _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-5 text-center titular" }, [
+            _c("div", { staticClass: "col-5 text-center titular  " }, [
               _c("img", {
                 staticClass: "mifoto",
                 attrs: {
@@ -51837,10 +51972,15 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "col-7 text-left titular", attrs: { id: "area" } },
+              {
+                staticClass: "col-7  text-left titular",
+                attrs: { id: "area" }
+              },
               [
                 _vm.soyunaempresa
-                  ? _c("h1", { staticClass: "display-4" }, [_vm._v("Mi área")])
+                  ? _c("h1", { staticClass: "display-4 d-none d-sm-block" }, [
+                      _vm._v("Mi área")
+                    ])
                   : _c("h1", { staticClass: "display-4" }, [
                       _vm._v(_vm._s(_vm.nombre))
                     ]),
@@ -51856,7 +51996,7 @@ var render = function() {
                         expression: "soyunaempresa"
                       }
                     ],
-                    staticClass: "lead"
+                    staticClass: "lead d-none d-sm-block"
                   },
                   [_vm._v("Acceda a sus datos y a sus candidaturas")]
                 )
@@ -51893,7 +52033,7 @@ var render = function() {
                   attrs: { id: "pills-nav", role: "tablist" }
                 },
                 [
-                  _vm._m(0),
+                  _vm._m(3),
                   _vm._v(" "),
                   _c("li", { staticClass: "nav-item btn-xs-block" }, [
                     _c(
@@ -51908,14 +52048,14 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n                Experiencias\n                Laborales\n                "
+                          "\n                  Experiencias\n                  Laborales\n                  "
                         ),
                         _vm.getExperiencias
                           ? _c("span", { staticClass: "badge badge-light" }, [
                               _vm._v(
-                                "\n                  " +
+                                "\n                    " +
                                   _vm._s(_vm.getExperiencias.length) +
-                                  "\n                "
+                                  "\n                  "
                               )
                             ])
                           : _vm._e()
@@ -51962,7 +52102,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\n                Candidaturas\n                "
+                            "\n                  Candidaturas\n                  "
                           ),
                           _vm.candidaturas
                             ? _c(
@@ -52085,7 +52225,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\n                Editar o\n                Borrar\n              "
+                              "\n                  Editar o\n                  Borrar\n                "
                             )
                           ]
                         ),
@@ -52124,10 +52264,9 @@ var render = function() {
                   attrs: { id: "nav-item-03", role: "tabpanel" }
                 },
                 [
-                  _vm.candidaturas && _vm.candidaturas.length > 0
+                  _vm.computar
                     ? _c(
                         "div",
-                        { attrs: { "&#x26;&#x26;": "", soyunaempresa: "" } },
                         _vm._l(_vm.candidaturas, function(item) {
                           return _c(
                             "div",
@@ -52267,6 +52406,68 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-default btn-lg btn-link float-right ",
+        attrs: {
+          id: "contactos",
+          "data-toggle": "modal",
+          "data-target": "#modalentrevista"
+        }
+      },
+      [
+        _c("span", {
+          staticClass:
+            "glyphicon glyphicon-comment float-right animate__animated animate__bounce animate__repeat-3"
+        })
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h2", { staticClass: "modal-title" }, [
+        _vm._v("Entrevistas Pendientes")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-footer" }, [
+      _c("div", { staticClass: "col text-center" }, [
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-secondary btn-lg",
+            attrs: { type: "button", "data-dismiss": "modal" }
+          },
+          [_vm._v("Cerrar")]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("li", { staticClass: "nav-item btn-xs-block" }, [
       _c(
         "a",
@@ -52280,7 +52481,7 @@ var staticRenderFns = [
         },
         [
           _vm._v(
-            "\n                Datos\n                Personales\n              "
+            "\n                  Datos\n                  Personales\n                "
           )
         ]
       )
@@ -52347,7 +52548,7 @@ var render = function() {
               "div",
               { staticClass: "modal-body", attrs: { id: "componentmodal2" } },
               [
-                _vm.generarcuerpo
+                _vm.empresa
                   ? _c(
                       "div",
                       [

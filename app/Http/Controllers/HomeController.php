@@ -44,6 +44,16 @@ class HomeController extends Controller
 
           //  $candidaturas=Oferta_trabajador::where('trabajador_id', $trabajador->id)->first();
 
+          $contactos=collect();
+          
+
+          foreach (Contacto::all() as $contacto) {
+              if ($contacto->oferta_trabajador->trabajador_id===$trabajador->id && $contacto->oferta_trabajador->seleccionado===1
+              && Carbon::parse($contacto->dia)->gte(Carbon::now())) {
+                  $contactos->push($contacto);
+              }
+          }
+
             if ($trabajador) {
             $candidaturas=Trabajador::find($trabajador->id)->ofertasempleo()->orderBy('updated_at')->get();
             
@@ -51,7 +61,7 @@ class HomeController extends Controller
                 $candidaturas=[];
             }
          
-            return view('home', compact(['trabajador', 'candidaturas']));
+            return view('home', compact(['trabajador', 'candidaturas', 'contactos']));
 
 
         } elseif (Auth::user()->rol_id===2) {

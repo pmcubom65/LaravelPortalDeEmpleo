@@ -32,12 +32,15 @@
 
     @else
 
+  
+
 
     <miarea-component :hhabilitado="true" :estrabajador="true"  :token="'{{Session::token()}}'"
         :provincias=" JSON.parse('{{$provincias->toJson() }}') " :nombre="'{{Auth::user()->name}}'"
         :id="'{{Auth::id()}}'"  :cabecera="true"  :esarea="true" 
         :datostrabajador="JSON.parse('{{$trabajador->toJson()}}')" :fecha="'{{$trabajador->getDate()}}'"
         :region="'{{$trabajador->hasProvincia->region_name}}'" :candidaturas="JSON.parse('{{$candidaturas->toJson()}}')"
+        :soyunaempresa="true" :contactos=" JSON.parse('{{$contactos->toJson() }}') "
        ></miarea-component>
 
 

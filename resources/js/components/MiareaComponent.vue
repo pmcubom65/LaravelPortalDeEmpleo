@@ -15,16 +15,68 @@
       ></curriculum-component>
     </div>
 
+
+
+        <div v-if="computarcontactos" class="container my-0 ">
+            <button id="contactos" class="btn btn-default btn-lg btn-link float-right " data-toggle="modal" data-target="#modalentrevista"
+              >
+                <span class="glyphicon glyphicon-comment float-right animate__animated animate__bounce animate__repeat-3"></span>
+            </button>
+            <span class="badge badge-notify float-right animate__animated animate__bounce animate__repeat-3" style="  top: 10px;
+  left: 50px;" id="mibadge"> {{ contactos.length }}</span>
+        </div>
+
+
+         <div class="modal" tabindex="-1" role="dialog" id="modalentrevista" v-show="soyunaempresa">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Entrevistas Pendientes</h2>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div v-for="item in contactos" :key="item.id">
+          <div class="col text-center">
+          <h5 class="font-weight-bold">Día de la entrevista: {{item.dia.substr(0, item.dia.indexOf(' '))}}</h5>
+          <h5 class="font-weight-bold">Hora de la entrevista: {{item.hora}}</h5>
+          
+                  <a
+                    :href="getRutaOferta(item.oferta_trabajador.oferta_id)"
+                    class="btn btn-primary btn-xs-block btn-lg"
+                   
+                  >Ver detalles completos de la Oferta</a>
+          </div>
+
+          <mapa-component :objeto="{
+            lat: item.latitud,
+            lng: item.longitud,
+            domicilio: item.direccion
+          }"></mapa-component>
+        </div>
+      </div>
+      <div class="modal-footer">
+         <div class="col text-center">
+        <button type="button" class="btn btn-secondary btn-lg" data-dismiss="modal">Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
     <div class="jumbotron jumbotron-fluid" id="jumbotronarea" v-show="modelestrabajador">
       <div class="container">
         <div class="row">
-          <div class="col-5 text-center titular">
+          <div class="col-5 text-center titular  ">
             <img :src="'/images/'+datostrabajador.imagen" class="mifoto" alt="Image" />
           </div>
-          <div class="col-7 text-left titular" id="area">
-            <h1 v-if="soyunaempresa" class="display-4">Mi área</h1>
+          <div class="col-7  text-left titular" id="area">
+            <h1 v-if="soyunaempresa" class="display-4 d-none d-sm-block">Mi área</h1>
             <h1 v-else class="display-4">{{ nombre }}</h1>
-            <p v-show="soyunaempresa" class="lead">Acceda a sus datos y a sus candidaturas</p>
+            <p v-show="soyunaempresa" class="lead d-none d-sm-block">Acceda a sus datos y a sus candidaturas</p>
           </div>
         </div>
         <hr />
@@ -137,7 +189,7 @@
             </div>
           </div>
           <div class="tab-pane fade" id="nav-item-03" role="tabpanel">
-            <div v-if="candidaturas && candidaturas.length>0" &#x26;&#x26; soyunaempresa>
+            <div v-if="computar">
               <div class="card" v-for="item in candidaturas" :key="item.id">
                 <h5 class="card-header text-center">{{item.titulo}}</h5>
 
@@ -205,7 +257,15 @@ export default {
     },
     getEmpresas() {
       return this.$store.state.empresas;
-    }
+    },
+    computar(){
+      return this.$props.candidaturas && this.$props.candidaturas.length>0 && this.$props.soyunaempresa;
+    },
+    computarcontactos() {
+      return this.modelestrabajador && this.$props.contactos && this.$props.soyunaempresa;
+    },
+
+    
   },
 
   props: {
@@ -233,13 +293,23 @@ export default {
       type: Array,
       required: false
     },
+
+       contactos: {
+      type: Array,
+      required: false
+    },
+
+
+
+
     hhabilitado: {
       type: Boolean,
       required: false
     },
     estrabajador: {
       type: Boolean,
-      required: false
+      required: false,
+      default: true
     },
     cabecera: {
       type: Boolean,
@@ -283,9 +353,10 @@ export default {
       } else {
         return nombreempresa[0].name;
       }
-    }
-  }
-};
+    },
+
+}
+}
 </script>
 
 
@@ -303,9 +374,27 @@ export default {
   width: auto;
   height: 100px;
   float: right;
+@media (max-width: 767.98px) { 
+    float: none;
+    margin-left: 80px;
+     
+  }
+  
 }
 
 #area {
   padding-top: 25px;
+}
+
+#contactos {
+  font-size: 36px;
+}
+
+#mibadge {
+  color: white !important;
+}
+
+.modal-body {
+  overflow: hidden;
 }
 </style>

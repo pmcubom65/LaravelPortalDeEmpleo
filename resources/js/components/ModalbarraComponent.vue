@@ -10,7 +10,7 @@
         </button>
       </div>
       <div class="modal-body" id="componentmodal2">
-<div v-if="generarcuerpo" >
+<div v-if="empresa" >
   <h3>Numero de empleados: {{objeto.numeroempleados}}  </h3>
 
 
@@ -47,16 +47,12 @@
             titulo: String,
             cuerpo: String,
             empresa: Boolean,
-            numero: Number,
-            empdom: String,
+         
             objeto: Object
           
         },
         methods: {
-        openWindow () {
-            this.window_open = true
-            
-        }
+       
          
 },
           
@@ -67,13 +63,7 @@
             
         },
         computed: {
-          generarcuerpo: function(){
-            return this.empresa;
-          },
-
-          getObjeto: function() {
-            return this.objeto;
-          }
+         
 
           
         },
@@ -81,18 +71,7 @@
          
     
           return {
-           
-            markers: [
-                {
-                    position:  { lat:  parseFloat(this.$props.objeto.lat), lng:  parseFloat(this.$props.objeto.lng) },
-                    infoText: ''
-                },
-           
-            ],
-            info_marker: null,
-            infocontent: '',
-           
-            window_open: false
+          
          
           }
         }
