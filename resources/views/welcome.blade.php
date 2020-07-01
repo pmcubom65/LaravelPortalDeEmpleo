@@ -63,8 +63,8 @@
                         <div class="row">
                             <div class="col  float-left">
                                 <div class="card float-right" style="width: 18rem;">
-                                    <img src="https://picsum.photos/id/1035/300/300" class="card-img-top"
-                                        alt="...">
+                                    <img src="/img/hombre.jpg" class="card-img-top"
+                                        alt="trabajador">
 
                                     <div class="card-body">
                                         <h5 class="card-title">Soy un trabajador</h5>
@@ -94,8 +94,8 @@
 
                             <div class="col  float-right">
                                 <div class="card float-left" style="width: 18rem;">
-                                    <img src="https://picsum.photos/id/1078/300/300" class="card-img-top"
-                                        alt="...">
+                                    <img src="/img/edificio.jpg" class="card-img-top"
+                                        alt="edificio">
                                     <div class="card-body">
                                         <h5 class="card-title">Soy una empresa</h5>
                                         <p class="card-text">Añada nuevas ofertas de trabajo y actualice las ofertas.

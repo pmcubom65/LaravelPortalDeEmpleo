@@ -48,6 +48,11 @@ nav.navbar {
   padding: 30px 0;
 }
 
+#ellogo {
+  height: 40px;
+  width: auto;
+  background-color: indigo;
+}
 
 #sideBar {
   position: relative;
@@ -63,7 +68,10 @@ nav.navbar {
   display:block;
   @media (max-width: 767.98px) { 
     min-width: 70px;
+
   }
+ 
+
 }
 @media (max-width: 767.98px) { 
   h3 {color:white !important;
@@ -213,7 +221,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 }
 
 #plx {
-    background-image: url("https://picsum.photos/id/190/2048/1365");
+    background-image: url('img/camino.jpg');
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -5055,6 +5063,9 @@ a.badge-dark:focus, a.badge-dark.focus {
   border-radius: 0.3rem;
   color: white;
   margin-bottom: 3rem;
+  @media (max-width: 767.98px) {
+    min-width: 200px;
+  }
 }
 
 

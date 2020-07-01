@@ -1,5 +1,6 @@
 <template>
   <ul class="navbar-nav">
+  
     <li class="nav-item">
       <a class="nav-link" href="/#inicio" active>Inicio</a>
     </li>
@@ -8,7 +9,7 @@
     </li>
     <li class="nav-item dropdown">
       <a
-        class="nav-link dropdown-toogle"
+        class="nav-link dropdown-toogle text-nowrap"
         aria-expanded="false"
         data-toggle="dropdown"
         data-target="dt2"
@@ -35,7 +36,7 @@
     </li>
     <li class="nav-item dropdown">
       <a
-        class="nav-link dropdown-toogle"
+        class="nav-link dropdown-toogle text-nowrap"
         aria-expanded="false"
         data-toggle="dropdown"
         data-target="dt2"
@@ -60,7 +61,7 @@
         >{{item.nombre}}</a>
       </div>
     </li>
-    <li class="nav-item">
+    <li class="nav-item text-nowrap">
       <a class="nav-link" href="/#buscar">Buscar Trabajo</a>
     </li>
 
@@ -100,7 +101,7 @@
     </li>
     <li>
       <button
-        class="btn btn-primary btn-sm"
+        class="btn btn-primary btn-sm text-nowrap"
         @click="busqueda"
         type="button"
         tabindex="0"
@@ -213,5 +214,11 @@ export default {
   .izquierda {
     margin-left: 15em;
   }
+}
+
+
+#ellogo {
+  height: 20px;
+  width: auto;
 }
 </style>

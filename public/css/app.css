@@ -15036,6 +15036,12 @@ nav.navbar {
   padding: 30px 0;
 }
 
+#ellogo {
+  height: 40px;
+  width: auto;
+  background-color: indigo;
+}
+
 #sideBar {
   position: relative;
   left: 3%;
@@ -15232,7 +15238,7 @@ section {
 }
 
 #plx {
-  background-image: url("https://picsum.photos/id/190/2048/1365");
+  background-image: url(/images/camino.jpg?df35dd7cb083fd42df42946439a29f82);
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
@@ -20829,6 +20835,12 @@ a.badge-dark.focus {
   border-radius: 0.3rem;
   color: white;
   margin-bottom: 3rem;
+}
+
+@media (max-width: 767.98px) {
+  #jumbotronarea {
+    min-width: 200px;
+  }
 }
 
 @media (min-width: 576px) {

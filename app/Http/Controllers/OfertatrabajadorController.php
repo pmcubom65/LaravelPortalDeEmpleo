@@ -23,7 +23,8 @@ class OfertatrabajadorController extends Controller
 
         return view ('datostrabajadorparaempresa',[
             'trabajador' =>  $trabajador,
-            'usuario'=> User::where('id', '=', $trabajador->user_id)->first()
+            'usuario'=> User::where('id', '=', $trabajador->user_id)->first(),
+            'oferta_id'=>$oid
         ]);
 
 

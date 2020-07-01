@@ -48,53 +48,11 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <!--     <ul class="navbar-nav ">
-                    <li class="nav-item">
-                        <a class="nav-link " href="/#inicio" active>Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link " href="/#informacion">Ayuda</a>
-                    </li>
-                  <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toogle " aria-expanded="false" data-toggle="dropdown"
-                            data-target="dt2" href="#">
-                            Empresas Colaboradoras
-                            <span class="caret"></span>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dt2">
-                            @foreach($empresas as $empresa)
-                            <a class="dropdown-item" tabindex="0" role="button" data-toggle="popover"
-                                data-trigger="focus" title="{{$empresa->nombre}}"
-                                data-content="">{{$empresa->usuario->name}}</a>
-                            @endforeach
-                        </div>
-
-                    </li>-->
+               
                 <dropdown-component :titulo="'Empresas Colaboradoras'" :titulo2="'Categorias Profesionales'">
                 </dropdown-component>
 
-                <!--  <li class="nav-item">
-                        <a class="nav-link" href="/#buscar">Buscar Trabajo</a>
-                    </li>-->
-                <!--<li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toogle " aria-expanded="false" data-toggle="dropdown"
-                            data-target="dt" href="#">
-                            Categorias Profesionales
-                            <span class="caret"></span>
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="dt">
-                            @foreach($categorias as $categoria)
-                            <a class="dropdown-item " id="popoverData" title="{{$categoria->descripcion}}" type="button"
-                                tabindex="0" role="button" data-toggle="popover" data-trigger="focus"
-                                data-content="{{$categoria->descripcion}}">{{$categoria->nombre}}</a>
-
-                            @endforeach
-                         
-
-                    </li>
-                  
-                    <dropdowncategoria-component  :titulo="'Categorias Profesionales'">
-                    </dropdown-component>-->
+             
 
 
                 </ul>
@@ -143,10 +101,10 @@
             <div class="container">
                 <div class="row justify-content-center ">
                     <div class="col-lg-3 col-sm-3  ">
-                        <a class="navbar-brand d-xs-block  py-lg-0 ml-lg-5 mr-lg-0 " href="{{ url('/') }}">
-                            <img src="{{asset('img/logo.png')}}" class="w-50 h-50 " /></a>
+                        <a class="navbar-brand  py-lg-0 ml-lg-5 mr-lg-0 " href="{{ url('/') }}">
+                            <img src="{{asset('img/logo.png')}}" class="w-50 h-50 d-none d-lg-block"/></a>
 
-
+                            <img src="{{asset('img/logo.png')}}" id="ellogo" class="d-lg-none"/></a>
 
                     </div>
 

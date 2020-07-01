@@ -13,7 +13,7 @@ use App\Contacto;
 use Carbon\Carbon;
 
 
-class EntrevistaController extends Controller
+class Entrevista2Controller extends Controller
 {
     public function show($id) {
 

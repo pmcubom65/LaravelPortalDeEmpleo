@@ -72,12 +72,17 @@
       <div class="container">
         <div class="row">
           <div class="col-5 text-center titular  ">
-            <img :src="'/images/'+datostrabajador.imagen" class="mifoto" alt="Image" />
+            <img :src="'/images/'+datostrabajador.imagen" class=" img-responsive mifoto" alt="Image" />
           </div>
           <div class="col-7  text-left titular" id="area">
-            <h1 v-if="soyunaempresa" class="display-4 d-none d-sm-block">Mi área</h1>
-            <h1 v-else class="display-4">{{ nombre }}</h1>
-            <p v-show="soyunaempresa" class="lead d-none d-sm-block">Acceda a sus datos y a sus candidaturas</p>
+            <div v-if="soyunaempresa">
+            <h1  class="display-4 d-none d-sm-block">Mi área</h1>
+             <p  class="lead d-none d-sm-block">Acceda a sus datos y a sus candidaturas</p>
+            </div>
+            <div v-else>
+            <h1  class="display-4 d-none d-sm-block">{{ nombre }}</h1>
+            </div>
+           
           </div>
         </div>
         <hr />
@@ -183,6 +188,7 @@
                   type="button"
                   class="btn btn-lg btn-primary"
                   data-toggle="modal"
+                  @click="emitirexperiencia(item.id)"
                   data-target="#sitiomodalexperiencia"
                   v-show="!soyunaempresa"
                 >Ver Detalles de la Experiencia</button>
@@ -359,6 +365,9 @@ export default {
     buscaempresa: function(id) {
       console.log('oferta_id'+id)
       return this.empresanombre(this.$props.candidaturas.find(candidatura => candidatura.id == id).empresa_id);
+    },
+    emitirexperiencia: function(id) {
+      bus.$emit('experienciaseleccionada', id);
     }
 
 }
@@ -378,15 +387,16 @@ export default {
 
 .mifoto {
   width: auto;
-  height: 100px;
+  max-height: 100px;
   float: right;
-@media (max-width: 767.98px) { 
+@media (max-width: 767.98px)  {
     float: none;
-    margin-left: 80px;
-     
+   margin-left: 55px;
   }
-  
+ 
 }
+
+
 
 #area {
   padding-top: 25px;
@@ -398,6 +408,7 @@ export default {
 
 #mibadge {
   color: white !important;
+  
 }
 
 .modal-body {

@@ -5,7 +5,8 @@
       <form @submit.prevent="nuevaexperiencia">
         <div class="modal-content">
           <div class="modal-header">
-            <h3>Añada su experiencia laboral</h3>
+            <h3>{{getletrero}}</h3>
+            
 
             <button type="button" class="close mx-0 px-0" data-dismiss="modal">
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
@@ -22,7 +23,7 @@
                   id="tituloexp"
                   name="tituloexp"
                   placeholder="puesto ocupado"
-                    v-model="tituloexp_i"
+                  :value="(typeof getExperiencias !== 'undefined' )? getExperiencias.puesto : tituloexp_i"
                   @change="tituloexp_i=$event.target.value"
                   :disabled="habilitado"
                 />
@@ -36,7 +37,8 @@
                   id="empresaexp"
                   name="empresaexp"
                   placeholder="Empresa"
-                v-model="empresaexp_i"
+                  :value="(typeof getExperiencias !== 'undefined' ) ? getExperiencias.empresa : empresaexp_i"
+         
                   @change="empresaexp_i=$event.target.value"
                   :disabled="habilitado"
                 />
@@ -47,7 +49,8 @@
                 <label for="inicioexp">Fecha Incorporacion</label>
 
                 <input type="date" class="form-control" id="inicioexp" name="inicioexp" 
-                v-model="inicioexp_i"
+                :value="(typeof getExperiencias !== 'undefined' ) ? getExperiencias.inicio : inicioexp_i"
+     
                 @change="inicioexp_i=$event.target.value"
                 :disabled="habilitado"
                 
@@ -57,7 +60,8 @@
                 <label for="finexp">Fecha Salida</label>
 
                 <input type="date" class="form-control" id="finexp" name="finexp"
-                    v-model="finexp_i"
+                 
+                    :value="(typeof getExperiencias !== 'undefined' ) ? getExperiencias.fin : finexp_i"
                 @change="finexp_i=$event.target.value"
                 :disabled="habilitado"
                  />
@@ -68,7 +72,7 @@
               <label>Categoria Profesional</label>
 
               <select class="form-control" id="cat" name="cat" @change="cat_i=$event.target.value" :disabled="habilitado">
-                <option :value="categoria_id" selected>{{nombre}}</option>
+                <option :value="categoria_id" selected>{{getExperienciasnombre}}</option>
                 <option
                   v-for="item in categorias"
                   v-bind:key="item.id"
@@ -82,8 +86,9 @@
 
               <textarea class="form-control" id="desexp" name="desexp" rows="8"
               finexp
-                v-model="desexp_i"
+           
                 @change="desexp_i=$event.target.value"
+                :value="(typeof getExperiencias !== 'undefined' ) ? getExperiencias.descripcion : desexp_i"
                 :disabled="habilitado"
               >Descripcion del puesto</textarea>
             </div>
@@ -92,8 +97,8 @@
              <div class="form-row col-12  m-auto ">
              <p class="alert text-center">{{salida}}</p>
             </div>
-            <div class="form-row col-12">
-            <button class="btn btn-success m-auto btn-xs-block btn-lg" type="submit" v-show="abierto_i">
+            <div class="form-row col-12" v-show="abierto_i">
+            <button  class="btn btn-success m-auto btn-xs-block btn-lg" type="submit" v-show="abierto_i">
               Guardar
               Experiencia
             </button>
@@ -112,33 +117,41 @@
 </template>
 
 <script>
+import { bus } from "../app";
 export default {
+  computed: {
+     getExperiencias() {
+      var valor=   this.$store.getters.getExperienciasById(this.$props.id).find((experiencia)=>{
+      return experiencia.id==this.experiencia});
+      
+      return valor;
+    },
+    getExperienciasnombre(){
+      return (typeof this.getExperiencias !== 'undefined' ) ? this.getExperiencias.nombre : this.cat_i;
+    },
+    getletrero() {
+      if (typeof this.getExperiencias !== 'undefined' ){
+          return 'Experiencia laboral: '+this.getExperiencias.puesto;
+      }else {
+        return 'Añada su experiencia laboral';
+      }
+    }
+  },
+    created() {
+   bus.$on("experienciaseleccionada", (id) => {
+      this.experiencia=id;
+      this.abierto_i=false;
+      });
+    
+  }
+  ,
     props: {
-    tituloexp: {
-      type: String,
-      required: false
-    },
-    empresaexp: {
-      type: String,
-      required: false
-    },
-    inicioexp: {
-      type: String,
-      required: false
-    },
-
-    finexp: {
-      type: Number,
-      required: false
-    },
+ 
     cat: {
       type: String,
       required: false
     },
-    desexp: {
-      type: String,
-      required: false
-    },
+   
     categoria_id: {
       type: String,
       required: false
@@ -160,19 +173,21 @@ export default {
       type: Array,
       required: false
     },
+  
  },
   data() {
     return {
-      tituloexp_i: this.$props.tituloexp,
-      empresaexp_i: this.$props.empresaexp,
-      inicioexp_i: this.$props.inicioexp,
-      finexp_i: this.$props.finexp,
-      cat_i: this.$props.cat,
-      desexp_i: this.$props.desexp,
+      tituloexp_i: '',
+      empresaexp_i: '',
+      inicioexp_i: '',
+      finexp_i: '',
+      cat_i: 'Nombre de la categoria',
+      desexp_i: '',
       salida: '',
       abierto_i: true,
       trabajador : this.$props.estrabajador,
       habilitado: this.$props.hhabilitado,
+      experiencia: 0,
      
       
     };

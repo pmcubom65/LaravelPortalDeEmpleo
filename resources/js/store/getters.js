@@ -31,7 +31,12 @@ export const getTrabajadorByOferta = (state) => (oferta_id) => {
   var salida = state.trabajadoresporoferta.filter(trabajador => {
     return trabajador.oferta_id == oferta_id;
   });
-  return salida;
+  if (typeof salida[0] === "undefined") {
+    return 0;
+  } else {
+     return salida;
+  }
+  
 }
 
 

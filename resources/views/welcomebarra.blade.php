@@ -20,15 +20,26 @@
                     </div>
                  <div class="col-md-4 div1">
 
-                        <h3  class="movil"><span class="glyphicon glyphicon-phone-alt" aria-hidden="true"></span><br>Mis candidaturas</h3>
-                        <p >Acceda a sus candidaturas</p>
+                      
                         @if (Auth::check() and Auth::user()->rol_id===2)
                         
-                        <a href="/empresa/{{Auth::id()}}/published"  class="btn btn-primary m-auto btn-block">Ver</a>
-                        @elseif (Auth::check() and Auth::user()->rol_id===1)
-                        <a href="/home"  class="btn btn-primary m-auto btn-block">Ver</a>
+                        <a href="/empresa/{{Auth::id()}}/published" >
+                        
+                        <h3  class="movil text-light"><span class="glyphicon glyphicon-phone-alt text-light" aria-hidden="true"></span><br>Mis candidaturas</h3>
+                        <p class="text-light">Acceda a sus candidaturas</p>
+                        
+                        <button href="/empresa/{{Auth::id()}}/published"  class="btn btn-primary m-auto btn-block">
+                        Ver</button></a>
+
+                      
                         @else
-                        <button href=""  class="btn btn-primary m-auto btn-block" disabled>Ver</button>
+                        <a href="/home" >
+                        
+                        <h3  class="movil text-light"><span class="glyphicon glyphicon-phone-alt  text-light" aria-hidden="true"></span><br>Mis candidaturas</h3>
+                        <p class="text-light">Acceda a sus candidaturas</p>
+                        
+                        <button href="/home"  class="btn btn-primary m-auto btn-block">
+                        Ver</button></a>
                         @endif
 
                     </div>

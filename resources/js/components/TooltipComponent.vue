@@ -2,7 +2,7 @@
 <template>
   <v-popover >
     <!-- This will be the popover target (for the events and position) -->
-    <button v-tooltip="contenidotooltip" class="btn btn-danger btn-lg" type="button">{{ letrero }}</button>
+    <button v-tooltip="contenidotooltip" class="btn btn-danger btn-lg  animate__animated animate__bounce animate__repeat-2" type="button">{{ letrero }}</button>
     <!-- This will be the content of the popover -->
 
     <p slot="popover" >
