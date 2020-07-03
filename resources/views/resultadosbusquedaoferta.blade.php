@@ -16,7 +16,7 @@
     @endif
 
     @if (Auth::check() && Auth::user()->rol_id===2)
-    <bbusqueda-component :mihref="'/empresa/{{ $datos->id }}/published'" :mioferta="new String('0')">
+    <bbusqueda-component :mihref="'/empresa/{{ Auth::id() }}/published'" :mioferta="new String('0')">
     </bbusqueda-component>
 
 
@@ -56,9 +56,10 @@
                     </resultados-component>
 
                     @endforeach
-
+                  
 
                 </div>
+              
             </div>
 
 

@@ -68,7 +68,7 @@
                                 <select name="tipo" id="tipo" class="form-control">
                                 <option value="1">Trabajador</option>
                                 <option value="2">Empresa</option>
-                                <option value="3">Admin</option>
+                            
                                 </select>
                             </div>
                         </div>
@@ -78,7 +78,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-primary btn-lg">
                                     {{ __('Registrarse') }}
                                 </button>
                             </div>

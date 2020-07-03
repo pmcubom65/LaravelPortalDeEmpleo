@@ -53,9 +53,8 @@ class RegisterController extends Controller
 
     public function showRegistrationForm()
 {
-    $lascategorias=Categoria::all();
-    $lasempresas=Empresa::all();
-    return view("auth.register", ['categorias'=>$lascategorias, 'empresas'=>$lasempresas]);
+    
+    return view("auth.register");
 }
 
 
@@ -85,16 +84,18 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-   
+     
+            return User::create([
+                'name' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'rol_id'=> $data['tipo'],
+            
+            ]);
+        
       
 
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'rol_id'=> $data['tipo'],
-        
-        ]);
+      
     }
 
 

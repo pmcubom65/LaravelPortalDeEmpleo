@@ -29,9 +29,7 @@ class CreateRolesTable extends Migration
             [
             'nombre' => 'trabajador'],
             [
-            'nombre' => 'empresa'],
-            [
-            'nombre' => 'admin'],
+            'nombre' => 'empresa']
         )
     );
   

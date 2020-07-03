@@ -73,10 +73,7 @@ class HomeController extends Controller
                 ]);
             
          
-        }else {
-            return 'estoy como admin';
-            
-        }
+        } 
 
         
     }

@@ -135,7 +135,7 @@
 
 
         </section>
-        <div>
+        <div id="seccionbuscar">
 
             @include('buscarempleo')
         </div>

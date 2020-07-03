@@ -15023,7 +15023,7 @@ a.text-dark:focus {
 }
 
 nav.navbar {
-  background-color: indigo;
+  background-image: linear-gradient(to right, indigo, #2e004f);
   padding-top: 0;
   padding-bottom: 0;
 }
@@ -20819,9 +20819,18 @@ a.badge-dark.focus {
 
 .jumbotron {
   background-size: cover;
-  background-color: indigo;
+  background-image: linear-gradient(to right, indigo, #2e004f);
   background-position: center;
   border-radius: 0.3rem;
+}
+
+.invalid-feedback,
+.login {
+  font-size: 1rem;
+}
+
+.login {
+  font-size: 1.5rem;
 }
 
 #candidatos {

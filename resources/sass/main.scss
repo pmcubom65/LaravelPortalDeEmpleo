@@ -28,8 +28,9 @@
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
+
 nav.navbar {
-  background-color: indigo;
+  background-image: linear-gradient(to right,indigo, darken(indigo, 10%));
   padding-top: 0;
   padding-bottom: 0;
 }
@@ -5043,13 +5044,25 @@ a.badge-dark:focus, a.badge-dark.focus {
 
 .jumbotron {
   background-size: cover;
-  background-color: indigo;
+  background-image: linear-gradient(to right,indigo, darken(indigo, 10%));
   background-position: center;
   border-radius: 0.3rem;
   
  
 
 }
+
+.invalid-feedback, .login {
+  font-size: 1rem;
+
+}
+
+
+ .login {
+  font-size: 1.5rem;
+
+}
+
 
 #candidatos {
   background-color: black;

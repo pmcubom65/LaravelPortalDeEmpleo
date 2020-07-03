@@ -132,6 +132,5 @@ export default {
   padding-top: 10px;
 }
 
-@media (max-width: 1000px) {
-}
+
 </style>

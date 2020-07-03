@@ -40,7 +40,7 @@ Route::get('/categorias', function(){
   $Response=Categoria::all();
   return response()->json($Response,200);
 
-})->name('categorias');
+})->name('categorias')->middleware('protectjson');
 
 
 Route::get('/empresas', function(){
@@ -49,7 +49,7 @@ Route::get('/empresas', function(){
 
   return response()->json($Response,200);
 
-})->name('empresas');
+})->name('empresas')->middleware('protectjson');
 
 
 Route::get('/trabajadores', function(){
@@ -61,7 +61,7 @@ Route::get('/trabajadores', function(){
 
   return response()->json($Response,200);
 
-})->name('trabajadors');
+})->name('trabajadors')->middleware('protectjson');
 
 
 Route::get('/experiencias', function(){
@@ -70,7 +70,7 @@ Route::get('/experiencias', function(){
   'categorias.nombre','expe.descripcion', 'expe.categoria_id')->orderBy('expe.fin', 'desc')->get();
 
   return response()->json($Response, 200);
-})->name('experiencias');
+})->name('experiencias')->middleware('protectjson');
 
 
 
@@ -81,14 +81,14 @@ Route::get('/empresas/{id}', function($id){
   $Response=Empresa::find($id);
   return response()->json($Response,200);
 
-})->name('empresaid');
+})->name('empresaid')->middleware('protectjson');
 
 
 Route::get('/categorias/{id}', function($id){
   $Response=Categoria::find($id);
   return response()->json($Response,200);
 
-})->name('categoriaid');
+})->name('categoriaid')->middleware('protectjson');
 
 
 
@@ -98,7 +98,7 @@ Route::get('/trabajadoresporoferta', function(){
   leftJoin('provincia', 'trabajadors.provincia_id', '=', 'provincia.id')->
   select (DB::raw('provincia.region_name as region'), DB::raw('ofertas.id as oferta_id'), 'trabajadors.imagen','users.name', 'trabajadors.direccion', 'trabajadors.fecha',  DB::raw('trabajadors.id as trabajador_id'), 'oferta_trabajador.seleccionado')->get();
   return response()->json($Response,200);
-})->name('trabajadoresporoferta');
+})->name('trabajadoresporoferta')->middleware('protectjson');
 
 
 
@@ -110,65 +110,64 @@ Route::post('/search/{id}', 'SearchController@store')->name('apuntarse');
 Route::get('/search/{id}', 'SearchController@oferta');
 
 
-Route::get('/search/{id}/edit', 'EditOfertaController@show');
+Route::get('/search/{id}/edit', 'EditOfertaController@show')->middleware('soyempresa');
 
-Route::post('/search/{id}/edit', 'EditOfertaController@store')->name('editar');
 
-Route::match(['put', 'patch'], '/search/{id}', 'SearchController@put');
+
+Route::match(['put', 'patch'], '/search/{id}', 'SearchController@put')->middleware('soyempresa');
 
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::post('/home', 'HomeController@store')->name('homeexpe');
+Route::post('/home', 'HomeController@store')->name('homeexpe')->middleware('soytrabajador');
 
-Route::match(['put', 'patch'], '/home', 'HomeController@put')->name('homeput');
-
-
-
-Route::get('/home/Expe/{id}', 'ExpeController@show')->name('Expe');
-Route::delete('/home/Expe/{id}', 'ExpeController@delete')->name('Expe');
-
-Route::post('/home/Expe/{id}', 'ExpeController@store')->name('Expe');
-
-
-Route::post('/empresa/{id}', 'EmpresaController@store')->name('empresa');
-Route::get('/empresa/{id}', 'EmpresaController@show');
+Route::match(['put', 'patch'], '/home', 'HomeController@put')->name('homeput')->middleware('soytrabajador');
 
 
 
-Route::get('/empresa/{id}/oferta', 'OfertaController@index')->name('oferta');
+Route::get('/home/Expe/{id}', 'ExpeController@show')->name('Expe')->middleware('soytrabajador');
+Route::delete('/home/Expe/{id}', 'ExpeController@delete')->name('Expe')->middleware('soytrabajador');
 
-Route::post('/empresa/{id}/oferta', 'OfertaController@store')->name('oferta');
-
-Route::match(['put','patch'],'/empresa/{id}/oferta', 'OfertaController@put')->name('oferta');
-
+Route::post('/home/Expe/{id}', 'ExpeController@store')->name('Expe')->middleware('soytrabajador');
 
 
+Route::post('/empresa/{id}', 'EmpresaController@store')->name('empresa')->middleware('soyempresa');
+Route::get('/empresa/{id}', 'EmpresaController@show')->middleware('soyempresa');
 
-Route::get('/empresa/{id}/published/{ofertaid}/trabajador/{tid}', 'EntrevistaController@show');
 
-Route::post('/empresa/{id}/published/{ofertaid}/trabajador/{tid}', 'EntrevistaController@store')->name('contacto');
 
-Route::get('/empresa/{id}/published/{ofertaid}/ofertatrabajador/{tid}', 'OfertatrabajadorController@show');
+Route::get('/empresa/{id}/oferta', 'OfertaController@index')->name('oferta')->middleware('soyempresa');
 
-Route::get('/home/entrevista/{contactoid}', 'Entrevista2Controller@show');
+Route::post('/empresa/{id}/oferta', 'OfertaController@store')->name('oferta')->middleware('soyempresa');
+
+Route::match(['put','patch'],'/empresa/{id}/oferta', 'OfertaController@put')->name('oferta')->middleware('soyempresa');
 
 
 
 
-Route::get('/empresa/{id}/published', 'PublicadaController@index')->name('publicada');
+Route::get('/empresa/{id}/published/{ofertaid}/trabajador/{tid}', 'EntrevistaController@show')->middleware('soyempresa');
+
+Route::post('/empresa/{id}/published/{ofertaid}/trabajador/{tid}', 'EntrevistaController@store')->name('contacto')->middleware('soyempresa');
+
+Route::get('/empresa/{id}/published/{ofertaid}/ofertatrabajador/{tid}', 'OfertatrabajadorController@show')->middleware('soyempresa');
 
 
-Route::get('/empresa/{id}/published/{ofertaid}', 'CandidatosController@index');
+Route::get('/empresa/{id}/published', 'PublicadaController@index')->name('publicada')->middleware('soyempresa');
+
+
+Route::get('/empresa/{id}/published/{ofertaid}', 'CandidatosController@index')->middleware('soyempresa');
 
 
 
 
-Route::post('/empresa/{id}/published/{ofertaid}', 'CandidatosController@store')->name('candidatos');
+Route::post('/empresa/{id}/published/{ofertaid}', 'CandidatosController@store')->name('candidatos')->middleware('soyempresa');
 
 
+Route::get('admins/login', 'AdministratorsController@showLoginForm');
 
+Route::post('admins/login', 'AdministratorsController@login');
 
+Route::get('admins/area', 'AdministratorsController@areaadmin');
 
 
 Route::get('/login2', function() {
