@@ -2079,7 +2079,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     mihref: String,
-    mioferta: String
+    mioferta: String,
+    elementos: Number
   },
   computed: {
     computar: function computar() {
@@ -2107,7 +2108,11 @@ __webpack_require__.r(__webpack_exports__);
     loadMore: function loadMore() {
       this.busy = true;
       console.log('estoy tocando fondo');
-      this.padding = this.padding + 100;
+
+      if (this.elementos * 70 > this.padding) {
+        this.padding = this.padding + 100;
+      }
+
       this.busy = false;
     }
   }

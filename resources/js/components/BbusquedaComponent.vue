@@ -26,7 +26,8 @@ import {bus} from '../app'
     export default {
         props: {
             mihref : String,
-            mioferta : String
+            mioferta : String,
+            elementos: Number
         },
         computed: {
             computar() {
@@ -57,7 +58,9 @@ import {bus} from '../app'
 
 
                 console.log('estoy tocando fondo');
+                if (this.elementos*70>this.padding){
                 this.padding=this.padding+100;
+                }
 
                 this.busy = false;
         }

@@ -16,14 +16,17 @@
     @endif
 
     @if (Auth::check() && Auth::user()->rol_id===2)
-    <bbusqueda-component :mihref="'/empresa/{{ Auth::id() }}/published'" :mioferta="new String('0')">
+    <bbusqueda-component :mihref="'/empresa/{{ Auth::id() }}/published'" :mioferta="new String('0')" 
+    :elementos="Number('{{count($resultados)}}')">
     </bbusqueda-component>
 
 
     @elseif (Auth::check() && Auth::user()->rol_id===1)
-    <bbusqueda-component :mihref="new String('/home')" :mioferta="new String('0')"></bbusqueda-component>
+    <bbusqueda-component :mihref="new String('/home')" :mioferta="new String('0')"
+    :elementos="Number('{{count($resultados)}}')"></bbusqueda-component>
     @else
-    <bbusqueda-component :mihref="new String('/home')" :mioferta="new String('0')"></bbusqueda-component>
+    <bbusqueda-component :mihref="new String('/home')" :mioferta="new String('0')"
+    :elementos="Number('{{count($resultados)}}')"></bbusqueda-component>
     @endif
 
 
