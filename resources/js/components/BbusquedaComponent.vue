@@ -1,6 +1,8 @@
 <template>
-<div id="sideBar" class="col-2 pb-0 inicio espacio ">
-        <h3 class="text-center"><a  :href="mutableoferta"><span
+<div id="sideBar" class="col-2 pb-0 inicio espacio " 
+v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="0"
+>
+        <h3 class="text-center" :style="{ 'padding-top': computar }"><a  :href="mutableoferta"><span
                     class="misiconos glyphicon glyphicon-flag  text-light"></span><br></a>Ver oferta Seleccionada</h3>
 
         <h3 class="text-center"><a href="/#buscar"><span
@@ -26,9 +28,16 @@ import {bus} from '../app'
             mihref : String,
             mioferta : String
         },
-          data: function () {
+        computed: {
+            computar() {
+                return  String(this.padding+'px')
+            }
+        },
+          data () {
         return {
-            mutableoferta: JSON.parse(this.mioferta)
+            mutableoferta: JSON.parse(this.mioferta),
+            padding: 30,
+            
             
         }
     },
@@ -41,6 +50,17 @@ import {bus} from '../app'
         mounted() {
             console.log('Barra busqueda montada')
            
+        },
+        methods: {
+            loadMore: function() {
+                this.busy = true;
+
+
+                console.log('estoy tocando fondo');
+                this.padding=this.padding+100;
+
+                this.busy = false;
         }
+    }
     }
 </script>

@@ -2073,15 +2073,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     mihref: String,
     mioferta: String
   },
+  computed: {
+    computar: function computar() {
+      return String(this.padding + 'px');
+    }
+  },
   data: function data() {
     return {
-      mutableoferta: JSON.parse(this.mioferta)
+      mutableoferta: JSON.parse(this.mioferta),
+      padding: 30
     };
   },
   created: function created() {
@@ -2094,6 +2102,14 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     console.log('Barra busqueda montada');
+  },
+  methods: {
+    loadMore: function loadMore() {
+      this.busy = true;
+      console.log('estoy tocando fondo');
+      this.padding = this.padding + 100;
+      this.busy = false;
+    }
   }
 });
 
@@ -48804,6 +48820,250 @@ if (GlobalVue) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-infinite-scroll/vue-infinite-scroll.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/vue-infinite-scroll/vue-infinite-scroll.js ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+(function (global, factory) {
+   true ? module.exports = factory() :
+  undefined;
+}(this, function () { 'use strict';
+
+  var ctx = '@@InfiniteScroll';
+
+  var throttle = function throttle(fn, delay) {
+    var now, lastExec, timer, context, args; //eslint-disable-line
+
+    var execute = function execute() {
+      fn.apply(context, args);
+      lastExec = now;
+    };
+
+    return function () {
+      context = this;
+      args = arguments;
+
+      now = Date.now();
+
+      if (timer) {
+        clearTimeout(timer);
+        timer = null;
+      }
+
+      if (lastExec) {
+        var diff = delay - (now - lastExec);
+        if (diff < 0) {
+          execute();
+        } else {
+          timer = setTimeout(function () {
+            execute();
+          }, diff);
+        }
+      } else {
+        execute();
+      }
+    };
+  };
+
+  var getScrollTop = function getScrollTop(element) {
+    if (element === window) {
+      return Math.max(window.pageYOffset || 0, document.documentElement.scrollTop);
+    }
+
+    return element.scrollTop;
+  };
+
+  var getComputedStyle = document.defaultView.getComputedStyle;
+
+  var getScrollEventTarget = function getScrollEventTarget(element) {
+    var currentNode = element;
+    // bugfix, see http://w3help.org/zh-cn/causes/SD9013 and http://stackoverflow.com/questions/17016740/onscroll-function-is-not-working-for-chrome
+    while (currentNode && currentNode.tagName !== 'HTML' && currentNode.tagName !== 'BODY' && currentNode.nodeType === 1) {
+      var overflowY = getComputedStyle(currentNode).overflowY;
+      if (overflowY === 'scroll' || overflowY === 'auto') {
+        return currentNode;
+      }
+      currentNode = currentNode.parentNode;
+    }
+    return window;
+  };
+
+  var getVisibleHeight = function getVisibleHeight(element) {
+    if (element === window) {
+      return document.documentElement.clientHeight;
+    }
+
+    return element.clientHeight;
+  };
+
+  var getElementTop = function getElementTop(element) {
+    if (element === window) {
+      return getScrollTop(window);
+    }
+    return element.getBoundingClientRect().top + getScrollTop(window);
+  };
+
+  var isAttached = function isAttached(element) {
+    var currentNode = element.parentNode;
+    while (currentNode) {
+      if (currentNode.tagName === 'HTML') {
+        return true;
+      }
+      if (currentNode.nodeType === 11) {
+        return false;
+      }
+      currentNode = currentNode.parentNode;
+    }
+    return false;
+  };
+
+  var doBind = function doBind() {
+    if (this.binded) return; // eslint-disable-line
+    this.binded = true;
+
+    var directive = this;
+    var element = directive.el;
+
+    var throttleDelayExpr = element.getAttribute('infinite-scroll-throttle-delay');
+    var throttleDelay = 200;
+    if (throttleDelayExpr) {
+      throttleDelay = Number(directive.vm[throttleDelayExpr] || throttleDelayExpr);
+      if (isNaN(throttleDelay) || throttleDelay < 0) {
+        throttleDelay = 200;
+      }
+    }
+    directive.throttleDelay = throttleDelay;
+
+    directive.scrollEventTarget = getScrollEventTarget(element);
+    directive.scrollListener = throttle(doCheck.bind(directive), directive.throttleDelay);
+    directive.scrollEventTarget.addEventListener('scroll', directive.scrollListener);
+
+    this.vm.$on('hook:beforeDestroy', function () {
+      directive.scrollEventTarget.removeEventListener('scroll', directive.scrollListener);
+    });
+
+    var disabledExpr = element.getAttribute('infinite-scroll-disabled');
+    var disabled = false;
+
+    if (disabledExpr) {
+      this.vm.$watch(disabledExpr, function (value) {
+        directive.disabled = value;
+        if (!value && directive.immediateCheck) {
+          doCheck.call(directive);
+        }
+      });
+      disabled = Boolean(directive.vm[disabledExpr]);
+    }
+    directive.disabled = disabled;
+
+    var distanceExpr = element.getAttribute('infinite-scroll-distance');
+    var distance = 0;
+    if (distanceExpr) {
+      distance = Number(directive.vm[distanceExpr] || distanceExpr);
+      if (isNaN(distance)) {
+        distance = 0;
+      }
+    }
+    directive.distance = distance;
+
+    var immediateCheckExpr = element.getAttribute('infinite-scroll-immediate-check');
+    var immediateCheck = true;
+    if (immediateCheckExpr) {
+      immediateCheck = Boolean(directive.vm[immediateCheckExpr]);
+    }
+    directive.immediateCheck = immediateCheck;
+
+    if (immediateCheck) {
+      doCheck.call(directive);
+    }
+
+    var eventName = element.getAttribute('infinite-scroll-listen-for-event');
+    if (eventName) {
+      directive.vm.$on(eventName, function () {
+        doCheck.call(directive);
+      });
+    }
+  };
+
+  var doCheck = function doCheck(force) {
+    var scrollEventTarget = this.scrollEventTarget;
+    var element = this.el;
+    var distance = this.distance;
+
+    if (force !== true && this.disabled) return; //eslint-disable-line
+    var viewportScrollTop = getScrollTop(scrollEventTarget);
+    var viewportBottom = viewportScrollTop + getVisibleHeight(scrollEventTarget);
+
+    var shouldTrigger = false;
+
+    if (scrollEventTarget === element) {
+      shouldTrigger = scrollEventTarget.scrollHeight - viewportBottom <= distance;
+    } else {
+      var elementBottom = getElementTop(element) - getElementTop(scrollEventTarget) + element.offsetHeight + viewportScrollTop;
+
+      shouldTrigger = viewportBottom + distance >= elementBottom;
+    }
+
+    if (shouldTrigger && this.expression) {
+      this.expression();
+    }
+  };
+
+  var InfiniteScroll = {
+    bind: function bind(el, binding, vnode) {
+      el[ctx] = {
+        el: el,
+        vm: vnode.context,
+        expression: binding.value
+      };
+      var args = arguments;
+      el[ctx].vm.$on('hook:mounted', function () {
+        el[ctx].vm.$nextTick(function () {
+          if (isAttached(el)) {
+            doBind.call(el[ctx], args);
+          }
+
+          el[ctx].bindTryCount = 0;
+
+          var tryBind = function tryBind() {
+            if (el[ctx].bindTryCount > 10) return; //eslint-disable-line
+            el[ctx].bindTryCount++;
+            if (isAttached(el)) {
+              doBind.call(el[ctx], args);
+            } else {
+              setTimeout(tryBind, 50);
+            }
+          };
+
+          tryBind();
+        });
+      });
+    },
+    unbind: function unbind(el) {
+      if (el && el[ctx] && el[ctx].scrollEventTarget) el[ctx].scrollEventTarget.removeEventListener('scroll', el[ctx].scrollListener);
+    }
+  };
+
+  var install = function install(Vue) {
+    Vue.directive('InfiniteScroll', InfiniteScroll);
+  };
+
+  if (window.Vue) {
+    window.infiniteScroll = InfiniteScroll;
+    Vue.use(install); // eslint-disable-line
+  }
+
+  InfiniteScroll.install = install;
+
+  return InfiniteScroll;
+
+}));
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/index.js?!./node_modules/vue2-google-maps/dist/components/autocomplete.vue?vue&type=script&lang=js&":
 /*!***************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib??vue-loader-options!./node_modules/vue2-google-maps/dist/components/autocomplete.vue?vue&type=script&lang=js& ***!
@@ -49187,17 +49447,36 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "col-2 pb-0 inicio espacio ", attrs: { id: "sideBar" } },
+    {
+      directives: [
+        {
+          name: "infinite-scroll",
+          rawName: "v-infinite-scroll",
+          value: _vm.loadMore,
+          expression: "loadMore"
+        }
+      ],
+      staticClass: "col-2 pb-0 inicio espacio ",
+      attrs: {
+        id: "sideBar",
+        "infinite-scroll-disabled": "busy",
+        "infinite-scroll-distance": "0"
+      }
+    },
     [
-      _c("h3", { staticClass: "text-center" }, [
-        _c("a", { attrs: { href: _vm.mutableoferta } }, [
-          _c("span", {
-            staticClass: "misiconos glyphicon glyphicon-flag  text-light"
-          }),
-          _c("br")
-        ]),
-        _vm._v("Ver oferta Seleccionada")
-      ]),
+      _c(
+        "h3",
+        { staticClass: "text-center", style: { "padding-top": _vm.computar } },
+        [
+          _c("a", { attrs: { href: _vm.mutableoferta } }, [
+            _c("span", {
+              staticClass: "misiconos glyphicon glyphicon-flag  text-light"
+            }),
+            _c("br")
+          ]),
+          _vm._v("Ver oferta Seleccionada")
+        ]
+      ),
       _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
@@ -69463,6 +69742,10 @@ Vue.use(v_tooltip__WEBPACK_IMPORTED_MODULE_0__["default"], {
     defaultAutoHide: true
   }
 });
+
+var infiniteScroll = __webpack_require__(/*! vue-infinite-scroll */ "./node_modules/vue-infinite-scroll/vue-infinite-scroll.js");
+
+Vue.use(infiniteScroll);
 Vue.mixin({
   methods: {
     route: function route(name, params, absolute) {
