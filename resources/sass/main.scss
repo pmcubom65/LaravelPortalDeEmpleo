@@ -92,6 +92,82 @@ nav.navbar {
   
 }
 
+#plx {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+ padding-top: -100vh;
+
+ 
+}
+
+#informacion2  {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+
+#plx:after {
+  content: '';
+  width: 100%;
+  height: 50px;
+  bottom: 100%;
+  left: 0;
+  background-image: linear-gradient(to right, rgb(185, 185, 183), darken(rgb(196, 199, 171), 10%));
+  margin-bottom: -50px;
+  position: absolute;
+  clip-path: polygon(0 0, 100% 0, 0 50px);
+ 
+}
+
+
+
+#plx:before {
+  content: '';
+  width: 100%;
+  height: 50px;
+  bottom: 0px;
+  left: 0;
+  background-image: linear-gradient(to right, rgb(185, 185, 183), darken(rgb(196, 199, 171), 10%));
+  position: absolute;
+  clip-path: polygon(100% 0, 0 100%, 100% 100%);
+  
+}
+
+
+
+#seccionbuscar {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+ 
+ 
+}
+#seccionbuscar:before {
+  content: '';
+  width: 100%;
+  height: 90px;
+  bottom: 0px;
+  left: 0;
+  background-color:indigo;
+  position: absolute;
+  clip-path: polygon(0 0, 0 100%,  100% 100%);
+  
+}
+
+
+
+
+#buscar {
+  position: relative;
+  @media (max-width: 767.98px) { 
+    padding-top: 100px;
+
+  }
+
+}
+
+
 #mapainicio {
   overflow: hidden;
 }
@@ -140,11 +216,15 @@ hr {
 @-moz-keyframes spin {100%{-moz-transform: rotate(360deg);}}
 @keyframes spin {100%{-webkit-transform: rotate(360deg);transform:rotate(360deg);}}
 .inicio {
-  background-color: indigo;
+  background-image: linear-gradient(to bottom,indigo, darken(indigo, 5%));
   color: white;
+ 
 
 }
 
+.inicio .container {
+  padding-bottom: 50px;
+}
 
 
 @media (max-width: 767.98px) { 
@@ -227,6 +307,7 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+
 }
 
 #pfooter {
@@ -307,7 +388,7 @@ body {
   line-height: 1.6;
   color: #212529;
   text-align: left;
-  background-color:lightgray;
+  background-image: linear-gradient(to right, rgb(185, 185, 183), darken(rgb(196, 199, 171), 10%));
   padding-bottom: 100px;
 
 }

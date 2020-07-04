@@ -1,4 +1,4 @@
-<section id="inicio" class="inicio intro-section">
+<section  class="inicio intro-section">
             <div class="container  espacio text-center text-light">
                 <div class="row">
                 <a class="text-light"  href="/home"> <div class="col-md-4 div1">

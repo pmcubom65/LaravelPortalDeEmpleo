@@ -1,7 +1,7 @@
         <!--Esto es para la busqueda de ofertas de trabajo -->
 
 
-        <section id="buscar" class="espacio">
+        <section id="buscar" >
             <div class="container">
                 <div class="row">
                     <div class="col-12 text-center">

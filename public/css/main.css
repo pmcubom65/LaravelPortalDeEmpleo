@@ -89,6 +89,71 @@ nav.navbar {
   }
 }
 
+#plx {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  padding-top: -100vh;
+}
+
+#informacion2 {
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+#plx:after {
+  content: "";
+  width: 100%;
+  height: 50px;
+  bottom: 100%;
+  left: 0;
+  background-image: linear-gradient(to right, #b9b9b7, #afb38c);
+  margin-bottom: -50px;
+  position: absolute;
+  -webkit-clip-path: polygon(0 0, 100% 0, 0 50px);
+          clip-path: polygon(0 0, 100% 0, 0 50px);
+}
+
+#plx:before {
+  content: "";
+  width: 100%;
+  height: 50px;
+  bottom: 0px;
+  left: 0;
+  background-image: linear-gradient(to right, #b9b9b7, #afb38c);
+  position: absolute;
+  -webkit-clip-path: polygon(100% 0, 0 100%, 100% 100%);
+          clip-path: polygon(100% 0, 0 100%, 100% 100%);
+}
+
+#seccionbuscar {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+}
+
+#seccionbuscar:before {
+  content: "";
+  width: 100%;
+  height: 90px;
+  bottom: 0px;
+  left: 0;
+  background-color: indigo;
+  position: absolute;
+  -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%);
+          clip-path: polygon(0 0, 0 100%, 100% 100%);
+}
+
+#buscar {
+  position: relative;
+}
+
+@media (max-width: 767.98px) {
+  #buscar {
+    padding-top: 100px;
+  }
+}
+
 #mapainicio {
   overflow: hidden;
 }
@@ -145,8 +210,12 @@ hr {
 }
 
 .inicio {
-  background-color: indigo;
+  background-image: linear-gradient(to bottom, indigo, #3c0069);
   color: white;
+}
+
+.inicio .container {
+  padding-bottom: 50px;
 }
 
 @media (max-width: 767.98px) {
@@ -319,7 +388,7 @@ body {
   line-height: 1.6;
   color: #212529;
   text-align: left;
-  background-color: lightgray;
+  background-image: linear-gradient(to right, #b9b9b7, #afb38c);
   padding-bottom: 100px;
 }
 

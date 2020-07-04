@@ -37,7 +37,7 @@ import {bus} from '../app'
           data () {
         return {
             mutableoferta: JSON.parse(this.mioferta),
-            padding: 30,
+            padding: 20,
             
             
         }

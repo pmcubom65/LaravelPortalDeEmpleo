@@ -57,13 +57,13 @@
 
 
         <section id="informacion" class="informacion-section">
-            <div class="container espacio">
+            <div id="informacion2" class="container espacio2">
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="row">
                             <div class="col  float-left">
                                 <div class="card float-right" style="width: 18rem;">
-                                    <img src="/img/hombre.jpg" class="card-img-top"
+                                    <img src="/img/hombre.jpg" class="card-img-top infoimg"
                                         alt="trabajador">
 
                                     <div class="card-body">
@@ -94,7 +94,7 @@
 
                             <div class="col  float-right">
                                 <div class="card float-left" style="width: 18rem;">
-                                    <img src="/img/edificio.jpg" class="card-img-top"
+                                    <img src="/img/edificio.jpg" class="card-img-top infoimg"
                                         alt="edificio">
                                     <div class="card-body">
                                         <h5 class="card-title">Soy una empresa</h5>

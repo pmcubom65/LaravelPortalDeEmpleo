@@ -2090,7 +2090,7 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       mutableoferta: JSON.parse(this.mioferta),
-      padding: 30
+      padding: 20
     };
   },
   created: function created() {
