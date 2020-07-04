@@ -169,6 +169,13 @@ nav.navbar {
   height: auto;
 }
 
+.inicio2 .container {
+  position: relative;
+  width: 100%;
+  border-style: none;
+  height: auto;
+}
+
 
 #seccionbuscar {
   position: relative;
@@ -255,7 +262,7 @@ hr {
 @-webkit-keyframes spin {100%{-webkit-transform: rotate(360deg);}}
 @-moz-keyframes spin {100%{-moz-transform: rotate(360deg);}}
 @keyframes spin {100%{-webkit-transform: rotate(360deg);transform:rotate(360deg);}}
-.inicio {
+.inicio, .inicio2 {
   background-color: indigo;
   color: white;
  
@@ -272,6 +279,15 @@ hr {
     font-size: 120%;
   }
 
+}
+
+.inicio2 .glyphicon  {
+  font-size: 60px;
+  padding: 25px;
+  margin-bottom: 10px;
+  border: 2px solid white;
+  border-radius: 50%;
+  @include mihover();
 }
 
 .inicio .glyphicon  {
@@ -298,7 +314,14 @@ hr {
   
  }
 
+ .inicio2 .glyphicon {
+  font-size: 15px;
+  padding: 10px;
+margin-bottom: 3px;
+text-align: center;
+color: white;
 
+}
  
 
 .inicio { .col-md-4 {
@@ -308,6 +331,7 @@ hr {
   
  
 }
+
 p {display: none;}
 h3 {color:white;}
 }

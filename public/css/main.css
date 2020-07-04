@@ -168,6 +168,13 @@ nav.navbar {
   height: auto;
 }
 
+.inicio2 .container {
+  position: relative;
+  width: 100%;
+  border-style: none;
+  height: auto;
+}
+
 #seccionbuscar {
   position: relative;
   width: 100%;
@@ -260,7 +267,8 @@ hr {
   }
 }
 
-.inicio {
+.inicio,
+.inicio2 {
   background-color: indigo;
   color: white;
 }
@@ -271,6 +279,18 @@ hr {
     font-weight: bold;
     font-size: 120%;
   }
+}
+
+.inicio2 .glyphicon {
+  font-size: 60px;
+  padding: 25px;
+  margin-bottom: 10px;
+  border: 2px solid white;
+  border-radius: 50%;
+}
+
+.inicio2 .glyphicon:hover {
+  background: linear-gradient(to bottom, indigo, #ff9999) !important;
 }
 
 .inicio .glyphicon {
@@ -293,6 +313,14 @@ hr {
   }
 
   .inicio .glyphicon {
+    font-size: 15px;
+    padding: 10px;
+    margin-bottom: 3px;
+    text-align: center;
+    color: white;
+  }
+
+  .inicio2 .glyphicon {
     font-size: 15px;
     padding: 10px;
     margin-bottom: 3px;

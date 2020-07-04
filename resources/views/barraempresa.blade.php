@@ -1,4 +1,4 @@
-<section class="inicio intro-section">
+<section class="inicio2 intro-section">
         <div class="container  espacio2 text-center text-light">
             <div class="row">
                 <div class="col-md-4">
