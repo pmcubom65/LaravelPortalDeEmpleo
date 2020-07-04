@@ -194,10 +194,6 @@
 </div>
 
 
-
-
-
-
 <div class="container-fluid d-lg-none" style="height: 100vh; padding-top: 0;">
     @include('welcomebarra')
     @include('buscarempleo')
@@ -207,98 +203,6 @@
 
 
 
-
-
-
-
-
-
-<!--modal-->
-<div class="modal fade" id="sitiomodal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <form>
-            <div class="modal-content">
-                <div class="modal-header">
-
-
-
-                    <div class="form-row col-12">
-                        <div class="form-group col-6">
-                            <label for="tituloexp">Puesto</label>
-                            <input type="text" class="form-control" id="tituloexp" name="tituloexp"
-                                placeholder="puesto ocupado">
-
-                        </div>
-                        <div class="form-group col-6">
-                            <label for="empresaexp">Empresa</label>
-                            <input type="text" class="form-control" id="empresaexp" name="empresaexp"
-                                placeholder="Empresa">
-
-                        </div>
-
-
-                    </div>
-
-
-
-
-
-
-
-
-
-
-                    <button type="button" class="close mx-0 px-0" data-dismiss="modal">
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                    <div class="form-row">
-                        <div class="form-group col-6">
-                            <label for="inicioexp">Fecha Incorporacion</label>
-                            <input type="date" class="form-control" id="inicioexp" name="inicioexp">
-
-                        </div>
-                        <div class="form-group col-6">
-                            <label for="finexp">Fecha Salida</label>
-                            <input type="date" class="form-control" id="finexp" name="finexp">
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="form-group col-12">
-                        <label for="exp">Categoria Profesional</label>
-                        <select name="cat" id="cat" class="form-control"></select>
-
-                    </div>
-
-                    <div class="form-group col-12">
-                        <label for="exp">Descripcion de la Experiencia</label>
-                        <textarea class="form-control" id="exp" name="exp" rows="8">Descripcion del puesto</textarea>
-
-                    </div>
-
-
-
-
-
-                </div>
-                <div class="modal-footer">
-
-                    <a href="#" class="btn btn-success m-auto" type="submit" data-dismiss="modal">Guardar
-                        Experiencia</a>
-
-
-                </div>
-
-
-            </div>
-        </form>
-    </div>
-</div>
 
 
 

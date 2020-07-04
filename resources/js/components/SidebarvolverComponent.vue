@@ -4,20 +4,20 @@
         <a :href="ruta1">
           <span class="misiconos glyphicon glyphicon-repeat text-light"></span>
           <br />
-        </a>Volver
+        </a><span class="d-block">Volver</span>
       </h3>
 
       <h3 class="text-center">
         <a :href="ruta2">
           <span class="misiconos glyphicon glyphicon-bullhorn text-light"></span>
-        </a>Publicar
+        </a><span class="d-block">Publicar</span>
       </h3>
 
       <h3 class="text-center">
         <a :href="ruta3">
           <span class="misiconos glyphicon glyphicon-briefcase text-light"></span>
           <br />
-        </a>Datos
+        </a><span class="d-block">Datos</span>
       </h3>
     </div>
 </template>

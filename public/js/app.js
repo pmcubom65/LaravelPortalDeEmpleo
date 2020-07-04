@@ -49419,14 +49419,19 @@ var render = function() {
       },
       [
         _vm.gris
-          ? _c("div", { staticClass: "bajando" }, [
+          ? _c("div", { staticClass: "bajando " }, [
               _c(
                 "h3",
                 {
                   staticClass: "text-center text-secondary",
                   style: { "padding-top": _vm.computar }
                 },
-                [_vm._m(0), _vm._v("Seleccionar\r\n      ")]
+                [
+                  _vm._m(0),
+                  _c("span", { staticClass: "d-block" }, [
+                    _vm._v("Seleccionar")
+                  ])
+                ]
               ),
               _vm._v(" "),
               _vm._m(1)
@@ -49438,7 +49443,8 @@ var render = function() {
                     staticClass: "misiconos glyphicon glyphicon-ok text-light"
                   })
                 ]),
-                _vm._v("Seleccionar\r\n        "),
+                _c("span", { staticClass: "d-block" }, [_vm._v("Seleccionar")]),
+                _vm._v(" "),
                 _c("input", {
                   directives: [
                     {
@@ -49472,7 +49478,7 @@ var render = function() {
                       "misiconos glyphicon glyphicon-remove text-light"
                   })
                 ]),
-                _vm._v("Descartar\r\n      ")
+                _c("span", { staticClass: "d-block" }, [_vm._v("Descartar")])
               ])
             ]),
         _vm._v(" "),
@@ -49484,7 +49490,7 @@ var render = function() {
             _vm._v(" "),
             _c("br")
           ]),
-          _vm._v("Volver\r\n    ")
+          _c("span", { staticClass: "d-block" }, [_vm._v("Volver")])
         ])
       ]
     )
@@ -49511,7 +49517,7 @@ var staticRenderFns = [
           staticClass: "misiconos glyphicon glyphicon-remove text-secondary"
         })
       ]),
-      _vm._v("Descartar\r\n      ")
+      _c("span", { staticClass: "d-block" }, [_vm._v("Descartar")])
     ])
   }
 ]
@@ -49581,7 +49587,9 @@ var render = function() {
               _vm._v(" "),
               _c("br")
             ]),
-            _vm._v("Ver oferta Seleccionada\n    ")
+            _c("span", { staticClass: "d-block" }, [
+              _vm._v("Ver oferta Seleccionada")
+            ])
           ]
         ),
         _vm._v(" "),
@@ -49593,7 +49601,9 @@ var render = function() {
               staticClass: "misiconos glyphicon glyphicon-paperclip text-light"
             })
           ]),
-          _vm._v("Gestionar Candidaturas\n    ")
+          _c("span", { staticClass: "d-block" }, [
+            _vm._v("Gestionar Candidaturas")
+          ])
         ])
       ]
     )
@@ -49610,7 +49620,7 @@ var staticRenderFns = [
           staticClass: "misiconos glyphicon glyphicon-eye-open text-light"
         })
       ]),
-      _vm._v("Cambiar busqueda\n    ")
+      _c("span", { staticClass: "d-block" }, [_vm._v("Cambiar busqueda")])
     ])
   }
 ]
@@ -53679,7 +53689,7 @@ var render = function() {
           _vm._v(" "),
           _c("br")
         ]),
-        _vm._v("Datos de la Empresa\n  ")
+        _c("span", { staticClass: "d-block" }, [_vm._v("Datos de la Empresa")])
       ]),
       _vm._v(" "),
       _vm.cambioaempresa
@@ -53692,7 +53702,9 @@ var render = function() {
                     "misiconos glyphicon glyphicon-bullhorn text-light"
                 })
               ]),
-              _vm._v("Publicar Nueva Oferta\n  ")
+              _c("span", { staticClass: "d-block" }, [
+                _vm._v("Publicar Nueva Oferta")
+              ])
             ]),
             _vm._v(" "),
             _c("h3", { staticClass: "text-center" }, [
@@ -53702,7 +53714,9 @@ var render = function() {
                     "misiconos glyphicon glyphicon-paperclip text-light"
                 })
               ]),
-              _vm._v("Revisar ofertas publicadas\n  ")
+              _c("span", { staticClass: "d-block" }, [
+                _vm._v("Revisar ofertas publicadas")
+              ])
             ])
           ])
     ]
@@ -53719,7 +53733,7 @@ var staticRenderFns = [
           staticClass: "glyphicon glyphicon-bullhorn text-secondary"
         })
       ]),
-      _vm._v("Publicar Nueva Oferta\n  ")
+      _c("span", { staticClass: "d-block" }, [_vm._v("Publicar Nueva Oferta")])
     ])
   },
   function() {
@@ -53732,7 +53746,9 @@ var staticRenderFns = [
           staticClass: "glyphicon glyphicon-paperclip text-secondary"
         })
       ]),
-      _vm._v("Revisar ofertas publicadas\n  ")
+      _c("span", { staticClass: "d-block" }, [
+        _vm._v("Revisar ofertas publicadas")
+      ])
     ])
   }
 ]
@@ -53769,7 +53785,7 @@ var render = function() {
           _vm._v(" "),
           _c("br")
         ]),
-        _vm._v("Volver\n  ")
+        _c("span", { staticClass: "d-block" }, [_vm._v("Volver")])
       ]),
       _vm._v(" "),
       _c("h3", { staticClass: "text-center" }, [
@@ -53778,7 +53794,7 @@ var render = function() {
             staticClass: "misiconos glyphicon glyphicon-bullhorn text-light"
           })
         ]),
-        _vm._v("Publicar\n  ")
+        _c("span", { staticClass: "d-block" }, [_vm._v("Publicar")])
       ]),
       _vm._v(" "),
       _c("h3", { staticClass: "text-center" }, [
@@ -53789,7 +53805,7 @@ var render = function() {
           _vm._v(" "),
           _c("br")
         ]),
-        _vm._v("Datos\n  ")
+        _c("span", { staticClass: "d-block" }, [_vm._v("Datos")])
       ])
     ]
   )

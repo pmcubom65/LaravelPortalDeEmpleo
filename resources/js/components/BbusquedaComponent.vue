@@ -12,19 +12,19 @@
         <a :href="mutableoferta">
           <span class="misiconos glyphicon glyphicon-flag text-light"></span>
           <br />
-        </a>Ver oferta Seleccionada
+        </a><span class="d-block">Ver oferta Seleccionada</span>
       </h3>
 
       <h3 class="text-center">
         <a href="/#buscar">
           <span class="misiconos glyphicon glyphicon-eye-open text-light"></span>
-        </a>Cambiar busqueda
+        </a><span class="d-block">Cambiar busqueda</span>
       </h3>
 
       <h3 class="text-center">
         <a :href="mihref">
           <span class="misiconos glyphicon glyphicon-paperclip text-light"></span>
-        </a>Gestionar Candidaturas
+        </a><span class="d-block">Gestionar Candidaturas</span>
       </h3>
     </div>
   </div>

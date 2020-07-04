@@ -5,24 +5,24 @@
        v-infinite-scroll="loadMore"
       infinite-scroll-disabled="busy"
       infinite-scroll-distance="0">
-    <div class="bajando" v-if="gris">
+    <div class="bajando " v-if="gris">
       <h3 class="text-center text-secondary"  :style="{ 'padding-top': computar }">
         <a>
           <span class="misiconos glyphicon glyphicon-ok text-secondary"></span>
-        </a>Seleccionar
+        </a><span class="d-block">Seleccionar</span>
       </h3>
 
       <h3 class="text-center text-secondary">
         <a>
           <span class="misiconos glyphicon glyphicon-remove text-secondary"></span>
-        </a>Descartar
+        </a><span class="d-block">Descartar</span>
       </h3>
     </div>
     <div v-else>
       <h3 class="text-center">
         <a @click="seleccionado">
           <span class="misiconos glyphicon glyphicon-ok text-light"></span>
-        </a>Seleccionar
+        </a><span class="d-block">Seleccionar</span>
         <input
           type="hidden"
           v-model="trabajador"
@@ -34,14 +34,14 @@
       <h3 class="text-center">
         <a @click="descartado">
           <span class="misiconos glyphicon glyphicon-remove text-light"></span>
-        </a>Descartar
+        </a><span class="d-block">Descartar</span>
       </h3>
     </div>
     <h3 class="text-center">
       <a :href="ruta1">
         <span class="misiconos glyphicon glyphicon-repeat text-light"></span>
         <br />
-      </a>Volver
+      </a><span class="d-block">Volver</span>
     </h3>
   </div>
   </div>

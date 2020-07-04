@@ -4,19 +4,19 @@
       <a :href="rutainicial">
         <span class="misiconos glyphicon glyphicon-briefcase text-light"></span>
         <br />
-      </a>Datos de la Empresa
+      </a><span class="d-block">Datos de la Empresa</span>
     </h3>
     
     <div v-if="cambioaempresa">
     <h3 class="text-center text-secondary">
       <a>
         <span class="glyphicon glyphicon-bullhorn text-secondary"></span>
-      </a>Publicar Nueva Oferta
+      </a><span class="d-block">Publicar Nueva Oferta</span>
     </h3>
     <h3  class="text-center text-secondary">
       <a>
         <span class="glyphicon glyphicon-paperclip text-secondary"></span>
-      </a>Revisar ofertas publicadas
+      </a><span class="d-block">Revisar ofertas publicadas</span>
     </h3>
     </div>
     
@@ -24,12 +24,12 @@
     <h3  class="text-center">
       <a :href="ruta1">
         <span class="misiconos glyphicon glyphicon-bullhorn text-light"></span>
-      </a>Publicar Nueva Oferta
+      </a><span class="d-block">Publicar Nueva Oferta</span>
     </h3>
     <h3  class="text-center">
       <a :href="ruta2">
         <span class="misiconos glyphicon glyphicon-paperclip text-light"></span>
-      </a>Revisar ofertas publicadas
+      </a><span class="d-block">Revisar ofertas publicadas</span>
     </h3>
     </div>
   </div>
