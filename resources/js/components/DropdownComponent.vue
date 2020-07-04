@@ -202,7 +202,7 @@ export default {
 
 <style lang="scss" scoped>
 .dropdown-item {
-  background-color: indigo;
+  background-image: linear-gradient(to bottom,indigo, darken(indigo, 30%));
 }
 
 .scrollable {

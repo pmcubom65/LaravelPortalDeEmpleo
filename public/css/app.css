@@ -15039,13 +15039,13 @@ nav.navbar {
 #ellogo {
   height: 40px;
   width: auto;
-  background-color: indigo;
+  background-image: linear-gradient(to bottom, indigo, black);
 }
 
 #sideBar {
   position: relative;
   left: 3%;
-  background-color: indigo;
+  background-image: linear-gradient(to bottom, indigo, black);
   font-size: 35;
   margin-right: 10;
   float: left;
@@ -15118,6 +15118,24 @@ nav.navbar {
   position: absolute;
   -webkit-clip-path: polygon(100% 0, 0 100%, 100% 100%);
           clip-path: polygon(100% 0, 0 100%, 100% 100%);
+}
+
+.inicio:before {
+  content: "";
+  width: 100%;
+  height: 50px;
+  bottom: -305px;
+  left: 0;
+  background-color: indigo;
+  position: absolute;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%);
+          clip-path: polygon(0 0, 100% 0, 100% 100%);
+}
+
+.inicio .container {
+  position: relative;
+  width: 100%;
+  height: auto;
 }
 
 #seccionbuscar {
@@ -15204,12 +15222,8 @@ hr {
 }
 
 .inicio {
-  background-image: linear-gradient(to bottom, indigo, #3c0069);
+  background-color: indigo;
   color: white;
-}
-
-.inicio .container {
-  padding-bottom: 50px;
 }
 
 @media (max-width: 767.98px) {
@@ -20374,7 +20388,7 @@ input[type=button].btn-block {
   flex: 1 1 auto;
   min-height: 1px;
   padding: 1.25rem;
-  background-color: indigo;
+  background-image: linear-gradient(to bottom, indigo, black);
   color: white;
 }
 

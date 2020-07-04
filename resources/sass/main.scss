@@ -52,14 +52,14 @@ nav.navbar {
 #ellogo {
   height: 40px;
   width: auto;
-  background-color: indigo;
+  background-image: linear-gradient(to bottom,indigo, darken(indigo, 30%));
 }
 
 #sideBar {
   position: relative;
   left: 3%;
   
-  background-color: indigo;
+  background-image: linear-gradient(to bottom,indigo, darken(indigo, 30%));
   
   font-size: 35;
   margin-right: 10;
@@ -134,6 +134,25 @@ nav.navbar {
   
 }
 
+
+.inicio:before {
+  content: '';
+  width: 100%;
+  height: 50px;
+  bottom: -305px;
+  left: 0;
+  background-color: indigo;
+  position: absolute;
+  clip-path: polygon(0 0, 100% 0, 100% 100%);
+  
+}
+
+
+.inicio .container {
+  position: relative;
+  width: 100%;
+  height: auto;
+}
 
 
 #seccionbuscar {
@@ -216,15 +235,13 @@ hr {
 @-moz-keyframes spin {100%{-moz-transform: rotate(360deg);}}
 @keyframes spin {100%{-webkit-transform: rotate(360deg);transform:rotate(360deg);}}
 .inicio {
-  background-image: linear-gradient(to bottom,indigo, darken(indigo, 5%));
+  background-color: indigo;
   color: white;
  
 
 }
 
-.inicio .container {
-  padding-bottom: 50px;
-}
+
 
 
 @media (max-width: 767.98px) { 
@@ -300,6 +317,7 @@ html {
 article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
+
 
 #plx {
     background-image: url('img/camino.jpg');
@@ -4644,7 +4662,7 @@ input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].bt
   flex: 1 1 auto;
   min-height: 1px;
   padding: 1.25rem;
-  background-color: indigo;
+  background-image: linear-gradient(to bottom,indigo, darken(indigo, 30%));
   color: white;
 }
 

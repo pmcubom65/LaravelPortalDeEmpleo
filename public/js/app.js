@@ -9600,7 +9600,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".dropdown-item[data-v-4b7819de] {\n  background-color: indigo;\n}\n.scrollable[data-v-4b7819de] {\n  overflow-y: scroll;\n  max-height: 300px;\n}\n@media (min-width: 700px) {\n.izquierda[data-v-4b7819de] {\n    margin-left: 15em;\n}\n}\n#ellogo[data-v-4b7819de] {\n  height: 20px;\n  width: auto;\n}", ""]);
+exports.push([module.i, ".dropdown-item[data-v-4b7819de] {\n  background-image: linear-gradient(to bottom, indigo, black);\n}\n.scrollable[data-v-4b7819de] {\n  overflow-y: scroll;\n  max-height: 300px;\n}\n@media (min-width: 700px) {\n.izquierda[data-v-4b7819de] {\n    margin-left: 15em;\n}\n}\n#ellogo[data-v-4b7819de] {\n  height: 20px;\n  width: auto;\n}", ""]);
 
 // exports
 
