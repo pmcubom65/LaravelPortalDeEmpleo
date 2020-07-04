@@ -66,7 +66,7 @@
                                     <img src="/img/hombre.jpg" class="card-img-top infoimg"
                                         alt="trabajador">
 
-                                    <div class="card-body">
+                                    <div class="card-body cbw">
                                         <h5 class="card-title">Soy un trabajador</h5>
                                         <p class="card-text">Inscribase en las ofertas de empleo. Actualize su perfil y
                                             curriculum. Consulte en el estado de sus candidaturas</p>
@@ -96,7 +96,7 @@
                                 <div class="card float-left" style="width: 18rem;">
                                     <img src="/img/edificio.jpg" class="card-img-top infoimg"
                                         alt="edificio">
-                                    <div class="card-body">
+                                    <div class="card-body cbw">
                                         <h5 class="card-title">Soy una empresa</h5>
                                         <p class="card-text">Añada nuevas ofertas de trabajo y actualice las ofertas.
                                             Revise las candidaturas. Contacte con los candidatos</p>

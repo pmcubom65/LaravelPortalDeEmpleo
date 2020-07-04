@@ -59,7 +59,7 @@ nav.navbar {
   position: relative;
   left: 3%;
   
-  background-image: linear-gradient(to bottom,indigo, darken(indigo, 30%));
+  background-color: indigo;
   
   font-size: 35;
   margin-right: 10;
@@ -4662,8 +4662,12 @@ input[type=submit].btn-block, input[type=reset].btn-block, input[type=button].bt
   flex: 1 1 auto;
   min-height: 1px;
   padding: 1.25rem;
-  background-image: linear-gradient(to bottom,indigo, darken(indigo, 30%));
+  background-color: indigo;
   color: white;
+}
+
+.cbw {
+  background-image: linear-gradient(to bottom,indigo, darken(rgb(5, 5, 5), 70%));
 }
 
 .card-title {

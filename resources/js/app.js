@@ -27,7 +27,9 @@ Vue.use(VTooltip, {defaultTrigger: 'hover', defaultContainer: 'div', disposeTime
 var infiniteScroll =  require('vue-infinite-scroll');
 Vue.use(infiniteScroll);
 
+import VueObserveVisibility from 'vue-observe-visibility';
 
+Vue.use(VueObserveVisibility);
 
 Vue.mixin({
     methods: {

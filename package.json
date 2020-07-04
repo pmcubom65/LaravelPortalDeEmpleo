@@ -28,6 +28,7 @@
         "jquery": "^3.5.1",
         "v-tooltip": "^2.0.3",
         "vue-infinite-scroll": "^2.0.2",
+        "vue-observe-visibility": "^0.4.6",
         "vue2-google-maps": "^0.10.7",
         "vuex": "^3.4.0"
     }

@@ -11,7 +11,7 @@
                 </ul>
             </div>
             <div class="card-body text-center">
-                <div class="tab-content">
+                <div class="tab-content" ref="altura">
                     <div id="inscritos" class="tab-pane fade show active">
                         <div v-for="item in lista" :key="item.id">
                           <div v-if="item.seleccionado === null">  
@@ -22,6 +22,7 @@
                           </div>
                         
                           </div>
+                           <div v-observe-visibility="visibilityChanged"></div>
                     </div>
                     <div id="seleccionados" class="tab-pane fade">
                                 <div v-for="item in lista" :key="item.id">
@@ -34,7 +35,7 @@
                          
                           </div>
                             
-                      
+                       <div v-observe-visibility="visibilityChanged"></div>
                     </div>
                     <div id="descartados" class="tab-pane fade">
                                <div v-for="item in lista" :key="item.id">
@@ -46,6 +47,7 @@
                           </div>
                         
                           </div>
+                           <div v-observe-visibility="visibilityChanged"></div>
                     </div>
              
                 </div>
@@ -68,6 +70,7 @@
 import { bus } from "../app";
 
 export default {
+
     mounted() {
     console.log("MostrarCandidatos montado");
     this.$store.dispatch("getTrabajadoresPorOferta");
@@ -102,7 +105,11 @@ export default {
   },
 
   methods: {
-  
+          visibilityChanged: function(isVisible, entry) {
+        if (isVisible) {
+             bus.$emit('fondoresultados', this.$refs.altura.clientHeight);
+        }
+    },
   }
 }
 </script>

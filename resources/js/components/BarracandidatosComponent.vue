@@ -1,7 +1,12 @@
 <template>
-  <div id="sideBar" class="col-2 pb-0 inicio espacio">
+<div>
+  <div v-observe-visibility="visibilityChanged"></div>
+  <div id="sideBar" class="col-2 pb-0 inicio espacio"
+       v-infinite-scroll="loadMore"
+      infinite-scroll-disabled="busy"
+      infinite-scroll-distance="0">
     <div class="bajando" v-if="gris">
-      <h3 class="text-center text-secondary">
+      <h3 class="text-center text-secondary"  :style="{ 'padding-top': computar }">
         <a>
           <span class="misiconos glyphicon glyphicon-ok text-secondary"></span>
         </a>Seleccionar
@@ -39,6 +44,7 @@
       </a>Volver
     </h3>
   </div>
+  </div>
 </template>
 
 <script>
@@ -48,7 +54,13 @@ export default {
   props: {
     id: String,
     oferta: Number,
-    token: String
+    token: String,
+   
+  },
+  computed : {
+       computar() {
+      return String(this.padding + "px");
+    }
   },
   data: function() {
     return {
@@ -57,7 +69,9 @@ export default {
       ruta3: "",
       trabajador: 0,
       gris: true,
-      seleccion: 0
+      seleccion: 0,
+      padding: 10,
+      fondo: false,
     };
   },
   created() {
@@ -66,6 +80,13 @@ export default {
       this.gris = false;
       this.trabajador=data.trabajador_id;
     });
+
+
+
+     bus.$on("fondoresultados", (data) => {
+       this.padding=data-250;
+       this.fondo=true;
+    });
   },
   mounted() {
     console.log("Barra candidatos montada");
@@ -73,6 +94,23 @@ export default {
   },
 
   methods: {
+       loadMore: function() {
+
+        
+      this.busy = true;
+    
+   if (!this.fondo) {
+        this.padding = this.padding + 100;
+        }
+
+      this.busy = false;
+       
+    },
+        visibilityChanged: function(isVisible, entry) {
+        if (isVisible) {
+            this.padding=10;
+        }
+    },
     seleccionado: function() {
       axios
         .post(

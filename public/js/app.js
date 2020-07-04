@@ -1964,12 +1964,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     id: String,
     oferta: Number,
     token: String
+  },
+  computed: {
+    computar: function computar() {
+      return String(this.padding + "px");
+    }
   },
   data: function data() {
     return {
@@ -1978,7 +1989,9 @@ __webpack_require__.r(__webpack_exports__);
       ruta3: "",
       trabajador: 0,
       gris: true,
-      seleccion: 0
+      seleccion: 0,
+      padding: 10,
+      fondo: false
     };
   },
   created: function created() {
@@ -1988,12 +2001,30 @@ __webpack_require__.r(__webpack_exports__);
       _this.gris = false;
       _this.trabajador = data.trabajador_id;
     });
+    _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$on("fondoresultados", function (data) {
+      _this.padding = data - 250;
+      _this.fondo = true;
+    });
   },
   mounted: function mounted() {
     console.log("Barra candidatos montada");
     this.$store.dispatch("getTrabajadoresPorOferta");
   },
   methods: {
+    loadMore: function loadMore() {
+      this.busy = true;
+
+      if (!this.fondo) {
+        this.padding = this.padding + 100;
+      }
+
+      this.busy = false;
+    },
+    visibilityChanged: function visibilityChanged(isVisible, entry) {
+      if (isVisible) {
+        this.padding = 10;
+      }
+    },
     seleccionado: function seleccionado() {
       var _this2 = this;
 
@@ -2075,6 +2106,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2084,7 +2125,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     computar: function computar() {
-      return String(this.padding + 'px');
+      return String(this.padding + "px");
     }
   },
   data: function data() {
@@ -2096,24 +2137,28 @@ __webpack_require__.r(__webpack_exports__);
   created: function created() {
     var _this = this;
 
-    _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$on('ofertaElegida', function (data) {
-      var ruta = '/search/' + data;
+    _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$on("ofertaElegida", function (data) {
+      var ruta = "/search/" + data;
       _this.mutableoferta = ruta;
     });
   },
   mounted: function mounted() {
-    console.log('Barra busqueda montada');
+    console.log("Barra busqueda montada");
   },
   methods: {
     loadMore: function loadMore() {
       this.busy = true;
-      console.log('estoy tocando fondo');
 
       if (this.elementos * 70 > this.padding) {
         this.padding = this.padding + 100;
       }
 
       this.busy = false;
+    },
+    visibilityChanged: function visibilityChanged(isVisible, entry) {
+      if (isVisible) {
+        this.padding = 30;
+      }
     }
   }
 });
@@ -4427,6 +4472,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -4452,7 +4499,13 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {};
   },
-  methods: {}
+  methods: {
+    visibilityChanged: function visibilityChanged(isVisible, entry) {
+      if (isVisible) {
+        _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$emit('fondoresultados', this.$refs.altura.clientHeight);
+      }
+    }
+  }
 });
 
 /***/ }),
@@ -9771,7 +9824,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".fondo[data-v-7e5c27de] {\n  background-color: black !important;\n}", ""]);
+exports.push([module.i, ".fondo[data-v-7e5c27de] {\n  background-color: black;\n}", ""]);
 
 // exports
 
@@ -49334,85 +49387,118 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "col-2 pb-0 inicio espacio", attrs: { id: "sideBar" } },
-    [
-      _vm.gris
-        ? _c("div", { staticClass: "bajando" }, [
-            _vm._m(0),
-            _vm._v(" "),
-            _vm._m(1)
-          ])
-        : _c("div", [
-            _c("h3", { staticClass: "text-center" }, [
-              _c("a", { on: { click: _vm.seleccionado } }, [
-                _c("span", {
-                  staticClass: "misiconos glyphicon glyphicon-ok text-light"
-                })
-              ]),
-              _vm._v("Seleccionar\n      "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.trabajador,
-                    expression: "trabajador"
-                  }
-                ],
-                attrs: {
-                  type: "hidden",
-                  name: "trabajador_id",
-                  id: "trabajador_id"
+  return _c("div", [
+    _c("div", {
+      directives: [
+        {
+          name: "observe-visibility",
+          rawName: "v-observe-visibility",
+          value: _vm.visibilityChanged,
+          expression: "visibilityChanged"
+        }
+      ]
+    }),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "infinite-scroll",
+            rawName: "v-infinite-scroll",
+            value: _vm.loadMore,
+            expression: "loadMore"
+          }
+        ],
+        staticClass: "col-2 pb-0 inicio espacio",
+        attrs: {
+          id: "sideBar",
+          "infinite-scroll-disabled": "busy",
+          "infinite-scroll-distance": "0"
+        }
+      },
+      [
+        _vm.gris
+          ? _c("div", { staticClass: "bajando" }, [
+              _c(
+                "h3",
+                {
+                  staticClass: "text-center text-secondary",
+                  style: { "padding-top": _vm.computar }
                 },
-                domProps: { value: _vm.trabajador },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+                [_vm._m(0), _vm._v("Seleccionar\r\n      ")]
+              ),
+              _vm._v(" "),
+              _vm._m(1)
+            ])
+          : _c("div", [
+              _c("h3", { staticClass: "text-center" }, [
+                _c("a", { on: { click: _vm.seleccionado } }, [
+                  _c("span", {
+                    staticClass: "misiconos glyphicon glyphicon-ok text-light"
+                  })
+                ]),
+                _vm._v("Seleccionar\r\n        "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.trabajador,
+                      expression: "trabajador"
                     }
-                    _vm.trabajador = $event.target.value
+                  ],
+                  attrs: {
+                    type: "hidden",
+                    name: "trabajador_id",
+                    id: "trabajador_id"
+                  },
+                  domProps: { value: _vm.trabajador },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.trabajador = $event.target.value
+                    }
                   }
-                }
-              })
-            ]),
-            _vm._v(" "),
-            _c("h3", { staticClass: "text-center" }, [
-              _c("a", { on: { click: _vm.descartado } }, [
-                _c("span", {
-                  staticClass: "misiconos glyphicon glyphicon-remove text-light"
                 })
               ]),
-              _vm._v("Descartar\n    ")
-            ])
+              _vm._v(" "),
+              _c("h3", { staticClass: "text-center" }, [
+                _c("a", { on: { click: _vm.descartado } }, [
+                  _c("span", {
+                    staticClass:
+                      "misiconos glyphicon glyphicon-remove text-light"
+                  })
+                ]),
+                _vm._v("Descartar\r\n      ")
+              ])
+            ]),
+        _vm._v(" "),
+        _c("h3", { staticClass: "text-center" }, [
+          _c("a", { attrs: { href: _vm.ruta1 } }, [
+            _c("span", {
+              staticClass: "misiconos glyphicon glyphicon-repeat text-light"
+            }),
+            _vm._v(" "),
+            _c("br")
           ]),
-      _vm._v(" "),
-      _c("h3", { staticClass: "text-center" }, [
-        _c("a", { attrs: { href: _vm.ruta1 } }, [
-          _c("span", {
-            staticClass: "misiconos glyphicon glyphicon-repeat text-light"
-          }),
-          _vm._v(" "),
-          _c("br")
-        ]),
-        _vm._v("Volver\n  ")
-      ])
-    ]
-  )
+          _vm._v("Volver\r\n    ")
+        ])
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h3", { staticClass: "text-center text-secondary" }, [
-      _c("a", [
-        _c("span", {
-          staticClass: "misiconos glyphicon glyphicon-ok text-secondary"
-        })
-      ]),
-      _vm._v("Seleccionar\n    ")
+    return _c("a", [
+      _c("span", {
+        staticClass: "misiconos glyphicon glyphicon-ok text-secondary"
+      })
     ])
   },
   function() {
@@ -49425,7 +49511,7 @@ var staticRenderFns = [
           staticClass: "misiconos glyphicon glyphicon-remove text-secondary"
         })
       ]),
-      _vm._v("Descartar\n    ")
+      _vm._v("Descartar\r\n      ")
     ])
   }
 ]
@@ -49450,51 +49536,68 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
+  return _c("div", [
+    _c("div", {
       directives: [
         {
-          name: "infinite-scroll",
-          rawName: "v-infinite-scroll",
-          value: _vm.loadMore,
-          expression: "loadMore"
+          name: "observe-visibility",
+          rawName: "v-observe-visibility",
+          value: _vm.visibilityChanged,
+          expression: "visibilityChanged"
         }
-      ],
-      staticClass: "col-2 pb-0 inicio espacio ",
-      attrs: {
-        id: "sideBar",
-        "infinite-scroll-disabled": "busy",
-        "infinite-scroll-distance": "0"
-      }
-    },
-    [
-      _c(
-        "h3",
-        { staticClass: "text-center", style: { "padding-top": _vm.computar } },
-        [
-          _c("a", { attrs: { href: _vm.mutableoferta } }, [
+      ]
+    }),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "infinite-scroll",
+            rawName: "v-infinite-scroll",
+            value: _vm.loadMore,
+            expression: "loadMore"
+          }
+        ],
+        staticClass: "col-2 pb-0 inicio espacio",
+        attrs: {
+          id: "sideBar",
+          "infinite-scroll-disabled": "busy",
+          "infinite-scroll-distance": "0"
+        }
+      },
+      [
+        _c(
+          "h3",
+          {
+            staticClass: "text-center",
+            style: { "padding-top": _vm.computar }
+          },
+          [
+            _c("a", { attrs: { href: _vm.mutableoferta } }, [
+              _c("span", {
+                staticClass: "misiconos glyphicon glyphicon-flag text-light"
+              }),
+              _vm._v(" "),
+              _c("br")
+            ]),
+            _vm._v("Ver oferta Seleccionada\n    ")
+          ]
+        ),
+        _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
+        _c("h3", { staticClass: "text-center" }, [
+          _c("a", { attrs: { href: _vm.mihref } }, [
             _c("span", {
-              staticClass: "misiconos glyphicon glyphicon-flag  text-light"
-            }),
-            _c("br")
+              staticClass: "misiconos glyphicon glyphicon-paperclip text-light"
+            })
           ]),
-          _vm._v("Ver oferta Seleccionada")
-        ]
-      ),
-      _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      _c("h3", { staticClass: "text-center" }, [
-        _c("a", { attrs: { href: _vm.mihref } }, [
-          _c("span", {
-            staticClass: "misiconos glyphicon glyphicon-paperclip  text-light"
-          })
-        ]),
-        _vm._v("Gestionar Candidaturas\r\n        ")
-      ])
-    ]
-  )
+          _vm._v("Gestionar Candidaturas\n    ")
+        ])
+      ]
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -49504,10 +49607,10 @@ var staticRenderFns = [
     return _c("h3", { staticClass: "text-center" }, [
       _c("a", { attrs: { href: "/#buscar" } }, [
         _c("span", {
-          staticClass: "misiconos glyphicon glyphicon-eye-open  text-light"
+          staticClass: "misiconos glyphicon glyphicon-eye-open text-light"
         })
       ]),
-      _vm._v("Cambiar busqueda")
+      _vm._v("Cambiar busqueda\n    ")
     ])
   }
 ]
@@ -52942,83 +53045,122 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _c("div", { staticClass: "card-body text-center" }, [
-        _c("div", { staticClass: "tab-content" }, [
+        _c("div", { ref: "altura", staticClass: "tab-content" }, [
           _c(
             "div",
             {
               staticClass: "tab-pane fade show active",
               attrs: { id: "inscritos" }
             },
-            _vm._l(_vm.lista, function(item) {
-              return _c("div", { key: item.id }, [
-                item.seleccionado === null
-                  ? _c(
-                      "div",
-                      [
-                        _c("datoscandidatos-component", {
-                          attrs: {
-                            datostrabajador: item,
-                            entrevista: false,
-                            id: _vm.id
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  : _vm._e()
-              ])
-            }),
-            0
+            [
+              _vm._l(_vm.lista, function(item) {
+                return _c("div", { key: item.id }, [
+                  item.seleccionado === null
+                    ? _c(
+                        "div",
+                        [
+                          _c("datoscandidatos-component", {
+                            attrs: {
+                              datostrabajador: item,
+                              entrevista: false,
+                              id: _vm.id
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ])
+              }),
+              _vm._v(" "),
+              _c("div", {
+                directives: [
+                  {
+                    name: "observe-visibility",
+                    rawName: "v-observe-visibility",
+                    value: _vm.visibilityChanged,
+                    expression: "visibilityChanged"
+                  }
+                ]
+              })
+            ],
+            2
           ),
           _vm._v(" "),
           _c(
             "div",
             { staticClass: "tab-pane fade", attrs: { id: "seleccionados" } },
-            _vm._l(_vm.lista, function(item) {
-              return _c("div", { key: item.id }, [
-                item.seleccionado == 1 && item
-                  ? _c(
-                      "div",
-                      [
-                        _c("datoscandidatos-component", {
-                          attrs: {
-                            datostrabajador: item,
-                            entrevista: true,
-                            id: _vm.id
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  : _vm._e()
-              ])
-            }),
-            0
+            [
+              _vm._l(_vm.lista, function(item) {
+                return _c("div", { key: item.id }, [
+                  item.seleccionado == 1 && item
+                    ? _c(
+                        "div",
+                        [
+                          _c("datoscandidatos-component", {
+                            attrs: {
+                              datostrabajador: item,
+                              entrevista: true,
+                              id: _vm.id
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ])
+              }),
+              _vm._v(" "),
+              _c("div", {
+                directives: [
+                  {
+                    name: "observe-visibility",
+                    rawName: "v-observe-visibility",
+                    value: _vm.visibilityChanged,
+                    expression: "visibilityChanged"
+                  }
+                ]
+              })
+            ],
+            2
           ),
           _vm._v(" "),
           _c(
             "div",
             { staticClass: "tab-pane fade", attrs: { id: "descartados" } },
-            _vm._l(_vm.lista, function(item) {
-              return _c("div", { key: item.id }, [
-                item.seleccionado == 0 && item
-                  ? _c(
-                      "div",
-                      [
-                        _c("datoscandidatos-component", {
-                          attrs: {
-                            datostrabajador: item,
-                            entrevista: false,
-                            id: _vm.id
-                          }
-                        })
-                      ],
-                      1
-                    )
-                  : _vm._e()
-              ])
-            }),
-            0
+            [
+              _vm._l(_vm.lista, function(item) {
+                return _c("div", { key: item.id }, [
+                  item.seleccionado == 0 && item
+                    ? _c(
+                        "div",
+                        [
+                          _c("datoscandidatos-component", {
+                            attrs: {
+                              datostrabajador: item,
+                              entrevista: false,
+                              id: _vm.id
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    : _vm._e()
+                ])
+              }),
+              _vm._v(" "),
+              _c("div", {
+                directives: [
+                  {
+                    name: "observe-visibility",
+                    rawName: "v-observe-visibility",
+                    value: _vm.visibilityChanged,
+                    expression: "visibilityChanged"
+                  }
+                ]
+              })
+            ],
+            2
           )
         ])
       ])
@@ -53483,7 +53625,7 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "card-body px-0 py-2",
+      staticClass: "resultados card-body px-0 py-2",
       class: { fondo: _vm.destacar },
       attrs: { id: _vm.id },
       on: { click: _vm.miprueba }
@@ -53828,6 +53970,324 @@ function normalizeComponent (
   }
 }
 
+
+/***/ }),
+
+/***/ "./node_modules/vue-observe-visibility/dist/vue-observe-visibility.esm.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/vue-observe-visibility/dist/vue-observe-visibility.esm.js ***!
+  \********************************************************************************/
+/*! exports provided: default, ObserveVisibility, install */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ObserveVisibility", function() { return ObserveVisibility; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "install", function() { return install; });
+function _typeof(obj) {
+  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+    _typeof = function (obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function (obj) {
+      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+function _toConsumableArray(arr) {
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
+}
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+
+    return arr2;
+  }
+}
+
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
+function processOptions(value) {
+  var options;
+
+  if (typeof value === 'function') {
+    // Simple options (callback-only)
+    options = {
+      callback: value
+    };
+  } else {
+    // Options object
+    options = value;
+  }
+
+  return options;
+}
+function throttle(callback, delay) {
+  var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+  var timeout;
+  var lastState;
+  var currentArgs;
+
+  var throttled = function throttled(state) {
+    for (var _len = arguments.length, args = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+      args[_key - 1] = arguments[_key];
+    }
+
+    currentArgs = args;
+    if (timeout && state === lastState) return;
+    var leading = options.leading;
+
+    if (typeof leading === 'function') {
+      leading = leading(state, lastState);
+    }
+
+    if ((!timeout || state !== lastState) && leading) {
+      callback.apply(void 0, [state].concat(_toConsumableArray(currentArgs)));
+    }
+
+    lastState = state;
+    clearTimeout(timeout);
+    timeout = setTimeout(function () {
+      callback.apply(void 0, [state].concat(_toConsumableArray(currentArgs)));
+      timeout = 0;
+    }, delay);
+  };
+
+  throttled._clear = function () {
+    clearTimeout(timeout);
+    timeout = null;
+  };
+
+  return throttled;
+}
+function deepEqual(val1, val2) {
+  if (val1 === val2) return true;
+
+  if (_typeof(val1) === 'object') {
+    for (var key in val1) {
+      if (!deepEqual(val1[key], val2[key])) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  return false;
+}
+
+var VisibilityState =
+/*#__PURE__*/
+function () {
+  function VisibilityState(el, options, vnode) {
+    _classCallCheck(this, VisibilityState);
+
+    this.el = el;
+    this.observer = null;
+    this.frozen = false;
+    this.createObserver(options, vnode);
+  }
+
+  _createClass(VisibilityState, [{
+    key: "createObserver",
+    value: function createObserver(options, vnode) {
+      var _this = this;
+
+      if (this.observer) {
+        this.destroyObserver();
+      }
+
+      if (this.frozen) return;
+      this.options = processOptions(options);
+
+      this.callback = function (result, entry) {
+        _this.options.callback(result, entry);
+
+        if (result && _this.options.once) {
+          _this.frozen = true;
+
+          _this.destroyObserver();
+        }
+      }; // Throttle
+
+
+      if (this.callback && this.options.throttle) {
+        var _ref = this.options.throttleOptions || {},
+            _leading = _ref.leading;
+
+        this.callback = throttle(this.callback, this.options.throttle, {
+          leading: function leading(state) {
+            return _leading === 'both' || _leading === 'visible' && state || _leading === 'hidden' && !state;
+          }
+        });
+      }
+
+      this.oldResult = undefined;
+      this.observer = new IntersectionObserver(function (entries) {
+        var entry = entries[0];
+
+        if (entries.length > 1) {
+          var intersectingEntry = entries.find(function (e) {
+            return e.isIntersecting;
+          });
+
+          if (intersectingEntry) {
+            entry = intersectingEntry;
+          }
+        }
+
+        if (_this.callback) {
+          // Use isIntersecting if possible because browsers can report isIntersecting as true, but intersectionRatio as 0, when something very slowly enters the viewport.
+          var result = entry.isIntersecting && entry.intersectionRatio >= _this.threshold;
+          if (result === _this.oldResult) return;
+          _this.oldResult = result;
+
+          _this.callback(result, entry);
+        }
+      }, this.options.intersection); // Wait for the element to be in document
+
+      vnode.context.$nextTick(function () {
+        if (_this.observer) {
+          _this.observer.observe(_this.el);
+        }
+      });
+    }
+  }, {
+    key: "destroyObserver",
+    value: function destroyObserver() {
+      if (this.observer) {
+        this.observer.disconnect();
+        this.observer = null;
+      } // Cancel throttled call
+
+
+      if (this.callback && this.callback._clear) {
+        this.callback._clear();
+
+        this.callback = null;
+      }
+    }
+  }, {
+    key: "threshold",
+    get: function get() {
+      return this.options.intersection && this.options.intersection.threshold || 0;
+    }
+  }]);
+
+  return VisibilityState;
+}();
+
+function bind(el, _ref2, vnode) {
+  var value = _ref2.value;
+  if (!value) return;
+
+  if (typeof IntersectionObserver === 'undefined') {
+    console.warn('[vue-observe-visibility] IntersectionObserver API is not available in your browser. Please install this polyfill: https://github.com/w3c/IntersectionObserver/tree/master/polyfill');
+  } else {
+    var state = new VisibilityState(el, value, vnode);
+    el._vue_visibilityState = state;
+  }
+}
+
+function update(el, _ref3, vnode) {
+  var value = _ref3.value,
+      oldValue = _ref3.oldValue;
+  if (deepEqual(value, oldValue)) return;
+  var state = el._vue_visibilityState;
+
+  if (!value) {
+    unbind(el);
+    return;
+  }
+
+  if (state) {
+    state.createObserver(value, vnode);
+  } else {
+    bind(el, {
+      value: value
+    }, vnode);
+  }
+}
+
+function unbind(el) {
+  var state = el._vue_visibilityState;
+
+  if (state) {
+    state.destroyObserver();
+    delete el._vue_visibilityState;
+  }
+}
+
+var ObserveVisibility = {
+  bind: bind,
+  update: update,
+  unbind: unbind
+};
+
+function install(Vue) {
+  Vue.directive('observe-visibility', ObserveVisibility);
+  /* -- Add more components here -- */
+}
+/* -- Plugin definition & Auto-install -- */
+
+/* You shouldn't have to modify the code below */
+// Plugin
+
+var plugin = {
+  // eslint-disable-next-line no-undef
+  version: "0.4.6",
+  install: install
+};
+
+var GlobalVue = null;
+
+if (typeof window !== 'undefined') {
+  GlobalVue = window.Vue;
+} else if (typeof global !== 'undefined') {
+  GlobalVue = global.Vue;
+}
+
+if (GlobalVue) {
+  GlobalVue.use(plugin);
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (plugin);
+
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../webpack/buildin/global.js */ "./node_modules/webpack/buildin/global.js")))
 
 /***/ }),
 
@@ -69726,6 +70186,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ziggy__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ziggy */ "./vendor/tightenco/ziggy/src/js/route.js");
 /* harmony import */ var _ziggy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ziggy */ "./resources/js/ziggy.js");
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./store */ "./resources/js/store/index.js");
+/* harmony import */ var vue_observe_visibility__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-observe-visibility */ "./node_modules/vue-observe-visibility/dist/vue-observe-visibility.esm.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -69751,6 +70212,8 @@ Vue.use(v_tooltip__WEBPACK_IMPORTED_MODULE_0__["default"], {
 var infiniteScroll = __webpack_require__(/*! vue-infinite-scroll */ "./node_modules/vue-infinite-scroll/vue-infinite-scroll.js");
 
 Vue.use(infiniteScroll);
+
+Vue.use(vue_observe_visibility__WEBPACK_IMPORTED_MODULE_4__["default"]);
 Vue.mixin({
   methods: {
     route: function route(name, params, absolute) {

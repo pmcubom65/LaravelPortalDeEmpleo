@@ -1,5 +1,5 @@
 <template>
-  <div  @click="miprueba" :id="id" class="card-body px-0 py-2" :class="{ fondo : destacar }">
+  <div  @click="miprueba" :id="id" class="resultados card-body px-0 py-2" :class="{ fondo : destacar }">
     <h5 class="card-title">{{titulo}} - {{nombre}}</h5>
     <br>{{region}}
     <br>{{contrato}}
@@ -56,8 +56,7 @@ import {bus} from '../app'
 
 <style lang="scss" scoped>
 .fondo {
-  background-color: black !important;
+  background-color: black;
 }
-
 
 </style>
