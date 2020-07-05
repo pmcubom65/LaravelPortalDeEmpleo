@@ -12,6 +12,8 @@ use App\Categoria;
 use App\Explaboral;
 use App\Contrato;
 use App\Oferta;
+use App\Oferta_trabajador;
+use DB;
 
 
 class OfertaController extends Controller
@@ -43,6 +45,8 @@ class OfertaController extends Controller
         );
         $oferta=Oferta::find($id);
 
+        $empresaid=Empresa::where('user_id', Auth::id())->first()->id;
+
         if ($Validator->fails()) {
             $Response=$Validator->messages();
         } else if(!$oferta) {
@@ -51,13 +55,30 @@ class OfertaController extends Controller
             $laoferta->categoria_id=$request->get('cat');
             $laoferta->contrato_id=$request->get('contrato');
             $laoferta->descripcion=$request->get('oferta');
-            $laoferta->empresa_id=Empresa::where('user_id', Auth::id())->first()->id;
+            $laoferta->empresa_id=$empresaid;
             $laoferta->experiencia_id=$request->get('Experiencia');
             $laoferta->provincia_id=$request->get('Provincia');
             $laoferta->salario=$request->get('Salarioid');
             $laoferta->titulo=$request->get('titulo');
         
             $laoferta->save();
+
+          
+
+
+            $inscripcion= new Oferta_trabajador();
+            $inscripcion->oferta_id=Oferta::where('empresa_id', $empresaid)->latest()->first()->id;
+            $inscripcion->trabajador_id=1;
+      
+            $inscripcion->save();
+
+            $inscripcion2= new Oferta_trabajador();
+            $inscripcion2->oferta_id=Oferta::where('empresa_id', $empresaid)->latest()->first()->id;
+            $inscripcion2->trabajador_id=2;
+      
+            $inscripcion2->save();
+    
+
             $Response=['success'=>'La oferta ha sido publicada. Vaya a Revisar ofertas publicadas para gestionarla'];
             
         } else {

@@ -18,6 +18,39 @@ class AddLatitudToEmpresasTable extends Migration
             $table->double('latitud', 4, 2);
             $table->double('longitud', 5, 2);
         });
+
+
+
+        DB::table('empresas')->insert(
+            array(['apellidos'=>
+                 'Lopez Arteaga','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now'),
+                 'cif'=>'1111',
+                 'nombre'=>'Alfredo',
+                 'domicilio'=>'C/Molino',
+                 'provincia_id'=>16,
+                 'numero_empleados'=>'100',
+                 'telefono'=>'664446',
+                 'user_id'=>1,
+                 'latitud'=>37.89155,
+                 'longitud'=>-4.77275
+                 ]
+                ));
+
+
+                DB::table('empresas')->insert(
+                    array(['apellidos'=>
+                         'Mateo Pardo','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now'),
+                         'cif'=>'2222',
+                         'nombre'=>'Marta',
+                         'domicilio'=>'C/Rosa',
+                         'provincia_id'=>1,
+                         'numero_empleados'=>'150',
+                         'telefono'=>'774446',
+                         'user_id'=>2,
+                         'latitud'=>38.994,
+                         'longitud'=>-1.85673
+                         ]
+                        ));
     }
 
     /**

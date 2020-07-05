@@ -50550,7 +50550,7 @@ var render = function() {
                 _c(
                   "a",
                   {
-                    staticClass: "btn btn-primary btn-lg botonescandidatos ",
+                    staticClass: "btn btn-primary btn-lg botonescandidatos",
                     attrs: { type: "button", href: _vm.rutacurriculum }
                   },
                   [_vm._v("Ver más detalles")]

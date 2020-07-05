@@ -22,10 +22,40 @@ class AddRolidToUsersTable extends Migration
 
         });
 
-     
+        DB::table('users')->insert(
+            array(['email'=>
+                 'empresa1@empresa1.es','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now'),
+                 'name'=>'Empresa 1',
+                 'password'=>bcrypt('12345678'),
+                 'rol_id'=>'2'
+                 ]
+                ));
 
-       
+                DB::table('users')->insert(
+                    array(['email'=>
+                         'empresa2@empresa2.es','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now'),
+                         'name'=>'Empresa 2',
+                         'password'=>bcrypt('12345678'),
+                         'rol_id'=>'2'
+                         ]
+                        ));
+                        DB::table('users')->insert(
+                            array(['email'=>
+                                 'trabajador1@trabajador1.es','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now'),
+                                 'name'=>'Arturo Maroto',
+                                 'password'=>bcrypt('12345678'),
+                                 'rol_id'=>'1'
+                                 ]
+                                ));
 
+                                DB::table('users')->insert(
+                                    array(['email'=>
+                                         'trabajador2@trabajador2.es','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now'),
+                                         'name'=>'Alberto de la Vega',
+                                         'password'=>bcrypt('12345678'),
+                                         'rol_id'=>'1'
+                                         ]
+                                        ));
 
     }
 

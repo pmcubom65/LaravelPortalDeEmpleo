@@ -24,7 +24,7 @@
         
         </p>
      
-        <a type="button" class="btn btn-primary btn-lg botonescandidatos " :href="rutacurriculum">Ver más detalles</a>
+        <a type="button" class="btn btn-primary btn-lg botonescandidatos" :href="rutacurriculum">Ver más detalles</a>
         <a
           class="btn btn-success btn-lg botonescandidatos "
           :href="this.rutaentrevista"
