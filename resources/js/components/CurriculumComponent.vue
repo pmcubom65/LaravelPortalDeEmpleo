@@ -12,7 +12,7 @@
     <div class="container espacio2">
       <div class="row">
         <div class="col-12 text-center">
-          <h1 v-show="soyunaempresa">
+          <h1 v-show="soyunaempresa" class="text-nowrap">
             <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
             <br />Complete su
             curriculum
@@ -143,9 +143,9 @@
                 </div>
               </div>
 
-              <div class="form-group col-sm-12">
+              <div class="form-group col-sm-9 mx-auto">
                 <div id="messages" class="text-center">
-                  <p class="alert">{{salida}}</p>
+                  <p class="alert" v-html="salida"></p>
                 </div>
               </div>
               <div class="form-row my-3" v-show="abierto_i">
@@ -269,6 +269,7 @@ export default {
 
 
     curriculum: function() {
+     
       axios
         .put(route("homeput"), {
           _token: this.token,
@@ -282,7 +283,7 @@ export default {
         })
         .then(response => {
           let valores = response.data;
-
+           this.salida='';
           Object.entries(valores).forEach(entry => {
             if (entry[0].toString() === "success") {
               this.abierto_i = true;
@@ -292,10 +293,14 @@ export default {
               this.habilitado = true;
               this.salida = entry[1].toString();
 
-              bus.$emit("trabajadorcreado");
+            }else {
+              var campoerroneo=entry[0].toString();
+              var clave=entry[1].toString();
+              
+              this.salida = this.salida+'  '+clave+': '+campoerroneo+'.<br/>';
+            
             }
-
-            this.salida = entry[1].toString();
+  
           });
         })
         .catch(function(error) {

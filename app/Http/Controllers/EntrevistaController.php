@@ -26,7 +26,7 @@ public function show(Request $request, $id, $oid, $tid) {
  
    
     return view ('entrevistaempresa',[
-        'provincias'=> Provincia::all(),
+     
     
         'trabajador'=>Trabajador::find($tid)->id,
     

@@ -26,7 +26,7 @@
   left: 50px;" id="mibadge"> {{ contactos.length }}</span>
         </div>
 
-
+      <!--Modal de las notificaciones de la entrevista -->
          <div class="modal" tabindex="-1" role="dialog" id="modalentrevista" v-show="soyunaempresa" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -37,6 +37,10 @@
         </button>
       </div>
       <div class="modal-body">
+        <div v-if="!contactos.length">
+           <h5 class="font-weight-bold">No hay entrevistas próximas en su agenda</h5>
+        </div>
+        <div v-else>
         <div v-for="item in contactos" :key="item.id">
           <div class="col text-center">
              <h2 class="font-weight-bold">{{buscaempresa(item.oferta_trabajador.oferta_id)}}</h2>
@@ -56,6 +60,7 @@
             domicilio: item.direccion
           }"></mapa-component>
         </div>
+        </div>
       </div>
       <div class="modal-footer">
          <div class="col text-center">
@@ -66,7 +71,9 @@
   </div>
 </div>
 
+ <!--Modal de las notificaciones de la entrevista -->
 
+  <!--Panel de mi área -->
 
     <div class="jumbotron jumbotron-fluid" id="jumbotronarea" v-show="modelestrabajador">
       <div class="container">
@@ -391,7 +398,7 @@ export default {
   float: right;
 @media (max-width: 767.98px)  {
     float: none;
-   margin-left: 55px;
+   margin-left: 85px;
   }
  
 }
@@ -410,6 +417,19 @@ export default {
   color: white !important;
   
 }
+
+.glyphicon:hover {
+ 
+
+  -webkit-animation: none;
+  -moz-animation:  none;
+    animation:  none;
+
+@-webkit-keyframes spin {100%{-webkit-transform: none;}}
+@-moz-keyframes spin {100%{-moz-transform: none;}}
+@keyframes spin {100%{-webkit-transform: none;transform:none;}}
+}
+
 
 .modal-body {
   overflow: hidden;

@@ -16,13 +16,13 @@
     <curriculum-component :hhabilitado="false" :estrabajador="false" :token="'{{Session::token()}}'"
         :provincias="JSON.parse('{{$provincias->toJson()}}')" :nombre="'{{Auth::user()->name}}'"
         :id="'{{Auth::user()->id}}'" :cabecera="true" 
-       :region="'Region'" :esarea="false" :fecha="'2000-01-01'" 
+       :region="'Region'" :esarea="false" :fecha="text-nowrap" 
        
-       :datostrabajador="{ direccion: 'Escriba aqui su direccion',
-                            dni: 'Escriba aqui su dni',
+       :datostrabajador="{ direccion: '',
+                            dni: '',
                             
                             provincia_id : 1,
-                            telefono: 'Escriba aqui su telefono',
+                            telefono: '',
                             }"
 
    

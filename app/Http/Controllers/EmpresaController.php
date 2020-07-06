@@ -16,12 +16,9 @@ class EmpresaController extends Controller
 {
     public function show($id) {
 
-        $lasprovincias=Provincia::all();
 
         
-      
-        
-        return view ('miempresa', ['provincias'=> $lasprovincias,
+        return view ('miempresa', [
 
         'datosemp'=>Empresa::where('user_id', Auth::id())->first()
         ]);

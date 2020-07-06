@@ -109,14 +109,7 @@ class OfertaController extends Controller
 
 
    
-        return view ('publicaroferta', [
-        'provincias'=> Provincia::all(),
-      
-   
-        'experiencias'=>Explaboral::all(),
-        'contratos'=>Contrato::all(),
-       
-        ]);
+        return view ('publicaroferta');
     }
 
 

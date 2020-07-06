@@ -127,7 +127,10 @@ class HomeController extends Controller
             $imageData = $request->get('imagen');
             $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
             Image::make($request->get('imagen'))->save(public_path('images/').$fileName);
-            }else {
+            }else if (!($request->get('imagen')) && $mitrabajador) {
+                $fileName=$mitrabajador->imagen;
+            }      
+            else {
                 $fileName='No_image.jpg';
             }
 

@@ -1,6 +1,6 @@
 <template>
   <!--modal-->
-  <div class="modal fade" id="sitiomodalexperiencia" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal fade" id="sitiomodalexperiencia" tabindex="-1" role="dialog" aria-hidden="true" v-click-outside="cerrarmodal">
     <div class="modal-dialog" role="document">
       <form @submit.prevent="nuevaexperiencia">
         <div class="modal-content">
@@ -8,7 +8,7 @@
             <h3>{{getletrero}}</h3>
             
 
-            <button type="button" class="close mx-0 px-0" data-dismiss="modal">
+            <button type="button" @click="cerrarmodal" class="close mx-0 px-0" data-dismiss="modal">
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             </button>
           </div>
@@ -181,7 +181,7 @@ export default {
       empresaexp_i: '',
       inicioexp_i: '',
       finexp_i: '',
-      cat_i: 'Nombre de la categoria',
+      cat_i: '',
       desexp_i: '',
       salida: '',
       abierto_i: true,
@@ -193,6 +193,22 @@ export default {
     };
   },
   methods: {
+    cerrarmodal: function() {
+      this.tituloexp_i='';
+      this.empresaexp_i='';
+      this.inicioexp_i='';
+      this.finexp_i='';
+      this.cat_i=''
+      this.desexp_i=''
+      this.salida=''
+      this.abierto_i=true
+      this.trabajador=this.$props.estrabajador
+      this.habilitado=this.$props.hhabilitado
+      this.experiencia=0
+    },
+
+
+
     nuevaexperiencia : function() {
             axios
         .post(route("homeexpe"), {

@@ -34,26 +34,32 @@ class AppServiceProvider extends ServiceProvider
     {
 
 
-        View::composer(['*'], function ($view){
+     
+        View::composer(['editoferta', 'buscarempleo', 'publicaroferta'], function ($view){
             $view->with([
-                'categorias'=>Categoria::all(),
-                'empresas'=>Empresa::all(),
-                ]);
-        });
-
-
-
-        View::composer(['welcome', 'home', 'home2', 'auth.passwords.reset'], function ($view){
-            $view->with([
-                'provincias'=>Provincia::all(),
+                'provincias'=>Provincia::orderBy('region_name')->get(),
                 'experiencias'=>Explaboral::all(),
                 'contratos'=>Contrato::all()
 
+                ]);
+        });
+
+
+
+        View::composer(['home', 'buscarempleo', 'expe'], function ($view){
+            $view->with([
+                'categorias'=>Categoria::all()
 
                 ]);
         });
 
 
+        View::composer(['home', 'miempresa'], function ($view){
+            $view->with([
+                'provincias'=>Provincia::orderBy('region_name')->get(),
+
+                ]);
+        });
 
 
         /**

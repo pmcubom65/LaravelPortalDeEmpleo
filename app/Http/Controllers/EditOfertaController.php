@@ -20,11 +20,10 @@ class EditOfertaController extends Controller
 
  
         return view ('editoferta', [
-        'provincias'=> $lasprovincias=Provincia::all(),
+     
  
         'oferta'=> Oferta::find($id),
-        'experiencias'=>Explaboral::all(),
-        'contratos'=>Contrato::all()
+   
       
        
         ]);

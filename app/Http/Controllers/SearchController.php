@@ -57,17 +57,9 @@ class SearchController extends Controller
 
         $misresultados =  Oferta::where('salario','>=',$request->get('Salarioid'))->where($miArray)->get();
   
-
-     $lasprovincias=Provincia::all();
-  
- 
-   
-
     
      return view ('resultadosbusquedaoferta', [
-        'provincias'=> $lasprovincias,
-      
-
+   
         'resultados'=>$misresultados,
        
        
@@ -113,7 +105,6 @@ class SearchController extends Controller
       
 
         return view ('veroferta', [
-            'provincias'=> Provincia::all(),
         
             'oferta'=>Oferta::find($id)  
             ]);
@@ -125,7 +116,6 @@ class SearchController extends Controller
 
 
         return view ('veroferta', [
-        'provincias'=> Provincia::all(),
        
         'oferta'=>Oferta::find($id)
       

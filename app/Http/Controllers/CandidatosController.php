@@ -17,8 +17,7 @@ class CandidatosController extends Controller
         
         return view ('mostrarloscandidatos', [
             'oferta'=>Oferta::find($ofertaid),
-            'provincias'=> Provincia::all(),
-           
+  
       
             'trabajadores'=>Oferta::find($ofertaid)->trabajadors()->orderby('created_at')->get()
        

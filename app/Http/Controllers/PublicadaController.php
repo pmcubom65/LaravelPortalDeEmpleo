@@ -17,7 +17,7 @@ class PublicadaController extends Controller
         $empresaseleccionada=Empresa::where('user_id', '=', Auth::id())->first()->id;
    
         return view ('gestionaroferta', [
-        'provincias'=> Provincia::all(),
+      
 
         'ofertas'=>Oferta::where('empresa_id', '=', $empresaseleccionada)->get()
       

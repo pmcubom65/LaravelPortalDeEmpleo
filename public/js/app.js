@@ -2653,6 +2653,7 @@ __webpack_require__.r(__webpack_exports__);
         imagen: this.image
       }).then(function (response) {
         var valores = response.data;
+        _this.salida = '';
         Object.entries(valores).forEach(function (entry) {
           if (entry[0].toString() === "success") {
             _this.abierto_i = true;
@@ -2662,10 +2663,11 @@ __webpack_require__.r(__webpack_exports__);
 
             _this.habilitado = true;
             _this.salida = entry[1].toString();
-            _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$emit("trabajadorcreado");
+          } else {
+            var campoerroneo = entry[0].toString();
+            var clave = entry[1].toString();
+            _this.salida = _this.salida + '  ' + clave + ': ' + campoerroneo + '.<br/>';
           }
-
-          _this.salida = entry[1].toString();
         });
       })["catch"](function (error) {
         console.log(error);
@@ -3728,7 +3730,7 @@ __webpack_require__.r(__webpack_exports__);
       empresaexp_i: '',
       inicioexp_i: '',
       finexp_i: '',
-      cat_i: 'Nombre de la categoria',
+      cat_i: '',
       desexp_i: '',
       salida: '',
       abierto_i: true,
@@ -3738,6 +3740,19 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    cerrarmodal: function cerrarmodal() {
+      this.tituloexp_i = '';
+      this.empresaexp_i = '';
+      this.inicioexp_i = '';
+      this.finexp_i = '';
+      this.cat_i = '';
+      this.desexp_i = '';
+      this.salida = '';
+      this.abierto_i = true;
+      this.trabajador = this.$props.estrabajador;
+      this.habilitado = this.$props.hhabilitado;
+      this.experiencia = 0;
+    },
     nuevaexperiencia: function nuevaexperiencia() {
       var _this3 = this;
 
@@ -3968,6 +3983,13 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../app */ "./resources/js/app.js");
 /* harmony import */ var _store_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/actions */ "./resources/js/store/actions.js");
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -9767,7 +9789,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".tab-pane[data-v-fbd1a58e],\n.titular[data-v-fbd1a58e] {\n  color: white;\n}\n.card-header[data-v-fbd1a58e] {\n  background-color: black;\n}\n.mifoto[data-v-fbd1a58e] {\n  width: auto;\n  max-height: 100px;\n  float: right;\n}\n@media (max-width: 767.98px) {\n.mifoto[data-v-fbd1a58e] {\n    float: none;\n    margin-left: 55px;\n}\n}\n#area[data-v-fbd1a58e] {\n  padding-top: 25px;\n}\n#contactos[data-v-fbd1a58e] {\n  font-size: 36px;\n}\n#mibadge[data-v-fbd1a58e] {\n  color: white !important;\n}\n.modal-body[data-v-fbd1a58e] {\n  overflow: hidden;\n}", ""]);
+exports.push([module.i, ".tab-pane[data-v-fbd1a58e],\n.titular[data-v-fbd1a58e] {\n  color: white;\n}\n.card-header[data-v-fbd1a58e] {\n  background-color: black;\n}\n.mifoto[data-v-fbd1a58e] {\n  width: auto;\n  max-height: 100px;\n  float: right;\n}\n@media (max-width: 767.98px) {\n.mifoto[data-v-fbd1a58e] {\n    float: none;\n    margin-left: 85px;\n}\n}\n#area[data-v-fbd1a58e] {\n  padding-top: 25px;\n}\n#contactos[data-v-fbd1a58e] {\n  font-size: 36px;\n}\n#mibadge[data-v-fbd1a58e] {\n  color: white !important;\n}\n.glyphicon[data-v-fbd1a58e]:hover {\n  -webkit-animation: none;\n  animation: none;\n}\n@-webkit-keyframes spin-data-v-fbd1a58e {\n100% {\n    -webkit-transform: none;\n}\n}\n@keyframes spin-data-v-fbd1a58e {\n100% {\n    transform: none;\n}\n}\n.modal-body[data-v-fbd1a58e] {\n  overflow: hidden;\n}", ""]);
 
 // exports
 
@@ -49699,7 +49721,7 @@ var render = function() {
               "{ content: 'Tienes que tener experiencias registradas. Mostrará las ofertas de trabajo actuales con la categoría profesional de la experiencia laboral más reciente', show: false }"
           }
         ],
-        staticClass: "btn btn-primary btn-lg",
+        staticClass: "btn btn-primary btn-lg text-nowrap",
         attrs: { type: "submit" }
       },
       [_vm._v("Buscar ofertas de mi última categoria profesional")]
@@ -49987,7 +50009,8 @@ var render = function() {
                   value: _vm.soyunaempresa,
                   expression: "soyunaempresa"
                 }
-              ]
+              ],
+              staticClass: "text-nowrap"
             },
             [
               _c("span", {
@@ -50334,14 +50357,15 @@ var render = function() {
                     ]
                   ),
                   _vm._v(" "),
-                  _c("div", { staticClass: "form-group col-sm-12" }, [
+                  _c("div", { staticClass: "form-group col-sm-9 mx-auto" }, [
                     _c(
                       "div",
                       { staticClass: "text-center", attrs: { id: "messages" } },
                       [
-                        _c("p", { staticClass: "alert" }, [
-                          _vm._v(_vm._s(_vm.salida))
-                        ])
+                        _c("p", {
+                          staticClass: "alert",
+                          domProps: { innerHTML: _vm._s(_vm.salida) }
+                        })
                       ]
                     )
                   ]),
@@ -51665,6 +51689,14 @@ var render = function() {
   return _c(
     "div",
     {
+      directives: [
+        {
+          name: "click-outside",
+          rawName: "v-click-outside",
+          value: _vm.cerrarmodal,
+          expression: "cerrarmodal"
+        }
+      ],
       staticClass: "modal fade",
       attrs: {
         id: "sitiomodalexperiencia",
@@ -51690,7 +51722,20 @@ var render = function() {
               _c("div", { staticClass: "modal-header" }, [
                 _c("h3", [_vm._v(_vm._s(_vm.getletrero))]),
                 _vm._v(" "),
-                _vm._m(0)
+                _c(
+                  "button",
+                  {
+                    staticClass: "close mx-0 px-0",
+                    attrs: { type: "button", "data-dismiss": "modal" },
+                    on: { click: _vm.cerrarmodal }
+                  },
+                  [
+                    _c("span", {
+                      staticClass: "glyphicon glyphicon-remove",
+                      attrs: { "aria-hidden": "true" }
+                    })
+                  ]
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -51951,26 +51996,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close mx-0 px-0",
-        attrs: { type: "button", "data-dismiss": "modal" }
-      },
-      [
-        _c("span", {
-          staticClass: "glyphicon glyphicon-remove",
-          attrs: { "aria-hidden": "true" }
-        })
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -52298,64 +52324,77 @@ var render = function() {
             _c("div", { staticClass: "modal-content" }, [
               _vm._m(1),
               _vm._v(" "),
-              _c(
-                "div",
-                { staticClass: "modal-body" },
-                _vm._l(_vm.contactos, function(item) {
-                  return _c(
-                    "div",
-                    { key: item.id },
-                    [
-                      _c("div", { staticClass: "col text-center" }, [
-                        _c("h2", { staticClass: "font-weight-bold" }, [
-                          _vm._v(
-                            _vm._s(
-                              _vm.buscaempresa(item.oferta_trabajador.oferta_id)
-                            )
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("h5", { staticClass: "font-weight-bold" }, [
-                          _vm._v(
-                            "Día de la entrevista: " +
-                              _vm._s(item.dia.substr(0, item.dia.indexOf(" ")))
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("h5", { staticClass: "font-weight-bold" }, [
-                          _vm._v("Hora de la entrevista: " + _vm._s(item.hora))
-                        ]),
-                        _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            staticClass:
-                              "btn btn-primary btn-xs-block btn-lg mb-5",
-                            attrs: {
-                              href: _vm.getRutaOferta(
-                                item.oferta_trabajador.oferta_id
+              _c("div", { staticClass: "modal-body" }, [
+                !_vm.contactos.length
+                  ? _c("div", [
+                      _c("h5", { staticClass: "font-weight-bold" }, [
+                        _vm._v("No hay entrevistas próximas en su agenda")
+                      ])
+                    ])
+                  : _c(
+                      "div",
+                      _vm._l(_vm.contactos, function(item) {
+                        return _c(
+                          "div",
+                          { key: item.id },
+                          [
+                            _c("div", { staticClass: "col text-center" }, [
+                              _c("h2", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  _vm._s(
+                                    _vm.buscaempresa(
+                                      item.oferta_trabajador.oferta_id
+                                    )
+                                  )
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("h5", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "Día de la entrevista: " +
+                                    _vm._s(
+                                      item.dia.substr(0, item.dia.indexOf(" "))
+                                    )
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("h5", { staticClass: "font-weight-bold" }, [
+                                _vm._v(
+                                  "Hora de la entrevista: " + _vm._s(item.hora)
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "a",
+                                {
+                                  staticClass:
+                                    "btn btn-primary btn-xs-block btn-lg mb-5",
+                                  attrs: {
+                                    href: _vm.getRutaOferta(
+                                      item.oferta_trabajador.oferta_id
+                                    )
+                                  }
+                                },
+                                [_vm._v("Ver detalles completos de la Oferta")]
                               )
-                            }
-                          },
-                          [_vm._v("Ver detalles completos de la Oferta")]
+                            ]),
+                            _vm._v(" "),
+                            _c("mapa-component", {
+                              attrs: {
+                                objeto: {
+                                  lat: item.latitud,
+                                  lng: item.longitud,
+                                  domicilio: item.direccion
+                                }
+                              }
+                            })
+                          ],
+                          1
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c("mapa-component", {
-                        attrs: {
-                          objeto: {
-                            lat: item.latitud,
-                            lng: item.longitud,
-                            domicilio: item.direccion
-                          }
-                        }
-                      })
-                    ],
-                    1
-                  )
-                }),
-                0
-              ),
+                      }),
+                      0
+                    )
+              ]),
               _vm._v(" "),
               _vm._m(2)
             ])
@@ -70228,6 +70267,22 @@ Vue.use(v_tooltip__WEBPACK_IMPORTED_MODULE_0__["default"], {
 var infiniteScroll = __webpack_require__(/*! vue-infinite-scroll */ "./node_modules/vue-infinite-scroll/vue-infinite-scroll.js");
 
 Vue.use(infiniteScroll);
+Vue.directive('click-outside', {
+  bind: function bind(el, binding, vnode) {
+    el.clickOutsideEvent = function (event) {
+      // here I check that click was outside the el and his childrens
+      if (!(el == event.target || el.contains(event.target))) {
+        // and if it did, call method provided in attribute value
+        vnode.context[binding.expression](event);
+      }
+    };
+
+    document.body.addEventListener('click', el.clickOutsideEvent);
+  },
+  unbind: function unbind(el) {
+    document.body.removeEventListener('click', el.clickOutsideEvent);
+  }
+});
 
 Vue.use(vue_observe_visibility__WEBPACK_IMPORTED_MODULE_4__["default"]);
 Vue.mixin({
@@ -70608,14 +70663,15 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************************!*\
   !*** ./resources/js/components/CurriculumComponent.vue ***!
   \*********************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CurriculumComponent_vue_vue_type_template_id_7d683fe7_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CurriculumComponent.vue?vue&type=template&id=7d683fe7&scoped=true& */ "./resources/js/components/CurriculumComponent.vue?vue&type=template&id=7d683fe7&scoped=true&");
 /* harmony import */ var _CurriculumComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CurriculumComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/CurriculumComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _CurriculumComponent_vue_vue_type_style_index_0_id_7d683fe7_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CurriculumComponent.vue?vue&type=style&index=0&id=7d683fe7&scoped=true&lang=css& */ "./resources/js/components/CurriculumComponent.vue?vue&type=style&index=0&id=7d683fe7&scoped=true&lang=css&");
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _CurriculumComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _CurriculumComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+/* harmony import */ var _CurriculumComponent_vue_vue_type_style_index_0_id_7d683fe7_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CurriculumComponent.vue?vue&type=style&index=0&id=7d683fe7&scoped=true&lang=css& */ "./resources/js/components/CurriculumComponent.vue?vue&type=style&index=0&id=7d683fe7&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -70647,7 +70703,7 @@ component.options.__file = "resources/js/components/CurriculumComponent.vue"
 /*!**********************************************************************************!*\
   !*** ./resources/js/components/CurriculumComponent.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************/
-/*! exports provided: default */
+/*! no static exports found */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
