@@ -4238,6 +4238,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -4277,7 +4278,7 @@ __webpack_require__.r(__webpack_exports__);
       return this.modelestrabajador && this.$props.contactos && this.$props.soyunaempresa;
     },
     tab: function tab() {
-      return this.$store.state.mostrarcandidaturas;
+      return this.$store.state.mostrarcandidaturas === "true";
     }
   },
   props: {
@@ -5142,11 +5143,38 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {},
   mounted: function mounted() {
-    console.log('Boton mis candidaturas');
+    console.log("Boton mis candidaturas");
   },
   props: {
     login: {
@@ -5163,21 +5191,17 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      ruta: '',
-      habilitar: true
+      ruta: ""
     };
   },
   methods: {
-    componerruta: function componerruta() {
+    componerruta: function componerruta(boleano) {
       if (this.$props.login && this.$props.rol === 2) {
-        this.habilitar = false;
-        this.ruta = '/empresa/' + this.$props.id + '/published';
+        this.ruta = "/empresa/" + this.$props.id + "/published";
       } else if (this.$props.login && this.$props.rol === 1) {
-        this.$store.dispatch('getMostrarCandidaturas', true);
-        this.habilitar = false;
+        this.$store.dispatch("getMostrarCandidaturas", boleano);
         this.ruta = "/home";
       } else {
-        this.habilitar = false;
         this.ruta = "/home";
       }
     }
@@ -52580,7 +52604,7 @@ var render = function() {
                       "a",
                       {
                         staticClass: "nav-link btn-lg",
-                        class: { active: !_vm.tab },
+                        class: [!_vm.tab ? "active" : ""],
                         attrs: {
                           id: "nav-pills-01",
                           "data-toggle": "pill",
@@ -52654,7 +52678,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "nav-link btn-lg",
-                          class: { active: _vm.tab },
+                          class: [_vm.tab ? "active" : ""],
                           attrs: {
                             id: "nav-pills-03",
                             "data-toggle": "pill",
@@ -52689,7 +52713,7 @@ var render = function() {
                 "div",
                 {
                   staticClass: "tab-pane fade show",
-                  class: { active: !_vm.tab },
+                  class: [!_vm.tab ? "active" : ""],
                   attrs: { id: "nav-item-01", role: "tabpanel" }
                 },
                 [
@@ -52828,7 +52852,7 @@ var render = function() {
                 "div",
                 {
                   staticClass: "tab-pane  fade show",
-                  class: { active: _vm.tab },
+                  class: [_vm.tab ? "active" : ""],
                   attrs: { id: "nav-item-03", role: "tabpanel" }
                 },
                 [
@@ -54025,26 +54049,129 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { on: { click: _vm.componerruta } }, [
-    _c("button", { attrs: { href: _vm.ruta, disabled: _vm.habilitar } }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c("p", { staticClass: "text-light" }, [
-        _vm._v("Acceda a sus candidaturas")
-      ]),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary m-auto btn-block",
-          attrs: { type: "button", href: _vm.ruta }
-        },
-        [_vm._v("\n                    Ver")]
-      )
-    ])
-  ])
+  return _c(
+    "div",
+    { staticClass: "container espacio text-center text-light" },
+    [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-4 div1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "text-light",
+              attrs: { href: _vm.ruta },
+              on: {
+                click: function($event) {
+                  return _vm.componerruta(false)
+                }
+              }
+            },
+            [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("p", [_vm._v("Ver y actualizar mi perfil")]),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary m-auto btn-block",
+                  attrs: { href: _vm.ruta },
+                  on: {
+                    click: function($event) {
+                      return _vm.componerruta(false)
+                    }
+                  }
+                },
+                [_vm._v("Ver")]
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _vm._m(1),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-4 div1" }, [
+          _c(
+            "a",
+            {
+              attrs: { href: _vm.ruta },
+              on: {
+                click: function($event) {
+                  return _vm.componerruta(true)
+                }
+              }
+            },
+            [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("p", { staticClass: "text-light" }, [
+                _vm._v("Acceda a sus candidaturas")
+              ]),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  staticClass: "btn btn-primary m-auto btn-block",
+                  attrs: { type: "button", href: _vm.ruta },
+                  on: {
+                    click: function($event) {
+                      return _vm.componerruta(true)
+                    }
+                  }
+                },
+                [_vm._v("Ver")]
+              )
+            ]
+          )
+        ])
+      ])
+    ]
+  )
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "movil" }, [
+      _c("span", {
+        staticClass: "glyphicon glyphicon-user",
+        attrs: { "aria-hidden": "true" }
+      }),
+      _vm._v(" "),
+      _c("br"),
+      _vm._v("Mi Perfil\n        ")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-4 div1" }, [
+      _c("a", { staticClass: "text-light", attrs: { href: "#buscar" } }, [
+        _c("h3", { staticClass: "movil" }, [
+          _c("span", {
+            staticClass: "glyphicon glyphicon-search",
+            attrs: { "aria-hidden": "true" }
+          }),
+          _vm._v(" "),
+          _c("br"),
+          _vm._v("Buscar Ofertas de\n          Empleo\n        ")
+        ]),
+        _vm._v(" "),
+        _c("p", [_vm._v("Buscar Ofertas de Empleo")]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-primary m-auto btn-block",
+            attrs: { href: "#buscar" }
+          },
+          [_vm._v("Ver")]
+        )
+      ])
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -54054,8 +54181,9 @@ var staticRenderFns = [
         staticClass: "glyphicon glyphicon-phone-alt text-light",
         attrs: { "aria-hidden": "true" }
       }),
+      _vm._v(" "),
       _c("br"),
-      _vm._v("Mis candidaturas")
+      _vm._v("Mis candidaturas\n        ")
     ])
   }
 ]
@@ -72519,8 +72647,8 @@ var SET_TRABAJADORESPOROFERTA = function SET_TRABAJADORESPOROFERTA(state, trabaj
   state.trabajadoresporoferta = trabajador;
 };
 var SET_MOSTRARCANDIDATURAS = function SET_MOSTRARCANDIDATURAS(state, valor) {
-  state.mostrarcandidaturas = null;
   state.mostrarcandidaturas = valor;
+  window.localStorage.setItem('tab', valor);
 };
 
 /***/ }),
@@ -72534,13 +72662,14 @@ var SET_MOSTRARCANDIDATURAS = function SET_MOSTRARCANDIDATURAS(state, valor) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var candidatura = window.localStorage.getItem('tab');
 /* harmony default export */ __webpack_exports__["default"] = ({
   categorias: [],
   empresas: [],
   trabajadores: [],
   experiencias: [],
   trabajadoresporoferta: [],
-  mostrarcandidaturas: false
+  mostrarcandidaturas: candidatura ? candidatura : null
 });
 
 /***/ }),

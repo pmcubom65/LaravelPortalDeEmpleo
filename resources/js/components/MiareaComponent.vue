@@ -105,7 +105,8 @@
             <ul class="nav nav-pills justify-content-center" id="pills-nav" role="tablist">
               <li class="nav-item btn-xs-block">
                 <a
-                  class="nav-link btn-lg" :class="{active: !tab}"
+                  class="nav-link btn-lg"  
+                  v-bind:class="[ !tab ? 'active' : '' ]"
                   id="nav-pills-01"
                   data-toggle="pill"
                   href="#nav-item-01"
@@ -129,7 +130,7 @@
               </li>
               <li class="nav-item btn-xs-block" v-show="soyunaempresa">
                 <a
-                  class="nav-link btn-lg"  :class="{active: tab}"
+                  class="nav-link btn-lg"  v-bind:class="[ tab ? 'active' : '' ]"
                   id="nav-pills-03"
                   data-toggle="pill"
                   href="#nav-item-03"
@@ -147,7 +148,7 @@
         </div>
 
         <div class="tab-content" id="nav-pills-content">
-          <div class="tab-pane fade show" id="nav-item-01" role="tabpanel"  :class="{active: !tab}">
+          <div class="tab-pane fade show" id="nav-item-01" role="tabpanel"  v-bind:class="[ !tab ? 'active' : '' ]">
             <!--Curriculum relleno-->
             <curriculum-component
               :hhabilitado="true"
@@ -202,7 +203,7 @@
               </div>
             </div>
           </div>
-          <div class="tab-pane  fade show" id="nav-item-03" role="tabpanel"  :class="{active: tab}">
+          <div class="tab-pane  fade show" id="nav-item-03" role="tabpanel"  v-bind:class="[ tab ? 'active' : '' ]">
             <div v-if="computar">
               <div class="card" v-for="item in candidaturas" :key="item.id">
                 <h5 class="card-header text-center">{{item.titulo}}</h5>
@@ -286,8 +287,8 @@ export default {
 
     tab() {
 
-       
-      return this.$store.state.mostrarcandidaturas;
+      
+      return (this.$store.state.mostrarcandidaturas==="true");
     },
   },
 

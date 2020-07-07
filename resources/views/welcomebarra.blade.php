@@ -1,7 +1,8 @@
 <section  class="inicio2 intro-section">
             <div class="container  espacio text-center text-light">
                 <div class="row">
-                <a class="text-light"  href="/home"> <div class="col-md-4 div1">
+                <div class="col-md-4 div1">
+                <a class="text-light"  href="/home"> 
 
                         <h3 class="movil"><span class="glyphicon glyphicon-user" aria-hidden="true"></span><br>Mi Perfil</h3>
                         <p >Ver y actualizar mi perfil</p>
@@ -9,8 +10,11 @@
 
 
                     </div>
-                    <a class="text-light"  href="#buscar"> <div class="col-md-4 div1">
-
+                   
+                        
+                    
+                    <div class="col-md-4 div1">
+                    <a class="text-light"  href="#buscar"> 
                         <h3  class="movil"><span class="glyphicon glyphicon-search" aria-hidden="true"></span><br>Buscar Ofertas de
                             Empleo</h3>
                         <p >Buscar Ofertas de Empleo</p>

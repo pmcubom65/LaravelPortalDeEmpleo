@@ -53,7 +53,15 @@
             </div>
         </div>
 
-        @include('welcomebarra')
+        <section class="inicio2 intro-section">
+            @if (Auth::check())
+            <welcomemiscandidaturas-component :login="Boolean('{{Auth::check()}}')" :id="Number('{{Auth::id()}}')"
+                :rol="Number('{{Auth::user()->rol_id}}')"></welcomemiscandidaturas-component>
+            @else
+            <welcomemiscandidaturas-component :login="Boolean('{{Auth::check()}}')"></welcomemiscandidaturas-component>
+            @endif
+
+        </section>
 
 
         <section id="informacion" class="informacion-section">
@@ -63,8 +71,7 @@
                         <div class="row">
                             <div class="col  float-left">
                                 <div class="card float-right" style="width: 18rem;">
-                                    <img src="/img/hombre.jpg" class="card-img-top infoimg"
-                                        alt="trabajador">
+                                    <img src="/img/hombre.jpg" class="card-img-top infoimg" alt="trabajador">
 
                                     <div class="card-body cbw">
                                         <h5 class="card-title">Soy un trabajador</h5>
@@ -94,8 +101,7 @@
 
                             <div class="col  float-right">
                                 <div class="card float-left" style="width: 18rem;">
-                                    <img src="/img/edificio.jpg" class="card-img-top infoimg"
-                                        alt="edificio">
+                                    <img src="/img/edificio.jpg" class="card-img-top infoimg" alt="edificio">
                                     <div class="card-body cbw">
                                         <h5 class="card-title">Soy una empresa</h5>
                                         <p class="card-text">Añada nuevas ofertas de trabajo y actualice las ofertas.
@@ -166,27 +172,27 @@
                         </div>
                         <div class="col-md-4 p-3" id="mapainicio">
                             <h3 class="text-center">Localizacion</h3>
-                    
 
 
-                       <mapa-component :objeto="{
+
+                            <mapa-component :objeto="{
                         lat: 40.451315,
                         lng: -3.599181,
                         domicilio: 'IES Barajas'
                         
 
-                       }" ></mapa-component>
+                       }"></mapa-component>
 
 
 
 
                         </div>
-                      <inicio-component  :token="'{{Session::token()}}'"></inicio-component>
+                        <inicio-component :token="'{{Session::token()}}'"></inicio-component>
 
                     </div>
                 </div>
             </section>
-            
+
         </div>
 
     </div>
@@ -195,7 +201,12 @@
 
 
 <div class="container-fluid d-lg-none" style="height: 100vh; padding-top: 0;">
-    @include('welcomebarra')
+    @if (Auth::check())
+    <welcomemiscandidaturas-component :login="Boolean('{{Auth::check()}}')" :id="Number('{{Auth::id()}}')"
+        :rol="Number('{{Auth::user()->rol_id}}')"></welcomemiscandidaturas-component>
+    @else
+    <welcomemiscandidaturas-component :login="Boolean('{{Auth::check()}}')"></welcomemiscandidaturas-component>
+    @endif
     @include('buscarempleo')
 
 

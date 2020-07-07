@@ -25,8 +25,10 @@ export const SET_TRABAJADORESPOROFERTA=(state, trabajador) => {
 
 
 export const SET_MOSTRARCANDIDATURAS=(state, valor) => {
-    state.mostrarcandidaturas=null;
-    state.mostrarcandidaturas=valor
+    
+    state.mostrarcandidaturas=valor;
  
+    window.localStorage.setItem('tab', valor);
     
 }
+
