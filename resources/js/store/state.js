@@ -4,4 +4,5 @@ export default {
     trabajadores: [],
     experiencias: [],
     trabajadoresporoferta: [],
+    mostrarcandidaturas: false,
 }

@@ -83,8 +83,8 @@
           </div>
           <div class="col-7  text-left titular" id="area">
             <div v-if="soyunaempresa">
-            <h1  class="display-4 d-none d-sm-block">Mi área</h1>
-             <p  class="lead d-none d-sm-block">Acceda a sus datos y a sus candidaturas</p>
+            <h1  class="display-4 ">Mi área</h1>
+             <p  class="lead text-nowrap">Acceda a sus datos y a sus candidaturas</p>
             </div>
             <div v-else>
             <h1  class="display-4 d-none d-sm-block">{{ nombre }}</h1>
@@ -105,7 +105,7 @@
             <ul class="nav nav-pills justify-content-center" id="pills-nav" role="tablist">
               <li class="nav-item btn-xs-block">
                 <a
-                  class="nav-link active btn-lg"
+                  class="nav-link btn-lg" :class="{active: !tab}"
                   id="nav-pills-01"
                   data-toggle="pill"
                   href="#nav-item-01"
@@ -129,7 +129,7 @@
               </li>
               <li class="nav-item btn-xs-block" v-show="soyunaempresa">
                 <a
-                  class="nav-link btn-lg"
+                  class="nav-link btn-lg"  :class="{active: tab}"
                   id="nav-pills-03"
                   data-toggle="pill"
                   href="#nav-item-03"
@@ -147,7 +147,7 @@
         </div>
 
         <div class="tab-content" id="nav-pills-content">
-          <div class="tab-pane fade show active" id="nav-item-01" role="tabpanel">
+          <div class="tab-pane fade show" id="nav-item-01" role="tabpanel"  :class="{active: !tab}">
             <!--Curriculum relleno-->
             <curriculum-component
               :hhabilitado="true"
@@ -202,7 +202,7 @@
               </div>
             </div>
           </div>
-          <div class="tab-pane fade" id="nav-item-03" role="tabpanel">
+          <div class="tab-pane  fade show" id="nav-item-03" role="tabpanel"  :class="{active: tab}">
             <div v-if="computar">
               <div class="card" v-for="item in candidaturas" :key="item.id">
                 <h5 class="card-header text-center">{{item.titulo}}</h5>
@@ -242,18 +242,23 @@
 <script>
 import { bus } from "../app";
 import { getExperiencias } from "../store/actions";
+
 export default {
   mounted() {
     console.log("Perfil montado");
     this.$store.dispatch("getTrabajadores");
     this.$store.dispatch("getExperiencias");
     this.$store.dispatch("getEmpresas");
+
+
   },
   created() {
     bus.$on("editarcurriculum", () => {
       this.modelestrabajador = false;
     });
+
   },
+ 
   computed: {
     getExperiencias() {
       return this.$store.getters.getExperienciasById(this.$props.id);
@@ -279,7 +284,11 @@ export default {
       return this.modelestrabajador && this.$props.contactos && this.$props.soyunaempresa;
     },
 
-    
+    tab() {
+
+       
+      return this.$store.state.mostrarcandidaturas;
+    },
   },
 
   props: {
@@ -345,7 +354,8 @@ export default {
 
   data() {
     return {
-      modelestrabajador: this.$props.estrabajador
+      modelestrabajador: this.$props.estrabajador,
+
     };
   },
 
@@ -398,7 +408,7 @@ export default {
   float: right;
 @media (max-width: 767.98px)  {
     float: none;
-   margin-left: 85px;
+   margin-left: 45px;
   }
  
 }

@@ -28,7 +28,7 @@
               </div>
             </div>
 
-            <button type="button" class="close mx-0 px-0" data-dismiss="modal">
+            <button type="button" @click="cerrarmodal"  class="close mx-0 px-0" data-dismiss="modal">
               <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
             </button>
           </div>
@@ -61,9 +61,13 @@
             </div>
           </div>
           <div class="modal-footer" id="botoncat" >
-            <button class="btn btn-success m-auto" type="submit"  v-show="mostrarbotoncat">
+            <button class="btn btn-success m-auto  btn-lg" type="submit"  v-show="mostrarbotoncat">
               Guardar
               Categoria
+            </button>
+
+              <button class="btn btn-success m-auto btn-xs-block btn-lg"  @click="cerrarmodal"   data-dismiss="modal" type="button" v-show="!mostrarbotoncat">
+              Cerrar
             </button>
                   
                  <select
@@ -102,7 +106,13 @@ export default {
     };
   },
   methods: {
-
+    cerrarmodal: function() {
+      this.nombre="";
+      this.descripcion="";
+      this.salida="";
+      this.mostrarbotoncat=true;
+      this.quitar=false;
+    },
 
     crearcategoria: function() {
     

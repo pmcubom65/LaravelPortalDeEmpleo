@@ -1,4 +1,4 @@
-<section  class="inicio intro-section">
+<section  class="inicio2 intro-section">
             <div class="container  espacio text-center text-light">
                 <div class="row">
                 <a class="text-light"  href="/home"> <div class="col-md-4 div1">
@@ -21,7 +21,7 @@
                  <div class="col-md-4 div1">
 
                       
-                        @if (Auth::check() and Auth::user()->rol_id===2)
+                   <!--     @if (Auth::check() and Auth::user()->rol_id===2)
                         
                         <a href="/empresa/{{Auth::id()}}/published" >
                         
@@ -40,6 +40,14 @@
                         
                         <button href="/home"  class="btn btn-primary m-auto btn-block">
                         Ver</button></a>
+                        @endif-->
+
+                        @if (Auth::check())
+                        <welcomemiscandidaturas-component :login="Boolean('{{Auth::check()}}')"
+                        :id="Number('{{Auth::id()}}')" :rol="Number('{{Auth::user()->rol_id}}')"  ></welcomemiscandidaturas-component>
+                        @else
+                        <welcomemiscandidaturas-component :login="Boolean('{{Auth::check()}}')"
+                       ></welcomemiscandidaturas-component>
                         @endif
 
                     </div>

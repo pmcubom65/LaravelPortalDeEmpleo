@@ -24,11 +24,21 @@ export const getTrabajadores=({commit})=>{
 export const getTrabajadoresPorOferta=({commit})=>{
     axios.get(route('trabajadoresporoferta')).
     then(response=>{
-        console.log(response.data)
+       
         commit('SET_TRABAJADORESPOROFERTA', response.data);
     })
 
 }
+
+
+export const getMostrarCandidaturas=({commit}, value)=>{
+      
+        commit('SET_MOSTRARCANDIDATURAS', value);
+    
+
+}
+
+
 
 
 

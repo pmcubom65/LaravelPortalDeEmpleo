@@ -21,3 +21,12 @@ export const SET_EXPERIENCIAS=(state, experiencia) => {
 export const SET_TRABAJADORESPOROFERTA=(state, trabajador) => {
     state.trabajadoresporoferta=trabajador
 }
+
+
+
+export const SET_MOSTRARCANDIDATURAS=(state, valor) => {
+    state.mostrarcandidaturas=null;
+    state.mostrarcandidaturas=valor
+ 
+    
+}

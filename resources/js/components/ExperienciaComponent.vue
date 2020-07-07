@@ -95,16 +95,16 @@
           </div>
           <div class="modal-footer" >
              <div class="form-row col-12  m-auto ">
-             <p class="alert text-center">{{salida}}</p>
+             <p class="alert text-center" v-html="salida"></p>
             </div>
-            <div class="form-row col-12" v-show="abierto_i">
+            <div class="form-row col-12">
             <button  class="btn btn-success m-auto btn-xs-block btn-lg" type="submit" v-show="abierto_i">
               Guardar
               Experiencia
             </button>
             
 
-            <button class="btn btn-success m-auto btn-xs-block btn-lg"  data-dismiss="modal" type="button" v-show="!abierto_i">
+            <button class="btn btn-success m-auto btn-xs-block btn-lg"  @click="cerrarmodal"   data-dismiss="modal" type="button" v-show="!abierto_i">
               Cerrar
             </button>
             </div>
@@ -222,6 +222,7 @@ export default {
       
         })
         .then(response => {
+          this.salida='';
           let valores = response.data;
 
           Object.entries(valores).forEach(entry => {
@@ -234,9 +235,15 @@ export default {
               this.salida = entry[1].toString();
 
               
+            }else {
+              var campoerroneo=entry[0].toString();
+              var clave=entry[1].toString();
+              
+              this.salida = this.salida+'  '+clave+': '+campoerroneo+'.<br/>';
+            
             }
 
-            this.salida = entry[1].toString();
+ 
           });
         })
         .catch(function(error) {

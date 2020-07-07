@@ -2304,6 +2304,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     token: String,
@@ -2320,6 +2324,13 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   methods: {
+    cerrarmodal: function cerrarmodal() {
+      this.nombre = "";
+      this.descripcion = "";
+      this.salida = "";
+      this.mostrarbotoncat = true;
+      this.quitar = false;
+    },
     crearcategoria: function crearcategoria() {
       var _this = this;
 
@@ -3765,6 +3776,7 @@ __webpack_require__.r(__webpack_exports__);
         desexp: this.desexp_i,
         empresaexp: this.empresaexp_i
       }).then(function (response) {
+        _this3.salida = '';
         var valores = response.data;
         Object.entries(valores).forEach(function (entry) {
           if (entry[0].toString() === "success") {
@@ -3776,9 +3788,11 @@ __webpack_require__.r(__webpack_exports__);
 
             _this3.habilitado = true;
             _this3.salida = entry[1].toString();
+          } else {
+            var campoerroneo = entry[0].toString();
+            var clave = entry[1].toString();
+            _this3.salida = _this3.salida + '  ' + clave + ': ' + campoerroneo + '.<br/>';
           }
-
-          _this3.salida = entry[1].toString();
         });
       })["catch"](function (error) {
         console.log(error);
@@ -4261,6 +4275,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     computarcontactos: function computarcontactos() {
       return this.modelestrabajador && this.$props.contactos && this.$props.soyunaempresa;
+    },
+    tab: function tab() {
+      return this.$store.state.mostrarcandidaturas;
     }
   },
   props: {
@@ -4809,33 +4826,41 @@ __webpack_require__.r(__webpack_exports__);
           console.log(error);
         });
       } else {
-        axios.put(route("oferta", {
-          id: this.id
-        }), {
-          titulo: this.titulo_i,
-          Provincia: this.provincia_i,
-          Experiencia: this.experiencia_i,
-          Salarioid: this.salario_i,
-          contrato: this.contrato_i,
-          oferta: this.descripcion,
-          cat: this.cat_i,
-          _token: this.token
-        }).then(function (response) {
-          var valores = response.data;
-          console.log(response);
-          var key;
-          Object.entries(valores).forEach(function (entry) {
-            key = entry[0];
-            _this.salida = entry[1].toString();
-          });
+        if (typeof this.salario !== 'number' || this.salario_i < 12000) {
+          this.salida = 'El salario tiene que ser mayor que 12000 euros';
+        } else {
+          axios.put(route("oferta", {
+            id: this.id
+          }), {
+            titulo: this.titulo_i,
+            Provincia: this.provincia_i,
+            Experiencia: this.experiencia_i,
+            Salarioid: this.salario_i,
+            contrato: this.contrato_i,
+            oferta: this.descripcion,
+            cat: this.cat_i,
+            _token: this.token
+          }).then(function (response) {
+            var valores = response.data;
+            _this.salida = '';
+            var key;
+            Object.entries(valores).forEach(function (entry) {
+              key = entry[0];
 
-          if (key === "success") {
-            _this.abierto_i = 1;
-            _this.habilitado_i = true;
-          }
-        })["catch"](function (error) {
-          console.log(error);
-        });
+              if (key === "success") {
+                _this.salida = entry[1].toString();
+                _this.abierto_i = 1;
+                _this.habilitado_i = true;
+              } else {
+                var campoerroneo = key.toString();
+                var clave = entry[1].toString();
+                _this.salida = _this.salida + '  ' + clave + ': ' + campoerroneo + '.<br/>';
+              }
+            });
+          })["catch"](function (error) {
+            console.log(error);
+          });
+        }
       }
     }
   },
@@ -5089,6 +5114,73 @@ __webpack_require__.r(__webpack_exports__);
   methods: {},
   data: function data() {
     return {};
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/WelcomemiscandidaturasComponent.vue?vue&type=script&lang=js&":
+/*!******************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/WelcomemiscandidaturasComponent.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _store_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../store/actions */ "./resources/js/store/actions.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {},
+  mounted: function mounted() {
+    console.log('Boton mis candidaturas');
+  },
+  props: {
+    login: {
+      type: Boolean
+    },
+    rol: {
+      type: Number,
+      required: false
+    },
+    id: {
+      type: Number,
+      required: false
+    }
+  },
+  data: function data() {
+    return {
+      ruta: '',
+      habilitar: true
+    };
+  },
+  methods: {
+    componerruta: function componerruta() {
+      if (this.$props.login && this.$props.rol === 2) {
+        this.habilitar = false;
+        this.ruta = '/empresa/' + this.$props.id + '/published';
+      } else if (this.$props.login && this.$props.rol === 1) {
+        this.$store.dispatch('getMostrarCandidaturas', true);
+        this.habilitar = false;
+        this.ruta = "/home";
+      } else {
+        this.habilitar = false;
+        this.ruta = "/home";
+      }
+    }
   }
 });
 
@@ -9789,7 +9881,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".tab-pane[data-v-fbd1a58e],\n.titular[data-v-fbd1a58e] {\n  color: white;\n}\n.card-header[data-v-fbd1a58e] {\n  background-color: black;\n}\n.mifoto[data-v-fbd1a58e] {\n  width: auto;\n  max-height: 100px;\n  float: right;\n}\n@media (max-width: 767.98px) {\n.mifoto[data-v-fbd1a58e] {\n    float: none;\n    margin-left: 85px;\n}\n}\n#area[data-v-fbd1a58e] {\n  padding-top: 25px;\n}\n#contactos[data-v-fbd1a58e] {\n  font-size: 36px;\n}\n#mibadge[data-v-fbd1a58e] {\n  color: white !important;\n}\n.glyphicon[data-v-fbd1a58e]:hover {\n  -webkit-animation: none;\n  animation: none;\n}\n@-webkit-keyframes spin-data-v-fbd1a58e {\n100% {\n    -webkit-transform: none;\n}\n}\n@keyframes spin-data-v-fbd1a58e {\n100% {\n    transform: none;\n}\n}\n.modal-body[data-v-fbd1a58e] {\n  overflow: hidden;\n}", ""]);
+exports.push([module.i, ".tab-pane[data-v-fbd1a58e],\n.titular[data-v-fbd1a58e] {\n  color: white;\n}\n.card-header[data-v-fbd1a58e] {\n  background-color: black;\n}\n.mifoto[data-v-fbd1a58e] {\n  width: auto;\n  max-height: 100px;\n  float: right;\n}\n@media (max-width: 767.98px) {\n.mifoto[data-v-fbd1a58e] {\n    float: none;\n    margin-left: 45px;\n}\n}\n#area[data-v-fbd1a58e] {\n  padding-top: 25px;\n}\n#contactos[data-v-fbd1a58e] {\n  font-size: 36px;\n}\n#mibadge[data-v-fbd1a58e] {\n  color: white !important;\n}\n.glyphicon[data-v-fbd1a58e]:hover {\n  -webkit-animation: none;\n  animation: none;\n}\n@-webkit-keyframes spin-data-v-fbd1a58e {\n100% {\n    -webkit-transform: none;\n}\n}\n@keyframes spin-data-v-fbd1a58e {\n100% {\n    transform: none;\n}\n}\n.modal-body[data-v-fbd1a58e] {\n  overflow: hidden;\n}", ""]);
 
 // exports
 
@@ -49432,7 +49524,7 @@ var render = function() {
             expression: "loadMore"
           }
         ],
-        staticClass: "col-2 pb-0 inicio espacio",
+        staticClass: "col-2 pb-0 inicio2 espacio",
         attrs: {
           id: "sideBar",
           "infinite-scroll-disabled": "busy",
@@ -49587,7 +49679,7 @@ var render = function() {
             expression: "loadMore"
           }
         ],
-        staticClass: "col-2 pb-0 inicio espacio",
+        staticClass: "col-2 pb-0 inicio2 espacio",
         attrs: {
           id: "sideBar",
           "infinite-scroll-disabled": "busy",
@@ -49814,7 +49906,20 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _vm._m(0)
+                _c(
+                  "button",
+                  {
+                    staticClass: "close mx-0 px-0",
+                    attrs: { type: "button", "data-dismiss": "modal" },
+                    on: { click: _vm.cerrarmodal }
+                  },
+                  [
+                    _c("span", {
+                      staticClass: "glyphicon glyphicon-remove",
+                      attrs: { "aria-hidden": "true" }
+                    })
+                  ]
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "modal-body" }, [
@@ -49883,7 +49988,7 @@ var render = function() {
                           expression: "mostrarbotoncat"
                         }
                       ],
-                      staticClass: "btn btn-success m-auto",
+                      staticClass: "btn btn-success m-auto  btn-lg",
                       attrs: { type: "submit" }
                     },
                     [
@@ -49891,6 +49996,24 @@ var render = function() {
                         "\n            Guardar\n            Categoria\n          "
                       )
                     ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: !_vm.mostrarbotoncat,
+                          expression: "!mostrarbotoncat"
+                        }
+                      ],
+                      staticClass: "btn btn-success m-auto btn-xs-block btn-lg",
+                      attrs: { "data-dismiss": "modal", type: "button" },
+                      on: { click: _vm.cerrarmodal }
+                    },
+                    [_vm._v("\n            Cerrar\n          ")]
                   ),
                   _vm._v(" "),
                   _c(
@@ -49928,26 +50051,7 @@ var render = function() {
     ]
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "button",
-      {
-        staticClass: "close mx-0 px-0",
-        attrs: { type: "button", "data-dismiss": "modal" }
-      },
-      [
-        _c("span", {
-          staticClass: "glyphicon glyphicon-remove",
-          attrs: { "aria-hidden": "true" }
-        })
-      ]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -51928,66 +52032,52 @@ var render = function() {
               _vm._v(" "),
               _c("div", { staticClass: "modal-footer" }, [
                 _c("div", { staticClass: "form-row col-12  m-auto " }, [
-                  _c("p", { staticClass: "alert text-center" }, [
-                    _vm._v(_vm._s(_vm.salida))
-                  ])
+                  _c("p", {
+                    staticClass: "alert text-center",
+                    domProps: { innerHTML: _vm._s(_vm.salida) }
+                  })
                 ]),
                 _vm._v(" "),
-                _c(
-                  "div",
-                  {
-                    directives: [
-                      {
-                        name: "show",
-                        rawName: "v-show",
-                        value: _vm.abierto_i,
-                        expression: "abierto_i"
-                      }
-                    ],
-                    staticClass: "form-row col-12"
-                  },
-                  [
-                    _c(
-                      "button",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: _vm.abierto_i,
-                            expression: "abierto_i"
-                          }
-                        ],
-                        staticClass:
-                          "btn btn-success m-auto btn-xs-block btn-lg",
-                        attrs: { type: "submit" }
-                      },
-                      [
-                        _vm._v(
-                          "\n            Guardar\n            Experiencia\n          "
-                        )
-                      ]
-                    ),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        directives: [
-                          {
-                            name: "show",
-                            rawName: "v-show",
-                            value: !_vm.abierto_i,
-                            expression: "!abierto_i"
-                          }
-                        ],
-                        staticClass:
-                          "btn btn-success m-auto btn-xs-block btn-lg",
-                        attrs: { "data-dismiss": "modal", type: "button" }
-                      },
-                      [_vm._v("\n            Cerrar\n          ")]
-                    )
-                  ]
-                )
+                _c("div", { staticClass: "form-row col-12" }, [
+                  _c(
+                    "button",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: _vm.abierto_i,
+                          expression: "abierto_i"
+                        }
+                      ],
+                      staticClass: "btn btn-success m-auto btn-xs-block btn-lg",
+                      attrs: { type: "submit" }
+                    },
+                    [
+                      _vm._v(
+                        "\n            Guardar\n            Experiencia\n          "
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "button",
+                    {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: !_vm.abierto_i,
+                          expression: "!abierto_i"
+                        }
+                      ],
+                      staticClass: "btn btn-success m-auto btn-xs-block btn-lg",
+                      attrs: { "data-dismiss": "modal", type: "button" },
+                      on: { click: _vm.cerrarmodal }
+                    },
+                    [_vm._v("\n            Cerrar\n          ")]
+                  )
+                ])
               ])
             ])
           ]
@@ -52018,7 +52108,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-md-4 p-3" }, [
+  return _c("div", { staticClass: "col-4 p-3" }, [
     _c("h3", { staticClass: "text-center" }, [_vm._v("Contactanos")]),
     _vm._v(" "),
     _c(
@@ -52103,7 +52193,7 @@ var render = function() {
                   expression: "mssgid"
                 }
               ],
-              attrs: { rows: "8", cols: "55", name: "mssgid", id: "mssgid" },
+              attrs: { rows: "8", cols: "63", name: "mssgid", id: "mssgid" },
               domProps: { value: _vm.mssgid },
               on: {
                 input: function($event) {
@@ -52439,11 +52529,11 @@ var render = function() {
               [
                 _vm.soyunaempresa
                   ? _c("div", [
-                      _c("h1", { staticClass: "display-4 d-none d-sm-block" }, [
+                      _c("h1", { staticClass: "display-4 " }, [
                         _vm._v("Mi área")
                       ]),
                       _vm._v(" "),
-                      _c("p", { staticClass: "lead d-none d-sm-block" }, [
+                      _c("p", { staticClass: "lead text-nowrap" }, [
                         _vm._v("Acceda a sus datos y a sus candidaturas")
                       ])
                     ])
@@ -52485,7 +52575,25 @@ var render = function() {
                   attrs: { id: "pills-nav", role: "tablist" }
                 },
                 [
-                  _vm._m(3),
+                  _c("li", { staticClass: "nav-item btn-xs-block" }, [
+                    _c(
+                      "a",
+                      {
+                        staticClass: "nav-link btn-lg",
+                        class: { active: !_vm.tab },
+                        attrs: {
+                          id: "nav-pills-01",
+                          "data-toggle": "pill",
+                          href: "#nav-item-01"
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                  Datos\n                  Personales\n                "
+                        )
+                      ]
+                    )
+                  ]),
                   _vm._v(" "),
                   _c("li", { staticClass: "nav-item btn-xs-block" }, [
                     _c(
@@ -52546,6 +52654,7 @@ var render = function() {
                             }
                           ],
                           staticClass: "nav-link btn-lg",
+                          class: { active: _vm.tab },
                           attrs: {
                             id: "nav-pills-03",
                             "data-toggle": "pill",
@@ -52579,7 +52688,8 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "tab-pane fade show active",
+                  staticClass: "tab-pane fade show",
+                  class: { active: !_vm.tab },
                   attrs: { id: "nav-item-01", role: "tabpanel" }
                 },
                 [
@@ -52717,7 +52827,8 @@ var render = function() {
               _c(
                 "div",
                 {
-                  staticClass: "tab-pane fade",
+                  staticClass: "tab-pane  fade show",
+                  class: { active: _vm.tab },
                   attrs: { id: "nav-item-03", role: "tabpanel" }
                 },
                 [
@@ -52919,29 +53030,6 @@ var staticRenderFns = [
           [_vm._v("Cerrar")]
         )
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", { staticClass: "nav-item btn-xs-block" }, [
-      _c(
-        "a",
-        {
-          staticClass: "nav-link active btn-lg",
-          attrs: {
-            id: "nav-pills-01",
-            "data-toggle": "pill",
-            href: "#nav-item-01"
-          }
-        },
-        [
-          _vm._v(
-            "\n                  Datos\n                  Personales\n                "
-          )
-        ]
-      )
     ])
   }
 ]
@@ -53453,7 +53541,7 @@ var render = function() {
             domProps: { value: _vm.salario_i },
             on: {
               change: function($event) {
-                _vm.salario_i = $event.target.value
+                _vm.slario_i = $event.target.value
               },
               input: function($event) {
                 if ($event.target.composing) {
@@ -53625,9 +53713,10 @@ var render = function() {
       _vm._v(" "),
       _c("div", { staticClass: "form-row" }, [
         _c("div", { staticClass: "col-12", attrs: { id: "mensajesinsc" } }, [
-          _c("p", { staticClass: "alert text-center" }, [
-            _vm._v(_vm._s(_vm.salida))
-          ])
+          _c("p", {
+            staticClass: "alert text-center",
+            domProps: { innerHTML: _vm._s(_vm.salida) }
+          })
         ])
       ]),
       _vm._v(" "),
@@ -53718,7 +53807,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "col-2 pb-0 inicio espacio", attrs: { id: "sideBar" } },
+    { staticClass: "col-2 pb-0 inicio2 espacio", attrs: { id: "sideBar" } },
     [
       _c("h3", { staticClass: "text-center" }, [
         _c("a", { attrs: { href: _vm.rutainicial } }, [
@@ -53814,7 +53903,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "col-2 pb-0 inicio espacio", attrs: { id: "sideBar" } },
+    { staticClass: "col-2 pb-0 inicio2 espacio", attrs: { id: "sideBar" } },
     [
       _c("h3", { staticClass: "text-center" }, [
         _c("a", { attrs: { href: _vm.ruta1 } }, [
@@ -53915,6 +54004,61 @@ var render = function() {
   ])
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/WelcomemiscandidaturasComponent.vue?vue&type=template&id=10ce0ec8&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/WelcomemiscandidaturasComponent.vue?vue&type=template&id=10ce0ec8& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { on: { click: _vm.componerruta } }, [
+    _c("button", { attrs: { href: _vm.ruta, disabled: _vm.habilitar } }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("p", { staticClass: "text-light" }, [
+        _vm._v("Acceda a sus candidaturas")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary m-auto btn-block",
+          attrs: { type: "button", href: _vm.ruta }
+        },
+        [_vm._v("\n                    Ver")]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", { staticClass: "movil text-light" }, [
+      _c("span", {
+        staticClass: "glyphicon glyphicon-phone-alt text-light",
+        attrs: { "aria-hidden": "true" }
+      }),
+      _c("br"),
+      _vm._v("Mis candidaturas")
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -70202,7 +70346,8 @@ var map = {
 	"./components/ResultadosComponent.vue": "./resources/js/components/ResultadosComponent.vue",
 	"./components/SidebarempresaComponent.vue": "./resources/js/components/SidebarempresaComponent.vue",
 	"./components/SidebarvolverComponent.vue": "./resources/js/components/SidebarvolverComponent.vue",
-	"./components/TooltipComponent.vue": "./resources/js/components/TooltipComponent.vue"
+	"./components/TooltipComponent.vue": "./resources/js/components/TooltipComponent.vue",
+	"./components/WelcomemiscandidaturasComponent.vue": "./resources/js/components/WelcomemiscandidaturasComponent.vue"
 };
 
 
@@ -70663,15 +70808,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!*********************************************************!*\
   !*** ./resources/js/components/CurriculumComponent.vue ***!
   \*********************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _CurriculumComponent_vue_vue_type_template_id_7d683fe7_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CurriculumComponent.vue?vue&type=template&id=7d683fe7&scoped=true& */ "./resources/js/components/CurriculumComponent.vue?vue&type=template&id=7d683fe7&scoped=true&");
 /* harmony import */ var _CurriculumComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./CurriculumComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/CurriculumComponent.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _CurriculumComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _CurriculumComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _CurriculumComponent_vue_vue_type_style_index_0_id_7d683fe7_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CurriculumComponent.vue?vue&type=style&index=0&id=7d683fe7&scoped=true&lang=css& */ "./resources/js/components/CurriculumComponent.vue?vue&type=style&index=0&id=7d683fe7&scoped=true&lang=css&");
+/* empty/unused harmony star reexport *//* harmony import */ var _CurriculumComponent_vue_vue_type_style_index_0_id_7d683fe7_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./CurriculumComponent.vue?vue&type=style&index=0&id=7d683fe7&scoped=true&lang=css& */ "./resources/js/components/CurriculumComponent.vue?vue&type=style&index=0&id=7d683fe7&scoped=true&lang=css&");
 /* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
@@ -70703,7 +70847,7 @@ component.options.__file = "resources/js/components/CurriculumComponent.vue"
 /*!**********************************************************************************!*\
   !*** ./resources/js/components/CurriculumComponent.vue?vue&type=script&lang=js& ***!
   \**********************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -72067,11 +72211,80 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/WelcomemiscandidaturasComponent.vue":
+/*!*********************************************************************!*\
+  !*** ./resources/js/components/WelcomemiscandidaturasComponent.vue ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _WelcomemiscandidaturasComponent_vue_vue_type_template_id_10ce0ec8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./WelcomemiscandidaturasComponent.vue?vue&type=template&id=10ce0ec8& */ "./resources/js/components/WelcomemiscandidaturasComponent.vue?vue&type=template&id=10ce0ec8&");
+/* harmony import */ var _WelcomemiscandidaturasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./WelcomemiscandidaturasComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/WelcomemiscandidaturasComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _WelcomemiscandidaturasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _WelcomemiscandidaturasComponent_vue_vue_type_template_id_10ce0ec8___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _WelcomemiscandidaturasComponent_vue_vue_type_template_id_10ce0ec8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/WelcomemiscandidaturasComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/WelcomemiscandidaturasComponent.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************!*\
+  !*** ./resources/js/components/WelcomemiscandidaturasComponent.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WelcomemiscandidaturasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./WelcomemiscandidaturasComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/WelcomemiscandidaturasComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_WelcomemiscandidaturasComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/WelcomemiscandidaturasComponent.vue?vue&type=template&id=10ce0ec8&":
+/*!****************************************************************************************************!*\
+  !*** ./resources/js/components/WelcomemiscandidaturasComponent.vue?vue&type=template&id=10ce0ec8& ***!
+  \****************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WelcomemiscandidaturasComponent_vue_vue_type_template_id_10ce0ec8___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./WelcomemiscandidaturasComponent.vue?vue&type=template&id=10ce0ec8& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/WelcomemiscandidaturasComponent.vue?vue&type=template&id=10ce0ec8&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WelcomemiscandidaturasComponent_vue_vue_type_template_id_10ce0ec8___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_WelcomemiscandidaturasComponent_vue_vue_type_template_id_10ce0ec8___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/store/actions.js":
 /*!***************************************!*\
   !*** ./resources/js/store/actions.js ***!
   \***************************************/
-/*! exports provided: getCategorias, getTrabajadores, getTrabajadoresPorOferta, getEmpresas, getExperiencias */
+/*! exports provided: getCategorias, getTrabajadores, getTrabajadoresPorOferta, getMostrarCandidaturas, getEmpresas, getExperiencias */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -72079,6 +72292,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getCategorias", function() { return getCategorias; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTrabajadores", function() { return getTrabajadores; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTrabajadoresPorOferta", function() { return getTrabajadoresPorOferta; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getMostrarCandidaturas", function() { return getMostrarCandidaturas; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getEmpresas", function() { return getEmpresas; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getExperiencias", function() { return getExperiencias; });
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
@@ -72108,24 +72322,27 @@ var getTrabajadores = function getTrabajadores(_ref2) {
 var getTrabajadoresPorOferta = function getTrabajadoresPorOferta(_ref3) {
   var commit = _ref3.commit;
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(route('trabajadoresporoferta')).then(function (response) {
-    console.log(response.data);
     commit('SET_TRABAJADORESPOROFERTA', response.data);
   });
 };
-var getEmpresas = function getEmpresas(_ref4) {
+var getMostrarCandidaturas = function getMostrarCandidaturas(_ref4, value) {
   var commit = _ref4.commit;
+  commit('SET_MOSTRARCANDIDATURAS', value);
+};
+var getEmpresas = function getEmpresas(_ref5) {
+  var commit = _ref5.commit;
   axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(route('empresas')).then(function (response) {
     commit('SET_EMPRESAS', response.data);
   });
 };
 var getExperiencias = /*#__PURE__*/function () {
-  var _ref6 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref5) {
+  var _ref7 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(_ref6) {
     var commit;
     return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
-            commit = _ref5.commit;
+            commit = _ref6.commit;
             _context.next = 3;
             return axios__WEBPACK_IMPORTED_MODULE_1___default.a.get(route('experiencias')).then(function (response) {
               commit('SET_EXPERIENCIAS', response.data);
@@ -72140,7 +72357,7 @@ var getExperiencias = /*#__PURE__*/function () {
   }));
 
   return function getExperiencias(_x) {
-    return _ref6.apply(this, arguments);
+    return _ref7.apply(this, arguments);
   };
 }();
 
@@ -72275,7 +72492,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue2_google_maps__WEBPACK_IMPORTE
 /*!*****************************************!*\
   !*** ./resources/js/store/mutations.js ***!
   \*****************************************/
-/*! exports provided: SET_CATEGORIAS, SET_EMPRESAS, SET_TRABAJADORES, SET_EXPERIENCIAS, SET_TRABAJADORESPOROFERTA */
+/*! exports provided: SET_CATEGORIAS, SET_EMPRESAS, SET_TRABAJADORES, SET_EXPERIENCIAS, SET_TRABAJADORESPOROFERTA, SET_MOSTRARCANDIDATURAS */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -72285,6 +72502,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_TRABAJADORES", function() { return SET_TRABAJADORES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_EXPERIENCIAS", function() { return SET_EXPERIENCIAS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_TRABAJADORESPOROFERTA", function() { return SET_TRABAJADORESPOROFERTA; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SET_MOSTRARCANDIDATURAS", function() { return SET_MOSTRARCANDIDATURAS; });
 var SET_CATEGORIAS = function SET_CATEGORIAS(state, categoria) {
   state.categorias = categoria;
 };
@@ -72299,6 +72517,10 @@ var SET_EXPERIENCIAS = function SET_EXPERIENCIAS(state, experiencia) {
 };
 var SET_TRABAJADORESPOROFERTA = function SET_TRABAJADORESPOROFERTA(state, trabajador) {
   state.trabajadoresporoferta = trabajador;
+};
+var SET_MOSTRARCANDIDATURAS = function SET_MOSTRARCANDIDATURAS(state, valor) {
+  state.mostrarcandidaturas = null;
+  state.mostrarcandidaturas = valor;
 };
 
 /***/ }),
@@ -72317,7 +72539,8 @@ __webpack_require__.r(__webpack_exports__);
   empresas: [],
   trabajadores: [],
   experiencias: [],
-  trabajadoresporoferta: []
+  trabajadoresporoferta: [],
+  mostrarcandidaturas: false
 });
 
 /***/ }),

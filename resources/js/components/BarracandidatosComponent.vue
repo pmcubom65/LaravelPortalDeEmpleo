@@ -1,7 +1,7 @@
 <template>
 <div>
   <div v-observe-visibility="visibilityChanged"></div>
-  <div id="sideBar" class="col-2 pb-0 inicio espacio"
+  <div id="sideBar" class="col-2 pb-0 inicio2 espacio"
        v-infinite-scroll="loadMore"
       infinite-scroll-disabled="busy"
       infinite-scroll-distance="0">

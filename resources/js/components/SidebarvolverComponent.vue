@@ -1,5 +1,5 @@
 <template>
-     <div id="sideBar" class="col-2 pb-0 inicio espacio">
+     <div id="sideBar" class="col-2 pb-0 inicio2 espacio">
       <h3 class="text-center">
         <a :href="ruta1">
           <span class="misiconos glyphicon glyphicon-repeat text-light"></span>

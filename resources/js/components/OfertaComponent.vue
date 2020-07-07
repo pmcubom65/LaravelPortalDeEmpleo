@@ -61,7 +61,7 @@
           placeholder="introduzca salario"
           :disabled="habilitado_i"
           v-model="salario_i"
-          @change="salario_i=$event.target.value"
+          @change="slario_i=$event.target.value"
         />
       </div>
 
@@ -128,7 +128,7 @@
 
     <div class="form-row">
       <div class="col-12" id="mensajesinsc">
-        <p class="alert text-center">{{ salida }}</p>
+        <p class="alert text-center" v-html="salida"></p>
       </div>
     </div>
 
@@ -276,6 +276,12 @@ export default {
           });
       } else {
         
+
+        if (typeof this.salario!=='number' || this.salario_i<12000) {
+          this.salida='El salario tiene que ser mayor que 12000 euros'
+        }else {
+
+
         axios
           .put(route("oferta", { id: this.id }), {
             titulo: this.titulo_i,
@@ -289,22 +295,32 @@ export default {
           })
           .then(response => {
             let valores = response.data;
-            console.log(response);
+            this.salida='';
+           
             let key;
             Object.entries(valores).forEach(entry => {
               key = entry[0];
+             
+              if (key === "success") {
               this.salida = entry[1].toString();
-            });
-            if (key === "success") {
               this.abierto_i = 1;
               this.habilitado_i=true;
+            }else {
+              var campoerroneo=key.toString();
+              var clave=entry[1].toString();
+              
+              this.salida = this.salida+'  '+clave+': '+campoerroneo+'.<br/>';
+            
             }
+            });
+         
           })
           .catch(error => {
             console.log(error);
            
     
           });
+      }
       }
     }
   },

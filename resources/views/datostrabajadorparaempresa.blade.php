@@ -4,7 +4,8 @@
 <div class="container-fluid">
 
 
-    <sidebarvolver-component :id="Number('Auth::id()')" :oferta="Number('{{$oferta_id}}')"></sidebarvolver-component>
+    <sidebarvolver-component :id="Number('Auth::id()')" :oferta="Number('{{$oferta_id}}')"
+    ></sidebarvolver-component>
 
     <div class="row col-10 espacio2 float-right">
 

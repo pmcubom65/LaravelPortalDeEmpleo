@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-4 p-3">
+  <div class="col-4 p-3">
     <h3 class="text-center">Contactanos</h3>
     <form id="contactarid" @submit.prevent="submitEmail" >
 
@@ -24,7 +24,7 @@
         />
       </div>
       <div class="form-group">
-        <textarea rows="8" cols="55" name="mssgid" id="mssgid" v-model="mssgid">Mensaje</textarea>
+        <textarea rows="8" cols="63" name="mssgid" id="mssgid" v-model="mssgid">Mensaje</textarea>
       </div>
       <div class="form-group text-center sinmargen">
         <button type="submit" class="btn btn-primary btn-lg" :disabled="resultado">Enviar Correo</button>

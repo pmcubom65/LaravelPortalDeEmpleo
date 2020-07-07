@@ -37,7 +37,7 @@ Auth::routes();
 
 
 Route::get('/categorias', function(){
-  $Response=Categoria::all();
+  $Response=Categoria::orderBy('nombre')->get();
   return response()->json($Response,200);
 
 })->name('categorias')->middleware('protectjson');
