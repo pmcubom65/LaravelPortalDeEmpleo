@@ -9,8 +9,8 @@
 
 <div class="container-fluid position-ref full-height">
 
-    <div class="container-fluid d-none d-lg-block" style="height: 100vh; padding-top: 0;">
-        <div class="container-fluid justify-content-center align-items-center">
+    <div class="container-fluid" style="height: 100vh; padding-top: 0;">
+        <div class="d-none d-lg-block container-fluid justify-content-center align-items-center">
 
             <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -64,7 +64,7 @@
         </section>
 
 
-        <section id="informacion" class="informacion-section">
+        <section id="informacion" class="d-none d-lg-block informacion-section">
             <div id="informacion2" class="container espacio2">
                 <div class="row">
                     <div class="col-lg-12">
@@ -130,7 +130,7 @@
 
 
 
-        <section id="plx">
+        <section class="d-none d-lg-block" id="plx">
             <div class="container">
                 <div class="wtitle text-center text-light">
                     <h2>Proporcionamos las mejores herramientas para empresarios y trabajadores.
@@ -145,7 +145,7 @@
 
             @include('buscarempleo')
         </div>
-        <div class="container-fluid position-ref">
+        <div class="d-none d-lg-block container-fluid position-ref">
             <section id="pfooter">
                 <div class="container">
                     <div class="row text-light container">
@@ -200,17 +200,9 @@
 </div>
 
 
-<div class="container-fluid d-lg-none" style="height: 100vh; padding-top: 0;">
-    @if (Auth::check())
-    <welcomemiscandidaturas-component :login="Boolean('{{Auth::check()}}')" :id="Number('{{Auth::id()}}')"
-        :rol="Number('{{Auth::user()->rol_id}}')"></welcomemiscandidaturas-component>
-    @else
-    <welcomemiscandidaturas-component :login="Boolean('{{Auth::check()}}')"></welcomemiscandidaturas-component>
-    @endif
-    @include('buscarempleo')
 
 
-</div>
+
 
 
 

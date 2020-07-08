@@ -1,5 +1,5 @@
 <template>
-
+ <div class="col-10 text-center mx-auto anchura">
 
             <div class="col-12 d-inline-block ">
             <div class="card">
@@ -62,7 +62,7 @@
 
            
 
-
+</div>
       
 </template>
 
@@ -115,5 +115,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+  .anchura {
+    min-width: 250px;
+    margin-left: 0;
+    padding-left: 0;
+   
+  }
 </style>

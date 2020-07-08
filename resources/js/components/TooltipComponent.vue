@@ -56,7 +56,7 @@ export default {
   z-index: 2000;
 
   .tooltip-inner {
-    background: indigo;
+    background:orangered;
     color: white;
     border-radius: 16px;
     padding: 5px 10px 4px;
@@ -69,7 +69,7 @@ export default {
     border-style: solid;
     position: absolute;
     margin: 5px;
-    border-color: indigo;
+    border-color: orangered;
     z-index: 1;
   }
 

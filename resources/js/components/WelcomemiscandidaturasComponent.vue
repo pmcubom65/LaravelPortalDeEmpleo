@@ -80,3 +80,13 @@ export default {
   }
 };
 </script>
+
+
+<style lang="scss" scoped>
+.div1 {
+   @media (max-width: 767.98px) { 
+    margin-bottom: 15px;
+
+  }
+}
+</style>

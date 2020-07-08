@@ -24,7 +24,9 @@ class OfertaController extends Controller
 
 
         $messages= [
-            'required'=>'Se tienen que rellenar todos los campos'
+            'required'=>'Se tienen que rellenar todos los campos',
+            'numeric'=>'El salario tiene que ser un número ',
+            'min'=>'El salario tiene que ser como mínimo 12000 '
         ];
 
 
@@ -34,7 +36,7 @@ class OfertaController extends Controller
                 'titulo' => 'required',
                 'Provincia'=>'required',
                 'Experiencia'=>'required',
-                'Salarioid'=>'required',
+                'Salarioid'=>'required|numeric|min:12000',
                 'contrato'=>'required',
                 'oferta'=>'required',
                 'cat'=>'required'

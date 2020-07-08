@@ -16,7 +16,11 @@
                 :esarea="true" :datostrabajador="JSON.parse('{{$trabajador->toJson()}}')"
                 :fecha="'{{$trabajador->getDate()}}'" :region="'{{$trabajador->hasProvincia->region_name}}'"
                 :hhabilitado="true" :cabecera="false" :token="'{{Session::token()}}'" :soyunaempresa="false"
-                :nombre="'{{$usuario->name}}'"></miarea-component>
+                :nombre="'{{$usuario->name}}'"
+               
+                
+                
+                ></miarea-component>
 
         </div>
 

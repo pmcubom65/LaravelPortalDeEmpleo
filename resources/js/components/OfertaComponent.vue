@@ -52,7 +52,7 @@
 
     <div class="form-row">
       <div class="form-group col-sm-6">
-        <label for="Salario">Salario bruto anual Jornada Completa</label>
+        <label for="Salario" class="text-nowrap">Salario bruto anual Jornada Completa</label>
         <input
           type="text"
           class="form-control"
@@ -254,7 +254,7 @@ export default {
   },
   methods: {
     inscribirse: function() {
-      
+    
       if (!this.crearoferta) {
         axios
           .post(route("apuntarse", { id: this.id }), {
@@ -275,12 +275,7 @@ export default {
             console.log(error);
           });
       } else {
-        
-
-        if (typeof this.salario!=='number' || this.salario_i<12000) {
-          this.salida='El salario tiene que ser mayor que 12000 euros'
-        }else {
-
+          this.salida='';
 
         axios
           .put(route("oferta", { id: this.id }), {
@@ -320,7 +315,7 @@ export default {
            
     
           });
-      }
+      
       }
     }
   },

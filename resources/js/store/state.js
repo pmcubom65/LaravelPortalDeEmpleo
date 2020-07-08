@@ -7,5 +7,5 @@ export default {
     trabajadores: [],
     experiencias: [],
     trabajadoresporoferta: [],
-    mostrarcandidaturas: candidatura ? candidatura : null,
+    mostrarcandidaturas: candidatura ? candidatura : false,
 }

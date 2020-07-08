@@ -6,25 +6,27 @@
     <div class="media border border-primary rounded lead"  @click="elejido(datostrabajador)" :class="{ fondo : destacar }">
       <img
         :src="'/images/'+datostrabajador.imagen"
-        class="align-self-center mr-3 mifoto d-xs-block"
+        class="align-self-center mr-3 mifoto"
         alt="foto"
       />
       <div class="media-body">
-        <h3 class="mt-0 d-none d-lg-block d-xl-none">
-          <span class="font-weight-bold">{{ datostrabajador.name }}</span>
+        <h3 class="mt-0 text-nowrap ">
+          <span class="font-weight-bold d-none d-sm-block">{{ datostrabajador.name }}</span>
         </h3>
-        <p class="d-none d-lg-block d-xl-none">
+        <p class="d-none d-sm-block">
           <span class="font-weight-bold ">Direccion:</span>
           {{ datostrabajador.direccion }} ({{ datostrabajador.region }})
         </p>
-        <p class="mb-0 d-none d-lg-block d-xl-none">
-          <span class="font-weight-bold d-none d-lg-block d-xl-none">Fecha de nacimiento:</span>
+        <p class="mb-0 d-none d-none d-sm-block">
+          <span class="font-weight-bold d-none d-sm-block">Fecha de nacimiento:</span>
           {{ datostrabajador.fecha.substr(0, datostrabajador.fecha.indexOf(" ")) }}
 
         
         </p>
-     
-        <a type="button" class="btn btn-primary btn-lg botonescandidatos" :href="rutacurriculum">Ver más detalles</a>
+    
+        <a type="button" class="btn btn-primary btn-lg botonescandidatos text-nowrap btn-xs-block" :href="rutacurriculum">
+          <span class="font-weight-bold d-block d-sm-none">{{ datostrabajador.name }}</span>
+          Ver más detalles</a>
         <a
           class="btn btn-success btn-lg botonescandidatos "
           :href="this.rutaentrevista"
@@ -116,6 +118,10 @@ export default {
   width: auto;
   height: 100px;
   float: right;
+  @media screen and (max-width : 768px){
+
+    margin: 0;
+  }
 }
 .fondo {
   background-color: red !important;

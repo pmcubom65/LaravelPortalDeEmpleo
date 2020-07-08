@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header bg-primary text-white login">{{ __('Login') }}
+                <div class="card-header bg-primary text-white text-left login">{{ __('Login') }}
 
                 <a class="btn btn-danger text-right btn-lg float-right" type="button" href="/admins/login" >Administradores</a>
                 </div>
@@ -64,15 +64,22 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-lg btn-primary">
+                                <button type="submit" class="btn btn-lg btn-primary btn-xs-block">
                                     {{ __('Login') }}
                                 </button>
 
-                                @if (Route::has('password.request'))
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-0">
+                            <div class="col-md-8 offset-md-4">
+                                
+                            @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('¿Olvidaste la contraseña?') }}
                                     </a>
                                 @endif
+
                             </div>
                         </div>
                     </form>

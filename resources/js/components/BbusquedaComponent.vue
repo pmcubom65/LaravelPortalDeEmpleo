@@ -12,7 +12,7 @@
         <a :href="mutableoferta">
           <span class="misiconos glyphicon glyphicon-flag text-light"></span>
           <br />
-        </a><span class="d-block">Ver oferta Seleccionada</span>
+        </a><span class="d-block">Ver oferta</span>
       </h3>
 
       <h3 class="text-center">
@@ -24,7 +24,7 @@
       <h3 class="text-center">
         <a :href="mihref">
           <span class="misiconos glyphicon glyphicon-paperclip text-light"></span>
-        </a><span class="d-block">Gestionar Candidaturas</span>
+        </a><span class="d-block">Mi Perfil</span>
       </h3>
     </div>
   </div>

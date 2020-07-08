@@ -6,6 +6,7 @@
     tabindex="-1"
     role="dialog"
     aria-hidden="true"
+    v-click-outside="cerrarmodal"
    
   >
     <div class="modal-dialog" role="document">
@@ -66,7 +67,7 @@
               Categoria
             </button>
 
-              <button class="btn btn-success m-auto btn-xs-block btn-lg"  @click="cerrarmodal"   data-dismiss="modal" type="button" v-show="!mostrarbotoncat">
+              <button class="btn btn-secondary m-auto btn-xs-block btn-lg"  @click="cerrarmodal"   data-dismiss="modal" type="button" v-show="!mostrarbotoncat">
               Cerrar
             </button>
                   

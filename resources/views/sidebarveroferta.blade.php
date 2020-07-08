@@ -14,8 +14,8 @@
         <span class="d-block">Volver</span>
     </h3>
     @else
-    <h3 class="text-center text-muted"><span class="glyphicon glyphicon-paperclip text-muted"></span>
-        <span class="d-block">Gestionar Candidaturas</span>
+    <h3 class="text-center text-muted"><span class="muted glyphicon glyphicon-paperclip text-muted"></span>
+        <span class="d-block text-center">Gestionar</span>
     </h3>
     @endif
 </div>

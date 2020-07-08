@@ -274,7 +274,7 @@ hr {
 
 @media (max-width: 767.98px) { 
   .alert {
-    color: greenyellow !important;
+    color: orangered !important;
     font-weight: bold;
     font-size: 120%;
   }
@@ -322,7 +322,10 @@ text-align: center;
 color: white;
 
 }
- 
+
+.muted {
+  border: 2px solid grey !important;
+}
 
 .inicio { .col-md-4 {
   margin-top: 10px;

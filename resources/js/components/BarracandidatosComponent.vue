@@ -8,13 +8,13 @@
     <div class="bajando " v-if="gris">
       <h3 class="text-center text-secondary"  :style="{ 'padding-top': computar }">
         <a>
-          <span class="misiconos glyphicon glyphicon-ok text-secondary"></span>
+          <span class="misiconos glyphicon glyphicon-ok text-secondary muted"></span>
         </a><span class="d-block">Seleccionar</span>
       </h3>
 
       <h3 class="text-center text-secondary">
         <a>
-          <span class="misiconos glyphicon glyphicon-remove text-secondary"></span>
+          <span class="misiconos glyphicon glyphicon-remove text-secondary muted"></span>
         </a><span class="d-block">Descartar</span>
       </h3>
     </div>

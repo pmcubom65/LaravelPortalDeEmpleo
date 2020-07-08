@@ -15,16 +15,16 @@
       ></curriculum-component>
     </div>
 
-
-
         <div v-if="computarcontactos" class="container my-0 ">
             <button id="contactos" class="btn btn-default btn-lg btn-link float-right " data-toggle="modal" data-target="#modalentrevista"
               >
-                <span class="glyphicon glyphicon-comment float-right animate__animated animate__bounce animate__repeat-3"></span>
+                <span class="glyphicon glyphicon-comment float-right" :class="botar(contactos.length)"></span>
             </button>
-            <span class="badge badge-notify float-right animate__animated animate__bounce animate__repeat-3" style="  top: 10px;
+            <span class="badge badge-notify float-right"  :class="botar(contactos.length)" style="  top: 10px;
   left: 50px;" id="mibadge"> {{ contactos.length }}</span>
         </div>
+
+
 
       <!--Modal de las notificaciones de la entrevista -->
          <div class="modal" tabindex="-1" role="dialog" id="modalentrevista" v-show="soyunaempresa" aria-hidden="true">
@@ -83,11 +83,11 @@
           </div>
           <div class="col-7  text-left titular" id="area">
             <div v-if="soyunaempresa">
-            <h1  class="display-4 ">Mi área</h1>
-             <p  class="lead text-nowrap">Acceda a sus datos y a sus candidaturas</p>
+            <h1  class="display-4 d-none d-sm-block">Mi área</h1>
+             <p  class="lead text-nowrap d-none d-sm-block">Acceda a sus datos y a sus candidaturas</p>
             </div>
-            <div v-else>
-            <h1  class="display-4 d-none d-sm-block">{{ nombre }}</h1>
+            <div v-else class="d-block">
+            <h2  class="display-4 d-none d-sm-block tituloemp">{{ nombre }}</h2>
             </div>
            
           </div>
@@ -279,17 +279,20 @@ export default {
       return this.$store.state.empresas;
     },
     computar(){
-      return this.$props.candidaturas && this.$props.candidaturas.length>0 && this.$props.soyunaempresa;
+      return this.$props.soyunaempresa && this.$props.candidaturas && this.$props.candidaturas.length>0;
     },
     computarcontactos() {
-      return this.modelestrabajador && this.$props.contactos && this.$props.soyunaempresa;
+      return this.$props.soyunaempresa && this.modelestrabajador && this.$props.contactos;
     },
 
     tab() {
 
-      
       return (this.$store.state.mostrarcandidaturas==="true");
     },
+
+ 
+
+
   },
 
   props: {
@@ -315,12 +318,18 @@ export default {
 
     candidaturas: {
       type: Array,
-      required: false
+      required: false,
+      default: function() {
+        return []
+      }
     },
 
-       contactos: {
+    contactos: {
       type: Array,
-      required: false
+      required: false,
+      default: function() {
+        return []
+      }
     },
 
 
@@ -386,6 +395,15 @@ export default {
     },
     emitirexperiencia: function(id) {
       bus.$emit('experienciaseleccionada', id);
+    },
+
+       botar : function(valor) {
+
+        if (valor==0) {
+      return '';
+        } else {
+          return 'animate__animated animate__bounce animate__repeat-3';
+        }
     }
 
 }
@@ -406,11 +424,17 @@ export default {
 .mifoto {
   width: auto;
   max-height: 100px;
+  
   float: right;
 @media (max-width: 767.98px)  {
     float: none;
-   margin-left: 45px;
+   margin-left: 60px;
+   height: auto;
+   min-width: 80px;
+    
   }
+
+ 
  
 }
 
@@ -444,5 +468,15 @@ export default {
 
 .modal-body {
   overflow: hidden;
+}
+
+.tituloemp {
+  text-align: left;
+  @media (max-width: 767.98px)  {
+  font-size: 2.3em;
+ 
+  text-align: right;
+ 
+  }
 }
 </style>
