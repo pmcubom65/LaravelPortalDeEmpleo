@@ -47,7 +47,7 @@
     @endif
 
     <experiencia-component :hhabilitado="false" :token="'{{Session::token()}}'"
-        :categorias="JSON.parse('{{$categorias->toJson()}}')" :id="'{{Auth::id()}}'" :hhabilitado="false">
+        :categorias="JSON.parse('{{$categorias->toJson()}}')" :id="'{{Auth::id()}}'" >
     </experiencia-component>
 
 </div>

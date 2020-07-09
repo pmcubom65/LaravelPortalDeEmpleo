@@ -98,13 +98,14 @@
              <p class="alert text-center" v-html="salida"></p>
             </div>
             <div class="form-row col-12">
-            <button  class="btn btn-success m-auto btn-xs-block btn-lg" type="submit" v-show="abierto_i">
+            <button  class="btn btn-success m-auto btn-xs-block btn-lg" type="submit" v-show="abierto_i && typeof getExperiencias === 'undefined'">
               Guardar
               Experiencia
             </button>
             
 
-            <button class="btn btn-success m-auto btn-xs-block btn-lg"  @click="cerrarmodal"   data-dismiss="modal" type="button" v-show="!abierto_i">
+            <button class="btn btn-success m-auto btn-xs-block btn-lg"  @click="cerrarmodal"   data-dismiss="modal" type="button"
+            v-show="typeof getExperiencias !== 'undefined' || !abierto_i">
               Cerrar
             </button>
             </div>
@@ -121,45 +122,32 @@ import { bus } from "../app";
 export default {
   computed: {
      getExperiencias() {
-      var valor=   this.$store.getters.getExperienciasById(this.$props.id).find((experiencia)=>{
-      return experiencia.id==this.experiencia});
-      
-      return valor;
+        return this.experiencia;
     },
     getExperienciasnombre(){
-      return (typeof this.getExperiencias !== 'undefined' ) ? this.getExperiencias.nombre : this.cat_i;
+      return (typeof this.experiencia !== 'undefined' ) ? this.experiencia.nombre : this.cat_i;
     },
     getletrero() {
-      if (typeof this.getExperiencias !== 'undefined' ){
-          return 'Experiencia laboral: '+this.getExperiencias.puesto;
+      if (typeof this.experiencia !== 'undefined' ){
+          return 'Experiencia laboral: '+this.experiencia.puesto;
       }else {
         return 'Añada su experiencia laboral';
       }
     }
   },
     created() {
-   bus.$on("experienciaseleccionada", (id) => {
-      this.experiencia=id;
-      this.abierto_i=false;
+    bus.$on("experienciaseleccionada", (exp) => {
+       this.experiencia=exp;
+     
+       
       });
+
+      
     
   }
   ,
     props: {
  
-    cat: {
-      type: String,
-      required: false
-    },
-   
-    categoria_id: {
-      type: String,
-      required: false
-    },
-    nombre: {
-      type: String,
-      required: false
-    },
     
     hhabilitado: {
       type: Boolean,
@@ -185,9 +173,9 @@ export default {
       desexp_i: '',
       salida: '',
       abierto_i: true,
-      trabajador : this.$props.estrabajador,
       habilitado: this.$props.hhabilitado,
-      experiencia: 0,
+      experiencia: Object,
+      categoria_id: 0
      
       
     };
@@ -204,7 +192,7 @@ export default {
       this.abierto_i=true
       this.trabajador=this.$props.estrabajador
       this.habilitado=this.$props.hhabilitado
-      this.experiencia=0
+  
     },
 
 

@@ -394,7 +394,13 @@ export default {
       return this.empresanombre(this.$props.candidaturas.find(candidatura => candidatura.id == id).empresa_id);
     },
     emitirexperiencia: function(id) {
-      bus.$emit('experienciaseleccionada', id);
+  
+      
+      let experienciach=this.getExperiencias.filter(experiencia => {
+          return (experiencia.id==id)
+      });
+   
+      bus.$emit('experienciaseleccionada', experienciach[0]);
     },
 
        botar : function(valor) {

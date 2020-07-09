@@ -26,6 +26,8 @@ export const getExperienciasById = (state) => (user_id) => {
 }
 
 
+
+
 export const getTrabajadorByOferta = (state) => (oferta_id) => {
 
   var salida = state.trabajadoresporoferta.filter(trabajador => {

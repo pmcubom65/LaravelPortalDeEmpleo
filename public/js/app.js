@@ -3690,49 +3690,32 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     getExperiencias: function getExperiencias() {
-      var _this = this;
-
-      var valor = this.$store.getters.getExperienciasById(this.$props.id).find(function (experiencia) {
-        return experiencia.id == _this.experiencia;
-      });
-      return valor;
+      return this.experiencia;
     },
     getExperienciasnombre: function getExperienciasnombre() {
-      return typeof this.getExperiencias !== 'undefined' ? this.getExperiencias.nombre : this.cat_i;
+      return typeof this.experiencia !== 'undefined' ? this.experiencia.nombre : this.cat_i;
     },
     getletrero: function getletrero() {
-      if (typeof this.getExperiencias !== 'undefined') {
-        return 'Experiencia laboral: ' + this.getExperiencias.puesto;
+      if (typeof this.experiencia !== 'undefined') {
+        return 'Experiencia laboral: ' + this.experiencia.puesto;
       } else {
         return 'Añada su experiencia laboral';
       }
     }
   },
   created: function created() {
-    var _this2 = this;
+    var _this = this;
 
-    _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$on("experienciaseleccionada", function (id) {
-      _this2.experiencia = id;
-      _this2.abierto_i = false;
+    _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$on("experienciaseleccionada", function (exp) {
+      _this.experiencia = exp;
     });
   },
   props: {
-    cat: {
-      type: String,
-      required: false
-    },
-    categoria_id: {
-      type: String,
-      required: false
-    },
-    nombre: {
-      type: String,
-      required: false
-    },
     hhabilitado: {
       type: Boolean,
       required: false
@@ -3754,9 +3737,9 @@ __webpack_require__.r(__webpack_exports__);
       desexp_i: '',
       salida: '',
       abierto_i: true,
-      trabajador: this.$props.estrabajador,
       habilitado: this.$props.hhabilitado,
-      experiencia: 0
+      experiencia: Object,
+      categoria_id: 0
     };
   },
   methods: {
@@ -3771,10 +3754,9 @@ __webpack_require__.r(__webpack_exports__);
       this.abierto_i = true;
       this.trabajador = this.$props.estrabajador;
       this.habilitado = this.$props.hhabilitado;
-      this.experiencia = 0;
     },
     nuevaexperiencia: function nuevaexperiencia() {
-      var _this3 = this;
+      var _this2 = this;
 
       axios.post(route("homeexpe"), {
         _token: this.token,
@@ -3785,22 +3767,22 @@ __webpack_require__.r(__webpack_exports__);
         desexp: this.desexp_i,
         empresaexp: this.empresaexp_i
       }).then(function (response) {
-        _this3.salida = '';
+        _this2.salida = '';
         var valores = response.data;
         Object.entries(valores).forEach(function (entry) {
           if (entry[0].toString() === "success") {
-            _this3.abierto_i = false;
+            _this2.abierto_i = false;
 
-            _this3.$store.dispatch("getTrabajadores");
+            _this2.$store.dispatch("getTrabajadores");
 
-            _this3.$store.dispatch("getExperiencias");
+            _this2.$store.dispatch("getExperiencias");
 
-            _this3.habilitado = true;
-            _this3.salida = entry[1].toString();
+            _this2.habilitado = true;
+            _this2.salida = entry[1].toString();
           } else {
             var campoerroneo = entry[0].toString();
             var clave = entry[1].toString();
-            _this3.salida = _this3.salida + '  ' + clave + ': ' + campoerroneo + '.<br/>';
+            _this2.salida = _this2.salida + '  ' + clave + ': ' + campoerroneo + '.<br/>';
           }
         });
       })["catch"](function (error) {
@@ -4377,7 +4359,10 @@ __webpack_require__.r(__webpack_exports__);
       }).empresa_id);
     },
     emitirexperiencia: function emitirexperiencia(id) {
-      _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$emit('experienciaseleccionada', id);
+      var experienciach = this.getExperiencias.filter(function (experiencia) {
+        return experiencia.id == id;
+      });
+      _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$emit('experienciaseleccionada', experienciach[0]);
     },
     botar: function botar(valor) {
       if (valor == 0) {
@@ -52257,8 +52242,11 @@ var render = function() {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: _vm.abierto_i,
-                          expression: "abierto_i"
+                          value:
+                            _vm.abierto_i &&
+                            typeof _vm.getExperiencias === "undefined",
+                          expression:
+                            "abierto_i && typeof getExperiencias === 'undefined'"
                         }
                       ],
                       staticClass: "btn btn-success m-auto btn-xs-block btn-lg",
@@ -52278,8 +52266,11 @@ var render = function() {
                         {
                           name: "show",
                           rawName: "v-show",
-                          value: !_vm.abierto_i,
-                          expression: "!abierto_i"
+                          value:
+                            typeof _vm.getExperiencias !== "undefined" ||
+                            !_vm.abierto_i,
+                          expression:
+                            "typeof getExperiencias !== 'undefined' || !abierto_i"
                         }
                       ],
                       staticClass: "btn btn-success m-auto btn-xs-block btn-lg",
