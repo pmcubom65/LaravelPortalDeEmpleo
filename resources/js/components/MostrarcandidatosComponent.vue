@@ -8,7 +8,7 @@
               <a class="nav-link" data-toggle="tab" href="#inscritos">
                 <h5 class="font-weight-bolder">
                   Inscritos
-                  <span class="badge badge-light">{{sumainscritos}}</span>
+                  <span class="badge badge-light">{{inscritos.length}}</span>
                 </h5>
               </a>
             </li>
@@ -16,7 +16,7 @@
               <a class="nav-link" data-toggle="tab" href="#seleccionados">
                 <h5 class="font-weight-bolder">
                   Seleccionados
-                  <span class="badge badge-light">{{sumaseleccionados}}</span>
+                  <span class="badge badge-light">{{seleccionados.length}}</span>
                 </h5>
               </a>
             </li>
@@ -24,7 +24,7 @@
               <a class="nav-link" data-toggle="tab" href="#descartados">
                 <h5 class="font-weight-bolder">
                   Descartados
-                  <span class="badge badge-light">{{sumadescartados}}</span>
+                  <span class="badge badge-light">{{descartados.length}}</span>
                 </h5>
               </a>
             </li>
@@ -33,27 +33,27 @@
         <div class="card-body text-center">
           <div class="tab-content" ref="altura">
             <div id="inscritos" class="tab-pane fade show active">
-              <div v-for="item in lista" :key="item.id">
-                <div v-if="item.seleccionado === null">
+              <div v-for="item in inscritos" :key="item.id">
+                
                   <datoscandidatos-component :datostrabajador="item" :entrevista="false" :id="id"></datoscandidatos-component>
-                </div>
+                
               </div>
               <div v-observe-visibility="visibilityChanged"></div>
             </div>
             <div id="seleccionados" class="tab-pane fade">
-              <div v-for="item in lista" :key="item.id">
-                <div v-if="item.seleccionado==1 && item">
+              <div v-for="item in seleccionados" :key="item.id">
+               
                   <datoscandidatos-component :datostrabajador="item" :entrevista="true" :id="id"></datoscandidatos-component>
-                </div>
+                
               </div>
 
               <div v-observe-visibility="visibilityChanged"></div>
             </div>
             <div id="descartados" class="tab-pane fade">
-              <div v-for="item in lista" :key="item.id">
-                <div v-if="item.seleccionado==0 && item">
+              <div v-for="item in descartados" :key="item.id">
+            
                   <datoscandidatos-component :datostrabajador="item" :entrevista="false" :id="id"></datoscandidatos-component>
-                </div>
+               
               </div>
               <div v-observe-visibility="visibilityChanged"></div>
             </div>
@@ -73,32 +73,22 @@ export default {
     this.$store.dispatch("getTrabajadoresPorOferta");
   },
   computed: {
-    lista() {
+    inscritos() {
       return this.$store.getters.getTrabajadorByOferta(this.$props.oferta)
-        .lista;
+        .inscritos;
     },
 
-    sumainscritos() {
+     seleccionados() {
       return this.$store.getters.getTrabajadorByOferta(this.$props.oferta)
-        .inscritos
-        ? this.$store.getters.getTrabajadorByOferta(this.$props.oferta)
-            .inscritos
-        : 0;
+        .seleccionados;
     },
-    sumaseleccionados() {
+
+     descartados() {
       return this.$store.getters.getTrabajadorByOferta(this.$props.oferta)
-        .seleccionados
-        ? this.$store.getters.getTrabajadorByOferta(this.$props.oferta)
-            .seleccionados
-        : 0;
+        .descartados;
     },
-    sumadescartados() {
-      return this.$store.getters.getTrabajadorByOferta(this.$props.oferta)
-        .descartados
-        ? this.$store.getters.getTrabajadorByOferta(this.$props.oferta)
-            .descartados
-        : 0;
-    }
+
+    
   },
   created() {},
   props: {

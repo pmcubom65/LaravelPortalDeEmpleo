@@ -4541,17 +4541,14 @@ __webpack_require__.r(__webpack_exports__);
     this.$store.dispatch("getTrabajadoresPorOferta");
   },
   computed: {
-    lista: function lista() {
-      return this.$store.getters.getTrabajadorByOferta(this.$props.oferta).lista;
+    inscritos: function inscritos() {
+      return this.$store.getters.getTrabajadorByOferta(this.$props.oferta).inscritos;
     },
-    sumainscritos: function sumainscritos() {
-      return this.$store.getters.getTrabajadorByOferta(this.$props.oferta).inscritos ? this.$store.getters.getTrabajadorByOferta(this.$props.oferta).inscritos : 0;
+    seleccionados: function seleccionados() {
+      return this.$store.getters.getTrabajadorByOferta(this.$props.oferta).seleccionados;
     },
-    sumaseleccionados: function sumaseleccionados() {
-      return this.$store.getters.getTrabajadorByOferta(this.$props.oferta).seleccionados ? this.$store.getters.getTrabajadorByOferta(this.$props.oferta).seleccionados : 0;
-    },
-    sumadescartados: function sumadescartados() {
-      return this.$store.getters.getTrabajadorByOferta(this.$props.oferta).descartados ? this.$store.getters.getTrabajadorByOferta(this.$props.oferta).descartados : 0;
+    descartados: function descartados() {
+      return this.$store.getters.getTrabajadorByOferta(this.$props.oferta).descartados;
     }
   },
   created: function created() {},
@@ -9912,7 +9909,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, ".sinmargen[data-v-3198b07d] {\n  margin-bottom: 3px !important;\n}", ""]);
+exports.push([module.i, ".sinmargen[data-v-3198b07d] {\n  margin-bottom: 3px !important;\n}\n.area[data-v-3198b07d] {\n  min-width: 100%;\n}", ""]);
 
 // exports
 
@@ -52407,7 +52404,8 @@ var render = function() {
                   expression: "mssgid"
                 }
               ],
-              attrs: { rows: "8", cols: "55", name: "mssgid", id: "mssgid" },
+              staticClass: "area",
+              attrs: { rows: "8", name: "mssgid", id: "mssgid" },
               domProps: { value: _vm.mssgid },
               on: {
                 input: function($event) {
@@ -53407,7 +53405,7 @@ var render = function() {
                   _c("h5", { staticClass: "font-weight-bolder" }, [
                     _vm._v("\n                Inscritos\n                "),
                     _c("span", { staticClass: "badge badge-light" }, [
-                      _vm._v(_vm._s(_vm.sumainscritos))
+                      _vm._v(_vm._s(_vm.inscritos.length))
                     ])
                   ])
                 ]
@@ -53425,7 +53423,7 @@ var render = function() {
                   _c("h5", { staticClass: "font-weight-bolder" }, [
                     _vm._v("\n                Seleccionados\n                "),
                     _c("span", { staticClass: "badge badge-light" }, [
-                      _vm._v(_vm._s(_vm.sumaseleccionados))
+                      _vm._v(_vm._s(_vm.seleccionados.length))
                     ])
                   ])
                 ]
@@ -53443,7 +53441,7 @@ var render = function() {
                   _c("h5", { staticClass: "font-weight-bolder" }, [
                     _vm._v("\n                Descartados\n                "),
                     _c("span", { staticClass: "badge badge-light" }, [
-                      _vm._v(_vm._s(_vm.sumadescartados))
+                      _vm._v(_vm._s(_vm.descartados.length))
                     ])
                   ])
                 ]
@@ -53461,24 +53459,21 @@ var render = function() {
                 attrs: { id: "inscritos" }
               },
               [
-                _vm._l(_vm.lista, function(item) {
-                  return _c("div", { key: item.id }, [
-                    item.seleccionado === null
-                      ? _c(
-                          "div",
-                          [
-                            _c("datoscandidatos-component", {
-                              attrs: {
-                                datostrabajador: item,
-                                entrevista: false,
-                                id: _vm.id
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      : _vm._e()
-                  ])
+                _vm._l(_vm.inscritos, function(item) {
+                  return _c(
+                    "div",
+                    { key: item.id },
+                    [
+                      _c("datoscandidatos-component", {
+                        attrs: {
+                          datostrabajador: item,
+                          entrevista: false,
+                          id: _vm.id
+                        }
+                      })
+                    ],
+                    1
+                  )
                 }),
                 _vm._v(" "),
                 _c("div", {
@@ -53499,24 +53494,21 @@ var render = function() {
               "div",
               { staticClass: "tab-pane fade", attrs: { id: "seleccionados" } },
               [
-                _vm._l(_vm.lista, function(item) {
-                  return _c("div", { key: item.id }, [
-                    item.seleccionado == 1 && item
-                      ? _c(
-                          "div",
-                          [
-                            _c("datoscandidatos-component", {
-                              attrs: {
-                                datostrabajador: item,
-                                entrevista: true,
-                                id: _vm.id
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      : _vm._e()
-                  ])
+                _vm._l(_vm.seleccionados, function(item) {
+                  return _c(
+                    "div",
+                    { key: item.id },
+                    [
+                      _c("datoscandidatos-component", {
+                        attrs: {
+                          datostrabajador: item,
+                          entrevista: true,
+                          id: _vm.id
+                        }
+                      })
+                    ],
+                    1
+                  )
                 }),
                 _vm._v(" "),
                 _c("div", {
@@ -53537,24 +53529,21 @@ var render = function() {
               "div",
               { staticClass: "tab-pane fade", attrs: { id: "descartados" } },
               [
-                _vm._l(_vm.lista, function(item) {
-                  return _c("div", { key: item.id }, [
-                    item.seleccionado == 0 && item
-                      ? _c(
-                          "div",
-                          [
-                            _c("datoscandidatos-component", {
-                              attrs: {
-                                datostrabajador: item,
-                                entrevista: false,
-                                id: _vm.id
-                              }
-                            })
-                          ],
-                          1
-                        )
-                      : _vm._e()
-                  ])
+                _vm._l(_vm.descartados, function(item) {
+                  return _c(
+                    "div",
+                    { key: item.id },
+                    [
+                      _c("datoscandidatos-component", {
+                        attrs: {
+                          datostrabajador: item,
+                          entrevista: false,
+                          id: _vm.id
+                        }
+                      })
+                    ],
+                    1
+                  )
                 }),
                 _vm._v(" "),
                 _c("div", {
@@ -72786,7 +72775,11 @@ var getTrabajadorByOferta = function getTrabajadorByOferta(state) {
     });
 
     if (typeof salida[0] === "undefined") {
-      return 0;
+      return {
+        inscritos: [],
+        seleccionados: [],
+        descartados: []
+      };
     } else {
       var inscritos = salida.filter(function (trabajador) {
         return trabajador.seleccionado === null;
@@ -72798,10 +72791,9 @@ var getTrabajadorByOferta = function getTrabajadorByOferta(state) {
         return trabajador.seleccionado == 0;
       });
       return {
-        lista: salida,
-        inscritos: inscritos.length,
-        seleccionados: seleccionados.length,
-        descartados: descartados.length
+        inscritos: inscritos,
+        seleccionados: seleccionados,
+        descartados: descartados
       };
     }
   };
