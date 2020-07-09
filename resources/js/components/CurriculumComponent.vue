@@ -126,7 +126,7 @@
             <div v-show="!esarea">
               <div class="form-row my-3" v-show="!abierto_i">
                 
-                <div class="form-group col-sm-12 text-center">
+                <div class="form-group col-sm-12 text-center nomargen">
                   <input
                     type="file"
                     class="custom-file-input"
@@ -139,7 +139,7 @@
                   <label class="custom-file-label btn btn-success btn-lg" for="customFileLang">
                     <span class="glyphicon glyphicon-upload"></span>{{labelfile}}
                   </label>
-                  <img :src="image" style="width: auto; height: 195px;">
+                  <img :src="imagenver" class="imagencurriculum">
                 </div>
               </div>
 
@@ -251,7 +251,8 @@ export default {
       habilitado: this.$props.hhabilitado,
       file: {},
       labelfile: 'Seleccionar Archivo',
-      image: ''
+      image: '',
+      imagenver: this.$props.datostrabajador.imagen ? 'images/'+this.$props.datostrabajador.imagen : 'images/No_image.jpg',
     };
   },
   methods: {
@@ -263,6 +264,7 @@ export default {
                 let vm = this;
                 reader.onload = (e) => {
                     vm.image = e.target.result;
+                    vm.imagenver=vm.image;
                 };
                 reader.readAsDataURL(this.file);
     },
@@ -318,5 +320,15 @@ export default {
 <style scoped>
 .alert {
   font-size: 1.5rem;
+}
+
+.imagencurriculum {
+  width: auto; 
+  height: 150px;
+  margin-bottom: 0;
+}
+
+.nomargen {
+  margin-bottom: 0;
 }
 </style>

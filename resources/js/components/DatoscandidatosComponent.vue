@@ -119,8 +119,8 @@ export default {
   height: 100px;
   float: right;
   @media screen and (max-width : 768px){
-
-    margin: 0;
+    float: none;
+    margin-bottom: 4px;
   }
 }
 .fondo {

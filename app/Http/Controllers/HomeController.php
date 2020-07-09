@@ -47,15 +47,17 @@ class HomeController extends Controller
           $contactos=collect();
           
 
-          foreach (Contacto::all() as $contacto) {
-              if ($contacto->oferta_trabajador->trabajador_id===$trabajador->id && $contacto->oferta_trabajador->seleccionado===1
-              && Carbon::parse($contacto->dia)->gte(Carbon::now())) {
-                  $contactos->push($contacto);
-              }
-          }
+
 
             if ($trabajador) {
             $candidaturas=Trabajador::find($trabajador->id)->ofertasempleo()->orderBy('updated_at')->get();
+
+            foreach (Contacto::all() as $contacto) {
+                if ($contacto->oferta_trabajador->trabajador_id===$trabajador->id && $contacto->oferta_trabajador->seleccionado===1
+                && Carbon::parse($contacto->dia)->gte(Carbon::now())) {
+                    $contactos->push($contacto);
+                }
+            }
             
             }else {
                 $candidaturas=[];

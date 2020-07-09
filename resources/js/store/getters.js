@@ -31,10 +31,31 @@ export const getTrabajadorByOferta = (state) => (oferta_id) => {
   var salida = state.trabajadoresporoferta.filter(trabajador => {
     return trabajador.oferta_id == oferta_id;
   });
+
   if (typeof salida[0] === "undefined") {
     return 0;
   } else {
-     return salida;
+
+
+    var inscritos= salida.filter(trabajador => {
+      return trabajador.seleccionado === null;
+    });
+  
+    var seleccionados= salida.filter(trabajador => {
+      return trabajador.seleccionado == 1;
+    });
+  
+    var descartados= salida.filter(trabajador => {
+      return trabajador.seleccionado == 0;
+    });
+
+
+     return {
+       lista : salida,
+       inscritos: inscritos.length,
+       seleccionados: seleccionados.length,
+       descartados: descartados.length
+     } 
   }
   
 }

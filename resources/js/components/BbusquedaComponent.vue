@@ -8,7 +8,7 @@
       infinite-scroll-disabled="busy"
       infinite-scroll-distance="0"
     >
-      <h3 class="text-center" :style="{ 'padding-top': computar }">
+      <h3 class="text-center" :style="{ 'padding-top': computar }" :class="pantallaspequeñas">
         <a :href="mutableoferta">
           <span class="misiconos glyphicon glyphicon-flag text-light"></span>
           <br />
@@ -47,7 +47,8 @@ export default {
   data() {
     return {
       mutableoferta: JSON.parse(this.mioferta),
-      padding: 20
+      padding: 20,
+      pantallaspequeñas: ''
     };
   },
   created() {
@@ -55,6 +56,7 @@ export default {
       var ruta = "/search/" + data;
       this.mutableoferta = ruta;
     });
+    
   },
   mounted() {
     console.log("Barra busqueda montada");
@@ -65,6 +67,9 @@ export default {
 
       if (this.elementos * 70 > this.padding) {
         this.padding = this.padding + 100;
+      } else {
+        this.pantallaspequeñas='pantallaspequeñas';
+
       }
 
       this.busy = false;
@@ -72,8 +77,18 @@ export default {
     visibilityChanged: function(isVisible, entry) {
         if (isVisible) {
             this.padding=30;
+            this.pantallaspequeñas='pantallaspequeñas';
         }
     }
   }
 };
 </script>
+
+
+<style lang="scss" scoped>
+.pantallaspequeñas {
+ @media (max-width: 767.98px)  {
+   padding-top: 0px;
+}
+}
+</style>
