@@ -3695,16 +3695,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: {
     getExperiencias: function getExperiencias() {
-      return this.experiencia;
-    },
-    getExperienciasnombre: function getExperienciasnombre() {
-      return typeof this.experiencia !== 'undefined' ? this.experiencia.nombre : this.cat_i;
+      if (Object.entries(this.experiencia).length === 0) {
+        return {
+          puesto: this.habilitado ? this.tituloexp_i : '',
+          empresa: this.habilitado ? this.empresaexp_i : '',
+          inicio: this.habilitado ? this.inicioexp_i : '',
+          fin: this.habilitado ? this.finexp_i : '',
+          nombre: this.habilitado ? this.nombre : '',
+          descripcion: this.habilitado ? this.desexp_i : ''
+        };
+      } else {
+        return this.experiencia;
+      }
     },
     getletrero: function getletrero() {
-      if (typeof this.experiencia !== 'undefined') {
-        return 'Experiencia laboral: ' + this.experiencia.puesto;
-      } else {
+      if (Object.entries(this.experiencia).length === 0) {
         return 'Añada su experiencia laboral';
+      } else {
+        return 'Experiencia laboral: ' + this.experiencia.puesto;
       }
     }
   },
@@ -3736,7 +3744,6 @@ __webpack_require__.r(__webpack_exports__);
       cat_i: '',
       desexp_i: '',
       salida: '',
-      abierto_i: true,
       habilitado: this.$props.hhabilitado,
       experiencia: Object,
       categoria_id: 0
@@ -3744,15 +3751,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     cerrarmodal: function cerrarmodal() {
-      this.tituloexp_i = '';
-      this.empresaexp_i = '';
-      this.inicioexp_i = '';
-      this.finexp_i = '';
-      this.cat_i = '';
-      this.desexp_i = '';
       this.salida = '';
-      this.abierto_i = true;
-      this.trabajador = this.$props.estrabajador;
       this.habilitado = this.$props.hhabilitado;
     },
     nuevaexperiencia: function nuevaexperiencia() {
@@ -3771,8 +3770,6 @@ __webpack_require__.r(__webpack_exports__);
         var valores = response.data;
         Object.entries(valores).forEach(function (entry) {
           if (entry[0].toString() === "success") {
-            _this2.abierto_i = false;
-
             _this2.$store.dispatch("getTrabajadores");
 
             _this2.$store.dispatch("getExperiencias");
@@ -52054,12 +52051,7 @@ var render = function() {
                         placeholder: "puesto ocupado",
                         disabled: _vm.habilitado
                       },
-                      domProps: {
-                        value:
-                          typeof _vm.getExperiencias !== "undefined"
-                            ? _vm.getExperiencias.puesto
-                            : _vm.tituloexp_i
-                      },
+                      domProps: { value: _vm.getExperiencias.puesto },
                       on: {
                         change: function($event) {
                           _vm.tituloexp_i = $event.target.value
@@ -52082,12 +52074,7 @@ var render = function() {
                         placeholder: "Empresa",
                         disabled: _vm.habilitado
                       },
-                      domProps: {
-                        value:
-                          typeof _vm.getExperiencias !== "undefined"
-                            ? _vm.getExperiencias.empresa
-                            : _vm.empresaexp_i
-                      },
+                      domProps: { value: _vm.getExperiencias.empresa },
                       on: {
                         change: function($event) {
                           _vm.empresaexp_i = $event.target.value
@@ -52111,12 +52098,7 @@ var render = function() {
                         name: "inicioexp",
                         disabled: _vm.habilitado
                       },
-                      domProps: {
-                        value:
-                          typeof _vm.getExperiencias !== "undefined"
-                            ? _vm.getExperiencias.inicio
-                            : _vm.inicioexp_i
-                      },
+                      domProps: { value: _vm.getExperiencias.inicio },
                       on: {
                         change: function($event) {
                           _vm.inicioexp_i = $event.target.value
@@ -52138,12 +52120,7 @@ var render = function() {
                         name: "finexp",
                         disabled: _vm.habilitado
                       },
-                      domProps: {
-                        value:
-                          typeof _vm.getExperiencias !== "undefined"
-                            ? _vm.getExperiencias.fin
-                            : _vm.finexp_i
-                      },
+                      domProps: { value: _vm.getExperiencias.fin },
                       on: {
                         change: function($event) {
                           _vm.finexp_i = $event.target.value
@@ -52178,7 +52155,7 @@ var render = function() {
                           attrs: { selected: "" },
                           domProps: { value: _vm.categoria_id }
                         },
-                        [_vm._v(_vm._s(_vm.getExperienciasnombre))]
+                        [_vm._v(_vm._s(_vm.getExperiencias.nombre))]
                       ),
                       _vm._v(" "),
                       _vm._l(_vm.categorias, function(item) {
@@ -52209,12 +52186,7 @@ var render = function() {
                         finexp: "",
                         disabled: _vm.habilitado
                       },
-                      domProps: {
-                        value:
-                          typeof _vm.getExperiencias !== "undefined"
-                            ? _vm.getExperiencias.descripcion
-                            : _vm.desexp_i
-                      },
+                      domProps: { value: _vm.getExperiencias.descripcion },
                       on: {
                         change: function($event) {
                           _vm.desexp_i = $event.target.value
@@ -52238,19 +52210,8 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value:
-                            _vm.abierto_i &&
-                            typeof _vm.getExperiencias === "undefined",
-                          expression:
-                            "abierto_i && typeof getExperiencias === 'undefined'"
-                        }
-                      ],
                       staticClass: "btn btn-success m-auto btn-xs-block btn-lg",
-                      attrs: { type: "submit" }
+                      attrs: { type: "submit", disabled: _vm.habilitado }
                     },
                     [
                       _vm._v(
@@ -52262,18 +52223,8 @@ var render = function() {
                   _c(
                     "button",
                     {
-                      directives: [
-                        {
-                          name: "show",
-                          rawName: "v-show",
-                          value:
-                            typeof _vm.getExperiencias !== "undefined" ||
-                            !_vm.abierto_i,
-                          expression:
-                            "typeof getExperiencias !== 'undefined' || !abierto_i"
-                        }
-                      ],
-                      staticClass: "btn btn-success m-auto btn-xs-block btn-lg",
+                      staticClass:
+                        "btn btn-secondary m-auto btn-xs-block btn-lg",
                       attrs: { "data-dismiss": "modal", type: "button" },
                       on: { click: _vm.cerrarmodal }
                     },
