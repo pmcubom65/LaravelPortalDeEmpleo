@@ -1979,7 +1979,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     computar: function computar() {
-      return String(this.padding + "rem");
+      return String(this.padding + "px");
     }
   },
   data: function data() {
@@ -1990,7 +1990,7 @@ __webpack_require__.r(__webpack_exports__);
       trabajador: 0,
       gris: true,
       seleccion: 0,
-      padding: 5,
+      padding: 10,
       fondo: false
     };
   },
@@ -2002,7 +2002,7 @@ __webpack_require__.r(__webpack_exports__);
       _this.trabajador = data.trabajador_id;
     });
     _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$on("fondoresultados", function (data) {
-      _this.padding = data + 40;
+      _this.padding = data - 250;
       _this.fondo = true;
     });
   },
@@ -2015,14 +2015,14 @@ __webpack_require__.r(__webpack_exports__);
       this.busy = true;
 
       if (!this.fondo) {
-        this.padding = this.padding + 1;
+        this.padding = this.padding + 150;
       }
 
       this.busy = false;
     },
     visibilityChanged: function visibilityChanged(isVisible, entry) {
       if (isVisible) {
-        this.padding = 5;
+        this.padding = 10;
       }
     },
     seleccionado: function seleccionado() {
@@ -49703,7 +49703,7 @@ var render = function() {
             expression: "loadMore"
           }
         ],
-        staticClass: "col-2 pb-0 inicio2 espacio",
+        staticClass: "col-2 pb-0 inicio2 espacio ",
         attrs: {
           id: "sideBar",
           "infinite-scroll-disabled": "busy",
