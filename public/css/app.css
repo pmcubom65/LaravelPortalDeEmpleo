@@ -15287,6 +15287,27 @@ hr {
   background: linear-gradient(to bottom, indigo, #ff9999) !important;
 }
 
+span.muted {
+  border: 2px solid grey !important;
+}
+
+span.muted:hover {
+  -webkit-animation: none;
+  animation: none;
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(0deg);
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
 .inicio .glyphicon {
   font-size: 60px;
   padding: 25px;

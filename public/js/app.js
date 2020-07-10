@@ -1979,7 +1979,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     computar: function computar() {
-      return String(this.padding + "px");
+      return String(this.padding + "rem");
     }
   },
   data: function data() {
@@ -1990,7 +1990,7 @@ __webpack_require__.r(__webpack_exports__);
       trabajador: 0,
       gris: true,
       seleccion: 0,
-      padding: 10,
+      padding: 5,
       fondo: false
     };
   },
@@ -2002,7 +2002,7 @@ __webpack_require__.r(__webpack_exports__);
       _this.trabajador = data.trabajador_id;
     });
     _app__WEBPACK_IMPORTED_MODULE_0__["bus"].$on("fondoresultados", function (data) {
-      _this.padding = data - 250;
+      _this.padding = data + 40;
       _this.fondo = true;
     });
   },
@@ -2015,14 +2015,14 @@ __webpack_require__.r(__webpack_exports__);
       this.busy = true;
 
       if (!this.fondo) {
-        this.padding = this.padding + 100;
+        this.padding = this.padding + 1;
       }
 
       this.busy = false;
     },
     visibilityChanged: function visibilityChanged(isVisible, entry) {
       if (isVisible) {
-        this.padding = 10;
+        this.padding = 5;
       }
     },
     seleccionado: function seleccionado() {
@@ -2125,13 +2125,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     computar: function computar() {
-      return String(this.padding + "px");
+      return String(this.padding + "rem");
     }
   },
   data: function data() {
     return {
       mutableoferta: JSON.parse(this.mioferta),
-      padding: 20,
+      padding: 1.5,
       pantallaspequeñas: ''
     };
   },
@@ -2150,8 +2150,8 @@ __webpack_require__.r(__webpack_exports__);
     loadMore: function loadMore() {
       this.busy = true;
 
-      if (this.elementos * 70 > this.padding) {
-        this.padding = this.padding + 100;
+      if (this.elementos * 12 > this.padding) {
+        this.padding = this.padding + 2;
       } else {
         this.pantallaspequeñas = 'pantallaspequeñas';
       }
@@ -2160,7 +2160,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     visibilityChanged: function visibilityChanged(isVisible, entry) {
       if (isVisible) {
-        this.padding = 30;
+        this.padding = 1.2;
         this.pantallaspequeñas = 'pantallaspequeñas';
       }
     }
@@ -4567,6 +4567,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -4724,7 +4726,8 @@ __webpack_require__.r(__webpack_exports__);
     },
     id: {
       type: String,
-      required: false
+      required: false,
+      "default": '0'
     },
     titulo: {
       type: String,
@@ -4837,8 +4840,8 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.salida = '';
         axios.put(route("oferta", {
-          id: this.id
-        }), {
+          id: this.usuario
+        }), _defineProperty({
           titulo: this.titulo_i,
           Provincia: this.provincia_i,
           Experiencia: this.experiencia_i,
@@ -4847,7 +4850,7 @@ __webpack_require__.r(__webpack_exports__);
           oferta: this.descripcion,
           cat: this.cat_i,
           _token: this.token
-        }).then(function (response) {
+        }, "oferta", this.id)).then(function (response) {
           var valores = response.data;
           _this.salida = '';
           var key;
@@ -52017,7 +52020,7 @@ var render = function() {
           [
             _c("div", { staticClass: "modal-content" }, [
               _c("div", { staticClass: "modal-header" }, [
-                _c("h3", [_vm._v(_vm._s(_vm.getletrero))]),
+                _c("h2", [_vm._v(_vm._s(_vm.getletrero))]),
                 _vm._v(" "),
                 _c(
                   "button",
@@ -52210,8 +52213,16 @@ var render = function() {
                   _c(
                     "button",
                     {
+                      directives: [
+                        {
+                          name: "show",
+                          rawName: "v-show",
+                          value: !_vm.habilitado,
+                          expression: "!habilitado"
+                        }
+                      ],
                       staticClass: "btn btn-success m-auto btn-xs-block btn-lg",
-                      attrs: { type: "submit", disabled: _vm.habilitado }
+                      attrs: { type: "submit" }
                     },
                     [
                       _vm._v(

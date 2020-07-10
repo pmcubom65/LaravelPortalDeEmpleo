@@ -5,7 +5,7 @@
       <form @submit.prevent="nuevaexperiencia">
         <div class="modal-content">
           <div class="modal-header">
-            <h3>{{getletrero}}</h3>
+            <h2>{{getletrero}}</h2>
             
 
             <button type="button" @click="cerrarmodal" class="close mx-0 px-0" data-dismiss="modal">
@@ -98,7 +98,7 @@
              <p class="alert text-center" v-html="salida"></p>
             </div>
             <div class="form-row col-12">
-            <button  class="btn btn-success m-auto btn-xs-block btn-lg" type="submit" :disabled="habilitado">
+            <button  class="btn btn-success m-auto btn-xs-block btn-lg" type="submit" v-show="!habilitado">
               Guardar
               Experiencia
             </button>

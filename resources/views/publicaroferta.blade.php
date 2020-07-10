@@ -33,7 +33,7 @@
                         :crearoferta="true"
 
 
-                        :id="'{{Auth::id()}}'"
+                        :usuario="'{{Auth::id()}}'"
                         :token="'{{Session::token()}}'"
                         
                         :letrero="'Publicar oferta'"

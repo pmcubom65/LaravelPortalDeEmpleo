@@ -15,7 +15,7 @@
 
                 <div class="col-md-4">
 
-                    <h3  class="text-secondary"><span class="glyphicon glyphicon-bullhorn text-muted" aria-hidden="true"></span><br>Publicar Nueva Oferta
+                    <h3  class="text-muted"><span class="muted glyphicon glyphicon-bullhorn  text-muted" ></span>
                     <span class="d-block">Publicar Oferta de empleo</span></h3>
                     
                     
@@ -24,7 +24,7 @@
                 </div>
                 <div class="col-md-4">
 
-                    <h3  class="text-secondary"><span class="glyphicon glyphicon-paperclip text-muted" aria-hidden="true"></span><br>
+                    <h3  class="text-muted"><span class="muted glyphicon glyphicon-paperclip  text-muted" ></span><br>
                     <span class="d-block">Revisar Ofertas
                         Publicadas</span></h3>
       

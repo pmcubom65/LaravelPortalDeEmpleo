@@ -45,7 +45,7 @@ class OfertaController extends Controller
                 $messages
 
         );
-        $oferta=Oferta::find($id);
+        $oferta=Oferta::find($request->get('oferta'));
 
         $empresaid=Empresa::where('user_id', Auth::id())->first()->id;
 
@@ -84,7 +84,7 @@ class OfertaController extends Controller
             $Response=['success'=>'La oferta ha sido publicada. Vaya a Revisar ofertas publicadas para gestionarla'];
             
         } else {
-            $laoferta=Oferta::find($id);
+            $laoferta=Oferta::find($request->get('oferta'));
             $laoferta->categoria_id=$request->get('cat');
             $laoferta->contrato_id=$request->get('contrato');
             $laoferta->descripcion=$request->get('oferta');

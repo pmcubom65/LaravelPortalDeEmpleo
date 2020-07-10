@@ -290,6 +290,28 @@ hr {
   @include mihover();
 }
 
+
+span.muted {
+  border: 2px solid grey !important;
+}
+
+span.muted:hover {
+  -webkit-animation: none;
+  -moz-animation:  none;
+    animation:  none;
+    
+}
+@-webkit-keyframes spin {100%{-webkit-transform: rotate(0deg);}}
+@-moz-keyframes spin {100%{-moz-transform: rotate(0deg);}}
+@keyframes spin {100%{-webkit-transform: rotate(0deg);transform:rotate(0deg);}}
+
+
+
+
+
+
+
+
 .inicio .glyphicon  {
   font-size: 60px;
   padding: 25px;

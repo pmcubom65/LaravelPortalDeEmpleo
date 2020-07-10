@@ -157,7 +157,8 @@ export default {
     },
     id: {
       type: String,
-      required: false
+      required: false,
+      default: '0'
     },
     titulo: {
       type: String,
@@ -278,7 +279,7 @@ export default {
           this.salida='';
 
         axios
-          .put(route("oferta", { id: this.id }), {
+          .put(route("oferta", { id: this.usuario }), {
             titulo: this.titulo_i,
             Provincia: this.provincia_i,
             Experiencia: this.experiencia_i,
@@ -286,7 +287,8 @@ export default {
             contrato: this.contrato_i,
             oferta: this.descripcion,
             cat: this.cat_i,
-            _token: this.token
+            _token: this.token,
+            oferta: this.id
           })
           .then(response => {
             let valores = response.data;

@@ -41,13 +41,13 @@ export default {
   },
   computed: {
     computar() {
-      return String(this.padding + "px");
+      return String(this.padding + "rem");
     }
   },
   data() {
     return {
       mutableoferta: JSON.parse(this.mioferta),
-      padding: 20,
+      padding: 1.5,
       pantallaspequeñas: ''
     };
   },
@@ -65,8 +65,8 @@ export default {
     loadMore: function() {
       this.busy = true;
 
-      if (this.elementos * 70 > this.padding) {
-        this.padding = this.padding + 100;
+      if (this.elementos * 12 > this.padding) {
+        this.padding = this.padding + 2;
       } else {
         this.pantallaspequeñas='pantallaspequeñas';
 
@@ -76,7 +76,7 @@ export default {
     },
     visibilityChanged: function(isVisible, entry) {
         if (isVisible) {
-            this.padding=30;
+            this.padding=1.2;
             this.pantallaspequeñas='pantallaspequeñas';
         }
     }
