@@ -13,6 +13,7 @@ class CreateCategoriasTable extends Migration
      */
     public function up()
     {
+        if(!Schema::hasTable('categorias')){
         Schema::create('categorias', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
@@ -37,6 +38,7 @@ class CreateCategoriasTable extends Migration
             ['nombre'=>'Support','descripcion'=> 'Soporte'], ['nombre'=>
                  'Programador en Java', 'descripcion'=>
                  'Programador en lenguaje de programación Java']));
+        }
     }
 
     /**
