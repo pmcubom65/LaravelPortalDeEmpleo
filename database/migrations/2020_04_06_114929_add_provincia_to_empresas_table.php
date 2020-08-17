@@ -40,8 +40,8 @@ class AddProvinciaToEmpresasTable extends Migration
      */
     public function down()
     {
-        Schema::table('empresas', function (Blueprint $table) {
-            //
-        });
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('empresas');
+        Schema::enableForeignKeyConstraints();
     }
 }

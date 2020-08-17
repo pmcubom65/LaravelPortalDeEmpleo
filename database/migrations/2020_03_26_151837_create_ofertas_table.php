@@ -26,7 +26,10 @@ class CreateOfertasTable extends Migration
      */
     public function down()
     {
+       
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('ofertas');
+        Schema::enableForeignKeyConstraints();
       
     }
 }

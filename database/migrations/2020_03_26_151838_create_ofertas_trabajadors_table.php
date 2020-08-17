@@ -44,8 +44,10 @@ class CreateOfertasTrabajadorsTable extends Migration
     {
 
 
+   
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('oferta_trabajador');
-     
+        Schema::enableForeignKeyConstraints();
             
  
     }

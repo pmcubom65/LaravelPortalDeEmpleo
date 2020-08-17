@@ -47,8 +47,8 @@ class AddProvinciaToOfertasTable extends Migration
      */
     public function down()
     {
-        Schema::table('ofertas', function (Blueprint $table) {
-            //
-        });
+        Schema::disableForeignKeyConstraints();
+        Schema::dropIfExists('ofertas');
+        Schema::enableForeignKeyConstraints();
     }
 }

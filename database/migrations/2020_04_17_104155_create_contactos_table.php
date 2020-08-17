@@ -43,6 +43,9 @@ class CreateContactosTable extends Migration
     {
 
   
+     
+        Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('contactos');
+        Schema::enableForeignKeyConstraints();
     }
 }
