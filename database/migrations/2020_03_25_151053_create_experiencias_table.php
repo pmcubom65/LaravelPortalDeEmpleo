@@ -13,6 +13,8 @@ class CreateExperienciasTable extends Migration
      */
     public function up()
     {
+
+        if(!Schema::hasTable('experiencias')){
         Schema::create('experiencias', function (Blueprint $table) {
             $table->id()->start_from(0);
             $table->timestamps();
@@ -33,7 +35,7 @@ class CreateExperienciasTable extends Migration
                  ['nombre'=>
                  'mas de 3','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')]));
     }
-
+    }
     /**
      * Reverse the migrations.
      *

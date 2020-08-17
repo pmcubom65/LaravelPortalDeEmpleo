@@ -9,6 +9,7 @@ class CreateContratosTable extends Migration
    
     public function up()
     {
+        if(!Schema::hasTable('contratos')){
         Schema::create('contratos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
@@ -25,7 +26,7 @@ class CreateContratosTable extends Migration
                  'Jornada Parcial','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')]));
         
     }
-
+    }
     /**
      * Reverse the migrations.
      *
