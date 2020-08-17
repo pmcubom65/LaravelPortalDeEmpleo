@@ -42,6 +42,6 @@ class AddExperienciaToOfertasTable extends Migration
      */
     public function down()
     {
-        
+   
     }
 }

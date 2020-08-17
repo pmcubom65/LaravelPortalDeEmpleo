@@ -41,8 +41,7 @@ class AddUseridToTrabajadorsTable extends Migration
      */
     public function down()
     {
-        Schema::table('trabajadors', function (Blueprint $table) {
-            Schema::dropIfExists('trabajadors');
-        });
+        
+        Schema::dropIfExists('trabajadors');
     }
 }

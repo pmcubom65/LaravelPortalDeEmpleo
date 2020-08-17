@@ -42,6 +42,11 @@ class CreateOfertasTrabajadorsTable extends Migration
      */
     public function down()
     {
+
+
         Schema::dropIfExists('oferta_trabajador');
+     
+            
+ 
     }
 }

@@ -46,6 +46,8 @@ class CreateExpeTable extends Migration
      */
     public function down()
     {
+
         Schema::dropIfExists('expe');
+      
     }
 }
