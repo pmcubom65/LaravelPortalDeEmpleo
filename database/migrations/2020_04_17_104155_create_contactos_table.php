@@ -13,6 +13,8 @@ class CreateContactosTable extends Migration
      */
     public function up()
     {
+
+        if(!Schema::hasTable('contactos')){
         Schema::create('contactos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
@@ -32,6 +34,7 @@ class CreateContactosTable extends Migration
 
 
         });
+    }
     }
 
     /**

@@ -13,10 +13,12 @@ class CreateOfertasTable extends Migration
      */
     public function up()
     {
+        if(!Schema::hasTable('ofertas')){
         Schema::create('ofertas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
+    }
     }
 
     /**

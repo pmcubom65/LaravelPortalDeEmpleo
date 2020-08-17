@@ -13,10 +13,12 @@ class CreateEmpresasTable extends Migration
      */
     public function up()
     {
+        if(!Schema::hasTable('empresas')){
         Schema::create('empresas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
+    }
     }
 
     /**

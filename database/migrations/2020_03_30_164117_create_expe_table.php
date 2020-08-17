@@ -13,6 +13,8 @@ class CreateExpeTable extends Migration
      */
     public function up()
     {
+
+        if(!Schema::hasTable('expe')){
         Schema::create('expe', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
@@ -36,7 +38,7 @@ class CreateExpeTable extends Migration
         });
 
 
-        
+    } 
     }
 
     /**

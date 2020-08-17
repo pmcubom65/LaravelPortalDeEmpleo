@@ -13,10 +13,12 @@ class CreateTrabajadorsTable extends Migration
      */
     public function up()
     {
+        if(!Schema::hasTable('trabajadors')){
         Schema::create('trabajadors', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
         });
+    }
     }
 
     /**

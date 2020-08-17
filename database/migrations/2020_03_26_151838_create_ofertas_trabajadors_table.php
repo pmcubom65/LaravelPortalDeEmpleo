@@ -13,6 +13,7 @@ class CreateOfertasTrabajadorsTable extends Migration
      */
     public function up()
     {
+        if(!Schema::hasTable('oferta_trabajador')){
         Schema::create('oferta_trabajador', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
@@ -33,6 +34,8 @@ class CreateOfertasTrabajadorsTable extends Migration
 
             $table->unique(['trabajador_id','oferta_id'], 'unico');
         });
+
+    }
     }
 
     /**

@@ -13,6 +13,8 @@ class AddProvinciaToOfertasTable extends Migration
      */
     public function up()
     {
+
+       
         Schema::table('ofertas', function (Blueprint $table) {
             $table->string('titulo');
             $table->unsignedBigInteger('provincia_id')->unsigned();
@@ -38,6 +40,8 @@ class AddProvinciaToOfertasTable extends Migration
 
 
         });
+
+    
     }
 
     /**

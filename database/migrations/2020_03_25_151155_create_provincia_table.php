@@ -13,6 +13,7 @@ class CreateProvinciaTable extends Migration
      */
     public function up()
     {
+        if(!Schema::hasTable('provincia')){
         Schema::create('provincia', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
@@ -77,6 +78,7 @@ class CreateProvinciaTable extends Migration
                  'Castellón','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now')],[ 'region_name'=>
                  'Valencia','created_at' => new DateTime('now'), 'updated_at' => new DateTime('now') ] 
             ));
+        }
     }
 
     /**
