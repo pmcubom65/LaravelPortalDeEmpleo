@@ -15,7 +15,7 @@ use App\Oferta_trabajador;
 use Validator;
 use Carbon\Carbon;
 use Intervention\Image\Facades\Image;
-
+use DB;
 class HomeController extends Controller
 {
     /**
@@ -52,7 +52,25 @@ class HomeController extends Controller
             if ($trabajador) {
          //   $candidaturas=Trabajador::find($trabajador->id)->ofertasempleo()->orderBy('updated_at')->get();
 
-         $candidaturas=Trabajador::find($trabajador->id)->ofertasempleo()->get();
+         $candidaturas=DB::table('ofertas')->leftJoin('oferta_trabajador', 'ofertas.id', '=', 'oferta_trabajador.oferta_id')->
+         select ('ofertas.id','ofertas.created_at', 'ofertas.updated_at','ofertas.titulo','ofertas.provincia_id', 'ofertas.salario',
+         'ofertas.descripcion', 'ofertas.categoria_id', 'ofertas.empresa_id', 'ofertas.experiencia_id', 'ofertas.contrato_id', 'ofertas.proceso',
+         DB::raw('oferta_trabajador.trabajador_id as "pivot.trabajador_id"'), DB::raw('oferta_trabajador.oferta_id as "pivot.oferta_id"'),
+         DB::raw('oferta_trabajador.seleccionado as "pivot.seleccionado"'), DB::raw('oferta_trabajador.id as "pivot.id"'),
+         DB::raw('oferta_trabajador.updated_at as "pivot.updated_at"') )->where('oferta_trabajador.trabajador_id', '=', $trabajador->id)->get();
+
+
+    /*     DB::table('ofertas')->leftJoin('oferta_trabajador', 'ofertas.id', '=', 'oferta_trabajador.oferta_id')->
+         select ('ofertas.id','ofertas.created_at', 'ofertas.updated_at','ofertas.titulo','ofertas.provincia_id', 'ofertas.salario',
+         'ofertas.descripcion', 'ofertas.categoria_id', 'ofertas.empresa_id', 'ofertas.experiencia_id', 'ofertas.contrato_id', 'ofertas.proceso',
+         DB::raw('oferta_trabajador.trabajador_id as "pivot.trabajador_id"'), DB::raw('oferta_trabajador.oferta_id as "pivot.oferta_id"'),
+         DB::raw('oferta_trabajador.seleccionado as "pivot.seleccionado"'), DB::raw('oferta_trabajador.id as "pivot.id"'),
+         DB::raw('oferta_trabajador.updated_at as "pivot.updated_at"') )->get();
+         return response()->json($Response,200);
+       })->name('trabajadoresporoferta');*/
+
+
+
 
             foreach (Contacto::all() as $contacto) {
                 if ($contacto->oferta_trabajador->trabajador_id===$trabajador->id && $contacto->oferta_trabajador->seleccionado===1
