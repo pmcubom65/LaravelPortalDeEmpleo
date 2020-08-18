@@ -26,7 +26,7 @@ class AddSeleccionadoToOfertaTrabajadorTable extends Migration
     public function down()
     {
         Schema::table('oferta_trabajador', function (Blueprint $table) {
-            //
+            $table->dropColumn('seleccionado');
         });
     }
 }

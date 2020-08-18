@@ -28,7 +28,7 @@ class AddProvinciaToTrabajadorsTable extends Migration
     public function down()
     {
         Schema::table('trabajadors', function (Blueprint $table) {
-            //
+            $table->dropColumn('provincia_id');
         });
     }
 }

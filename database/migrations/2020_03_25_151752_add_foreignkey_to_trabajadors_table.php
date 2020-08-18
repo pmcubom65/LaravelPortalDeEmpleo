@@ -27,8 +27,8 @@ class AddForeignkeyToTrabajadorsTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('trabajadors');
-        Schema::enableForeignKeyConstraints();
+        Schema::table('trabajadors', function (Blueprint $table) {
+            $table->dropForeign(['provincia_id']);
+        });
     }
 }

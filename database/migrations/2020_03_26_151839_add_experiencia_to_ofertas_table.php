@@ -42,6 +42,23 @@ class AddExperienciaToOfertasTable extends Migration
      */
     public function down()
     {
-   
+        Schema::table('ofertas', function (Blueprint $table) {
+         //   $table->dropForeign('contrato_id');
+         //   $table->dropForeign('experiencia_id');
+       
+         Schema::disableForeignKeyConstraints();
+
+            if (Schema::hasColumn('ofertas', 'contrato_id')) {
+                $table->dropIndex(['contrato_id']);
+                $table->dropColumn('contrato_id');
+            }
+         
+            if (Schema::hasColumn('ofertas', 'experiencia_id')) {
+                $table->dropForeign(['experiencia_id']);
+            $table->dropColumn('experiencia_id');
+            }
+            Schema::enableForeignKeyConstraints();
+          
+        });
     }
 }

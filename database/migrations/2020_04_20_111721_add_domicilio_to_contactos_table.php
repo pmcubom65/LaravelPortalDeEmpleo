@@ -26,7 +26,8 @@ class AddDomicilioToContactosTable extends Migration
     public function down()
     {
         Schema::table('contactos', function (Blueprint $table) {
-            //
+          
+            $table->dropColumn('direccion');
         });
     }
 }

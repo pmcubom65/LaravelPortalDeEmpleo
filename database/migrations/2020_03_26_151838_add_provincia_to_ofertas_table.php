@@ -51,8 +51,20 @@ class AddProvinciaToOfertasTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('ofertas');
-        Schema::enableForeignKeyConstraints();
+        Schema::table('ofertas', function (Blueprint $table) {
+            Schema::disableForeignKeyConstraints();
+        //    $table->dropForeign(['provincia_id']);
+            $table->dropForeign(['categoria_id']);
+            $table->dropForeign(['empresa_id']);
+       
+         
+            $table->dropColumn('titulo');
+            $table->dropColumn('categoria_id');
+            $table->dropColumn('empresa_id');
+            $table->dropColumn('salario');
+            $table->dropColumn('provincia_id');
+            $table->dropColumn('descripcion');
+            Schema::enableForeignKeyConstraints();
+        });
     }
 }

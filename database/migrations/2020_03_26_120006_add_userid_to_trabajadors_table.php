@@ -41,9 +41,17 @@ class AddUseridToTrabajadorsTable extends Migration
      */
     public function down()
     {
+        Schema::table('trabajadors', function (Blueprint $table) {
         
-        Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('trabajadors');
-        Schema::enableForeignKeyConstraints();
+            $table->dropForeign(['user_id']);
+         
+            $table->dropColumn('dni');
+            $table->dropColumn('direccion');
+            $table->dropColumn('fecha');
+            $table->dropColumn('telefono');
+       
+            $table->dropColumn('user_id');
+        });
+ 
     }
 }

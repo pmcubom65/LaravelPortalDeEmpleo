@@ -66,7 +66,11 @@ class AddRolidToUsersTable extends Migration
      */
     public function down()
     {
-
+        Schema::table('users', function (Blueprint $table) {
+            $table->dropForeign(['rol_id']);
+        
+            $table->dropColumn('rol_id');
+        });
      
     }
 }

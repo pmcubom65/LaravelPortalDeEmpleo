@@ -61,7 +61,11 @@ class AddLatitudToEmpresasTable extends Migration
     public function down()
     {
         Schema::table('empresas', function (Blueprint $table) {
-            //
+        
+         
+            $table->dropColumn('latitud');
+            $table->dropColumn('longitud');
+         
         });
     }
 }

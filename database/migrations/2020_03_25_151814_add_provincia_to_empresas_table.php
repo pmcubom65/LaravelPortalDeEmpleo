@@ -40,8 +40,16 @@ class AddProvinciaToEmpresasTable extends Migration
      */
     public function down()
     {
-        Schema::disableForeignKeyConstraints();
-        Schema::dropIfExists('empresas');
-        Schema::enableForeignKeyConstraints();
+        Schema::table('empresas', function (Blueprint $table) {
+      //      $table->dropForeign(['provincia_id']);
+            $table->dropForeign(['user_id']);
+         
+            $table->dropColumn('apellidos');
+            $table->dropColumn('domicilio');
+            $table->dropColumn('numero_empleados');
+            $table->dropColumn('telefono');
+            $table->dropColumn('provincia_id');
+            $table->dropColumn('user_id');
+        });
     }
 }

@@ -26,6 +26,9 @@ class AddCifEmpresasTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('empresas', function (Blueprint $table) {
+            $table->dropColumn('cif');
+            $table->dropColumn('nombre');
+        });
     }
 }
