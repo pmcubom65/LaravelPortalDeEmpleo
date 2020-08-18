@@ -50,7 +50,9 @@ class HomeController extends Controller
 
 
             if ($trabajador) {
-            $candidaturas=Trabajador::find($trabajador->id)->ofertasempleo()->orderBy('updated_at')->get();
+         //   $candidaturas=Trabajador::find($trabajador->id)->ofertasempleo()->orderBy('updated_at')->get();
+
+         $candidaturas=Trabajador::find($trabajador->id)->ofertasempleo()->get();
 
             foreach (Contacto::all() as $contacto) {
                 if ($contacto->oferta_trabajador->trabajador_id===$trabajador->id && $contacto->oferta_trabajador->seleccionado===1
