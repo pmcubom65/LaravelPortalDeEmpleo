@@ -40,7 +40,7 @@ Route::get('/categorias', function(){
   $Response=Categoria::orderBy('nombre')->get();
   return response()->json($Response,200);
 
-})->name('categorias');
+})->name('categorias')->middleware('protectjson');
 
 
 Route::get('/empresas', function(){
@@ -49,7 +49,7 @@ Route::get('/empresas', function(){
 
   return response()->json($Response,200);
 
-})->name('empresas');
+})->name('empresas')->middleware('protectjson');
 
 
 Route::get('/trabajadores', function(){
@@ -61,7 +61,7 @@ Route::get('/trabajadores', function(){
 
   return response()->json($Response,200);
 
-})->name('trabajadors');
+})->name('trabajadors')->middleware('protectjson');
 
 
 Route::get('/experiencias', function(){
@@ -70,7 +70,7 @@ Route::get('/experiencias', function(){
   'categorias.nombre','expe.descripcion', 'expe.categoria_id')->orderBy('expe.fin', 'desc')->get();
 
   return response()->json($Response, 200);
-})->name('experiencias');
+})->name('experiencias')->middleware('protectjson');
 
 
 
@@ -81,14 +81,14 @@ Route::get('/empresas/{id}', function($id){
   $Response=Empresa::find($id);
   return response()->json($Response,200);
 
-})->name('empresaid');
+})->name('empresaid')->middleware('protectjson');
 
 
 Route::get('/categorias/{id}', function($id){
   $Response=Categoria::find($id);
   return response()->json($Response,200);
 
-})->name('categoriaid');
+})->name('categoriaid')->middleware('protectjson');
 
 
 
@@ -98,7 +98,7 @@ Route::get('/trabajadoresporoferta', function(){
   leftJoin('provincia', 'trabajadors.provincia_id', '=', 'provincia.id')->
   select (DB::raw('provincia.region_name as region'), DB::raw('ofertas.id as oferta_id'), 'trabajadors.imagen','users.name', 'trabajadors.direccion', 'trabajadors.fecha',  DB::raw('trabajadors.id as trabajador_id'), 'oferta_trabajador.seleccionado')->get();
   return response()->json($Response,200);
-})->name('trabajadoresporoferta');
+})->name('trabajadoresporoferta')->middleware('protectjson');
 
 
 

@@ -16,7 +16,7 @@
     <curriculum-component :hhabilitado="false" :estrabajador="false" :token="'{{Session::token()}}'"
         :provincias="JSON.parse('{{$provincias->toJson()}}')" :nombre="'{{Auth::user()->name}}'"
         :id="'{{Auth::user()->id}}'" :cabecera="true" 
-       :region="'Region'" :esarea="false" :fecha="text-nowrap" 
+       :region="'Region'" :esarea="false" :fecha="dd/MM/yyyy" 
        
        :datostrabajador="{ direccion: '',
                             dni: '',
