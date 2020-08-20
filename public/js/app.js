@@ -4254,6 +4254,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
+    console.log(this.candidaturas);
     console.log("Perfil montado");
     this.$store.dispatch("getTrabajadores");
     this.$store.dispatch("getExperiencias");
