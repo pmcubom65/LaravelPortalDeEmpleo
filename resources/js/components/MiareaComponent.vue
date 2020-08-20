@@ -222,7 +222,7 @@
                   <p class="card-text text-center alert" v-if="item.proceso==0">Candidatura Cerrada</p>
                   <p
                     class="card-text text-center alert"
-                    v-if="item.pivot.seleccionado==1"
+                    v-if="item.seleccionado==1"
                   >La Empresa te ha seleccionado</p>
 
                   <a

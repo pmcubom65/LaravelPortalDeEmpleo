@@ -53134,7 +53134,7 @@ var render = function() {
                                       )
                                     : _vm._e(),
                                   _vm._v(" "),
-                                  item.pivot.seleccionado == 1
+                                  item.seleccionado == 1
                                     ? _c(
                                         "p",
                                         {
