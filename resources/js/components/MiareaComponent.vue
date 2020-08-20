@@ -246,6 +246,7 @@ import { getExperiencias } from "../store/actions";
 
 export default {
   mounted() {
+    console.log(this.candidaturas)
     console.log("Perfil montado");
     this.$store.dispatch("getTrabajadores");
     this.$store.dispatch("getExperiencias");
