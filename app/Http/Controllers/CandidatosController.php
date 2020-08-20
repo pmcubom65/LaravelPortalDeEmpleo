@@ -38,14 +38,14 @@ class CandidatosController extends Controller
        
    //     $resultado=$ofertae->trabajadors()->updateExistingPivot($trabajadorid, ['seleccionado'=>$seleccion]);
 
-        $oferta_trabajador=DB::table('oferta_trabajador')->where([
+        $oferta_trabajadorresultado=DB::table('oferta_trabajador')->where([
             ['oferta_id', '=', $ofertaid],
             ['trabajador_id', '=', $trabajadorid],
         ])->update(['seleccionado' =>  $seleccion]);
 
         
 
-        $Response=['success'=> $resultado];
+        $Response=['success'=> $oferta_trabajadorresultado];
         
     
         return response()->json($Response, 200);
