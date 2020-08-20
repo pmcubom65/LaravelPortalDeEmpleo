@@ -211,7 +211,7 @@
                 <div class="card-body text-center">
                   <h5
                     class="card-title text-center"
-                  >Fecha de inscripción en la oferta: {{item.pivot.updated_at}}</h5>
+                  >Fecha de inscripción en la oferta: {{item.updated_at}}</h5>
                   <h5 class="card-title text-center">{{empresanombre(item.empresa_id)}}</h5>
                   <p class="card-text text-center">Salario: {{item.salario}} euros</p>
                   <p

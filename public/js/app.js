@@ -53069,7 +53069,7 @@ var render = function() {
                                     [
                                       _vm._v(
                                         "Fecha de inscripción en la oferta: " +
-                                          _vm._s(item.pivot.updated_at)
+                                          _vm._s(item.updated_at)
                                       )
                                     ]
                                   ),

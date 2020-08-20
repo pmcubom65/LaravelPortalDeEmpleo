@@ -54,11 +54,11 @@ class HomeController extends Controller
          //   $candidaturas=Trabajador::find($trabajador->id)->ofertasempleo()->orderBy('updated_at')->get();
 
          $candidaturas=DB::table('ofertas')->leftJoin('oferta_trabajador', 'ofertas.id', '=', 'oferta_trabajador.oferta_id')->
-         select ('ofertas.id','ofertas.created_at', 'ofertas.updated_at','ofertas.titulo','ofertas.provincia_id', 'ofertas.salario',
+         select ('ofertas.id','ofertas.created_at', 'ofertas.titulo','ofertas.provincia_id', 'ofertas.salario',
          'ofertas.descripcion', 'ofertas.categoria_id', 'ofertas.empresa_id', 'ofertas.experiencia_id', 'ofertas.contrato_id', 'ofertas.proceso',
          DB::raw('oferta_trabajador.trabajador_id as "pivot.trabajador_id"'), DB::raw('oferta_trabajador.oferta_id as "pivot.oferta_id"'),
          DB::raw('oferta_trabajador.seleccionado as "pivot.seleccionado"'), DB::raw('oferta_trabajador.id as "pivot.id"'),
-         DB::raw('oferta_trabajador.updated_at as "pivot.updated_at"') )->where('oferta_trabajador.trabajador_id', '=', $trabajador->id)->get();
+         DB::raw('oferta_trabajador.updated_at as "updated_at"') )->where('oferta_trabajador.trabajador_id', '=', $trabajador->id)->get();
 
 
     /*     DB::table('ofertas')->leftJoin('oferta_trabajador', 'ofertas.id', '=', 'oferta_trabajador.oferta_id')->
