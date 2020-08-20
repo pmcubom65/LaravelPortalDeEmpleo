@@ -58,7 +58,16 @@ public function store(Request $request, $id, $oid, $tid) {
     );
         $ofertae=Oferta::find($oid);
    
-        $pivotid= $ofertae->trabajadors()->find($tid)->pivot->id;
+      //  $pivotid= $ofertae->trabajadors()->find($tid)->pivot->id;
+
+
+      $pivotid=DB::table('oferta_trabajador')->where([
+        ['oferta_id', '=', $oid],
+        ['trabajador_id', '=', $tid],
+        ])->first()->id;
+
+
+
 
         $contactoeditar=Contacto::where('oferta_trabajador_id', '=', $pivotid)->first();
 
