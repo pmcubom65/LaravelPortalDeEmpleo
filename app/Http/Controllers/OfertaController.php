@@ -62,7 +62,7 @@ class OfertaController extends Controller
             $laoferta->provincia_id=$request->get('Provincia');
             $laoferta->salario=$request->get('Salarioid');
             $laoferta->titulo=$request->get('titulo');
-            $laoferta->proceso=1;
+            $laoferta->proceso=true;
         
             $laoferta->save();
 
