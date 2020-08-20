@@ -285,7 +285,7 @@ export default {
             Experiencia: this.experiencia_i,
             Salarioid: this.salario_i,
             contrato: this.contrato_i,
-            oferta: this.descripcion,
+            ofertad: this.descripcion,
             cat: this.cat_i,
             _token: this.token,
             oferta: this.id

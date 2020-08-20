@@ -15391,7 +15391,7 @@ html {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   scroll-behavior: smooth;
-  zoom: 125% !important;
+  zoom: 100% !important;
 }
 
 article,
@@ -15478,7 +15478,7 @@ footer {
 body {
   margin: 0;
   font-family: "Nunito", sans-serif;
-  zoom: 125% !important;
+  zoom: 100% !important;
   font-size: 0.9rem;
   font-weight: 400;
   line-height: 1.6;

@@ -38,7 +38,7 @@ class OfertaController extends Controller
                 'Experiencia'=>'required',
                 'Salarioid'=>'required|numeric|min:12000',
                 'contrato'=>'required',
-                'oferta'=>'required',
+                'ofertad'=>'required',
                 'cat'=>'required'
             ],
 
@@ -56,7 +56,7 @@ class OfertaController extends Controller
             $laoferta=new Oferta();
             $laoferta->categoria_id=$request->get('cat');
             $laoferta->contrato_id=$request->get('contrato');
-            $laoferta->descripcion=$request->get('oferta');
+            $laoferta->descripcion=$request->get('ofertad');
             $laoferta->empresa_id=$empresaid;
             $laoferta->experiencia_id=$request->get('Experiencia');
             $laoferta->provincia_id=$request->get('Provincia');
@@ -88,7 +88,7 @@ class OfertaController extends Controller
             $laoferta=Oferta::find($request->get('oferta'));
             $laoferta->categoria_id=$request->get('cat');
             $laoferta->contrato_id=$request->get('contrato');
-            $laoferta->descripcion=$request->get('oferta');
+            $laoferta->descripcion=$request->get('ofertad');
             $laoferta->empresa_id=Empresa::where('user_id', Auth::id())->first()->id;
             $laoferta->experiencia_id=$request->get('Experiencia');
             $laoferta->provincia_id=$request->get('Provincia');

@@ -4590,8 +4590,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -4864,16 +4862,17 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         this.salida = '';
         axios.put(route("oferta", {
           id: this.usuario
-        }), _defineProperty({
+        }), {
           titulo: this.titulo_i,
           Provincia: this.provincia_i,
           Experiencia: this.experiencia_i,
           Salarioid: this.salario_i,
           contrato: this.contrato_i,
-          oferta: this.descripcion,
+          ofertad: this.descripcion,
           cat: this.cat_i,
-          _token: this.token
-        }, "oferta", this.id)).then(function (response) {
+          _token: this.token,
+          oferta: this.id
+        }).then(function (response) {
           var valores = response.data;
           _this.salida = '';
           var key;
