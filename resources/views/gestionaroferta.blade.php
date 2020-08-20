@@ -39,7 +39,8 @@
                 <div class="tab-content">
                     <div id="abierto" class="tab-pane fade show active">
                     @foreach($ofertas as $oferta)
-                            @if ($oferta->proceso===1)
+                         <!--   @if ($oferta->proceso===1)-->
+                         @if ($oferta->proceso==='t')
                             <h5 class="card-title">{{$oferta->titulo}} - {{$oferta->categoria->nombre}}</h5>
                             <p class="card-text">{{$oferta->provincia->region_name}}</p>
                             <p class="card-text">{{$oferta->contrato->nombre}}</p>
@@ -52,7 +53,8 @@
                     </div>
                     <div id="cerrado" class="tab-pane fade">
                     @foreach($ofertas as $oferta)
-                            @if ($oferta->proceso===0)
+                         <!--   @if ($oferta->proceso===0)-->
+                         @if ($oferta->proceso==='f')
                             <h5 class="card-title">{{$oferta->titulo}} - {{$oferta->categoria->nombre}}</h5>
                             <p class="card-text">{{$oferta->provincia->region_name}}</p>
                             <p class="card-text">{{$oferta->contrato->nombre}}</p>
