@@ -16,6 +16,7 @@ use Validator;
 use Carbon\Carbon;
 use Intervention\Image\Facades\Image;
 use DB;
+use Cloudder;
 class HomeController extends Controller
 {
     /**
@@ -149,6 +150,12 @@ class HomeController extends Controller
             $imageData = $request->get('imagen');
             $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
             Image::make($request->get('imagen'))->save(public_path('images/').$fileName);
+
+       //     Cloudder::upload($fileName, null);
+
+       
+
+
             }else if (!($request->get('imagen')) && $mitrabajador) {
                 $fileName=$mitrabajador->imagen;
             }      

@@ -129,7 +129,9 @@
                 <div class="form-group col-sm-12 text-center nomargen">
                   <input
                     type="file"
-                    class="custom-file-input"
+                    data-cloudinary-field="image_id"
+                    data-form-data="{ 'transformation': {'crop':'limit','tags':'samples','width':300,'height':200}}"
+                    class="file-upload custom-file-input"
                     id="imagen"
                     name="imagen"
                     lang="es"
@@ -267,11 +269,37 @@ export default {
                     vm.imagenver=vm.image;
                 };
                 reader.readAsDataURL(this.file);
+
+      var urlcloud=process.env.MIX_CLOUDINARY_BASE_URL
+      var preset=process.env.MIX_CLOUDINARY_CLOUD_NAME
+      var formDatafile=new FormData();
+      formDatafile.append('file', this.file);
+      formDatafile.append('upload_preset', preset);
+
+
+  
+
+      axios({
+        url: urlcloud,
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Access-Control-Allow-Origin': 'http://127.0.0.1:8000',
+          'Access-Control-Allow-Methods': 'POST',
+          'Content-Type' : 'application/x-www-form-urlencoded',
+          'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+        },
+        data: formDatafile
+      }).then((res)=>{
+        console.log(res);
+      }).catch((err)=>{
+        console.log(err)
+      })
     },
 
 
     curriculum: function() {
-     
+
       axios
         .put(route("homeput"), {
           _token: this.token,

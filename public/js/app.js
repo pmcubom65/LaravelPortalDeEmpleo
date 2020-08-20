@@ -2015,7 +2015,7 @@ __webpack_require__.r(__webpack_exports__);
       this.busy = true;
 
       if (!this.fondo) {
-        this.padding = this.padding + 150;
+        this.padding = this.padding + 100;
       }
 
       this.busy = false;
@@ -2573,6 +2573,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -2657,6 +2659,27 @@ __webpack_require__.r(__webpack_exports__);
       };
 
       reader.readAsDataURL(this.file);
+      var urlcloud = "https://api.cloudinary.com/v1_1/hoif30pep/upload";
+      var preset = "hoif30pep";
+      var formDatafile = new FormData();
+      formDatafile.append('file', this.file);
+      formDatafile.append('upload_preset', preset);
+      axios({
+        url: urlcloud,
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Access-Control-Allow-Origin': 'http://127.0.0.1:8000',
+          'Access-Control-Allow-Methods': 'POST',
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
+        },
+        data: formDatafile
+      }).then(function (res) {
+        console.log(res);
+      })["catch"](function (err) {
+        console.log(err);
+      });
     },
     curriculum: function curriculum() {
       var _this = this;
@@ -49703,7 +49726,7 @@ var render = function() {
             expression: "loadMore"
           }
         ],
-        staticClass: "col-2 pb-0 inicio2 espacio ",
+        staticClass: "col-2 pb-0 inicio2 espacio",
         attrs: {
           id: "sideBar",
           "infinite-scroll-disabled": "busy",
@@ -50606,9 +50629,12 @@ var render = function() {
                         },
                         [
                           _c("input", {
-                            staticClass: "custom-file-input",
+                            staticClass: "file-upload custom-file-input",
                             attrs: {
                               type: "file",
+                              "data-cloudinary-field": "image_id",
+                              "data-form-data":
+                                "{ 'transformation': {'crop':'limit','tags':'samples','width':300,'height':200}}",
                               id: "imagen",
                               name: "imagen",
                               lang: "es",
@@ -70758,8 +70784,8 @@ try {
  */
 
 
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"); //window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
