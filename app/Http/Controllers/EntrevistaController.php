@@ -14,6 +14,7 @@ use App\Contacto;
 use Carbon\Carbon;
 use App\Mail\EntrevistaMail;
 use Illuminate\Support\Facades\Mail;
+use DB;
 
 
 
