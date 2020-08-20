@@ -8,6 +8,10 @@ class Oferta_trabajador extends Model
 {
     protected $table='oferta_trabajador';
 
+    protected $fillable = [
+        'seleccionado'
+    ];
+
 
     public function contacto(){
 

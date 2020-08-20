@@ -16,7 +16,7 @@ class Soyempresa
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->rol_id===2) {
+        if (Auth::user() && Auth::user()->rol_id===2) {
             return $next($request);
  
         } else {

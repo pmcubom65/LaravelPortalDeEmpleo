@@ -16,7 +16,7 @@ class Soytrabajador
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::user()->rol_id===1) {
+        if (Auth::user() && Auth::user()->rol_id===1) {
             return $next($request);
  
         } else {
