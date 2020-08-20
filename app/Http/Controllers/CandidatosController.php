@@ -14,12 +14,12 @@ class CandidatosController extends Controller
 {
     public function index($id, $ofertaid) {
       
+
         
         return view ('mostrarloscandidatos', [
             'oferta'=>Oferta::find($ofertaid),
   
-      
-            'trabajadores'=>Oferta::find($ofertaid)->trabajadors()->orderby('created_at')->get()
+ 
        
             ]);
       

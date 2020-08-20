@@ -53,7 +53,7 @@
                     </div>
                     <div id="cerrado" class="tab-pane fade">
                     @foreach($ofertas as $oferta)
-              
+                      
                          @if ($oferta->proceso=='f')
                             <h5 class="card-title">{{$oferta->titulo}} - {{$oferta->categoria->nombre}}</h5>
                             <p class="card-text">{{$oferta->provincia->region_name}}</p>
