@@ -69,19 +69,25 @@ class HomeController extends Controller
          return response()->json($Response,200);
        })->name('trabajadoresporoferta');*/
 
+       $contactos= DB::table('contactos')->leftJoin('oferta_trabajador', 'contactos.oferta_trabajador_id', '=', 'oferta_trabajador.id')
+       ->where([
+           ['oferta_trabajador.trabajador_id', '=', $trabajador->id],
+           ['oferta_trabajador.seleccionado', '=', 't'],
+           [Carbon::parse('contactos.dia'), '>=', Carbon::now()],
+       ])->get();
 
 
-
-            foreach (Contacto::all() as $contacto) {
-                if ($contacto->oferta_trabajador->trabajador_id===$trabajador->id && $contacto->oferta_trabajador->seleccionado===1
+           /*  foreach (Contacto::all() as $contacto) {
+               if ($contacto->oferta_trabajador->trabajador_id===$trabajador->id && $contacto->oferta_trabajador->seleccionado===1
                 && Carbon::parse($contacto->dia)->gte(Carbon::now())) {
                     $contactos->push($contacto);
-                }
-            }
+                }*/
+
+           // }
             
-            }else {
-                $candidaturas=[];
-            }
+         //   }else {
+         //       $candidaturas=[];
+          //  }
          
             return view('home', compact(['trabajador', 'candidaturas', 'contactos']));
 
