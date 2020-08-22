@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="img/icon.png" alt="icono">
+    <link rel="icon" href="{!! asset('img/icon.png') !!}"/>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -13,7 +13,7 @@
     <title>ETT Publica</title>
     <meta name="description" content="página que sirve como portal de empleo">
     <meta name="keywords" content="empleo, trabajo, salario">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+  
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
