@@ -73,8 +73,10 @@ class HomeController extends Controller
        ->where([
            ['oferta_trabajador.trabajador_id', '=', $trabajador->id],
            ['oferta_trabajador.seleccionado', '=', 't'],
-           [Carbon::parse('contactos.dia'), '>=', Carbon::now()],
+           ['contactos.dia', '>=', now()]
        ])->get();
+
+     
 
 
       ////       foreach (Contacto::all() as $contacto) {
