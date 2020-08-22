@@ -15108,7 +15108,8 @@ nav.navbar {
   position: absolute;
   -webkit-clip-path: polygon(0 0, 100% 0, 0 50px);
           clip-path: polygon(0 0, 100% 0, 0 50px);
-  border-style: none;
+  border-style: none !important;
+  border: none !important;
 }
 
 @media (max-width: 767.98px) {
@@ -15127,7 +15128,8 @@ nav.navbar {
   position: absolute;
   -webkit-clip-path: polygon(100% 0, 0 100%, 100% 100%);
           clip-path: polygon(100% 0, 0 100%, 100% 100%);
-  border-style: none;
+  border-style: none !important;
+  border: none !important;
 }
 
 @media (max-width: 767.98px) {
@@ -15146,7 +15148,8 @@ nav.navbar {
   position: absolute;
   -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%);
           clip-path: polygon(0 0, 100% 0, 100% 100%);
-  border-style: none;
+  border: none !important;
+  border-style: none !important;
 }
 
 @media (max-width: 767.98px) {
@@ -15186,7 +15189,8 @@ nav.navbar {
   position: absolute;
   -webkit-clip-path: polygon(0 0, 0 100%, 100% 100%);
           clip-path: polygon(0 0, 0 100%, 100% 100%);
-  border-style: none;
+  border-style: none !important;
+  border: none !important;
 }
 
 @media (max-width: 767.98px) {

@@ -4250,11 +4250,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
-    console.log(this.candidaturas);
     console.log("Perfil montado");
     this.$store.dispatch("getTrabajadores");
     this.$store.dispatch("getExperiencias");
@@ -52637,13 +52640,7 @@ var render = function() {
                           [
                             _c("div", { staticClass: "col text-center" }, [
                               _c("h2", { staticClass: "font-weight-bold" }, [
-                                _vm._v(
-                                  _vm._s(
-                                    _vm.buscaempresa(
-                                      item.oferta_trabajador.oferta_id
-                                    )
-                                  )
-                                )
+                                _vm._v(_vm._s(_vm.buscaempresa(item.oferta_id)))
                               ]),
                               _vm._v(" "),
                               _c("h5", { staticClass: "font-weight-bold" }, [
@@ -52667,9 +52664,7 @@ var render = function() {
                                   staticClass:
                                     "btn btn-primary btn-xs-block btn-lg mb-5",
                                   attrs: {
-                                    href: _vm.getRutaOferta(
-                                      item.oferta_trabajador.oferta_id
-                                    )
+                                    href: _vm.getRutaOferta(item.oferta_id)
                                   }
                                 },
                                 [_vm._v("Ver detalles completos de la Oferta")]
