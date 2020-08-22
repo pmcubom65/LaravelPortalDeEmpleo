@@ -77,17 +77,19 @@ class HomeController extends Controller
        ])->get();
 
 
-           /*  foreach (Contacto::all() as $contacto) {
-               if ($contacto->oferta_trabajador->trabajador_id===$trabajador->id && $contacto->oferta_trabajador->seleccionado===1
-                && Carbon::parse($contacto->dia)->gte(Carbon::now())) {
-                    $contactos->push($contacto);
-                }*/
+      ////       foreach (Contacto::all() as $contacto) {
+        //      if ($contacto->oferta_trabajador->trabajador_id===$trabajador->id && $contacto->oferta_trabajador->seleccionado===1
+         //      && Carbon::parse($contacto->dia)->gte(Carbon::now())) {
+        //            $contactos->push($contacto);
+        //        }
 
-           // }
+         //   }
             
-         //   }else {
-         //       $candidaturas=[];
-          //  }
+
+
+           }else {
+                $candidaturas=[];
+            }
          
             return view('home', compact(['trabajador', 'candidaturas', 'contactos']));
 
