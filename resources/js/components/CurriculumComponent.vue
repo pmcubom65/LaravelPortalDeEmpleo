@@ -284,7 +284,7 @@ export default {
         method: 'POST',
         mode: 'no-cors',
         headers: {
-          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Origin': 'http://pedro-manuel-cubo-laravelvue.herokuapp.com/',
           'Access-Control-Allow-Methods': 'POST',
           'Content-Type' : 'application/x-www-form-urlencoded',
           'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
