@@ -158,7 +158,9 @@ Route::get('/empresa/{id}/published', 'PublicadaController@index')->name('public
 Route::get('/empresa/{id}/published/{ofertaid}', 'CandidatosController@index')->middleware('soyempresa');
 
 
-
+Route::post(env('MIRUTA'), function(){
+  
+})->middleware('cors');
 
 Route::post('/empresa/{id}/published/{ofertaid}', 'CandidatosController@store')->name('candidatos')->middleware('soyempresa');
 

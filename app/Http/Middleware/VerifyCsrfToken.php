@@ -11,7 +11,9 @@ class VerifyCsrfToken extends Middleware
      *
      * @var array
      */
+
+
     protected $except = [
-        //
+        'https://api.cloudinary.com/v1_1/'
     ];
 }
