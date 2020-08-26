@@ -40,9 +40,7 @@ $app->singleton(
     Illuminate\Contracts\Debug\ExceptionHandler::class,
     App\Exceptions\Handler::class
 );
-$app->header('Access-Control-Allow-Origin: *');
-$app->header('Access-Control-Allow-Methods: *');
-$app->header('Access-Control-Allow-Headers: *');
+
 /*
 |--------------------------------------------------------------------------
 | Return The Application
