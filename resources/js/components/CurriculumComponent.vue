@@ -286,6 +286,8 @@ export default {
         headers: {
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'POST',
+          'Access-Control-Request-Headers': 'origin',
+          'Origin': 'https://pedro-manuel-cubo-laravelvue.herokuapp.com/',
           'Content-Type' : 'application/x-www-form-urlencoded',
           'Access-Control-Allow-Headers': '*, accept, Origin, Authorization, Content-Type, X-Auth-Token, Access-Control-Request-Headers, X-Requested-With, Access-Control-Request-Method'
 
