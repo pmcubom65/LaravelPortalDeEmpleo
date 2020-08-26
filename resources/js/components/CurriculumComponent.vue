@@ -279,18 +279,17 @@ export default {
       formDatafile.append('cloud_name', cloudname);
 
 
-  
+      fetch(urlcloud, {
+          method : 'POST',
+          body: formDatafile,
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'multipart/form-data'
+          }
 
-      axios({
-        url: urlcloud,
-       
-        data: formDatafile, 
+      }).then(res=>res.json()).then(data=>console.log(data.uri))
+      .catch((err)=>console.log(err))
 
-      }).then((res)=>{
-        console.log(res.data.secure_url);
-      }).catch((err)=>{
-        console.log(err)
-      })
     },
 
 
