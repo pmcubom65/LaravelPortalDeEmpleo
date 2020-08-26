@@ -2669,7 +2669,7 @@ __webpack_require__.r(__webpack_exports__);
         method: 'POST',
         mode: 'no-cors',
         headers: {
-          'Access-Control-Allow-Origin': 'http://127.0.0.1:8000',
+          'Access-Control-Allow-Origin': 'https://pedro-manuel-cubo-laravelvue.herokuapp.com',
           'Access-Control-Allow-Methods': 'POST',
           'Content-Type': 'application/x-www-form-urlencoded',
           'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
