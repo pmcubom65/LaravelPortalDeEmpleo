@@ -287,7 +287,7 @@ export default {
           'Access-Control-Allow-Origin': '*',
           'Access-Control-Allow-Methods': 'POST',
           'Content-Type' : 'application/x-www-form-urlencoded',
-          'Access-Control-Allow-Headers': 'accept, Origin, Content-Type, X-Auth-Token, Access-Control-Request-Headers, X-Requested-With, Access-Control-Request-Method'
+          'Access-Control-Allow-Headers': 'accept, Origin, Authorization, Content-Type, X-Auth-Token, Access-Control-Request-Headers, X-Requested-With, Access-Control-Request-Method'
 
         },
         data: formDatafile, 
