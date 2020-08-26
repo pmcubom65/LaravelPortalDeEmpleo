@@ -284,12 +284,12 @@ export default {
         method: 'POST',
         mode: 'no-cors',
         headers: {
-          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Origin': 'http://pedro-manuel-cubo-laravelvue.herokuapp.com',
           'Access-Control-Allow-Methods': 'POST',
           'Access-Control-Request-Headers': 'origin',
-            headers: {
+          
             'Authorization': 'Basic ' + base64.encode(process.env.MIX_CLOUDINARY_API_KEY + ":" + process.env.MIX_CLOUDINARY_API_SECRET),
-          },
+        
           'Origin': 'https://pedro-manuel-cubo-laravelvue.herokuapp.com/',
           'Content-Type' : 'application/x-www-form-urlencoded',
           'Access-Control-Allow-Headers': '*, accept, origin, Authorization, Content-Type, X-Auth-Token, Access-Control-Request-Headers, X-Requested-With, Access-Control-Request-Method'
