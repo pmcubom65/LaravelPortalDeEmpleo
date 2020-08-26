@@ -284,7 +284,10 @@ export default {
           body: formDatafile,
           headers: {
             'Accept': 'application/json',
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'multipart/form-data',
+               'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT, DELETE',
+            'Access-Control-Allow-Headers': 'Content-Type, X-Auth-Token, Origin',
+             'X-Robots-Tag': 'noindex'
           }
 
       }).then(res=>res.json()).then(data=>console.log(data.uri))
