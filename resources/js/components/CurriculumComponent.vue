@@ -271,10 +271,12 @@ export default {
                 reader.readAsDataURL(this.file);
 
       var urlcloud=process.env.MIX_CLOUDINARY_BASE_URL
-      var preset=process.env.MIX_CLOUDINARY_CLOUD_NAME
+      var cloudname=process.env.MIX_CLOUDINARY_CLOUD_NAME
+      var preset='default-preset';
       var formDatafile=new FormData();
       formDatafile.append('file', this.file);
       formDatafile.append('upload_preset', preset);
+      formDatafile.append('cloud_name', cloudname);
 
 
   
