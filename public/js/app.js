@@ -2642,8 +2642,8 @@ __webpack_require__.r(__webpack_exports__);
       habilitado: this.$props.hhabilitado,
       file: {},
       labelfile: 'Seleccionar Archivo',
-      image: '',
-      imagenver: this.$props.datostrabajador.imagen ? this.$props.datostrabajador.imagen : 'images/No_image.jpg',
+      image: 'https://res.cloudinary.com/hoif30pep/image/upload/v1598542863/mq0lgt4ajpqxijwmxzdp.jpg',
+      imagenver: this.$props.datostrabajador.imagen ? this.$props.datostrabajador.imagen : 'https://res.cloudinary.com/hoif30pep/image/upload/v1598542863/mq0lgt4ajpqxijwmxzdp.jpg',
       cloud_name: "hoif30pep"
     };
   },
@@ -2691,7 +2691,9 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.put(route("homeput"), {
-        _token: this.token,
+        headers: {
+          'X-CSRF-TOKEN': this.token
+        },
         direccion: this.direccion_i,
         Provincia: this.provincia_i,
         telefono: this.telefono_i,
@@ -50920,10 +50922,7 @@ var render = function() {
             [
               _c("img", {
                 staticClass: "align-self-center mr-3 mifoto",
-                attrs: {
-                  src: "/images/" + _vm.datostrabajador.imagen,
-                  alt: "foto"
-                }
+                attrs: { src: _vm.datostrabajador.imagen, alt: "foto" }
               }),
               _vm._v(" "),
               _c("div", { staticClass: "media-body" }, [
