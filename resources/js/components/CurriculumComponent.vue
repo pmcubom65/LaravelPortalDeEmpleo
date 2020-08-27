@@ -311,7 +311,9 @@ export default {
 
       axios
         .put(route("homeput"), {
-          _token: this.token,
+           headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
           direccion: this.direccion_i,
 
           Provincia: this.provincia_i,
