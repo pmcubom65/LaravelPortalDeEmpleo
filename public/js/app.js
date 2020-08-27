@@ -2691,9 +2691,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.put(route("homeput"), {
-        headers: {
-          'X-CSRF-TOKEN': this.token
-        },
+        _token: this.token,
         direccion: this.direccion_i,
         Provincia: this.provincia_i,
         telefono: this.telefono_i,
@@ -70869,6 +70867,8 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
 /***/ }),
 
