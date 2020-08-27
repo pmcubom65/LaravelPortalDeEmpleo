@@ -70868,8 +70868,6 @@ window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js")
 //     encrypted: true
 // });
 
-axios.defaults.headers.common['X-CSRF-TOKEN'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
 /***/ }),
 
 /***/ "./resources/js/components/BarracandidatosComponent.vue":
