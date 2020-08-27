@@ -28,7 +28,7 @@ class AddImagenToTrabajadorsTable extends Migration
                  'provincia_id'=>9,
                  'telefono'=>'666666666',
                  'user_id'=>3,
-                 'imagen'=>'person1.jpg'
+                 'imagen'=>'https://res.cloudinary.com/hoif30pep/image/upload/v1598542875/lx3eb11aqlnqwraur6if.jpg'
                  ]
                 ));
 
@@ -41,7 +41,7 @@ class AddImagenToTrabajadorsTable extends Migration
                          'provincia_id'=>11,
                          'telefono'=>'660066666',
                          'user_id'=>4,
-                         'imagen'=>'person2.jpg'
+                         'imagen'=>'https://res.cloudinary.com/hoif30pep/image/upload/v1598542885/svvj2skifyxezdlbmegr.jpg'
                          ]
                         ));
     }

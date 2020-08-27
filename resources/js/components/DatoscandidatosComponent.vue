@@ -5,7 +5,7 @@
  
     <div class="media border border-primary rounded lead"  @click="elejido(datostrabajador)" :class="{ fondo : destacar }">
       <img
-        :src="'/images/'+datostrabajador.imagen"
+        :src="datostrabajador.imagen"
         class="align-self-center mr-3 mifoto"
         alt="foto"
       />

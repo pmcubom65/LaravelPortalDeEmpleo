@@ -255,8 +255,8 @@ export default {
       habilitado: this.$props.hhabilitado,
       file: {},
       labelfile: 'Seleccionar Archivo',
-      image: '',
-      imagenver: this.$props.datostrabajador.imagen ? this.$props.datostrabajador.imagen : 'images/No_image.jpg',
+      image: 'https://res.cloudinary.com/hoif30pep/image/upload/v1598542863/mq0lgt4ajpqxijwmxzdp.jpg',
+      imagenver: this.$props.datostrabajador.imagen ? this.$props.datostrabajador.imagen : 'https://res.cloudinary.com/hoif30pep/image/upload/v1598542863/mq0lgt4ajpqxijwmxzdp.jpg',
 
       cloud_name: process.env.MIX_CLOUDINARY_CLOUD_NAME
     };
@@ -311,9 +311,7 @@ export default {
 
       axios
         .put(route("homeput"), {
-           headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
+        
           direccion: this.direccion_i,
 
           Provincia: this.provincia_i,
