@@ -83,7 +83,7 @@
       <div class="container">
         <div class="row">
           <div class="col-5 text-center titular  ">
-            <img :src="'/images/'+datostrabajador.imagen" class=" img-responsive mifoto" alt="Image" />
+            <img :src="datostrabajador.imagen" class=" img-responsive mifoto" alt="Image" />
           </div>
           <div class="col-7  text-left titular" id="area">
             <div v-if="soyunaempresa">

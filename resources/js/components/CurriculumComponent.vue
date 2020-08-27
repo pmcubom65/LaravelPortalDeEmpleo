@@ -256,7 +256,7 @@ export default {
       file: {},
       labelfile: 'Seleccionar Archivo',
       image: '',
-      imagenver: this.$props.datostrabajador.imagen ? 'images/'+this.$props.datostrabajador.imagen : 'images/No_image.jpg',
+      imagenver: this.$props.datostrabajador.imagen ? this.$props.datostrabajador.imagen : 'images/No_image.jpg',
 
       cloud_name: process.env.MIX_CLOUDINARY_CLOUD_NAME
     };
@@ -274,8 +274,7 @@ export default {
                 };
                 reader.readAsDataURL(this.file);
 
-      var urlcloud=process.env.MIX_CLOUDINARY_BASE_URL
-      var cloudname=process.env.MIX_CLOUDINARY_CLOUD_NAME
+  
       var preset='default-preset';
       var formDatafile=new FormData();
       formDatafile.append('file', this.file);
@@ -295,6 +294,7 @@ export default {
         if (res.status === 200){
           console.log('upload sucsess', res);
           console.log(res.data.url);
+          this.image=res.data.url;
         }
         else{
           console.info('oops, something went wrong', res);

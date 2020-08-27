@@ -2643,12 +2643,14 @@ __webpack_require__.r(__webpack_exports__);
       file: {},
       labelfile: 'Seleccionar Archivo',
       image: '',
-      imagenver: this.$props.datostrabajador.imagen ? 'images/' + this.$props.datostrabajador.imagen : 'images/No_image.jpg',
+      imagenver: this.$props.datostrabajador.imagen ? this.$props.datostrabajador.imagen : 'images/No_image.jpg',
       cloud_name: "hoif30pep"
     };
   },
   methods: {
     fileChange: function fileChange(nombre, evt) {
+      var _this = this;
+
       this.file = evt[0];
       this.labelfile = evt[0].name;
       console.log("file Object:==>", this.file);
@@ -2661,8 +2663,6 @@ __webpack_require__.r(__webpack_exports__);
       };
 
       reader.readAsDataURL(this.file);
-      var urlcloud = "https://api.cloudinary.com/v1_1/hoif30pep/upload";
-      var cloudname = "hoif30pep";
       var preset = 'default-preset';
       var formDatafile = new FormData();
       formDatafile.append('file', this.file);
@@ -2679,6 +2679,7 @@ __webpack_require__.r(__webpack_exports__);
         if (res.status === 200) {
           console.log('upload sucsess', res);
           console.log(res.data.url);
+          _this.image = res.data.url;
         } else {
           console.info('oops, something went wrong', res);
         }
@@ -2687,7 +2688,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     curriculum: function curriculum() {
-      var _this = this;
+      var _this2 = this;
 
       axios.put(route("homeput"), {
         _token: this.token,
@@ -2699,20 +2700,20 @@ __webpack_require__.r(__webpack_exports__);
         imagen: this.image
       }).then(function (response) {
         var valores = response.data;
-        _this.salida = '';
+        _this2.salida = '';
         Object.entries(valores).forEach(function (entry) {
           if (entry[0].toString() === "success") {
-            _this.abierto_i = true;
-            _this.trabajador = true;
+            _this2.abierto_i = true;
+            _this2.trabajador = true;
 
-            _this.$store.dispatch("getTrabajadores");
+            _this2.$store.dispatch("getTrabajadores");
 
-            _this.habilitado = true;
-            _this.salida = entry[1].toString();
+            _this2.habilitado = true;
+            _this2.salida = entry[1].toString();
           } else {
             var campoerroneo = entry[0].toString();
             var clave = entry[1].toString();
-            _this.salida = _this.salida + '  ' + clave + ': ' + campoerroneo + '.<br/>';
+            _this2.salida = _this2.salida + '  ' + clave + ': ' + campoerroneo + '.<br/>';
           }
         });
       })["catch"](function (error) {
@@ -52788,10 +52789,7 @@ var render = function() {
             _c("div", { staticClass: "col-5 text-center titular  " }, [
               _c("img", {
                 staticClass: " img-responsive mifoto",
-                attrs: {
-                  src: "/images/" + _vm.datostrabajador.imagen,
-                  alt: "Image"
-                }
+                attrs: { src: _vm.datostrabajador.imagen, alt: "Image" }
               })
             ]),
             _vm._v(" "),
