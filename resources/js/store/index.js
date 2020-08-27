@@ -3,6 +3,9 @@ import Vuex from 'vuex'
 import * as VueGoogleMaps from 'vue2-google-maps'
 
 
+
+
+
 Vue.use(Vuex)
 
 import state from './state';
@@ -18,6 +21,10 @@ export default new Vuex.Store({
    mutations,
    actions
 })
+
+
+
+
 
 
 Vue.use(VueGoogleMaps, {
@@ -45,3 +52,4 @@ Vue.use(VueGoogleMaps, {
    //// If you want to automatically install all the components this property must be set to 'true':
    installComponents: true
  })
+

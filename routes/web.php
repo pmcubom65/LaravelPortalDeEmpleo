@@ -117,7 +117,7 @@ Route::get('/search/{id}/edit', 'EditOfertaController@show')->middleware('soyemp
 Route::match(['put', 'patch'], '/search/{id}', 'SearchController@put')->middleware('soyempresa');
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('cors');
 
 Route::post('/home', 'HomeController@store')->name('homeexpe')->middleware('soytrabajador');
 
@@ -158,9 +158,7 @@ Route::get('/empresa/{id}/published', 'PublicadaController@index')->name('public
 Route::get('/empresa/{id}/published/{ofertaid}', 'CandidatosController@index')->middleware('soyempresa');
 
 
-Route::post(env('MIRUTA'), function(){
-  
-})->middleware('cors');
+
 
 Route::post('/empresa/{id}/published/{ofertaid}', 'CandidatosController@store')->name('candidatos')->middleware('soyempresa');
 

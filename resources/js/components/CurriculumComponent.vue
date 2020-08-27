@@ -278,22 +278,18 @@ export default {
       formDatafile.append('upload_preset', preset);
       formDatafile.append('cloud_name', cloudname);
 
+   
+      axios({
+        url: urlcloud,
+       
+        data: formDatafile, 
 
-      fetch(urlcloud, {
-          method : 'POST',
-          body: formDatafile,
-          headers: {
-              "Access-Control-Allow-Origin": "*",
-              "Access-Control-Allow-Credentials": "true",
-          
-            'Accept': 'application/json',
-            'Content-Type': 'multipart/form-data',
-               'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT, DELETE',
-            'Access-Control-Allow-Headers': 'X-Robots-Tag, Access-Control-Allow-Headers, Origin,Accept,Content-Type, X-Auth-Token, Origin, Access-Control-Request-Method, Access-Control-Request-Headers',
-          }
-
-      }).then(res=>res.json()).then(data=>console.log(data.uri))
-      .catch((err)=>console.log(err))
+      }).then((res)=>{
+        console.log(res.data.secure_url);
+      }).catch((err)=>{
+        console.log(err)
+      })
+    
 
     },
 
