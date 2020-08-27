@@ -121,7 +121,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::post('/home', 'HomeController@store')->name('homeexpe')->middleware('soytrabajador');
 
-Route::match(['put', 'patch'], '/home', 'HomeController@put')->name('homeput')->middleware('soytrabajador');
+Route::match(['put', 'patch'], '/home', 'HomeController@put')->name('homeput')->midleware('cors')->middleware('soytrabajador');
 
 
 
