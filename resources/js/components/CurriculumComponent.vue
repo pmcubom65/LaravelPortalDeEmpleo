@@ -142,7 +142,7 @@
                     <span class="glyphicon glyphicon-upload"></span>{{labelfile}}
                   </label>
                   <img :src="imagenver" class="imagencurriculum">
-                  <button id="upload_widget" class="cloudinary-button">Upload files</button>
+         
                 </div>
               </div>
 
@@ -188,23 +188,6 @@ export default {
     this.$store.dispatch("getTrabajadores");
     
 
-      let cloudinaryScript = document.createElement('script')
-      cloudinaryScript.setAttribute('src', 'https://widget.cloudinary.com/v2.0/global/all.js')
-      document.head.appendChild(recaptchaScript)
-      var myWidget = cloudinary.createUploadWidget({
-  cloudName: 'hoif30pep', 
-  uploadPreset: 'default-preset'}, (error, result) => { 
-    if (!error && result && result.event === "success") { 
-      console.log('Done! Here is the image info: ', result.info); 
-    }
-  }
-)
-
-document.getElementById("upload_widget").addEventListener("click", function(){
-    myWidget.open();
-  }, false);
-
-  
   },
 
   props: {
@@ -274,6 +257,8 @@ document.getElementById("upload_widget").addEventListener("click", function(){
       labelfile: 'Seleccionar Archivo',
       image: '',
       imagenver: this.$props.datostrabajador.imagen ? 'images/'+this.$props.datostrabajador.imagen : 'images/No_image.jpg',
+
+      cloud_name: process.env.MIX_CLOUDINARY_CLOUD_NAME
     };
   },
   methods: {
@@ -295,19 +280,28 @@ document.getElementById("upload_widget").addEventListener("click", function(){
       var formDatafile=new FormData();
       formDatafile.append('file', this.file);
       formDatafile.append('upload_preset', preset);
-      formDatafile.append('cloud_name', cloudname);
+ 
 
    
       axios({
-        url: urlcloud,
-       
-        data: formDatafile, 
-
-      }).then((res)=>{
-        console.log(res.data.secure_url);
-      }).catch((err)=>{
-        console.log(err)
-      })
+        url: `https://api.cloudinary.com/v1_1/${this.cloud_name}/image/upload`,
+        method: 'POST',
+        headers: {
+            'Content-Type': undefined,
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        data: formData,
+      }).then( (res) => {
+        if (res.status === 200){
+          console.log('upload sucsess', res);
+          console.log(res.data.url);
+        }
+        else{
+          console.info('oops, something went wrong', res);
+        }
+      }).catch( (err) => {
+        console.error(err);
+      });
     
 
     },

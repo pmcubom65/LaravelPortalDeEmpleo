@@ -7,6 +7,8 @@
 require('./bootstrap');
 
 
+
+
 window.Vue = require('vue');
 import VTooltip from 'v-tooltip'
 import route from 'ziggy'
@@ -74,12 +76,6 @@ Vue.mixin({
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-import Cloudinary from "cloudinary-vue";
-
-Vue.use(Cloudinary, {
-  configuration: { cloudName: "hoif30pep" }
-  //             ^ cloudinary configuration options
-});
 
 
 
