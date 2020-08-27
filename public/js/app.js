@@ -2674,7 +2674,7 @@ __webpack_require__.r(__webpack_exports__);
           'Content-Type': undefined,
           'X-Requested-With': 'XMLHttpRequest'
         },
-        data: formData
+        data: formDatafile
       }).then(function (res) {
         if (res.status === 200) {
           console.log('upload sucsess', res);

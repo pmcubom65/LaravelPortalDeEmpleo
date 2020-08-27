@@ -290,7 +290,7 @@ export default {
             'Content-Type': undefined,
             'X-Requested-With': 'XMLHttpRequest'
         },
-        data: formData,
+        data: formDatafile,
       }).then( (res) => {
         if (res.status === 200){
           console.log('upload sucsess', res);
