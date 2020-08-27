@@ -117,7 +117,7 @@ Route::get('/search/{id}/edit', 'EditOfertaController@show')->middleware('soyemp
 Route::match(['put', 'patch'], '/search/{id}', 'SearchController@put')->middleware('soyempresa');
 
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('Cors');
+Route::get('/home', 'HomeController@index')->name('home')->middleware('cors');
 
 Route::post('/home', 'HomeController@store')->name('homeexpe')->middleware('soytrabajador');
 

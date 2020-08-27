@@ -66,5 +66,6 @@ class Kernel extends HttpKernel
         'protectjson'=> \App\Http\Middleware\Protectjson::class,
         'soyempresa'=> \App\Http\Middleware\Soyempresa::class,
         'soytrabajador'=> \App\Http\Middleware\Soytrabajador::class,
+        'cors' => \App\Http\Middleware\Cors::class,
     ];
 }
