@@ -142,6 +142,7 @@
                     <span class="glyphicon glyphicon-upload"></span>{{labelfile}}
                   </label>
                   <img :src="imagenver" class="imagencurriculum">
+                  <button id="upload_widget" class="cloudinary-button">Upload files</button>
                 </div>
               </div>
 
@@ -186,6 +187,24 @@ export default {
     console.log("Curriculum montado");
     this.$store.dispatch("getTrabajadores");
     
+
+      let cloudinaryScript = document.createElement('script')
+      cloudinaryScript.setAttribute('src', 'https://widget.cloudinary.com/v2.0/global/all.js')
+      document.head.appendChild(recaptchaScript)
+      var myWidget = cloudinary.createUploadWidget({
+  cloudName: 'hoif30pep', 
+  uploadPreset: 'default-preset'}, (error, result) => { 
+    if (!error && result && result.event === "success") { 
+      console.log('Done! Here is the image info: ', result.info); 
+    }
+  }
+)
+
+document.getElementById("upload_widget").addEventListener("click", function(){
+    myWidget.open();
+  }, false);
+
+  
   },
 
   props: {
