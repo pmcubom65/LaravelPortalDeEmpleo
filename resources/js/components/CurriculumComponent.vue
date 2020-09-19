@@ -311,7 +311,7 @@ export default {
 
       axios
         .put(route("homeput"), {
-          _token: this.token,
+       
           direccion: this.direccion_i,
 
           Provincia: this.provincia_i,

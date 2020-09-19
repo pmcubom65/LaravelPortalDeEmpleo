@@ -2691,7 +2691,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       axios.put(route("homeput"), {
-        _token: this.token,
         direccion: this.direccion_i,
         Provincia: this.provincia_i,
         telefono: this.telefono_i,
