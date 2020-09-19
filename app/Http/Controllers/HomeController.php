@@ -149,27 +149,28 @@ class HomeController extends Controller
             'fecha' => 'required|date|before:today',
             'Provincia' => 'required',
             'telefono' => 'required',
-            'imagen'=> 'nullable|image64:jpeg,jpg,png'
+       //     'imagen'=> 'nullable|image64:jpeg,jpg,png'
+            'imagen'=> 'nullable'
             ], 
             $messages);
 
             $mitrabajador=Trabajador::where('user_id', Auth::id())->first();
 
             if ( $request->get('imagen')) {
-            $imageData = $request->get('imagen');
-            $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
-            Image::make($request->get('imagen'))->save(public_path('images/').$fileName);
+      //      $imageData = $request->get('imagen');
+       //     $fileName = Carbon::now()->timestamp . '_' . uniqid() . '.' . explode('/', explode(':', substr($imageData, 0, strpos($imageData, ';')))[1])[1];
+      //      Image::make($request->get('imagen'))->save(public_path('images/').$fileName);
 
        //     Cloudder::upload($fileName, null);
 
-       
+                $fileName=$request->get('imagen');
 
 
             }else if (!($request->get('imagen')) && $mitrabajador) {
                 $fileName=$mitrabajador->imagen;
             }      
             else {
-                $fileName='No_image.jpg';
+                $fileName='http://res.cloudinary.com/hoif30pep/image/upload/v1598542863/mq0lgt4ajpqxijwmxzdp.jpg';
             }
 
             if ($Validator->fails()) {

@@ -35,7 +35,7 @@
   
 
 
-    <miarea-component :hhabilitado="true" :estrabajador="true"  :token="'{{csrf_token()}}'"
+    <miarea-component :hhabilitado="true" :estrabajador="true"  :token="'{{Session::token()}}'"
         :provincias=" JSON.parse('{{$provincias->toJson() }}') " :nombre="'{{Auth::user()->name}}'"
         :id="'{{Auth::id()}}'"  :cabecera="true"  :esarea="true" 
         :datostrabajador="JSON.parse('{{$trabajador->toJson()}}')" :fecha="'{{$trabajador->getDate()}}'"
