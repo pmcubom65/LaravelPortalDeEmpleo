@@ -12,7 +12,8 @@ class VerifyCsrfToken extends Middleware
      * @var array
      */
     protected $except_urls = [
-        'home/*'
+        'home/*',
+        'http://res.cloudinary.com/hoif30pep/*'
 
     ];
 
