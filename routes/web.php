@@ -124,7 +124,6 @@ Route::post('/home', 'HomeController@store')->name('homeexpe')->middleware('soyt
 Route::match(['put', 'patch'], '/home', 'HomeController@put')->name('homeput')->middleware('soytrabajador');
 
 
-
 Route::get('/home/Expe/{id}', 'ExpeController@show')->name('Expe')->middleware('soytrabajador');
 Route::delete('/home/Expe/{id}', 'ExpeController@delete')->name('Expe')->middleware('soytrabajador');
 

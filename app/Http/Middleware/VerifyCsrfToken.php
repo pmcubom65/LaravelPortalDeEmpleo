@@ -14,7 +14,9 @@ class VerifyCsrfToken extends Middleware
     protected $except_urls = [
         '/home',
         'http://res.cloudinary.com/hoif30pep/*',
-        'homeput'
+        'homeput',
+        'home',
+        'http://pedro-manuel-cubo-laravelvue.herokuapp.com/home'
     ];
 
   
