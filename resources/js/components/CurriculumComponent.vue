@@ -319,7 +319,7 @@ export default {
           fecha: this.fecha_i,
           dni: this.dni_i,
           imagen: this.image
-        })
+        }, { withCredentials: true })
         .then(response => {
           let valores = response.data;
            this.salida='';
