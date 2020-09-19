@@ -2698,6 +2698,8 @@ __webpack_require__.r(__webpack_exports__);
         fecha: this.fecha_i,
         dni: this.dni_i,
         imagen: this.image
+      }, {
+        withCredentials: true
       }).then(function (response) {
         var valores = response.data;
         _this2.salida = '';
@@ -70768,6 +70770,7 @@ Vue.use(v_tooltip__WEBPACK_IMPORTED_MODULE_0__["default"], {
     defaultAutoHide: true
   }
 });
+Vue.http.options.credentials = true;
 
 var infiniteScroll = __webpack_require__(/*! vue-infinite-scroll */ "./node_modules/vue-infinite-scroll/vue-infinite-scroll.js");
 
@@ -70852,7 +70855,8 @@ try {
  */
 
 
-window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js"); //window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+axios.defaults.withCredentials = true; //window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
