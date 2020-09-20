@@ -26,7 +26,7 @@ Vue.use(VTooltip, {defaultTrigger: 'hover', defaultContainer: 'div', disposeTime
 
 })
 
-Vue.http.options.credentials = true;
+
 
 var infiniteScroll =  require('vue-infinite-scroll');
 Vue.use(infiniteScroll);
