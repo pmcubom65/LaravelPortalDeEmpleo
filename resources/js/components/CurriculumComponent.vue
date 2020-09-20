@@ -142,11 +142,11 @@
                     <span class="glyphicon glyphicon-upload"></span>{{labelfile}}
                   </label>
                   <img :src="imagenver" class="imagencurriculum">
-
+                  <div class="w-100">
                   <div class="progress">
                   <div class="progress-bar" role="progressbar" :aria-valuenow="progreso" aria-valuemin="0" aria-valuemax="100"></div>
                   </div>
-         
+                  </div>
                 </div>
               </div>
 
