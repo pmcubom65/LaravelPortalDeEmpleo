@@ -50645,7 +50645,7 @@ var render = function() {
                             attrs: { src: _vm.imagenver }
                           }),
                           _vm._v(" "),
-                          _c("div", { staticClass: "w-100" }, [
+                          _c("div", { staticClass: "col w-100" }, [
                             _c("div", { staticClass: "progress" }, [
                               _c("div", {
                                 staticClass: "progress-bar",
