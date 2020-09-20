@@ -142,6 +142,10 @@
                     <span class="glyphicon glyphicon-upload"></span>{{labelfile}}
                   </label>
                   <img :src="imagenver" class="imagencurriculum">
+
+                  <div class="progress">
+                  <div class="progress-bar" role="progressbar" :aria-valuenow="progreso" aria-valuemin="0" aria-valuemax="100"></div>
+                  </div>
          
                 </div>
               </div>
@@ -158,7 +162,7 @@
               </div>
 
               <div class="form-row my-3" v-show="!abierto_i">
-                <button type="submit" class="btn btn-success m-auto btn-lg btn-xs-block" :disabled="esperaimagen">
+                <button type="submit" class="btn btn-success m-auto btn-lg btn-xs-block">
                   <span class="glyphicon glyphicon-ok"></span> Guardar Curriculum
                 </button>
               </div>
@@ -242,7 +246,7 @@ export default {
 
   data() {
     return {
-      esperaimagen: false,
+      progreso: 0,
       nombre_i: "",
       dni_i: this.$props.datostrabajador.dni,
       direccion_i: this.$props.datostrabajador.direccion,
@@ -264,7 +268,7 @@ export default {
   },
   methods: {
     fileChange: function(nombre,evt) {
-      this.esperaimagen=true;
+
       this.file = evt[0];
       this.labelfile=evt[0].name;
       console.log("file Object:==>", this.file);
@@ -276,7 +280,7 @@ export default {
                 };
                 reader.readAsDataURL(this.file);
 
-  
+      this.progreso=50;
       var preset='default-preset';
       var formDatafile=new FormData();
       formDatafile.append('file', this.file);
@@ -297,15 +301,15 @@ export default {
           console.log('upload sucsess', res);
           console.log(res.data.url);
           this.image=res.data.url;
-          this.esperaimagen=false;
+          this.progreso=100;
         }
         else{
           console.info('oops, something went wrong', res);
-          this.esperaimagen=false;
+   
         }
       }).catch( (err) => {
         console.error(err);
-        this.esperaimagen=false;
+    
       });
     
 

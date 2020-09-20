@@ -2576,6 +2576,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
@@ -2630,7 +2634,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      esperaimagen: false,
+      progreso: 0,
       nombre_i: "",
       dni_i: this.$props.datostrabajador.dni,
       direccion_i: this.$props.datostrabajador.direccion,
@@ -2652,7 +2656,6 @@ __webpack_require__.r(__webpack_exports__);
     fileChange: function fileChange(nombre, evt) {
       var _this = this;
 
-      this.esperaimagen = true;
       this.file = evt[0];
       this.labelfile = evt[0].name;
       console.log("file Object:==>", this.file);
@@ -2665,6 +2668,7 @@ __webpack_require__.r(__webpack_exports__);
       };
 
       reader.readAsDataURL(this.file);
+      this.progreso = 50;
       var preset = 'default-preset';
       var formDatafile = new FormData();
       formDatafile.append('file', this.file);
@@ -2682,14 +2686,12 @@ __webpack_require__.r(__webpack_exports__);
           console.log('upload sucsess', res);
           console.log(res.data.url);
           _this.image = res.data.url;
-          _this.esperaimagen = false;
+          _this.progreso = 100;
         } else {
           console.info('oops, something went wrong', res);
-          _this.esperaimagen = false;
         }
       })["catch"](function (err) {
         console.error(err);
-        _this.esperaimagen = false;
       });
     },
     curriculum: function curriculum() {
@@ -50641,7 +50643,19 @@ var render = function() {
                           _c("img", {
                             staticClass: "imagencurriculum",
                             attrs: { src: _vm.imagenver }
-                          })
+                          }),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "progress" }, [
+                            _c("div", {
+                              staticClass: "progress-bar",
+                              attrs: {
+                                role: "progressbar",
+                                "aria-valuenow": _vm.progreso,
+                                "aria-valuemin": "0",
+                                "aria-valuemax": "100"
+                              }
+                            })
+                          ])
                         ]
                       )
                     ]
@@ -50689,20 +50703,7 @@ var render = function() {
                       ],
                       staticClass: "form-row my-3"
                     },
-                    [
-                      _c(
-                        "button",
-                        {
-                          staticClass:
-                            "btn btn-success m-auto btn-lg btn-xs-block",
-                          attrs: { type: "submit", disabled: _vm.esperaimagen }
-                        },
-                        [
-                          _c("span", { staticClass: "glyphicon glyphicon-ok" }),
-                          _vm._v(" Guardar Curriculum\n              ")
-                        ]
-                      )
-                    ]
+                    [_vm._m(1)]
                   )
                 ]
               ),
@@ -50769,6 +50770,22 @@ var staticRenderFns = [
       [
         _c("span", { staticClass: "glyphicon glyphicon-ok-circle" }),
         _vm._v(" No tengo más experiencias laborales. Terminar\n              ")
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-success m-auto btn-lg btn-xs-block",
+        attrs: { type: "submit" }
+      },
+      [
+        _c("span", { staticClass: "glyphicon glyphicon-ok" }),
+        _vm._v(" Guardar Curriculum\n              ")
       ]
     )
   }
