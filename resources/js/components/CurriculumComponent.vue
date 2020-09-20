@@ -158,7 +158,7 @@
               </div>
 
               <div class="form-row my-3" v-show="!abierto_i">
-                <button type="submit" class="btn btn-success m-auto btn-lg btn-xs-block">
+                <button type="submit" class="btn btn-success m-auto btn-lg btn-xs-block" :disabled="esperaimagen">
                   <span class="glyphicon glyphicon-ok"></span> Guardar Curriculum
                 </button>
               </div>
@@ -242,6 +242,7 @@ export default {
 
   data() {
     return {
+      esperaimagen: false,
       nombre_i: "",
       dni_i: this.$props.datostrabajador.dni,
       direccion_i: this.$props.datostrabajador.direccion,
@@ -263,6 +264,7 @@ export default {
   },
   methods: {
     fileChange: function(nombre,evt) {
+      this.esperaimagen=true;
       this.file = evt[0];
       this.labelfile=evt[0].name;
       console.log("file Object:==>", this.file);
@@ -295,12 +297,15 @@ export default {
           console.log('upload sucsess', res);
           console.log(res.data.url);
           this.image=res.data.url;
+          this.esperaimagen=false;
         }
         else{
           console.info('oops, something went wrong', res);
+          this.esperaimagen=false;
         }
       }).catch( (err) => {
         console.error(err);
+        this.esperaimagen=false;
       });
     
 
