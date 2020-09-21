@@ -377,4 +377,6 @@ export default {
 .nomargen {
   margin-bottom: 0;
 }
+
+
 </style>
